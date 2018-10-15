@@ -5,7 +5,7 @@
 #include <iostream>
 
 #include "transaction.hpp"
-#include "hash.hpp"
+#include "crypto.hpp"
 
 Script::Script( std::vector<std::string>::iterator initialPointer,
 		std::vector<std::string>::iterator endPointer, 
@@ -40,7 +40,7 @@ void Script::step(){
 	}
 	else if ( *codePointer == "OP_VERIFY"){
 		std::string stackTop = data.top();
-		data.pop()
+		data.pop();
 		if (stackTop == "false") {
 			valid = false;
 		}
@@ -48,8 +48,10 @@ void Script::step(){
 	else if ( *codePointer == "OP_CHECKSIG" ){
 		std::string pubKey = data.top();
 		data.pop();
-		std::string signature = data.top();
+		std::string signatureString = data.top();
 		data.pop();
+
+		ECDSASignature signature(signatureString);
 	}
 	else {
 		data.push(*codePointer);
