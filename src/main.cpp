@@ -17,6 +17,7 @@
 
 #include "transaction.hpp"
 #include "crypto.hpp"
+#include "script.hpp"
 
 using namespace CryptoPP;
 
@@ -36,17 +37,17 @@ int main(){
 	std::string message("TEST PLEASE");
 	ECDSASignature signature(message, privateKey);
 	
-	ECDSASignature signBis(signature.hex());
-
-	std::cout << "Message : " << message << std::endl;
-	std::cout << "Signature : " << signature.hex() << std::endl; 
-	std::cout << "Signature (2) : " << signBis.hex() << std::endl; 
-	std::cout << "Signature Function : " << signature.verify(message, hexPublicKey(q)) << std::endl;
-	std::cout << "Signature Function (2) : " << signBis.verify(message, hexPublicKey(q)) << std::endl;
+	std::vector<std::string> code = {"OP_DUP","OP_HASH160", ripemd160(hexPublicKey(q)), "OP_EQUAL", "OP_VERIFY", "OP_CHECKSIG"};
+	std::stack<std::string> data({signature.hex(), hexPublicKey(q)});
+	Script testScript(code.begin(), code.end(), data, message);
+	//test.debug();
 	
-	std::vector<std::string> code = {"OP_TEST","OP_RETEST"};
-	std::stack<std::string> data({"test1", "test2"});
-	Script test(code.begin(), code.end(), data);
+	TransactionIdentifier testID = { "obiwan kenobi", 42};
+	InputTransaction testInput = { testID, std::stack<std::string>({signature.hex(), hexPublicKey(q)})};
+	OutputTransaction testOutput = { 42, code};
+
+	Transaction testTransaction(-1, {"I AM A FLAG", "A FLAGGY FLAG"}, {testInput}, {testOutput});
+	std::cout << testTransaction.calculateHash(true) << std::endl;
 
 	return 0;
 }

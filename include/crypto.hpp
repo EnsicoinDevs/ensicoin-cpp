@@ -9,7 +9,8 @@ using namespace CryptoPP;
 
 using eCurve = ECDSA<ECP, SHA256> ; 
 
-std::string ripemd160(std::string input);
+std::string ripemd160(std::string input,bool unpack=false);
+std::string sha256(std::string input,bool unpack=false);
 
 class ECDSASignature{
 	private:

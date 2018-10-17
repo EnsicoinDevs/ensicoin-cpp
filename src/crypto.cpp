@@ -30,18 +30,54 @@ std::string hexPublicKey(const ECP::Point q){
 	return pubKey;
 }
 
-std::string ripemd160(std::string message){
+std::string ripemd160(std::string message,bool unpack){
 	std::string value;
 	RIPEMD160 ripeHash;
+	
+	std::string digest;
+	if(unpack){
+		StringSource ss( message, true,
+			new HexDecoder( new StringSink( digest ))
+		);
 
-	StringSource ss( message, true,
+	}
+	else
+		digest = message;
+
+	StringSource ss( digest, true,
 		new HashFilter( ripeHash,
 			new HexEncoder(
-				new StringSink( value)
+				new StringSink( value),
+				false
 			)
 		)
 	);
 
+	return value;
+}
+
+std::string sha256(std::string message,bool unpack){
+	std::string value;
+	SHA256 shaHash;
+
+	std::string digest;
+	if(unpack){
+		StringSource ss( message, true,
+			new HexDecoder( new StringSink( digest ))
+		);
+
+	}
+	else
+		digest = message;
+
+	StringSource ss( digest, true,
+		new HashFilter( shaHash,
+			new HexEncoder(
+				new StringSink(value),
+				false
+			)
+		)
+	);
 	return value;
 }
 

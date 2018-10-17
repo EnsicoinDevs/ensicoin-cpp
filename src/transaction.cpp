@@ -1,59 +1,87 @@
 #include <string>
-#include <stack>
 #include <vector>
-#include <iterator>
-#include <iostream>
+#include <sstream>
 
 #include "transaction.hpp"
 #include "crypto.hpp"
 
-Script::Script( std::vector<std::string>::iterator initialPointer,
-		std::vector<std::string>::iterator endPointer, 
-		std::stack<std::string> initalData) : 
-			codePointer(initialPointer), 
-			endCode(endPointer), 
-			data(initalData),
-			valid(true) { }
-
-void Script::debug(){
-	while( codePointer < endCode){
-		std::cout << *codePointer << std::endl;
-		codePointer++;
-	}
+const std::string TransactionIdentifier::str(bool pretty){
+	std::ostringstream os;
+	if(pretty)
+		os << "Hash : ";
+	os << transactionHash;
+	if(pretty)
+		os << std::endl << "Index : ";
+	os << index;
+	return os.str();
 }
 
-void Script::step(){
-	if ( *codePointer == "OP_DUP" ) {
-		data.push(data.top());
+const std::string InputTransaction::str(bool pretty){
+	std::ostringstream os;
+	if(pretty)
+		os << "Previous Transaction : (";
+	os << previousOutput.str(pretty);
+	if(pretty)
+		os << ")" << std::endl << "Input stack (script) : " << std::endl;
+	while(!inputStack.empty()){
+		const std::string stackElem(inputStack.top());
+		inputStack.pop();
+		if(pretty)
+			os << "-";
+		os << stackElem;
+		if(pretty)
+			os << std::endl;
 	}
-	else if ( *codePointer == "OP_EQUAL" ){
-		std::string firstTop(data.top());
-		data.pop();
-		std::string secondTop(data.top());
-		data.pop();
-		data.push( secondTop == firstTop ? "true" : "false" );
+	return os.str();
+}
+
+const std::string OutputTransaction::str(bool pretty){
+	std::ostringstream os;
+	if(pretty)
+		os << "Value :";
+	os << value;
+	if(pretty)
+		os << std::endl << "Output script : " << std::endl;
+	for(const std::string& stackElem : scriptInstructions){
+		if(pretty)
+			os << "-";
+		os << stackElem;
+		if(pretty)
+			os << std::endl;
 	}
-	else if ( *codePointer == "OP_HASH160"){
-		std::string toHash(data.top());
-		data.pop();
-		data.push(ripemd160(toHash));
+	return os.str();
+}
+Transaction::Transaction(	int ver,
+				std::vector<std::string> intialFlags,
+				std::vector<InputTransaction> initialInputs,
+				std::vector<OutputTransaction> initialOutputs) :
+				version(ver),
+				transactionFlags(intialFlags),
+				inputs(initialInputs),
+				outputs(initialOutputs){}
+
+int Transaction::getVersion(){
+	return version;
+}
+
+std::vector<std::string> Transaction::getFlags(){
+	return transactionFlags;
+}
+
+
+std::string Transaction::calculateHash(bool includeInputs){
+	std::ostringstream os;
+	os << version;
+	for(const auto& flag: transactionFlags){
+		os << flag;
 	}
-	else if ( *codePointer == "OP_VERIFY"){
-		std::string stackTop = data.top();
-		data.pop();
-		if (stackTop == "false") {
-			valid = false;
+	if(includeInputs){
+		for(auto& input : inputs){
+			os << input.str();
 		}
 	}
-	else if ( *codePointer == "OP_CHECKSIG" ){
-		std::string pubKey = data.top();
-		data.pop();
-		std::string signatureString = data.top();
-		data.pop();
-
-		ECDSASignature signature(signatureString);
+	for(auto& output: outputs){
+		os << output.str();
 	}
-	else {
-		data.push(*codePointer);
-	}
+	return sha256(sha256(os.str()), true);
 }
