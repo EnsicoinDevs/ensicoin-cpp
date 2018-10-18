@@ -6,10 +6,10 @@ CFLAGS=-I$(IDIR) -lcryptopp
 
 ODIR=obj
 
-_OBJ = main.o messages.o transaction.o crypto.o
+_OBJ = main.o messages.o transaction.o crypto.o script.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
-_DEPS = messages.hpp transaction.hpp crypto.hpp
+_DEPS = messages.hpp transaction.hpp crypto.hpp script.hpp
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
 $(ODIR)/%.o: %.cpp $(DEPS)

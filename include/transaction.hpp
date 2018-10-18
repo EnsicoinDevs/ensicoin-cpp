@@ -43,6 +43,7 @@ class Transaction{
 		int getVersion();
 		std::vector<std::string> getFlags();
 		bool validate();
+		std::string str(bool includeInputs, bool pretty=false);
 		std::string calculateHash(bool includeInputs);
 };
 

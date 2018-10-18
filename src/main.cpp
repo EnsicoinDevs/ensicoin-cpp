@@ -46,8 +46,10 @@ int main(){
 	InputTransaction testInput = { testID, std::stack<std::string>({signature.hex(), hexPublicKey(q)})};
 	OutputTransaction testOutput = { 42, code};
 
-	Transaction testTransaction(-1, {"I AM A FLAG", "A FLAGGY FLAG"}, {testInput}, {testOutput});
-	std::cout << testTransaction.calculateHash(true) << std::endl;
+	Transaction testTransaction(-1, {"I AM A FLAG", "A FLAGGY FLAG"}, {testInput, testInput}, {testOutput, testOutput});
+	//std::cout << testTransaction.str(true) << std::endl;
+	
+	std::cout << testTransaction.str(true) << std::endl;
 
 	return 0;
 }
