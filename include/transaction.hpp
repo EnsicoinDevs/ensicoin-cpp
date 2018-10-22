@@ -7,26 +7,31 @@
 #include <stack>
 #include <sstream>
 
-
+#include <rapidjson/document.h>
 #include "script.hpp"
+
+using namespace rapidjson;
 
 struct TransactionIdentifier{
 	std::string transactionHash;
 	int index;
 	
-	const std::string str(bool pretty=false);
+	const std::string str() const;
+	Value json(Document& document) const;
 };
 struct InputTransaction{
 	TransactionIdentifier previousOutput;
 	std::stack<std::string> inputStack;
 	
-	const std::string str(bool pretty=false);
+	const std::string str() const;
+	Value json(Document& document) const;
 };
 struct OutputTransaction{
 	int value;
 	std::vector<std::string> scriptInstructions;
 
-	const std::string str(bool pretty=false);
+	const std::string str() const;
+	Value json(Document& document) const;
 };
 
 class Transaction{
@@ -36,15 +41,17 @@ class Transaction{
 		std::vector<InputTransaction> inputs;
 		std::vector<OutputTransaction> outputs;
 	public:
+		Transaction();
 		Transaction(	int ver, 	
 				std::vector<std::string> initialFlags, 
 				std::vector<InputTransaction> initialInputs, 
 				std::vector<OutputTransaction> initialOutputs);
-		int getVersion();
-		std::vector<std::string> getFlags();
-		bool validate();
-		std::string str(bool includeInputs, bool pretty=false);
-		std::string calculateHash(bool includeInputs);
+		const int getVersion() const;
+		std::vector<std::string> getFlags() const;
+		const bool validate();
+		const std::string str(bool includeInputs) const;
+		Value json(bool includeInputs, Document& document) const;
+		const std::string calculateHash(bool includeInputs) const;
 };
 
 #endif /* TRANSACTION_HPP */
