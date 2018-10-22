@@ -6,9 +6,10 @@
 #include <iterator>
 #include <stack>
 #include <sstream>
-
 #include <rapidjson/document.h>
+
 #include "script.hpp"
+#include "crypto.hpp"
 
 using namespace rapidjson;
 
@@ -34,7 +35,7 @@ struct OutputTransaction{
 	Value json(Document& document) const;
 };
 
-class Transaction{
+class Transaction : public Hashable{
 	private:
 		int version;
 		std::vector<std::string> transactionFlags;
@@ -49,9 +50,9 @@ class Transaction{
 		const int getVersion() const;
 		std::vector<std::string> getFlags() const;
 		const bool validate();
-		const std::string str(bool includeInputs) const;
+		const std::string str() const;
+		const std::string hashWithoutInputs() const;
 		Value json(bool includeInputs, Document& document) const;
-		const std::string calculateHash(bool includeInputs) const;
 };
 
 #endif /* TRANSACTION_HPP */

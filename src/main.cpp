@@ -22,7 +22,7 @@
 #include "crypto.hpp"
 #include "script.hpp"
 #include "blocks.hpp"
-#include "blockchain.hpp"
+#include "hashmemory.hpp"
 
 
 using namespace CryptoPP;
@@ -50,15 +50,15 @@ int main(){
 	InputTransaction testInput = { testID, std::stack<std::string>({signature.hex(), hexPublicKey(q)})};
 	OutputTransaction testOutput = { 42, code};
 
-	Transaction testTransaction(-1, {"I AM A FLAG", "A FLAGGY FLAG"}, {testInput, testInput}, {testOutput, testOutput});
+	Transaction* testTransaction = new Transaction(-1, {"I AM A FLAG", "A FLAGGY FLAG"}, {testInput, testInput}, {testOutput, testOutput});
 
-	Blockchain testChain;
-	std::cout << testChain.registerBlock(GenesisBlock) << std::endl;
-	std::cout << testChain.getBlock(GenesisBlock.hash()).str() << std::endl;
+	HashMemory testChain;
+	std::cout << testChain.add(GenesisBlock) << std::endl;
+	std::cout << testChain.get(GenesisBlock->hash())->str() << std::endl;
 
 	Document d;
 	d.SetObject();
-	Value transactionValue = testTransaction.json(true, d);
+	Value transactionValue = testTransaction->json(true, d);
 
 	StringBuffer buffer;
 	PrettyWriter<StringBuffer> writer(buffer);

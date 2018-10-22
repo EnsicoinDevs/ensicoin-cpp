@@ -24,4 +24,10 @@ class ECDSASignature{
 
 std::string hexPublicKey( const ECP::Point q);
 
+class Hashable{
+	public:
+		virtual const std::string str() const = 0;
+		const std::string hash() const;
+};
+
 #endif /* HASH_HPP */

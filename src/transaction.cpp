@@ -55,21 +55,6 @@ Value InputTransaction::json(Document& document) const {
 	input.AddMember("script",scriptValue , document.GetAllocator());
 
 	return input;
-/*	std::ostringstream os;
-	os << "\t\t\t\"previousOutput\" : {" << std::endl;
-	os << previousOutput.jsonString();
-	os << std::endl << "\t\t\t}," << std::endl << "\t\t\t\"script\" : [" << std::endl;
-	auto copyStack = inputStack;
-	while(!copyStack.empty()){
-		const std::string stackElem(copyStack.top());
-		copyStack.pop();
-		os << "\t\t\t\t\"";
-		os << stackElem;
-		os << "\"," << std::endl;
-	}
-	os.seekp(-2, os.cur);
-	os << std::endl << "\t\t\t]" << std::endl;
-	return os.str();*/
 }
 
 const std::string OutputTransaction::str() const {
@@ -95,18 +80,6 @@ Value OutputTransaction::json(Document& document) const {
 	output.AddMember("script", script, document.GetAllocator());
 
 	return output;
-	/*std::ostringstream os;
-	os << "\t\t\t\"value\" : ";
-	ostringstream << value;
-	os << "," << std::endl << "\t\t\t\"script\" : [" << std::endl;
-	for(const std::string& stackElem : scriptInstructions){
-		os << "\t\t\t\t\"";
-		os << stackElem;
-		os << "\"," << std::endl;
-	}
-	os.seekp(-2, os.cur);
-	os << std::endl << "\t\t\t]" << std::endl;
-	return os.str();*/
 }
 
 Transaction::Transaction() : version(42),
@@ -131,16 +104,14 @@ std::vector<std::string> Transaction::getFlags() const {
 	return transactionFlags;
 }
 
-const std::string Transaction::str(bool includeInputs) const {
+const std::string Transaction::str() const {
 	std::ostringstream os;
 	os << version;
 	for(const auto& flag: transactionFlags){
 		os << flag;
 	}
-	if(includeInputs){
-		for(const auto& input : inputs){
-			os << input.str();
-		}
+	for(const auto& input : inputs){
+		os << input.str();
 	}
 	for(const auto& output: outputs){
 		os << output.str();
@@ -174,44 +145,18 @@ Value Transaction::json(bool includeInputs,Document& document) const {
 	transaction.AddMember("outputs", outputValue, document.GetAllocator());
 
 	return transaction;
-	
-	/*std::ostringstream os;
-	os << "{" <<std::endl << "\t\"version\" : ";
-	os << version;
-	os << "," << std::endl << "\t\"flags\" : [" << std::endl;
-	for(const auto& flag: transactionFlags){
-		os << "\t\t\"";
-		os << flag;
-		os << "\"," << std::endl;
-	}
-	os.seekp(-2, os.cur);
-	os << std::endl << "\t]," << std::endl;
-	if(includeInputs){
-		os << "\t\"inputs\" : [" << std::endl;
-		for(const auto& input : inputs){
-			os << "\t\t{" << std::endl; 
-
-			os << input.jsonString();
-			
-			os << "\t\t}," << std::endl;
-		}
-		os.seekp(-2, os.cur);
-		os << std::endl << "\t]," << std::endl;
-	}
-	os << "\t\"outputs\" : [" << std::endl;
-	for(const auto& output: outputs){
-		os << "\t\t{" << std::endl;
-		os << output.jsonString();
-		os << "\t\t}," << std::endl;
-	}
-	os.seekp(-2, os.cur);
-	os << std::endl << "\t]" << std::endl << std::endl << "}";
-
-	return os.str();*/
 }
 
-const std::string Transaction::calculateHash(bool includeInputs) const{
-	return sha256(sha256(str(includeInputs)), true);
+const std::string Transaction::hashWithoutInputs() const{
+	std::ostringstream os;
+	os << version;
+	for(const auto& flag: transactionFlags){
+		os << flag;
+	}
+	for(const auto& output: outputs){
+		os << output.str();
+	}
+	return sha256(sha256(os.str()), true);
 }
 
 const bool Transaction::validate(){
