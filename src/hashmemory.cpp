@@ -3,20 +3,17 @@
 
 #include "hashmemory.hpp"
 
-template <class H>
-bool HashMemory<H>::exists(std::string elementHash){
+bool HashMemory::exists(std::string elementHash){
 	return memory.count(elementHash) == 1;
 }
 
-template <class H>
-bool HashMemory<H>::add(H element){
-	if ( hasBlock(element.hash()) )
+bool HashMemory::add(Hashable* element){
+	if ( exists(element->hash()) )
 		return false;
-	memory[element.hash()] = element;
+	memory[element->hash()] = element;
 	return true;
 }
 
-template <class H>
-H HashMemory<H>::get(std::string elementHash){
+Hashable* HashMemory::get(std::string elementHash){
 	return memory.at(elementHash);
 }

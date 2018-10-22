@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <ctime>
+#include <rapidjson/document.h>
 
 #include "transaction.hpp"
 #include "crypto.hpp"
@@ -20,16 +21,13 @@ struct BlockHeader{
 class Block : public Hashable{
 	private:
 		BlockHeader header;
-		std::vector<Transaction> transactions;
+		std::vector<Transaction* > transactions;
 	public:
 		Block();
-		Block(BlockHeader head, std::vector<Transaction> transactionList);
+		Block(BlockHeader head, std::vector<Transaction* > transactionList);
 		const std::string str() const;
-		const std::string jsonString() const;
+		rapidjson::Value json(rapidjson::Document& document) const;
 		const bool validate();
 };
-
-Block* GenesisBlock = new Block({0,{"ici cest limag"},"","",1566862920,42},
-			 {});
 
 #endif /* BLOCKS_HPP */

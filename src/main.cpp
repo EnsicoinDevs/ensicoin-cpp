@@ -12,8 +12,6 @@
 #include <cryptopp/oids.h>
 #include <cryptopp/osrng.h>
 #include <cryptopp/filters.h>
-
-
 #include <rapidjson/document.h>
 #include <rapidjson/prettywriter.h>
 #include <rapidjson/stringbuffer.h>
@@ -28,6 +26,8 @@
 using namespace CryptoPP;
 
 int main(){
+	Block GenesisBlock({0,{"ici cest limag"},"","",1566862920,42},{});
+	
 	AutoSeededRandomPool prng, rrng;
 	
 	eCurve::PrivateKey privateKey;
@@ -50,19 +50,20 @@ int main(){
 	InputTransaction testInput = { testID, std::stack<std::string>({signature.hex(), hexPublicKey(q)})};
 	OutputTransaction testOutput = { 42, code};
 
-	Transaction* testTransaction = new Transaction(-1, {"I AM A FLAG", "A FLAGGY FLAG"}, {testInput, testInput}, {testOutput, testOutput});
+	Transaction testTransaction(-1, {"I AM A FLAG", "A FLAGGY FLAG"}, {testInput, testInput}, {testOutput, testOutput});
 
 	HashMemory testChain;
-	std::cout << testChain.add(GenesisBlock) << std::endl;
-	std::cout << testChain.get(GenesisBlock->hash())->str() << std::endl;
+	std::cout << testChain.add(&GenesisBlock) << std::endl;
+	std::cout << testChain.get(GenesisBlock.hash())->str() << std::endl;
 
 	Document d;
 	d.SetObject();
-	Value transactionValue = testTransaction->json(true, d);
+	Value transactionValue = testTransaction.json(true, d);
+	Value genesisValue = GenesisBlock.json(d);
 
 	StringBuffer buffer;
 	PrettyWriter<StringBuffer> writer(buffer);
-	transactionValue.Accept(writer);
+	genesisValue.Accept(writer);
 
 	std::cout << buffer.GetString() << std::endl;
 
