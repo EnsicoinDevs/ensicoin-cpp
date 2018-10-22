@@ -18,21 +18,21 @@ struct TransactionIdentifier{
 	int index;
 	
 	const std::string str() const;
-	Value json(Document& document) const;
+	Value json(Document* document) const;
 };
 struct InputTransaction{
 	TransactionIdentifier previousOutput;
 	std::stack<std::string> inputStack;
 	
 	const std::string str() const;
-	Value json(Document& document) const;
+	Value json(Document* document) const;
 };
 struct OutputTransaction{
 	int value;
 	std::vector<std::string> scriptInstructions;
 
 	const std::string str() const;
-	Value json(Document& document) const;
+	Value json(Document* document) const;
 };
 
 class Transaction : public Hashable{
@@ -52,7 +52,7 @@ class Transaction : public Hashable{
 		const bool validate();
 		const std::string str() const;
 		const std::string hashWithoutInputs() const;
-		Value json(bool includeInputs, Document& document) const;
+		Value json(bool includeInputs, Document* document) const;
 };
 
 #endif /* TRANSACTION_HPP */

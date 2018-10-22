@@ -4,15 +4,27 @@
 #include <ctime>
 #include <string>
 
+#include <rapidjson/document.h>
+
 class Message {
-	private:
+	protected:
 		int magic;
 		std::string type;
 		std::time_t timestamp;
+
+		Message(std::string messageType);
 	public:
-		std::string getType();
+		const std::string getType() const;
+		virtual rapidjson::Value json(rapidjson::Document* document) const;
 };
 
+class WhoAmI : public Message {
+	private:
+		int version;
+	public:
+		WhoAmI();
+		rapidjson::Value json(rapidjson::Document* document) const override;
+};
 
 
 #endif /* MESSAGES_HPP */

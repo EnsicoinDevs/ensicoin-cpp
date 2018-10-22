@@ -1,8 +1,4 @@
 #include <iostream>
-/*#include <rapidjson/document.h>
-#include <rapidjson/writer.h>
-#include <rapidjson/stringbuffer.h>*/
-
 #include <vector>
 #include <string>
 #include <stack>
@@ -21,7 +17,7 @@
 #include "script.hpp"
 #include "blocks.hpp"
 #include "hashmemory.hpp"
-
+#include "messages.hpp"
 
 using namespace CryptoPP;
 
@@ -52,18 +48,15 @@ int main(){
 
 	Transaction testTransaction(-1, {"I AM A FLAG", "A FLAGGY FLAG"}, {testInput, testInput}, {testOutput, testOutput});
 
-	HashMemory testChain;
-	std::cout << testChain.add(&GenesisBlock) << std::endl;
-	std::cout << testChain.get(GenesisBlock.hash())->str() << std::endl;
-
-	Document d;
-	d.SetObject();
-	Value transactionValue = testTransaction.json(true, d);
-	Value genesisValue = GenesisBlock.json(d);
+	Document* d = new Document();
+	d->SetObject();
+	
+	WhoAmI* messageTest = new WhoAmI();
+	Value messageJson = messageTest->json(d);
 
 	StringBuffer buffer;
-	PrettyWriter<StringBuffer> writer(buffer);
-	genesisValue.Accept(writer);
+    	PrettyWriter<StringBuffer> writer(buffer);
+    	messageJson.Accept(writer);
 
 	std::cout << buffer.GetString() << std::endl;
 

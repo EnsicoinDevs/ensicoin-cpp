@@ -26,7 +26,7 @@ class Block : public Hashable{
 		Block();
 		Block(BlockHeader head, std::vector<Transaction* > transactionList);
 		const std::string str() const;
-		rapidjson::Value json(rapidjson::Document& document) const;
+		rapidjson::Value json(rapidjson::Document* document) const;
 		const bool validate();
 };
 
