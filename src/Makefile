@@ -2,7 +2,7 @@ IDIR =../include
 BDIR =../bin
 
 CC=g++
-CFLAGS=-I$(IDIR) -lcryptopp
+CFLAGS=-I$(IDIR) -lcryptopp -pthread -DASIO_STANDALONE
 
 ODIR=obj
 
