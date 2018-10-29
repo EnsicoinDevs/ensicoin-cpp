@@ -57,15 +57,16 @@ int main(){
 	Node node;
 
 	const std::string johynStringIP("78.248.188.120");
-	std::cout << node.connect(johynStringIP) << std::endl;
-	std::cout << node.sendMessage(messageTest) << std::endl;
+	asio::ip::tcp::socket socket = node.sendMessage(messageTest, asio::ip::address::from_string(johynStringIP));
+	Document d = node.readJSON(socket);
+	
+	rapidjson::StringBuffer docBuffer;
+	rapidjson::PrettyWriter<StringBuffer> writer(docBuffer);
+	d.Accept(writer);
 
-	/*asio::streambuf recv_buf;
-	std::error_code error;
+	const std::string docStr = docBuffer.GetString();
 
-	asio::read(socket, recv_buf, asio::transfer_exactly(40));
-
-	std::cout << asio::buffer_cast<const char*>(recv_buf.data()) << std::endl;*/
+	std::cout << docStr << std::endl;
 
 	return 0;
 }

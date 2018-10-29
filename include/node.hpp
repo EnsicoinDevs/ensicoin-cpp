@@ -6,8 +6,10 @@
 #include "hashmemory.hpp"
 #include "messages.hpp"
 
-#include <map>
 #include <asio.hpp>
+#include <map>
+
+const int MESSAGE_LIMIT = 3*1024;
 
 class Node{
 	private:
@@ -20,11 +22,11 @@ class Node{
 //		HashMemory mempool;
 		
 		asio::io_context io_context;
-		asio::ip::tcp::socket socket;
+		asio::ip::tcp::acceptor acceptor;
 	public:
 		Node();
-		asio::error_code connect(std::string ipAdress);
-		asio::error_code sendMessage(Message* message);
+		asio::ip::tcp::socket sendMessage(Message* message,asio::ip::address ipAdress);
+		rapidjson::Document readJSON(asio::ip::tcp::socket& socket);
 };
 
 #endif /* NODE_HPP */
