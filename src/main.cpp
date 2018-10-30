@@ -54,19 +54,10 @@ int main(){
 	Transaction testTransaction(-1, {"I AM A FLAG", "A FLAGGY FLAG"}, {testInput, testInput}, {testOutput, testOutput});
 
 	WhoAmI* messageTest = new WhoAmI();
-	Node node;
-
-	const std::string johynStringIP("78.248.188.120");
-	asio::ip::tcp::socket socket = node.sendMessage(messageTest, asio::ip::address::from_string(johynStringIP));
-	Document d = node.readJSON(socket);
 	
-	rapidjson::StringBuffer docBuffer;
-	rapidjson::PrettyWriter<StringBuffer> writer(docBuffer);
-	d.Accept(writer);
-
-	const std::string docStr = docBuffer.GetString();
-
-	std::cout << docStr << std::endl;
+	asio::io_context io_context;
+	Node node(io_context);
+	io_context.run();
 
 	return 0;
 }
