@@ -1,12 +1,18 @@
 #include <string>
 #include <ctime>
 #include <rapidjson/document.h>
+#include <rapidjson/prettywriter.h>
+#include <rapidjson/stringbuffer.h>
 
 #include "messages.hpp"
 
 using namespace rapidjson;
 
 Message::Message(std::string messageType) : magic(42), type(messageType), timestamp(std::time(0)){}
+
+Message::Message(rapidjson::Document* document) : magic((*document)["magic"].GetInt()),
+						  type((*document)["type"].GetString()),
+						  timestamp((*document)["timestamp"].GetInt()) {}
 
 const std::string Message::getType() const{
 	return type;
@@ -25,7 +31,22 @@ Value Message::json(Document* document) const{
 	return messageValue;
 }
 
+const std::string Message::str() const{
+	rapidjson::Document* d = new rapidjson::Document();
+	d->SetObject();
+
+	rapidjson::Value val = this->json(d);
+	
+	rapidjson::StringBuffer docBuffer;
+	rapidjson::PrettyWriter<StringBuffer> writer(docBuffer);
+	val.Accept(writer);
+
+	return docBuffer.GetString();
+}
+
 WhoAmI::WhoAmI() : Message("whoami"), version(0) {}
+
+WhoAmI::WhoAmI(rapidjson::Document* document) : Message(document), version((*document)["message"]["version"].GetInt()) {}
 
 Value WhoAmI::json(Document* document) const{
 	Value messageValue = Message::json(document);
