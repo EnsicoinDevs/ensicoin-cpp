@@ -15,24 +15,23 @@
 Node::Node(asio::io_context& io_context) : acceptor(io_context, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), 4224)) {
 	acceptor.listen();
 	run();
+
+	const std::string johynStringIP("78.248.188.120");
+	const std::string myIP("82.235.104.10");
+	auto messageTest = std::make_shared<WhoAmI>();
+	
+	socketPointer socket(new asio::ip::tcp::socket(acceptor.get_executor().context()));
+	socket->connect(asio::ip::tcp::endpoint( asio::ip::address::from_string(myIP), 4224));
+
+	sendMessage(messageTest, socket);
+	auto messageRecieved = readMessage(socket);
+
+	std::cout << messageRecieved->str() << std::endl;
 }
 
 void Node::run(){
-	const std::string johynStringIP("78.248.188.120");
-	auto messageTest = std::make_shared<WhoAmI>();
-	
-	socketPointer socketJohyn(new asio::ip::tcp::socket(acceptor.get_executor().context()));
-	socketJohyn->connect(asio::ip::tcp::endpoint( asio::ip::address::from_string(johynStringIP), 4224));
-
-	sendMessage(messageTest, socketJohyn);
-	auto messageRecieved = readMessage(socketJohyn);
-
-	std::cout << messageRecieved->str() << std::endl;
-
-	for (;;){
-		socketPointer pSocket = std::make_shared<asio::ip::tcp::socket>(acceptor.get_executor().context());
-		acceptor.async_accept(*pSocket, std::bind( &Node::handleConnection, this, pSocket ));
-	}
+	socketPointer pSocket = std::make_shared<asio::ip::tcp::socket>(acceptor.get_executor().context());
+	acceptor.async_accept(*pSocket, std::bind( &Node::handleConnection, this, pSocket ));
 }
 
 void Node::handleConnection(socketPointer socket){
@@ -42,6 +41,7 @@ void Node::handleConnection(socketPointer socket){
 		auto response = std::make_shared<WhoAmI>();
 		sendMessage(response, socket);
 	}
+	run();
 }
 
 void Node::sendMessage(messagePointer message, socketPointer socket){
