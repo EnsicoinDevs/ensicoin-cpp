@@ -8,7 +8,7 @@
 
 using namespace rapidjson;
 
-Message::Message(std::string messageType) : magic(42), type(messageType), timestamp(std::time(0)){}
+Message::Message(std::string messageType) : magic(422021), type(messageType), timestamp(std::time(0)){}
 
 Message::Message(rapidjson::Document* document) : magic((*document)["magic"].GetInt()),
 						  type((*document)["type"].GetString()),
@@ -44,15 +44,3 @@ const std::string Message::str() const{
 	return docBuffer.GetString();
 }
 
-WhoAmI::WhoAmI() : Message("whoami"), version(0) {}
-
-WhoAmI::WhoAmI(rapidjson::Document* document) : Message(document), version((*document)["message"]["version"].GetInt()) {}
-
-Value WhoAmI::json(Document* document) const{
-	Value messageValue = Message::json(document);
-	Value messageContent(kObjectType);
-	messageContent.AddMember("version",version,document->GetAllocator());
-	messageValue.AddMember("message",messageContent,document->GetAllocator());
-
-	return messageValue;
-}

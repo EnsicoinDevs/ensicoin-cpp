@@ -6,10 +6,10 @@ CFLAGS=-I$(IDIR) -lcryptopp -pthread -DASIO_STANDALONE
 
 ODIR=obj
 
-_OBJ = main.o messages.o transaction.o crypto.o script.o blocks.o node.o hashmemory.o
+_OBJ = main.o connection.o inv.o whoami.o messages.o transaction.o crypto.o script.o blocks.o node.o hashmemory.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
-_DEPS = messages.hpp transaction.hpp crypto.hpp script.hpp blocks.hpp node.hpp hashmemory.hpp
+_DEPS = messages.hpp connection.hpp transaction.hpp crypto.hpp script.hpp blocks.hpp node.hpp hashmemory.hpp
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
 $(ODIR)/%.o: %.cpp $(DEPS)

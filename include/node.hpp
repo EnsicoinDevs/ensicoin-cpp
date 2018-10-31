@@ -4,16 +4,11 @@
 #include "blocks.hpp"
 #include "transaction.hpp"
 #include "hashmemory.hpp"
-#include "messages.hpp"
+#include "connection.hpp"
 
 #include <asio.hpp>
-#include <map>
+#include <vector>
 #include <memory>
-
-const int MESSAGE_LIMIT = 3*1024;
-
-using socketPointer = std::shared_ptr<asio::ip::tcp::socket>;
-using messagePointer = std::shared_ptr<Message>;
 
 class Node{
 	private:
@@ -26,11 +21,9 @@ class Node{
 //		HashMemory mempool;
 		
 		asio::ip::tcp::acceptor acceptor;
+		std::vector<Connection::pointer> connections;
 		
-		void sendMessage(messagePointer message, socketPointer socket);
-		void readJSON(socketPointer socket, rapidjson::Document* document);
-		std::shared_ptr<Message> readMessage(socketPointer socket);
-		void handleConnection(socketPointer socket);
+		void handleAccept(Connection::pointer newConnection);
 	public:
 		Node(asio::io_context& io_context);
 		void run();
