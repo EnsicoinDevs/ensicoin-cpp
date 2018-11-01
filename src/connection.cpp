@@ -19,18 +19,21 @@ asio::ip::tcp::socket& Connection::getSocket(){
 
 void Connection::bind(asio::ip::address ipAddress){
 	socket.connect(asio::ip::tcp::endpoint( ipAddress, 4224));
+	sendMessage(std::make_shared<WhoAmI>());
+	waved = true;
+	start();
 }
 
 void Connection::start(){
+	resetBuffer();
 	idle();
 }
 
 void Connection::sendMessage(Message::messagePointer message){
 	const std::string messageStr = message->str();
 	
-	asio::async_write(socket, asio::buffer(messageStr), std::bind(&Connection::handleWrite, shared_from_this()));
+	asio::async_write(socket, asio::buffer(messageStr), std::bind(&Connection::handleWrite, shared_from_this(), message->getType()));
 
-	std::cerr << message->getType() << " to " << socket.remote_endpoint().address().to_string() << std::endl;
 }
 
 Connection::Connection(asio::io_context& io_context, Node* node) : socket(io_context), node(node), waved(false) {}
@@ -48,10 +51,12 @@ void Connection::handleRead(){
 	if (doc.HasParseError())
 		idle();
 	else{
-		buffer.consume(strlen(jsonData));
-		
+
 		Message::messagePointer message;
 		std::string messageType = doc["type"].GetString();
+
+		resetBuffer();
+		
 		if ( messageType == "whoami")
 			message = std::make_shared<WhoAmI>(&doc);
 		else if ( messageType == "inv")
@@ -62,7 +67,8 @@ void Connection::handleRead(){
 	}
 }
 
-void Connection::handleWrite(){
+void Connection::handleWrite(std::string type){
+	std::cerr << type << " to " << socket.remote_endpoint().address().to_string() << std::endl;
 	idle();
 }
 
@@ -85,4 +91,11 @@ void Connection::handleMessage(Message::messagePointer message){
 
 void Connection::idle(){
 	asio::async_read(socket, buffer, asio::transfer_exactly(1), std::bind(&Connection::handleRead, shared_from_this()) );
+}
+
+void Connection::resetBuffer(){
+	buffer.consume(buffer.size());
+	std::ostream os(&buffer);
+
+	os << "{";
 }

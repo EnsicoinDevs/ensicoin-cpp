@@ -18,9 +18,7 @@ Node::Node(asio::io_context& io_context) : acceptor(io_context, asio::ip::tcp::e
 	auto messageTest = std::make_shared<WhoAmI>();
 	
 	Connection::pointer testConnection = Connection::create(io_context, this);
-	testConnection->bind( asio::ip::address::from_string(myIP));
-
-	testConnection->sendMessage(messageTest);
+	testConnection->bind( asio::ip::address::from_string(johynIP));
 }
 
 void Node::run(){

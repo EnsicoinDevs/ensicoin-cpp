@@ -3,6 +3,7 @@
 #include <rapidjson/document.h>
 #include <rapidjson/prettywriter.h>
 #include <rapidjson/stringbuffer.h>
+#include <iostream>
 
 #include "messages.hpp"
 

@@ -27,8 +27,10 @@ class Connection : public std::enable_shared_from_this<Connection>{
 		void handleMessage(Message::messagePointer message);
 
 		void handleRead();
-		void handleWrite();
-		
+		void handleWrite(std::string type);
+			
+		void resetBuffer();
+
 		bool waved;
 		asio::streambuf buffer;
 		Node* node;
