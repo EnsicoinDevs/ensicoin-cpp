@@ -26,6 +26,9 @@ void Connection::bind(asio::ip::address ipAddress){
 
 void Connection::start(){
 	resetBuffer();
+	std::ostream os(&buffer);
+
+	os << "{";
 	idle();
 }
 
@@ -95,7 +98,4 @@ void Connection::idle(){
 
 void Connection::resetBuffer(){
 	buffer.consume(buffer.size());
-	std::ostream os(&buffer);
-
-	os << "{";
 }
