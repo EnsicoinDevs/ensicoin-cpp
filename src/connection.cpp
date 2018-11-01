@@ -21,14 +21,10 @@ void Connection::bind(asio::ip::address ipAddress){
 	socket.connect(asio::ip::tcp::endpoint( ipAddress, 4224));
 	sendMessage(std::make_shared<WhoAmI>());
 	waved = true;
-	start();
 }
 
 void Connection::start(){
 	resetBuffer();
-	std::ostream os(&buffer);
-
-	os << "{";
 	idle();
 }
 
@@ -45,7 +41,9 @@ void Connection::handleRead(){
 	rapidjson::Document doc;
 	doc.SetObject();
 	
-	auto jsonData = asio::buffer_cast<const char*>(buffer.data());
+	std::string strData = asio::buffer_cast<const char*>(buffer.data());
+	auto jsonData = strData.c_str();
+
 	if( strlen(jsonData) > MESSAGE_LIMIT)
 		throw std::runtime_error("Message too long/Invalid JSON");
 
