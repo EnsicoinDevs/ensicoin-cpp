@@ -42,12 +42,17 @@ void Connection::handleRead(){
 	doc.SetObject();
 	
 	std::string strData = asio::buffer_cast<const char*>(buffer.data());
+	if(strData.length() > 0 && !(strData[0] == '{'))
+		strData = "{" + strData;
+	
 	auto jsonData = strData.c_str();
 
 	if( strlen(jsonData) > MESSAGE_LIMIT)
 		throw std::runtime_error("Message too long/Invalid JSON");
 
 	doc.Parse(jsonData, strlen(jsonData));
+		
+	// std::cerr << "Json : " << jsonData << std::endl;
 
 	if (doc.HasParseError())
 		idle();
@@ -62,6 +67,10 @@ void Connection::handleRead(){
 			message = std::make_shared<WhoAmI>(&doc);
 		else if ( messageType == "inv")
 			message = std::make_shared<Inv>(&doc);
+		else if ( messageType == "getdata")
+			message = std::make_shared<GetData>(&doc);
+		else if ( messageType == "notfound")
+			message = std::make_shared<NotFound>(&doc);
 		else
 			throw std::runtime_error("Unknow message type : " + messageType);
 		handleMessage(message);
@@ -86,6 +95,10 @@ void Connection::handleMessage(Message::messagePointer message){
 		}
 	}
 	else if (messageType == "inv")
+		std::cout << message->str() << std::endl;
+	else if (messageType == "getdata")
+		std::cout << message->str() << std::endl;
+	else if (messageType == "notfound")
 		std::cout << message->str() << std::endl;
 	idle();
 }

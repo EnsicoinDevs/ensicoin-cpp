@@ -42,4 +42,23 @@ class Inv : public Message {
 };
 
 
+class GetData : public Message {
+	private:
+		Message::messagePointer invData;
+	public:
+		explicit GetData(Message::messagePointer inv);
+		explicit GetData(rapidjson::Document* doc);
+		rapidjson::Value json(rapidjson::Document* document) const override;
+};
+
+class NotFound : public Message {
+	private:
+		std::string type;
+		std::string hash;
+	public:
+		NotFound(std::string resType, std::string hashType);
+		explicit NotFound(rapidjson::Document* doc);
+		rapidjson::Value json(rapidjson::Document* document) const override;
+};
+
 #endif /* MESSAGES_HPP */
