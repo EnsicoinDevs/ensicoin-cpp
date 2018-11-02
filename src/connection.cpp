@@ -52,7 +52,7 @@ void Connection::handleRead(){
 
 	doc.Parse(jsonData, strlen(jsonData));
 		
-	// std::cerr << "Json : " << jsonData << std::endl;
+	//std::cerr << "Json : " << jsonData << std::endl;
 
 	if (doc.HasParseError())
 		idle();
@@ -71,6 +71,14 @@ void Connection::handleRead(){
 			message = std::make_shared<GetData>(&doc);
 		else if ( messageType == "notfound")
 			message = std::make_shared<NotFound>(&doc);
+		else if ( messageType == "block")
+			message = std::make_shared<BlockMessage>(&doc);
+		else if ( messageType == "transaction")
+			message = std::make_shared<TransactionMessage>(&doc);
+		else if ( messageType == "getblocks")
+			message = std::make_shared<GetBlocks>(&doc);
+		else if ( messageType == "getmempool")
+			message = std::make_shared<GetMempool>(&doc);
 		else
 			throw std::runtime_error("Unknow message type : " + messageType);
 		handleMessage(message);
@@ -99,6 +107,14 @@ void Connection::handleMessage(Message::messagePointer message){
 	else if (messageType == "getdata")
 		std::cout << message->str() << std::endl;
 	else if (messageType == "notfound")
+		std::cout << message->str() << std::endl;
+	else if (messageType == "block")
+		std::cout << message->str() << std::endl;
+	else if (messageType == "transaction")
+		std::cout << message->str() << std::endl;
+	else if (messageType == "getblocks")
+		std::cout << message->str() << std::endl;
+	else if (messageType == "getmempool")
 		std::cout << message->str() << std::endl;
 	idle();
 }

@@ -1,11 +1,14 @@
 #ifndef MESSAGES_HPP
 #define MESSAGES_HPP
 
+#include "blocks.hpp"
+#include "transaction.hpp"
+
 #include <ctime>
 #include <memory>
+#include <rapidjson/document.h>
 #include <string>
 #include <vector>
-#include <rapidjson/document.h>
 
 class Message : public std::enable_shared_from_this<Message> {
 	protected:
@@ -41,7 +44,6 @@ class Inv : public Message {
 		rapidjson::Value json(rapidjson::Document* document) const override;
 };
 
-
 class GetData : public Message {
 	private:
 		Message::messagePointer invData;
@@ -59,6 +61,41 @@ class NotFound : public Message {
 		NotFound(std::string resType, std::string hashType);
 		explicit NotFound(rapidjson::Document* doc);
 		rapidjson::Value json(rapidjson::Document* document) const override;
+};
+
+class BlockMessage : public Message {
+	private:
+		std::shared_ptr<Block> block;
+	public:
+		explicit BlockMessage(std::shared_ptr<Block> blockPtr);
+		explicit BlockMessage(rapidjson::Document* doc);
+		rapidjson::Value json(rapidjson::Document* document) const override;
+};
+
+class TransactionMessage : public Message {
+	private:
+		std::shared_ptr<Transaction> transaction;
+	public:
+		explicit TransactionMessage(std::shared_ptr<Transaction> trPtr);
+		explicit TransactionMessage(rapidjson::Document* doc);
+		rapidjson::Value json(rapidjson::Document* doc) const override;
+};
+
+class GetBlocks : public Message {
+	private:
+		std::vector< std::string > blockHashes;
+		std::string stopHash;
+	public:
+		GetBlocks(std::vector< std::string > hashList, std::string stopHashString);
+		explicit GetBlocks(rapidjson::Document* doc);
+		rapidjson::Value json(rapidjson::Document* doc) const override;
+};
+
+class GetMempool : public Message{
+	public:
+		GetMempool();
+		explicit GetMempool(rapidjson::Document* doc);
+		rapidjson::Value json(rapidjson::Document* doc) const override;
 };
 
 #endif /* MESSAGES_HPP */

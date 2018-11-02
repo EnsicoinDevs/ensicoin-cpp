@@ -26,6 +26,11 @@ Value TransactionIdentifier::json(Document* document) const{
 	return tId;
 }
 
+void TransactionIdentifier::load(rapidjson::Value* val){
+	transactionHash = (*val)["transactionHash"].GetString();
+	index = (*val)["index"].GetInt();
+}
+
 const std::string InputTransaction::str() const{
 	std::ostringstream os;
 	os << previousOutput.str();
@@ -57,6 +62,22 @@ Value InputTransaction::json(Document* document) const {
 	return input;
 }
 
+void InputTransaction::load(rapidjson::Value* val){
+	TransactionIdentifier previousOutput;
+	previousOutput.load(&(*val)["previousOutput"]);
+	std::stack< std::string > reversed;
+	for(auto& stackElem : (*val)["script"].GetArray() ){
+		reversed.push(stackElem.GetString());
+	}
+
+	while(!reversed.empty()){
+		auto elem = reversed.top();
+		reversed.pop();
+		inputStack.push(elem);
+	}
+
+}
+
 const std::string OutputTransaction::str() const {
 	std::ostringstream os;
 	os << value;
@@ -82,6 +103,13 @@ Value OutputTransaction::json(Document* document) const {
 	return output;
 }
 
+void OutputTransaction::load(rapidjson::Value* val){
+	value = (*val)["value"].GetInt();
+	for(auto& scriptElem : (*val)["script"].GetArray() ){
+		scriptInstructions.push_back(scriptElem.GetString());
+	}
+}
+
 Transaction::Transaction() : version(42),
 			     transactionFlags({}),
 			     inputs({}),
@@ -94,7 +122,23 @@ Transaction::Transaction(	int ver,
 				version(ver),
 				transactionFlags(intialFlags),
 				inputs(initialInputs),
-				outputs(initialOutputs){}
+				outputs(initialOutputs) {}
+
+Transaction::Transaction(rapidjson::Document* doc) : version((*doc)["version"].GetInt()){
+	for(auto& flag : (*doc)["flags"].GetArray()){
+		transactionFlags.push_back(flag.GetString());
+	}
+	for(auto& input : (*doc)["inputs"].GetArray()){
+		InputTransaction inp;
+		inp.load(&input);
+		inputs.push_back(inp);
+	}
+	for(auto& output : (*doc)["outputs"].GetArray()){
+		OutputTransaction out;
+		out.load(&output);
+		outputs.push_back(out);
+	}
+}
 
 const int Transaction::getVersion() const{
 	return version;
@@ -104,7 +148,7 @@ std::vector<std::string> Transaction::getFlags() const {
 	return transactionFlags;
 }
 
-const std::string Transaction::str() const {
+const std::string Transaction::rawStr() const {
 	std::ostringstream os;
 	os << version;
 	for(const auto& flag: transactionFlags){

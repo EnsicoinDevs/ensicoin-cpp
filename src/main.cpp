@@ -1,24 +1,17 @@
-#include <iostream>
 #include <vector>
 #include <string>
 #include <stack>
-#include <map>
 #include <cryptopp/eccrypto.h>
 #include <cryptopp/hex.h>
 #include <cryptopp/oids.h>
 #include <cryptopp/osrng.h>
 #include <cryptopp/filters.h>
-#include <rapidjson/document.h>
-#include <rapidjson/prettywriter.h>
-#include <rapidjson/stringbuffer.h>
 
 #include <asio.hpp>
 
-#include "transaction.hpp"
 #include "crypto.hpp"
 #include "script.hpp"
 #include "blocks.hpp"
-#include "messages.hpp"
 #include "node.hpp"
 
 using namespace CryptoPP;
@@ -47,14 +40,6 @@ int main(){
 	std::stack<std::string> data({signature.hex(), hexPublicKey(q)});
 	Script testScript(code.begin(), code.end(), data, message);
 
-	TransactionIdentifier testID = { "obiwan kenobi", 42};
-	InputTransaction testInput = { testID, std::stack<std::string>({signature.hex(), hexPublicKey(q)})};
-	OutputTransaction testOutput = { 42, code};
-
-	Transaction testTransaction(-1, {"I AM A FLAG", "A FLAGGY FLAG"}, {testInput, testInput}, {testOutput, testOutput});
-
-	WhoAmI* messageTest = new WhoAmI();
-	
 	asio::io_context io_context;
 	Node node(io_context);
 	io_context.run();

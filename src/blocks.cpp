@@ -4,15 +4,40 @@
 
 #include <rapidjson/document.h>
 #include <vector>
+#include <string>
+#include <memory>
 #include <sstream>
 
 using namespace rapidjson;
 
-Block::Block(BlockHeader head, std::vector<Transaction* > transactionList) :
+Block::Block(BlockHeader head, std::vector<std::shared_ptr<Transaction> > transactionList) :
 	header(head),
 	transactions(transactionList) {}
 
 Block::Block() : header({ 0, {}, "", "", 0, 0}), transactions({}) {}
+
+Block::Block(rapidjson::Document* doc){
+	auto& headerVal = (*doc)["header"];
+	std::vector< std::string > flagVec;
+	for(auto& flag : headerVal["flags"].GetArray()){
+		flagVec.push_back(flag.GetString());
+	}
+	BlockHeader head = { 	headerVal["version"].GetInt(), 
+				flagVec, 
+				headerVal["hashPrevBlock"].GetString(),
+				headerVal["hashTransactions"].GetString(),
+				headerVal["timestamp"].GetInt(),
+				headerVal["nonce"].GetInt() };
+
+	for(auto& tr : (*doc)["transactions"].GetArray()){
+		rapidjson::Document trDoc;
+		trDoc.SetObject();
+		trDoc.CopyFrom(tr, trDoc.GetAllocator());
+		
+		transactions.push_back(std::make_shared<Transaction>(&trDoc));
+	}
+
+}
 
 Value Block::json(Document* document) const {
 	Value blockValue(kObjectType);
@@ -49,7 +74,7 @@ Value Block::json(Document* document) const {
 	return blockValue;
 }
 
-const std::string Block::str() const {
+const std::string Block::rawStr() const {
 	std::ostringstream os;
 	os << header.version;
 	for(const auto& flag: header.blockFlags){
@@ -57,7 +82,7 @@ const std::string Block::str() const {
 	}
 	os << header.hashPrevBlock << header.hashTransactions << header.timestamp << header.nonce;
 	for(const auto& transaction : transactions){
-		os << transaction->str(); 
+		os << transaction->rawStr(); 
 	}
 	return os.str();
 }

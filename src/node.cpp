@@ -14,20 +14,29 @@ Node::Node(asio::io_context& io_context) : acceptor(io_context, asio::ip::tcp::e
 	run();
 
 	Block GenesisBlock({0,{"ici cest limag"},"","",1566862920,42},{});
+	
+	TransactionIdentifier testID = { "obiwan kenobi", 42};
+	InputTransaction testInput = { testID, std::stack<std::string>({"Bip", "Bop"})};
+	OutputTransaction testOutput = { 42, {"Truc", "Bidule"}};
+	
+	Transaction testTransaction(-1, {"I AM A FLAG", "A FLAGGY FLAG"}, {testInput, testInput}, {testOutput, testOutput});
 
 	const std::string johynIP("78.248.188.120");
 	const std::string myIP("82.235.104.10");
 	auto messageTest = std::make_shared<WhoAmI>();
-	auto invTest = Message::messagePointer( new Inv("b",{GenesisBlock.hash()}));
+	auto invTest = Message::messagePointer( new Inv("t",{testTransaction.hash()}));
 	auto getGenesis = Message::messagePointer( new GetData(invTest));
+	auto sendGenesis = std::make_shared<BlockMessage>(std::make_shared<Block>(GenesisBlock));
+	auto msgTestTr = std::make_shared<TransactionMessage>(std::make_shared<Transaction>(testTransaction));
+	auto msgMempool = std::make_shared<GetMempool>();
 
-	std::cout << getGenesis->str() << std::endl;
+	std::cout << msgMempool->str() << std::endl;
 
 	Connection::pointer testConnection = Connection::create(io_context, this);
 	connections.push_back(testConnection);
 	testConnection->bind( asio::ip::address::from_string(johynIP));
 
-	testConnection->sendMessage(getGenesis);
+	testConnection->sendMessage(msgMempool);
 }
 
 void Node::run(){

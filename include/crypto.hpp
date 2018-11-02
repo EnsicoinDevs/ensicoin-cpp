@@ -2,6 +2,7 @@
 #define HASH_HPP
 
 #include <string>
+#include <memory>
 #include <cryptopp/integer.h>
 #include <cryptopp/eccrypto.h>
 
@@ -24,9 +25,10 @@ class ECDSASignature{
 
 std::string hexPublicKey( const ECP::Point q);
 
-class Hashable{
+class Hashable : public std::enable_shared_from_this<Hashable> {
 	public:
-		virtual const std::string str() const = 0;
+		using pointer = std::shared_ptr<Hashable>;
+		virtual const std::string rawStr() const = 0;
 		const std::string hash() const;
 };
 

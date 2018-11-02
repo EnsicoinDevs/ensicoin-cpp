@@ -1,4 +1,4 @@
-#ifndef HAHSMEMORY_HPP
+#ifndef HASHMEMORY_HPP
 #define HASHMEMORY_HPP
 
 #include <map>
@@ -8,11 +8,11 @@
 
 class HashMemory{
 	private:
-		std::map<std::string, Hashable* > memory;
+		std::map<std::string, Hashable::pointer > memory;
 	public:
-		bool add(Hashable* element);
+		bool add(Hashable::pointer element);
 		bool exists(std::string elementHash);
-		Hashable* get(std::string elementHash);
+		Hashable::pointer get(std::string elementHash);
 };
 
 #endif /* HASHMEMORY_HPP */

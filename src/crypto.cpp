@@ -135,5 +135,5 @@ bool ECDSASignature::verify(std::string message, std::string publicKeyString){
 }
 
 const std::string Hashable::hash() const{
-	return sha256(sha256(str()),true);
+	return sha256(sha256(rawStr()),true);
 }
