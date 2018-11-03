@@ -34,21 +34,29 @@ class WhoAmI : public Message {
 		rapidjson::Value json(rapidjson::Document* document) const override;
 };
 
+struct InvData {
+	std::string type;
+	std::vector<std::string> hashes;
+	
+	InvData(std::string t, std::vector<std::string> hL);
+	InvData(rapidjson::Value* val);
+	rapidjson::Value json(rapidjson::Document* doc) const;
+};
+
 class Inv : public Message {
 	private:
-		std::string ressourceType;
-		std::vector<std::string> hashes;
+		InvData data;
 	public:
-		Inv(std::string ressource, std::vector<std::string> hashList);
+		Inv(InvData dt);
 		explicit Inv(rapidjson::Document* doc);
 		rapidjson::Value json(rapidjson::Document* document) const override;
 };
 
 class GetData : public Message {
 	private:
-		Message::messagePointer invData;
+		InvData invData;
 	public:
-		explicit GetData(Message::messagePointer inv);
+		explicit GetData(InvData inv);
 		explicit GetData(rapidjson::Document* doc);
 		rapidjson::Value json(rapidjson::Document* document) const override;
 };

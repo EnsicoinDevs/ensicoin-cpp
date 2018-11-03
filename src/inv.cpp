@@ -3,18 +3,18 @@
 #include <rapidjson/document.h>
 #include <string>
 #include <vector>
+#include <iostream>
 
-Inv::Inv(std::string res, std::vector<std::string> hashList) : Message("inv"), ressourceType(res), hashes(hashList) {}
-
-Inv::Inv(rapidjson::Document* doc) : Message(doc), ressourceType((*doc)["message"]["type"].GetString()) {
-	auto& hashArray = (*doc)["message"]["hashes"];
-	for(unsigned int i = 0; i < hashArray.Size(); i++){
-		hashes.push_back(hashArray[i].GetString());
+InvData::InvData(rapidjson::Value* val) : type((*val)["type"].GetString()){
+	auto& hashArray = (*val)["hashes"];
+	for(auto& hash : hashArray.GetArray()){
+		hashes.push_back(hash.GetString());
 	}
 }
 
-rapidjson::Value Inv::json(rapidjson::Document* document) const{
-	rapidjson::Value messageValue = Message::json(document);
+InvData::InvData(std::string t, std::vector<std::string> hL) : type(t), hashes(hL) {}
+
+rapidjson::Value InvData::json(rapidjson::Document* document) const {
 	rapidjson::Value content(rapidjson::kObjectType);
 
 	rapidjson::Value hashArray(rapidjson::kArrayType);
@@ -24,11 +24,21 @@ rapidjson::Value Inv::json(rapidjson::Document* document) const{
 		hashArray.PushBack(strVal, document->GetAllocator());
 	}
 	rapidjson::Value typeVal;
-	typeVal.SetString(ressourceType.c_str(), ressourceType.length(), document->GetAllocator());
+	typeVal.SetString(type.c_str(), type.length(), document->GetAllocator());
 
 	content.AddMember("type", typeVal, document->GetAllocator());
 	content.AddMember("hashes", hashArray, document->GetAllocator());
+	return content;
+}
 
+Inv::Inv(InvData dt) : Message("inv"), data(dt)  {}
+
+Inv::Inv(rapidjson::Document* doc) : Message(doc), data(InvData(doc))  {
+}
+
+rapidjson::Value Inv::json(rapidjson::Document* document) const{
+	rapidjson::Value messageValue = Message::json(document);
+	auto content = data.json(document);
 	messageValue.AddMember("message", content, document->GetAllocator());
 	return messageValue;
 }
