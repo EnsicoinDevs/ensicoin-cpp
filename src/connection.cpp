@@ -20,7 +20,6 @@ asio::ip::tcp::socket& Connection::getSocket(){
 void Connection::bind(asio::ip::address ipAddress){
 	socket.connect(asio::ip::tcp::endpoint( ipAddress, 4224));
 	sendMessage(std::make_shared<WhoAmI>());
-	waved = true;
 }
 
 void Connection::start(){
@@ -29,13 +28,15 @@ void Connection::start(){
 }
 
 void Connection::sendMessage(Message::messagePointer message){
-	const std::string messageStr = message->str();
-	
-	asio::async_write(socket, asio::buffer(messageStr), std::bind(&Connection::handleWrite, shared_from_this(), message->getType()));
-
+	if(message->getType() == "whoami" || connected){
+		const std::string messageStr = message->str();
+		asio::async_write(socket, asio::buffer(messageStr), std::bind(&Connection::handleWrite, shared_from_this(), message->getType()));
+	}
+	else
+		bufferedMessages.push_back(message);
 }
 
-Connection::Connection(asio::io_context& io_context, Node* node) : socket(io_context), node(node), waved(false) {}
+Connection::Connection(asio::io_context& io_context, Node* node) : socket(io_context), node(node), waved(false), connected(false) {}
 
 void Connection::handleRead(){
 	rapidjson::Document doc;
@@ -52,7 +53,7 @@ void Connection::handleRead(){
 
 	doc.Parse(jsonData, strlen(jsonData));
 		
-	//std::cerr << "Json : " << jsonData << std::endl;
+	// std::cerr << "Json : " << jsonData << std::endl;
 
 	if (doc.HasParseError())
 		idle();
@@ -87,6 +88,8 @@ void Connection::handleRead(){
 
 void Connection::handleWrite(std::string type){
 	std::cerr << type << " to " << socket.remote_endpoint().address().to_string() << std::endl;
+	if(type == "whoami")
+		waved = true;
 	idle();
 }
 
@@ -101,6 +104,8 @@ void Connection::handleMessage(Message::messagePointer message){
 			sendMessage(response);
 			waved = true;
 		}
+		if(waved)
+			connected = true;
 	}
 	else if (messageType == "inv")
 		std::cout << message->str() << std::endl;
@@ -121,6 +126,12 @@ void Connection::handleMessage(Message::messagePointer message){
 
 void Connection::idle(){
 	asio::async_read(socket, buffer, asio::transfer_exactly(1), std::bind(&Connection::handleRead, shared_from_this()) );
+	if( connected ){
+		while(!bufferedMessages.empty()){
+			sendMessage(bufferedMessages.back());
+			bufferedMessages.pop_back();
+		}
+	}
 }
 
 void Connection::resetBuffer(){

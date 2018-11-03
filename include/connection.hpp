@@ -32,6 +32,8 @@ class Connection : public std::enable_shared_from_this<Connection>{
 		void resetBuffer();
 
 		bool waved;
+		bool connected;
+		std::vector<Message::messagePointer> bufferedMessages;
 		asio::streambuf buffer;
 		Node* node;
 		asio::ip::tcp::socket socket;
