@@ -2,7 +2,7 @@ IDIR =../include
 BDIR =../bin
 
 CC=g++
-CFLAGS=-I$(IDIR) -Werror -Wall -Wextra -lcryptopp -pthread -DASIO_STANDALONE
+CFLAGS=-I$(IDIR) -Wshadow -Werror -Wall -Wextra -lcryptopp -pthread -DASIO_STANDALONE
 
 define cc-command
 $(CC) -c -o $@ $< $(CFLAGS)

@@ -33,10 +33,10 @@ void Script::debug(){
 		std::cerr << " Valid : " << step() << std::endl;
 		
 		std::cerr << " Stack : ";
-		std::stack<std::string> copyData(data);
+		std::stack<std::string> copyDataBis(data);
 		while( !copyData.empty() ){
-			std::string topData(copyData.top());
-			copyData.pop();	
+			std::string topData(copyDataBis.top());
+			copyDataBis.pop();	
 			std::cerr << topData << "|";
 		}
 		std::cerr << std::endl;

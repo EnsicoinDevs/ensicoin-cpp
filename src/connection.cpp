@@ -36,7 +36,7 @@ void Connection::sendMessage(Message::messagePointer message){
 		bufferedMessages.push_back(message);
 }
 
-Connection::Connection(asio::io_context& io_context, Node* node) : socket(io_context), node(node), waved(false), connected(false) {}
+Connection::Connection(asio::io_context& io_context, Node* nodePtr) : socket(io_context), node(nodePtr), waved(false), connected(false) {}
 
 void Connection::handleRead(){
 	rapidjson::Document doc;

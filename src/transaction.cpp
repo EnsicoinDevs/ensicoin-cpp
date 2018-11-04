@@ -63,7 +63,6 @@ Value InputTransaction::json(Document* document) const {
 }
 
 void InputTransaction::load(rapidjson::Value* val){
-	TransactionIdentifier previousOutput;
 	previousOutput.load(&(*val)["previousOutput"]);
 	std::stack< std::string > reversed;
 	for(auto& stackElem : (*val)["script"].GetArray() ){
