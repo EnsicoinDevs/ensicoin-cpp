@@ -14,10 +14,12 @@ Message::Message(std::string messageType) : magic(422021), type(messageType), ti
 Message::Message(rapidjson::Document* document) : magic((*document)["magic"].GetInt()),
 						  type((*document)["type"].GetString()),
 						  timestamp((*document)["timestamp"].GetInt()) {}
-
+						  
 const std::string Message::getType() const{
 	return type;
 }
+
+Message::~Message() {}
 
 Value Message::json(Document* document) const{
 	Value messageValue(kObjectType);

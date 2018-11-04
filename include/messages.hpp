@@ -23,6 +23,7 @@ class Message : public std::enable_shared_from_this<Message> {
 		const std::string str() const;
 		const std::string getType() const;
 		virtual rapidjson::Value json(rapidjson::Document* document) const;
+		virtual ~Message() = 0;
 };
 
 class WhoAmI : public Message {
