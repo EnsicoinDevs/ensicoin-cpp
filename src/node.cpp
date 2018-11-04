@@ -33,13 +33,14 @@ Node::Node(asio::io_context& io_context) : acceptor(io_context, asio::ip::tcp::e
 	auto msgTestTr = std::make_shared<TransactionMessage>(std::make_shared<Transaction>(testTransaction));
 	auto msgMempool = std::make_shared<GetMempool>();
 
-	std::cout << getDataTest->str() << std::endl;
+	std::cout << msgTestTr->str() << std::endl;
 
 	Connection::pointer testConnection = Connection::create(io_context, this);
 	connections.push_back(testConnection);
 	testConnection->bind( asio::ip::address::from_string(johynIP));
 
 	testConnection->sendMessage(invTest);
+	testConnection->sendMessage(msgMempool);
 }
 
 void Node::run(){

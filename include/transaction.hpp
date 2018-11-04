@@ -17,7 +17,7 @@ struct TransactionIdentifier{
 	std::string transactionHash;
 	int index;
 	
-	const std::string str() const;
+	std::string str() const;
 	Value json(Document* document) const;
 	void load(Value* val);
 };
@@ -25,7 +25,7 @@ struct InputTransaction{
 	TransactionIdentifier previousOutput;
 	std::stack<std::string> inputStack;
 	
-	const std::string str() const;
+	std::string str() const;
 	Value json(Document* document) const;
 	void load(Value* val);
 };
@@ -33,7 +33,7 @@ struct OutputTransaction{
 	int value;
 	std::vector<std::string> scriptInstructions;
 
-	const std::string str() const;
+	std::string str() const;
 	Value json(Document* document) const;
 	void load(Value* val);
 };
@@ -51,11 +51,11 @@ class Transaction : public Hashable{
 				std::vector<InputTransaction> initialInputs, 
 				std::vector<OutputTransaction> initialOutputs);
 		Transaction( rapidjson::Document* doc);
-		const int getVersion() const;
+		int getVersion() const;
 		std::vector<std::string> getFlags() const;
-		const bool validate();
-		const std::string rawStr() const;
-		const std::string hashWithoutInputs() const;
+		bool validate();
+		std::string rawStr() const;
+		std::string hashWithoutInputs() const;
 		Value json(bool includeInputs, Document* document) const;
 };
 

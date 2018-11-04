@@ -27,9 +27,9 @@ class Block : public Hashable{
 		Block();
 		Block(BlockHeader head, std::vector<std::shared_ptr<Transaction> > transactionList);
 		explicit Block(rapidjson::Document* document);
-		const std::string rawStr() const;
+		std::string rawStr() const;
 		rapidjson::Value json(rapidjson::Document* document) const;
-		const bool validate();
+		bool validate();
 };
 
 #endif /* BLOCKS_HPP */

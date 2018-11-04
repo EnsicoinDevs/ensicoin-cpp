@@ -99,7 +99,7 @@ ECDSASignature::ECDSASignature(std::string encodedSignature){
 	);
 }
 
-std::string ECDSASignature::hex(){
+std::string ECDSASignature::hex() const {
 	std::string asciiSignature;
 
 	StringSource ss( signature, true,
@@ -112,7 +112,7 @@ std::string ECDSASignature::hex(){
 	return asciiSignature;
 }
 
-bool ECDSASignature::verify(std::string message, std::string publicKeyString){
+bool ECDSASignature::verify(std::string message, std::string publicKeyString) const {
 	eCurve::PublicKey publicKey;
 
 	HexDecoder decoder;
@@ -134,6 +134,6 @@ bool ECDSASignature::verify(std::string message, std::string publicKeyString){
 	return result;
 }
 
-const std::string Hashable::hash() const{
+std::string Hashable::hash() const{
 	return sha256(sha256(rawStr()),true);
 }

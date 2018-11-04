@@ -19,8 +19,8 @@ class ECDSASignature{
 	public:
 		ECDSASignature(std::string encodedSignature);
 		ECDSASignature(std::string message,eCurve::PrivateKey privateKey);
-		std::string hex();
-		bool verify(std::string message, std::string publicKeyString);
+		std::string hex() const ;
+		bool verify(std::string message, std::string publicKeyString) const;
 };
 
 std::string hexPublicKey( const ECP::Point q);
@@ -28,8 +28,8 @@ std::string hexPublicKey( const ECP::Point q);
 class Hashable : public std::enable_shared_from_this<Hashable> {
 	public:
 		using pointer = std::shared_ptr<Hashable>;
-		virtual const std::string rawStr() const = 0;
-		const std::string hash() const;
+		virtual std::string rawStr() const = 0;
+		std::string hash() const;
 };
 
 #endif /* HASH_HPP */

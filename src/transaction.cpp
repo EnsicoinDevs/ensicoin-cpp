@@ -8,7 +8,7 @@
 
 using namespace rapidjson;
 
-const std::string TransactionIdentifier::str() const{
+std::string TransactionIdentifier::str() const{
 	std::ostringstream os;
 	os << transactionHash;
 	os << index;
@@ -31,7 +31,7 @@ void TransactionIdentifier::load(rapidjson::Value* val){
 	index = (*val)["index"].GetInt();
 }
 
-const std::string InputTransaction::str() const{
+std::string InputTransaction::str() const{
 	std::ostringstream os;
 	os << previousOutput.str();
 	auto copyStack = inputStack;
@@ -78,7 +78,7 @@ void InputTransaction::load(rapidjson::Value* val){
 
 }
 
-const std::string OutputTransaction::str() const {
+std::string OutputTransaction::str() const {
 	std::ostringstream os;
 	os << value;
 	for(const std::string& stackElem : scriptInstructions){
@@ -140,7 +140,7 @@ Transaction::Transaction(rapidjson::Document* doc) : version((*doc)["version"].G
 	}
 }
 
-const int Transaction::getVersion() const{
+int Transaction::getVersion() const{
 	return version;
 }
 
@@ -148,7 +148,7 @@ std::vector<std::string> Transaction::getFlags() const {
 	return transactionFlags;
 }
 
-const std::string Transaction::rawStr() const {
+std::string Transaction::rawStr() const {
 	std::ostringstream os;
 	os << version;
 	for(const auto& flag: transactionFlags){
@@ -191,7 +191,7 @@ Value Transaction::json(bool includeInputs,Document* document) const {
 	return transaction;
 }
 
-const std::string Transaction::hashWithoutInputs() const{
+std::string Transaction::hashWithoutInputs() const{
 	std::ostringstream os;
 	os << version;
 	for(const auto& flag: transactionFlags){
@@ -203,8 +203,9 @@ const std::string Transaction::hashWithoutInputs() const{
 	return sha256(sha256(os.str()), true);
 }
 
-const bool Transaction::validate(){
+bool Transaction::validate(){
 	if(inputs.empty() || outputs.empty()){
 		return false;
 	}
+	return true;
 }

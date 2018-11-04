@@ -74,7 +74,7 @@ Value Block::json(Document* document) const {
 	return blockValue;
 }
 
-const std::string Block::rawStr() const {
+std::string Block::rawStr() const {
 	std::ostringstream os;
 	os << header.version;
 	for(const auto& flag: header.blockFlags){
@@ -84,9 +84,9 @@ const std::string Block::rawStr() const {
 	for(const auto& transaction : transactions){
 		os << transaction->rawStr(); 
 	}
-	return os.str();
+	return (const std::string) os.str();
 }
 
-const bool Block::validate(){
-	
+bool Block::validate(){
+	return true;
 }
