@@ -202,6 +202,10 @@ std::string Transaction::hashWithoutInputs() const{
 	return sha256(sha256(os.str()), true);
 }
 
+std::string Transaction::hash() const{
+	return sha256(sha256(rawStr()), true);
+}
+
 bool Transaction::validate(){
 	if(inputs.empty() || outputs.empty()){
 		return false;

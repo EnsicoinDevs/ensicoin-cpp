@@ -3,6 +3,7 @@ BDIR =../bin
 
 CC=g++
 CFLAGS=-I$(IDIR) -Wshadow -Werror -Wall -Wextra -lcryptopp -pthread -DASIO_STANDALONE
+OFLAGS=-O3 -march=native -flto 
 
 define cc-command
 $(CC) -c -o $@ $< $(CFLAGS)
@@ -11,10 +12,10 @@ endef
 ODIR=obj
 VPATH = message .
 
-_OBJ = main.o getmempool.o getblocks.o transactionmessage.o blockmessage.o connection.o notfound.o inv.o whoami.o messages.o getdata.o transaction.o crypto.o script.o blocks.o node.o hashmemory.o
+_OBJ = main.o mempool.o getmempool.o getblocks.o transactionmessage.o blockmessage.o connection.o notfound.o inv.o whoami.o messages.o getdata.o transaction.o crypto.o script.o blocks.o node.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
-_DEPS = messages.hpp connection.hpp transaction.hpp crypto.hpp script.hpp blocks.hpp node.hpp hashmemory.hpp
+_DEPS = messages.hpp  mempool.hpp connection.hpp transaction.hpp crypto.hpp script.hpp blocks.hpp node.hpp hashmemory.hpp
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
 $(ODIR)/%.o: %.cpp $(DEPS) 

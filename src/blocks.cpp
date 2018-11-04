@@ -1,4 +1,5 @@
 #include "blocks.hpp"
+#include "crypto.hpp"
 #include "transaction.hpp"
 
 
@@ -85,6 +86,10 @@ std::string Block::rawStr() const {
 		os << transaction->rawStr(); 
 	}
 	return (const std::string) os.str();
+}
+
+std::string Block::hash() const{
+	return sha256(sha256(rawStr()),true);
 }
 
 bool Block::validate(){

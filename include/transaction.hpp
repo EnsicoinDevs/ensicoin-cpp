@@ -9,7 +9,6 @@
 #include <rapidjson/document.h>
 
 #include "script.hpp"
-#include "crypto.hpp"
 
 using namespace rapidjson;
 
@@ -38,7 +37,7 @@ struct OutputTransaction{
 	void load(Value* val);
 };
 
-class Transaction : public Hashable{
+class Transaction{
 	private:
 		int version;
 		std::vector<std::string> transactionFlags;
@@ -51,11 +50,15 @@ class Transaction : public Hashable{
 				std::vector<InputTransaction> initialInputs, 
 				std::vector<OutputTransaction> initialOutputs);
 		Transaction( rapidjson::Document* doc);
+		
 		int getVersion() const;
 		std::vector<std::string> getFlags() const;
+		
 		bool validate();
+		
 		std::string rawStr() const;
 		std::string hashWithoutInputs() const;
+		std::string hash() const;
 		Value json(bool includeInputs, Document* document) const;
 };
 

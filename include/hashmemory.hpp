@@ -2,17 +2,28 @@
 #define HASHMEMORY_HPP
 
 #include <map>
+#include <memory> 
 #include <string>
 
-#include "crypto.hpp"
-
+template<class T>
 class HashMemory{
-	private:
-		std::map<std::string, Hashable::pointer > memory;
 	public:
-		bool add(Hashable::pointer element);
-		bool exists(std::string elementHash);
-		Hashable::pointer get(std::string elementHash);
+		using pointer = std::shared_ptr<T>;
+		bool exists(std::string elemHash){
+			return memory.count(elemHash) == 1;
+		}
+		bool add(pointer element){
+			if(exists(element)){
+				return false;
+			}
+			memory[element.hash()] = element;
+			return true;
+		}
+		pointer get(std::string elemHash){
+			return memory[elemHash];
+		}
+	private:
+		std::map<std::string, pointer > memory;
 };
 
 #endif /* HASHMEMORY_HPP */

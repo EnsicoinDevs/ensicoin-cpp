@@ -8,7 +8,7 @@
 #include <rapidjson/document.h>
 
 #include "transaction.hpp"
-#include "crypto.hpp"
+#include "hashmemory.hpp"
 
 struct BlockHeader{
 	int version;
@@ -19,7 +19,7 @@ struct BlockHeader{
 	int nonce;
 };
 
-class Block : public Hashable{
+class Block{
 	private:
 		BlockHeader header;
 		std::vector<std::shared_ptr<Transaction> > transactions;
@@ -27,9 +27,14 @@ class Block : public Hashable{
 		Block();
 		Block(BlockHeader head, std::vector<std::shared_ptr<Transaction> > transactionList);
 		explicit Block(rapidjson::Document* document);
+		
 		std::string rawStr() const;
 		rapidjson::Value json(rapidjson::Document* document) const;
+		std::string hash() const;
+
 		bool validate();
 };
+
+using Blockchain = HashMemory<Block>;
 
 #endif /* BLOCKS_HPP */
