@@ -49,17 +49,19 @@ class Transaction{
 				std::vector<std::string> initialFlags, 
 				std::vector<InputTransaction> initialInputs, 
 				std::vector<OutputTransaction> initialOutputs);
-		Transaction( rapidjson::Document* doc);
+		explicit Transaction( rapidjson::Document* doc);
 		
 		int getVersion() const;
 		std::vector<std::string> getFlags() const;
-		
-		bool validate();
+		int totalValue() const;
+
+		bool check();
 		
 		std::string rawStr() const;
 		std::string hashWithoutInputs() const;
 		std::string hash() const;
 		Value json(bool includeInputs, Document* document) const;
+		std::string str() const;
 };
 
 #endif /* TRANSACTION_HPP */

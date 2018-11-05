@@ -10,12 +10,12 @@ $(CC) -c -o $@ $< $(CFLAGS)
 endef
 
 ODIR=obj
-VPATH = message .
+VPATH = transaction message .
 
-_OBJ = main.o mempool.o getmempool.o getblocks.o transactionmessage.o blockmessage.o connection.o notfound.o inv.o whoami.o messages.o getdata.o transaction.o crypto.o script.o blocks.o node.o
+_OBJ = main.o mempool.o transactionid.o transactioninput.o transactionoutput.o getmempool.o getblocks.o transactionmessage.o blockmessage.o connection.o notfound.o inv.o whoami.o messages.o getdata.o transaction.o crypto.o script.o blocks.o node.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
-_DEPS = messages.hpp  mempool.hpp connection.hpp transaction.hpp crypto.hpp script.hpp blocks.hpp node.hpp hashmemory.hpp
+_DEPS = messages.hpp constants.hpp mempool.hpp connection.hpp transaction.hpp crypto.hpp script.hpp blocks.hpp node.hpp hashmemory.hpp
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
 $(ODIR)/%.o: %.cpp $(DEPS) 

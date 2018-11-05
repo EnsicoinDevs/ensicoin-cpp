@@ -1,4 +1,5 @@
 #include "connection.hpp"
+#include "constants.hpp"
 #include "messages.hpp"
 
 #include <asio.hpp>

@@ -7,9 +7,6 @@
 #include <memory>
 #include <rapidjson/document.h>
 
-
-const int MESSAGE_LIMIT = 3 * 1024;
-
 class Node;
 
 class Connection : public std::enable_shared_from_this<Connection>{
