@@ -1,5 +1,6 @@
 #include "connection.hpp"
 #include "constants.hpp"
+#include "messagehandler.hpp"
 #include "messages.hpp"
 
 #include <asio.hpp>
@@ -16,6 +17,10 @@ Connection::pointer Connection::create(asio::io_context& io_context, Node* node)
 
 asio::ip::tcp::socket& Connection::getSocket(){
 	return socket;
+}
+
+std::string Connection::remote() const{
+	return socket.remote_endpoint().address().to_string();
 }
 
 void Connection::bind(asio::ip::address ipAddress){
@@ -39,6 +44,16 @@ void Connection::sendMessage(Message::messagePointer message){
 
 Connection::Connection(asio::io_context& io_context, Node* nodePtr) : socket(io_context), node(nodePtr), waved(false), connected(false) {}
 
+void Connection::wave(){
+	if(!waved){
+		auto response = std::make_shared<WhoAmI>();
+		sendMessage(response);
+		waved = true;
+	}
+	if(waved)
+		connected = true;
+}
+
 void Connection::handleRead(){
 	rapidjson::Document doc;
 	doc.SetObject();
@@ -59,69 +74,16 @@ void Connection::handleRead(){
 	if (doc.HasParseError())
 		idle();
 	else{
-
-		Message::messagePointer message;
-		std::string messageType = doc["type"].GetString();
-
 		resetBuffer();
-		
-		if ( messageType == "whoami")
-			message = std::make_shared<WhoAmI>(&doc);
-		else if ( messageType == "inv")
-			message = std::make_shared<Inv>(&doc);
-		else if ( messageType == "getdata")
-			message = std::make_shared<GetData>(&doc);
-		else if ( messageType == "notfound")
-			message = std::make_shared<NotFound>(&doc);
-		else if ( messageType == "block")
-			message = std::make_shared<BlockMessage>(&doc);
-		else if ( messageType == "transaction")
-			message = std::make_shared<TransactionMessage>(&doc);
-		else if ( messageType == "getblocks")
-			message = std::make_shared<GetBlocks>(&doc);
-		else if ( messageType == "getmempool")
-			message = std::make_shared<GetMempool>(&doc);
-		else
-			throw std::runtime_error("Unknow message type : " + messageType);
-		handleMessage(message);
+		Handler::handle(&doc, node, shared_from_this());
+		idle();	
 	}
 }
 
 void Connection::handleWrite(std::string type){
-	std::cerr << type << " to " << socket.remote_endpoint().address().to_string() << std::endl;
+	std::cerr << type << " to " << remote() << std::endl;
 	if(type == "whoami")
 		waved = true;
-	idle();
-}
-
-void Connection::handleMessage(Message::messagePointer message){
-	
-	std::cout << message->getType() << " from " << socket.remote_endpoint().address().to_string() << std::endl;
-
-	auto messageType = message->getType();
-	if (messageType == "whoami"){
-		if(!waved){
-			auto response = std::make_shared<WhoAmI>();
-			sendMessage(response);
-			waved = true;
-		}
-		if(waved)
-			connected = true;
-	}
-	else if (messageType == "inv")
-		std::cout << message->str() << std::endl;
-	else if (messageType == "getdata")
-		std::cout << message->str() << std::endl;
-	else if (messageType == "notfound")
-		std::cout << message->str() << std::endl;
-	else if (messageType == "block")
-		std::cout << message->str() << std::endl;
-	else if (messageType == "transaction")
-		std::cout << message->str() << std::endl;
-	else if (messageType == "getblocks")
-		std::cout << message->str() << std::endl;
-	else if (messageType == "getmempool")
-		std::cout << message->str() << std::endl;
 	idle();
 }
 

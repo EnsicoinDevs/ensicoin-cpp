@@ -16,12 +16,12 @@ class Message : public std::enable_shared_from_this<Message> {
 		std::string type;
 		std::time_t timestamp;
 
-		explicit Message(std::string messageType);
+		explicit Message(std::string type);
 		explicit Message(rapidjson::Document* doc);
 	public:
 		using messagePointer = std::shared_ptr<Message>;
-		const std::string str() const;
-		const std::string getType() const;
+		std::string str() const;
+		std::string getType() const;
 		virtual rapidjson::Value json(rapidjson::Document* document) const;
 		virtual ~Message() = 0;
 };
@@ -40,7 +40,7 @@ struct InvData {
 	std::vector<std::string> hashes;
 	
 	InvData(std::string t, std::vector<std::string> hL);
-	InvData(rapidjson::Value* val);
+	explicit InvData(rapidjson::Value* val);
 	rapidjson::Value json(rapidjson::Document* doc) const;
 };
 
@@ -48,7 +48,7 @@ class Inv : public Message {
 	private:
 		InvData data;
 	public:
-		Inv(InvData dt);
+		explicit Inv(InvData dt);
 		explicit Inv(rapidjson::Document* doc);
 		rapidjson::Value json(rapidjson::Document* document) const override;
 };
@@ -64,7 +64,7 @@ class GetData : public Message {
 
 class NotFound : public Message {
 	private:
-		std::string type;
+		std::string resType;
 		std::string hash;
 	public:
 		NotFound(std::string resType, std::string hashType);
