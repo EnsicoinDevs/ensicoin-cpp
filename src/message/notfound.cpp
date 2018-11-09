@@ -3,9 +3,9 @@
 #include <rapidjson/document.h>
 #include <string>
 
-NotFound::NotFound(std::string resType, std::string resHash) : Message("notfound"), type(resType), hash(resHash) {}
+NotFound::NotFound(std::string type, std::string resHash) : Message("notfound"), resType(type), hash(resHash) {}
 
-NotFound::NotFound(rapidjson::Document* doc) : Message(doc), type((*doc)["message"]["type"].GetString()),
+NotFound::NotFound(rapidjson::Document* doc) : Message(doc), resType((*doc)["message"]["type"].GetString()),
 							     hash((*doc)["message"]["hash"].GetString()) {}
 
 rapidjson::Value NotFound::json(rapidjson::Document* document) const{
@@ -14,7 +14,7 @@ rapidjson::Value NotFound::json(rapidjson::Document* document) const{
 	rapidjson::Value typeVal;
 	rapidjson::Value hashVal;
 
-	typeVal.SetString(type.c_str(), type.length(), document->GetAllocator());
+	typeVal.SetString(resType.c_str(), resType.length(), document->GetAllocator());
 	hashVal.SetString(hash.c_str(), hash.length(), document->GetAllocator());
 
 	content.AddMember("type", typeVal, document->GetAllocator());

@@ -1,12 +1,14 @@
 #include "messages.hpp"
 
-#include <string>
+#include "constants.hpp"
+
 #include <rapidjson/document.h>
+#include <string>
 
 using rapidjson::Value;
 using rapidjson::Document;
 
-WhoAmI::WhoAmI() : Message("whoami"), version(0) {}
+WhoAmI::WhoAmI() : Message("whoami"), version(VERSION) {}
 
 WhoAmI::WhoAmI(rapidjson::Document* document) : Message(document), version((*document)["message"]["version"].GetInt()) {}
 

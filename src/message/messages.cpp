@@ -7,15 +7,17 @@
 
 #include "messages.hpp"
 
+#include "constants.hpp"
+
 using namespace rapidjson;
 
-Message::Message(std::string messageType) : magic(422021), type(messageType), timestamp(std::time(0)){}
+Message::Message(std::string messageType) : magic(MAGIC), type(messageType), timestamp(std::time(0)){}
 
 Message::Message(rapidjson::Document* document) : magic((*document)["magic"].GetInt()),
 						  type((*document)["type"].GetString()),
 						  timestamp((*document)["timestamp"].GetInt()) {}
 						  
-const std::string Message::getType() const{
+std::string Message::getType() const{
 	return type;
 }
 
@@ -34,7 +36,7 @@ Value Message::json(Document* document) const{
 	return messageValue;
 }
 
-const std::string Message::str() const{
+std::string Message::str() const{
 	rapidjson::Document* d = new rapidjson::Document();
 	d->SetObject();
 
