@@ -1,3 +1,4 @@
+#include <iostream>
 #include <vector>
 #include <string>
 #include <stack>
@@ -7,8 +8,13 @@
 #include <cryptopp/osrng.h>
 #include <cryptopp/filters.h>
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <errno.h>
+
 #include <asio.hpp>
 
+#include "constants.hpp"
 #include "crypto.hpp"
 #include "script.hpp"
 #include "blocks.hpp"
@@ -39,6 +45,16 @@ int main(){
 	std::vector<std::string> code = {"OP_DUP","OP_HASH160", ripemd160(hexPublicKey(q)), "OP_EQUAL", "OP_VERIFY", "OP_CHECKSIG"};
 	std::stack<std::string> data({signature.hex(), hexPublicKey(q)});
 	Script testScript(code.begin(), code.end(), data, message);
+	
+	int status;
+	status = mkdir(DATA_PATH.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+	if( status != 0 && errno != EEXIST){
+		char buffer[ 256 ];
+		std::cout << "Error when creating directory : " << strerror_r( errno, buffer, 256 ) << std::endl;
+	}
+	else{
+		std::cout << "Directory set" << std::endl;
+	}
 
 	asio::io_context io_context;
 	Node node(io_context);
