@@ -1,7 +1,12 @@
 #include "transaction.hpp"
+#include "blocks.hpp"
 #include "constants.hpp"
 #include "crypto.hpp"
+#include "hashmemory.hpp"
+#include "mempool.hpp"
 
+#include <algorithm>
+#include <numeric>
 #include <rapidjson/document.h>
 #include <rapidjson/prettywriter.h>
 #include <rapidjson/stringbuffer.h>
@@ -49,17 +54,57 @@ std::vector<std::string> Transaction::getFlags() const {
 	return transactionFlags;
 }
 
+std::vector<TransactionIdentifier> Transaction::getInputsId() const{
+	std::vector<TransactionIdentifier> output;
+	for(auto& input : inputs)
+		output.push_back(input.previousOutput);
+	return output;
+}
+
+bool Transaction::validate(Mempool* mempool, int currentHeight){
+	if(!check()) return false;
+	if(inputValue(mempool) <= outputValue()) return false;
+	if(std::any_of(inputs.begin(), 
+		       inputs.end(),
+		       [mempool, currentHeight](InputTransaction ip){
+				return !mempool->isSpendable(ip.previousOutput, currentHeight);
+			})) return false;
+	if(!validateScript()) return false;
+	return true;
+}
+
+bool Transaction::validateScript() const{
+	return false;
+}
 
 bool Transaction::check(){
 	if(inputs.empty() || outputs.empty())
 		return false;
 	if(str().length() > MAX_BLOCK_SIZE)
 		return false;
-	for(auto& out : outputs){
-		if(out.value < 0)
-			return false;
-	}
-	return true;
+	return !std::any_of(outputs.begin(), outputs.end(), [](OutputTransaction output){return output.value<=0;});
+}
+
+int Transaction::outputValue() const{
+	auto sum = 0;
+	std::accumulate(outputs.begin(),
+			outputs.end(),
+			sum,
+			[](int s, OutputTransaction op){
+				return s + op.value;
+			});
+	return sum;
+}
+
+int Transaction::inputValue(Mempool* mempool) const{
+	auto sum = 0;
+	std::accumulate(inputs.begin(), 
+			inputs.end(), 
+			sum, 
+			[mempool](int s,InputTransaction ip){
+				return s + mempool->getInputValue(ip.previousOutput);
+			});
+	return sum;
 }
 
 std::string Transaction::hash() const{

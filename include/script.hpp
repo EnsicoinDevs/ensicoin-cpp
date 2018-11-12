@@ -19,6 +19,7 @@ class Script{
 			std::string transactionHash);
 		void debug();
 		bool step();
+		bool done() const;
 };
 
 #endif /* SCRIPT_HPP */

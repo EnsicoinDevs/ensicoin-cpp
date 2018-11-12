@@ -1,14 +1,15 @@
 #ifndef TRANSACTION_HPP
 #define TRANSACTION_HPP
 
+#include "hashmemory.hpp"
+#include "script.hpp"
+
+#include <iterator>
+#include <rapidjson/document.h>
+#include <sstream>
+#include <stack>
 #include <string>
 #include <vector>
-#include <iterator>
-#include <stack>
-#include <sstream>
-#include <rapidjson/document.h>
-
-#include "script.hpp"
 
 using namespace rapidjson;
 
@@ -37,6 +38,10 @@ struct OutputTransaction{
 	void load(Value* val);
 };
 
+class Mempool;
+
+enum TXType { Orphan, Regular };
+
 class Transaction{
 	private:
 		int version;
@@ -53,10 +58,15 @@ class Transaction{
 		
 		int getVersion() const;
 		std::vector<std::string> getFlags() const;
-		int totalValue() const;
+		std::vector<TransactionIdentifier> getInputsId() const;
+		
+		int inputValue(Mempool* mempool) const;
+		int outputValue() const;
 
 		bool check();
-		
+		bool validate(Mempool* mempool,int currentHeight);
+		bool validateScript() const;
+
 		std::string rawStr() const;
 		std::string hashWithoutInputs() const;
 		std::string hash() const;

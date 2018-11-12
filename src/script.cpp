@@ -43,6 +43,10 @@ void Script::debug(){
 	}
 }
 
+bool Script::done() const{
+	return codePointer == endCode;
+}
+
 bool Script::step(){
 	if(codePointer < endCode){
 		if ( *codePointer == "OP_DUP" ) {
