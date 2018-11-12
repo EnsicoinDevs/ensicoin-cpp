@@ -6,10 +6,6 @@ NODEPS:=clean tags svn
 SOURCES:=$(shell find src/ -name "*.cpp")
 DEPFILES:=$(patsubst %.cpp,%.d,$(SOURCES))
 
-ifeq (0, $(words $(findstring $(MAKECMDGOALS), $(NODEPS))))
-	 -include $(DEPFILES)
-endif
-
 CXX=clang++
 CXXFLAGS=-I$(IDIR) -Wshadow -Wall -Wextra -DASIO_STANDALONE
 OFLAGS=-O3 -march=native -flto 
@@ -17,7 +13,9 @@ LIBS=-lcryptopp -pthread -lleveldb
 
 ODIR=obj
 
-ensicoin-node: $(OBJ)
+OBJS:=$(patsubst %.cpp, obj/%.o, $(shell find src/ -type f -printf "%f "))
+
+ensicoin-node: $(OBJS)
 	$(CXX) -o $(BDIR)/$@ $^ $(CXXFLAGS) $(LIBS)
 
 include Rulefile
