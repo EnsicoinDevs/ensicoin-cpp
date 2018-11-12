@@ -1,0 +1,274 @@
+\hypertarget{classConnection}{}\section{Connection Class Reference}
+\label{classConnection}\index{Connection@{Connection}}
+
+
+A \mbox{\hyperlink{classConnection}{Connection}} to a peer.  
+
+
+
+
+{\ttfamily \#include $<$connection.\+hpp$>$}
+
+Inheritance diagram for Connection\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classConnection}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classConnection_a1bb6cd8924ff091e9b053e3368735c9c}{pointer}} = std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classConnection}{Connection}} $>$
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classConnection_ae1d2f498761143716cc12fdc76b46203}{remote}} () const
+\begin{DoxyCompactList}\small\item\em IP Adress of remote connection. \end{DoxyCompactList}\item 
+asio\+::ip\+::tcp\+::socket \& \mbox{\hyperlink{classConnection_ac854436a3a6fdf7fdb16be04b9696447}{get\+Socket}} ()
+\begin{DoxyCompactList}\small\item\em Reference to the socket. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classConnection_a47c25a31352a71e2a6902d37fc5fa2ba}{start}} ()
+\begin{DoxyCompactList}\small\item\em Initial state of \mbox{\hyperlink{classConnection}{Connection}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classConnection_ad8fa49332af5ccc42768f94bdf711187}{send\+Message}} (\mbox{\hyperlink{classMessage_a3f7f2aa1058cb5f0b74a1fbb7fcd00e5}{Message\+::message\+Pointer}} message)
+\begin{DoxyCompactList}\small\item\em Send a \mbox{\hyperlink{classMessage}{Message}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classConnection_a765fb34abf97d31b9c2c49e1e1c76a00}{bind}} (asio\+::ip\+::address address)
+\begin{DoxyCompactList}\small\item\em Connect to a remote address. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classConnection_a4f79c85d33fd0a9e640405ec665cc01d}{idle}} ()
+\begin{DoxyCompactList}\small\item\em Idle loop of the \mbox{\hyperlink{classConnection}{Connection}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classConnection_a2e12f0ca3e66692c1bc3ad858dfa2d4e}{wave}} ()
+\begin{DoxyCompactList}\small\item\em Exchange of \mbox{\hyperlink{classWhoAmI}{Who\+AmI}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classConnection_a1bb6cd8924ff091e9b053e3368735c9c}{pointer}} \mbox{\hyperlink{classConnection_a31f4b3c4ce970776f98b5fb20bdf3ef1}{create}} (asio\+::io\+\_\+context \&io\+\_\+context, \mbox{\hyperlink{classNode}{Node}} $\ast$\mbox{\hyperlink{classConnection_a0e90a6ef9361901f3d7c25e00d0a2016}{node}})
+\begin{DoxyCompactList}\small\item\em Creates a shared\+\_\+ptr of \mbox{\hyperlink{classConnection}{Connection}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classConnection_a0679a72f407a3c3fca0cea1cd2cd9eda}{Connection}} (asio\+::io\+\_\+context \&io\+\_\+context, \mbox{\hyperlink{classNode}{Node}} $\ast$\mbox{\hyperlink{classConnection_a0e90a6ef9361901f3d7c25e00d0a2016}{node}})
+\item 
+void \mbox{\hyperlink{classConnection_af084bfb2043337222d885cc8cc46201d}{handle\+Read}} ()
+\begin{DoxyCompactList}\small\item\em Called when reading a \mbox{\hyperlink{classMessage}{Message}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classConnection_a0b08401c5769b84c2a2b4b99363925fa}{handle\+Write}} (std\+::string type)
+\begin{DoxyCompactList}\small\item\em Called when writing a \mbox{\hyperlink{classMessage}{Message}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classConnection_a489def548f673328fe383c5625224367}{reset\+Buffer}} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+asio\+::ip\+::tcp\+::socket \mbox{\hyperlink{classConnection_a8b4cf76de02e4eaa6a2afdc65c42cfdc}{socket}}
+\item 
+\mbox{\hyperlink{classNode}{Node}} $\ast$ \mbox{\hyperlink{classConnection_a0e90a6ef9361901f3d7c25e00d0a2016}{node}}
+\item 
+bool \mbox{\hyperlink{classConnection_ac8ec569c3d8e883446c1498d6b0fa425}{waved}}
+\begin{DoxyCompactList}\small\item\em has the node send a \mbox{\hyperlink{classWhoAmI}{Who\+AmI}} \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classConnection_a1445f1ca4d7fd2155a7de480340b370a}{connected}}
+\begin{DoxyCompactList}\small\item\em recieved a \mbox{\hyperlink{classWhoAmI}{Who\+AmI}} \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classMessage_a3f7f2aa1058cb5f0b74a1fbb7fcd00e5}{Message\+::message\+Pointer}} $>$ \mbox{\hyperlink{classConnection_ad5f7e4d6f209106c33e9e996a0c49932}{buffered\+Messages}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classMessage}{Message}} buffered before \mbox{\hyperlink{classWhoAmI}{Who\+AmI}} exchange. \end{DoxyCompactList}\item 
+asio\+::streambuf \mbox{\hyperlink{classConnection_a99e0a006406f126fc4c538ba71532397}{buffer}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A \mbox{\hyperlink{classConnection}{Connection}} to a peer. 
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classConnection_a1bb6cd8924ff091e9b053e3368735c9c}\label{classConnection_a1bb6cd8924ff091e9b053e3368735c9c}} 
+\index{Connection@{Connection}!pointer@{pointer}}
+\index{pointer@{pointer}!Connection@{Connection}}
+\subsubsection{\texorpdfstring{pointer}{pointer}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classConnection_a1bb6cd8924ff091e9b053e3368735c9c}{Connection\+::pointer}} =  std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classConnection}{Connection}}$>$}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classConnection_a0679a72f407a3c3fca0cea1cd2cd9eda}\label{classConnection_a0679a72f407a3c3fca0cea1cd2cd9eda}} 
+\index{Connection@{Connection}!Connection@{Connection}}
+\index{Connection@{Connection}!Connection@{Connection}}
+\subsubsection{\texorpdfstring{Connection()}{Connection()}}
+{\footnotesize\ttfamily Connection\+::\+Connection (\begin{DoxyParamCaption}\item[{asio\+::io\+\_\+context \&}]{io\+\_\+context,  }\item[{\mbox{\hyperlink{classNode}{Node}} $\ast$}]{node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classConnection_a765fb34abf97d31b9c2c49e1e1c76a00}\label{classConnection_a765fb34abf97d31b9c2c49e1e1c76a00}} 
+\index{Connection@{Connection}!bind@{bind}}
+\index{bind@{bind}!Connection@{Connection}}
+\subsubsection{\texorpdfstring{bind()}{bind()}}
+{\footnotesize\ttfamily void Connection\+::bind (\begin{DoxyParamCaption}\item[{asio\+::ip\+::address}]{address }\end{DoxyParamCaption})}
+
+
+
+Connect to a remote address. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em address} & IP address to connect to \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classConnection_a31f4b3c4ce970776f98b5fb20bdf3ef1}\label{classConnection_a31f4b3c4ce970776f98b5fb20bdf3ef1}} 
+\index{Connection@{Connection}!create@{create}}
+\index{create@{create}!Connection@{Connection}}
+\subsubsection{\texorpdfstring{create()}{create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classConnection_a1bb6cd8924ff091e9b053e3368735c9c}{Connection\+::pointer}} Connection\+::create (\begin{DoxyParamCaption}\item[{asio\+::io\+\_\+context \&}]{io\+\_\+context,  }\item[{\mbox{\hyperlink{classNode}{Node}} $\ast$}]{node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Creates a shared\+\_\+ptr of \mbox{\hyperlink{classConnection}{Connection}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em io\+\_\+context} & io\+\_\+context for async operation \\
+\hline
+{\em node} & pointer to a \mbox{\hyperlink{classNode}{Node}} to handle actions \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classConnection_ac854436a3a6fdf7fdb16be04b9696447}\label{classConnection_ac854436a3a6fdf7fdb16be04b9696447}} 
+\index{Connection@{Connection}!get\+Socket@{get\+Socket}}
+\index{get\+Socket@{get\+Socket}!Connection@{Connection}}
+\subsubsection{\texorpdfstring{get\+Socket()}{getSocket()}}
+{\footnotesize\ttfamily asio\+::ip\+::tcp\+::socket \& Connection\+::get\+Socket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reference to the socket. 
+
+\mbox{\Hypertarget{classConnection_af084bfb2043337222d885cc8cc46201d}\label{classConnection_af084bfb2043337222d885cc8cc46201d}} 
+\index{Connection@{Connection}!handle\+Read@{handle\+Read}}
+\index{handle\+Read@{handle\+Read}!Connection@{Connection}}
+\subsubsection{\texorpdfstring{handle\+Read()}{handleRead()}}
+{\footnotesize\ttfamily void Connection\+::handle\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Called when reading a \mbox{\hyperlink{classMessage}{Message}}. 
+
+\mbox{\Hypertarget{classConnection_a0b08401c5769b84c2a2b4b99363925fa}\label{classConnection_a0b08401c5769b84c2a2b4b99363925fa}} 
+\index{Connection@{Connection}!handle\+Write@{handle\+Write}}
+\index{handle\+Write@{handle\+Write}!Connection@{Connection}}
+\subsubsection{\texorpdfstring{handle\+Write()}{handleWrite()}}
+{\footnotesize\ttfamily void Connection\+::handle\+Write (\begin{DoxyParamCaption}\item[{std\+::string}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Called when writing a \mbox{\hyperlink{classMessage}{Message}}. 
+
+\mbox{\Hypertarget{classConnection_a4f79c85d33fd0a9e640405ec665cc01d}\label{classConnection_a4f79c85d33fd0a9e640405ec665cc01d}} 
+\index{Connection@{Connection}!idle@{idle}}
+\index{idle@{idle}!Connection@{Connection}}
+\subsubsection{\texorpdfstring{idle()}{idle()}}
+{\footnotesize\ttfamily void Connection\+::idle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Idle loop of the \mbox{\hyperlink{classConnection}{Connection}}. 
+
+\mbox{\Hypertarget{classConnection_ae1d2f498761143716cc12fdc76b46203}\label{classConnection_ae1d2f498761143716cc12fdc76b46203}} 
+\index{Connection@{Connection}!remote@{remote}}
+\index{remote@{remote}!Connection@{Connection}}
+\subsubsection{\texorpdfstring{remote()}{remote()}}
+{\footnotesize\ttfamily std\+::string Connection\+::remote (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+IP Adress of remote connection. 
+
+\mbox{\Hypertarget{classConnection_a489def548f673328fe383c5625224367}\label{classConnection_a489def548f673328fe383c5625224367}} 
+\index{Connection@{Connection}!reset\+Buffer@{reset\+Buffer}}
+\index{reset\+Buffer@{reset\+Buffer}!Connection@{Connection}}
+\subsubsection{\texorpdfstring{reset\+Buffer()}{resetBuffer()}}
+{\footnotesize\ttfamily void Connection\+::reset\+Buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classConnection_ad8fa49332af5ccc42768f94bdf711187}\label{classConnection_ad8fa49332af5ccc42768f94bdf711187}} 
+\index{Connection@{Connection}!send\+Message@{send\+Message}}
+\index{send\+Message@{send\+Message}!Connection@{Connection}}
+\subsubsection{\texorpdfstring{send\+Message()}{sendMessage()}}
+{\footnotesize\ttfamily void Connection\+::send\+Message (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMessage_a3f7f2aa1058cb5f0b74a1fbb7fcd00e5}{Message\+::message\+Pointer}}}]{message }\end{DoxyParamCaption})}
+
+
+
+Send a \mbox{\hyperlink{classMessage}{Message}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & shared\+\_\+ptr of a \mbox{\hyperlink{classMessage}{Message}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classConnection_a47c25a31352a71e2a6902d37fc5fa2ba}\label{classConnection_a47c25a31352a71e2a6902d37fc5fa2ba}} 
+\index{Connection@{Connection}!start@{start}}
+\index{start@{start}!Connection@{Connection}}
+\subsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void Connection\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initial state of \mbox{\hyperlink{classConnection}{Connection}}. 
+
+\mbox{\Hypertarget{classConnection_a2e12f0ca3e66692c1bc3ad858dfa2d4e}\label{classConnection_a2e12f0ca3e66692c1bc3ad858dfa2d4e}} 
+\index{Connection@{Connection}!wave@{wave}}
+\index{wave@{wave}!Connection@{Connection}}
+\subsubsection{\texorpdfstring{wave()}{wave()}}
+{\footnotesize\ttfamily void Connection\+::wave (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Exchange of \mbox{\hyperlink{classWhoAmI}{Who\+AmI}}. 
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classConnection_a99e0a006406f126fc4c538ba71532397}\label{classConnection_a99e0a006406f126fc4c538ba71532397}} 
+\index{Connection@{Connection}!buffer@{buffer}}
+\index{buffer@{buffer}!Connection@{Connection}}
+\subsubsection{\texorpdfstring{buffer}{buffer}}
+{\footnotesize\ttfamily asio\+::streambuf Connection\+::buffer\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classConnection_ad5f7e4d6f209106c33e9e996a0c49932}\label{classConnection_ad5f7e4d6f209106c33e9e996a0c49932}} 
+\index{Connection@{Connection}!buffered\+Messages@{buffered\+Messages}}
+\index{buffered\+Messages@{buffered\+Messages}!Connection@{Connection}}
+\subsubsection{\texorpdfstring{buffered\+Messages}{bufferedMessages}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classMessage_a3f7f2aa1058cb5f0b74a1fbb7fcd00e5}{Message\+::message\+Pointer}}$>$ Connection\+::buffered\+Messages\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\mbox{\hyperlink{classMessage}{Message}} buffered before \mbox{\hyperlink{classWhoAmI}{Who\+AmI}} exchange. 
+
+\mbox{\Hypertarget{classConnection_a1445f1ca4d7fd2155a7de480340b370a}\label{classConnection_a1445f1ca4d7fd2155a7de480340b370a}} 
+\index{Connection@{Connection}!connected@{connected}}
+\index{connected@{connected}!Connection@{Connection}}
+\subsubsection{\texorpdfstring{connected}{connected}}
+{\footnotesize\ttfamily bool Connection\+::connected\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+recieved a \mbox{\hyperlink{classWhoAmI}{Who\+AmI}} 
+
+\mbox{\Hypertarget{classConnection_a0e90a6ef9361901f3d7c25e00d0a2016}\label{classConnection_a0e90a6ef9361901f3d7c25e00d0a2016}} 
+\index{Connection@{Connection}!node@{node}}
+\index{node@{node}!Connection@{Connection}}
+\subsubsection{\texorpdfstring{node}{node}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classNode}{Node}}$\ast$ Connection\+::node\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classConnection_a8b4cf76de02e4eaa6a2afdc65c42cfdc}\label{classConnection_a8b4cf76de02e4eaa6a2afdc65c42cfdc}} 
+\index{Connection@{Connection}!socket@{socket}}
+\index{socket@{socket}!Connection@{Connection}}
+\subsubsection{\texorpdfstring{socket}{socket}}
+{\footnotesize\ttfamily asio\+::ip\+::tcp\+::socket Connection\+::socket\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classConnection_ac8ec569c3d8e883446c1498d6b0fa425}\label{classConnection_ac8ec569c3d8e883446c1498d6b0fa425}} 
+\index{Connection@{Connection}!waved@{waved}}
+\index{waved@{waved}!Connection@{Connection}}
+\subsubsection{\texorpdfstring{waved}{waved}}
+{\footnotesize\ttfamily bool Connection\+::waved\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+has the node send a \mbox{\hyperlink{classWhoAmI}{Who\+AmI}} 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{connection_8hpp}{connection.\+hpp}}\item 
+src/\mbox{\hyperlink{connection_8cpp}{connection.\+cpp}}\end{DoxyCompactItemize}

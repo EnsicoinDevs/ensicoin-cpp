@@ -1,0 +1,126 @@
+\hypertarget{classMessage}{}\section{Message Class Reference}
+\label{classMessage}\index{Message@{Message}}
+
+
+{\ttfamily \#include $<$messages.\+hpp$>$}
+
+Inheritance diagram for Message\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=10.000000cm]{classMessage}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classMessage_a3f7f2aa1058cb5f0b74a1fbb7fcd00e5}{message\+Pointer}} = std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classMessage}{Message}} $>$
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classMessage_afde1ad2efd7e7af3ed65bbbb08e2e172}{str}} () const
+\item 
+std\+::string \mbox{\hyperlink{classMessage_aeb65039d076cefaff79b21044a4d8d29}{get\+Type}} () const
+\item 
+virtual rapidjson\+::\+Value \mbox{\hyperlink{classMessage_a6f8e3ac2eed3a8afe9400fcd5b3447b2}{json}} (rapidjson\+::\+Document $\ast$document) const
+\item 
+virtual \mbox{\hyperlink{classMessage_ad7ecaab66dfea90ed7bf9a3147bcf129}{$\sim$\+Message}} ()=0
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMessage_aa222cbc5bf7865d5464a841740f45c11}{Message}} (std\+::string \mbox{\hyperlink{classMessage_ae9dead264183a4243c120026e6259b6f}{type}})
+\item 
+\mbox{\hyperlink{classMessage_a92ef92d05b8d6ca2647aff6eeb61df70}{Message}} (rapidjson\+::\+Document $\ast$doc)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classMessage_a5bb4366b0a888886fec19ca2b2903d00}{magic}}
+\item 
+std\+::string \mbox{\hyperlink{classMessage_ae9dead264183a4243c120026e6259b6f}{type}}
+\item 
+std\+::time\+\_\+t \mbox{\hyperlink{classMessage_a78b882ca696ae5b4387b829132ff21ab}{timestamp}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classMessage_a3f7f2aa1058cb5f0b74a1fbb7fcd00e5}\label{classMessage_a3f7f2aa1058cb5f0b74a1fbb7fcd00e5}} 
+\index{Message@{Message}!message\+Pointer@{message\+Pointer}}
+\index{message\+Pointer@{message\+Pointer}!Message@{Message}}
+\subsubsection{\texorpdfstring{message\+Pointer}{messagePointer}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classMessage_a3f7f2aa1058cb5f0b74a1fbb7fcd00e5}{Message\+::message\+Pointer}} =  std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classMessage}{Message}}$>$}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classMessage_aa222cbc5bf7865d5464a841740f45c11}\label{classMessage_aa222cbc5bf7865d5464a841740f45c11}} 
+\index{Message@{Message}!Message@{Message}}
+\index{Message@{Message}!Message@{Message}}
+\subsubsection{\texorpdfstring{Message()}{Message()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Message\+::\+Message (\begin{DoxyParamCaption}\item[{std\+::string}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classMessage_a92ef92d05b8d6ca2647aff6eeb61df70}\label{classMessage_a92ef92d05b8d6ca2647aff6eeb61df70}} 
+\index{Message@{Message}!Message@{Message}}
+\index{Message@{Message}!Message@{Message}}
+\subsubsection{\texorpdfstring{Message()}{Message()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Message\+::\+Message (\begin{DoxyParamCaption}\item[{rapidjson\+::\+Document $\ast$}]{doc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classMessage_ad7ecaab66dfea90ed7bf9a3147bcf129}\label{classMessage_ad7ecaab66dfea90ed7bf9a3147bcf129}} 
+\index{Message@{Message}!````~Message@{$\sim$\+Message}}
+\index{````~Message@{$\sim$\+Message}!Message@{Message}}
+\subsubsection{\texorpdfstring{$\sim$\+Message()}{~Message()}}
+{\footnotesize\ttfamily Message\+::$\sim$\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classMessage_aeb65039d076cefaff79b21044a4d8d29}\label{classMessage_aeb65039d076cefaff79b21044a4d8d29}} 
+\index{Message@{Message}!get\+Type@{get\+Type}}
+\index{get\+Type@{get\+Type}!Message@{Message}}
+\subsubsection{\texorpdfstring{get\+Type()}{getType()}}
+{\footnotesize\ttfamily std\+::string Message\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classMessage_a6f8e3ac2eed3a8afe9400fcd5b3447b2}\label{classMessage_a6f8e3ac2eed3a8afe9400fcd5b3447b2}} 
+\index{Message@{Message}!json@{json}}
+\index{json@{json}!Message@{Message}}
+\subsubsection{\texorpdfstring{json()}{json()}}
+{\footnotesize\ttfamily Value Message\+::json (\begin{DoxyParamCaption}\item[{rapidjson\+::\+Document $\ast$}]{document }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{classGetMempool_a3e6fb495c609ade4e8efd3d5668c28cf}{Get\+Mempool}}, \mbox{\hyperlink{classGetBlocks_a8b77916e999ba0a730e31b90b4733928}{Get\+Blocks}}, \mbox{\hyperlink{classTransactionMessage_af8675087bd26b6aa0c30a3e3141dda4e}{Transaction\+Message}}, \mbox{\hyperlink{classBlockMessage_afe33ddfdae83a25d98dd28541bc2fcfe}{Block\+Message}}, \mbox{\hyperlink{classNotFound_a67ee661e6a87c681d167da585c106240}{Not\+Found}}, \mbox{\hyperlink{classGetData_a2fb121264fc1c5821e769f4f2389c6ff}{Get\+Data}}, \mbox{\hyperlink{classInv_a815854f9808009dbf9f0fdb1159061c5}{Inv}}, and \mbox{\hyperlink{classWhoAmI_a998c4b21d6235a84f15bd994b76be59d}{Who\+AmI}}.
+
+\mbox{\Hypertarget{classMessage_afde1ad2efd7e7af3ed65bbbb08e2e172}\label{classMessage_afde1ad2efd7e7af3ed65bbbb08e2e172}} 
+\index{Message@{Message}!str@{str}}
+\index{str@{str}!Message@{Message}}
+\subsubsection{\texorpdfstring{str()}{str()}}
+{\footnotesize\ttfamily std\+::string Message\+::str (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classMessage_a5bb4366b0a888886fec19ca2b2903d00}\label{classMessage_a5bb4366b0a888886fec19ca2b2903d00}} 
+\index{Message@{Message}!magic@{magic}}
+\index{magic@{magic}!Message@{Message}}
+\subsubsection{\texorpdfstring{magic}{magic}}
+{\footnotesize\ttfamily int Message\+::magic\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classMessage_a78b882ca696ae5b4387b829132ff21ab}\label{classMessage_a78b882ca696ae5b4387b829132ff21ab}} 
+\index{Message@{Message}!timestamp@{timestamp}}
+\index{timestamp@{timestamp}!Message@{Message}}
+\subsubsection{\texorpdfstring{timestamp}{timestamp}}
+{\footnotesize\ttfamily std\+::time\+\_\+t Message\+::timestamp\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classMessage_ae9dead264183a4243c120026e6259b6f}\label{classMessage_ae9dead264183a4243c120026e6259b6f}} 
+\index{Message@{Message}!type@{type}}
+\index{type@{type}!Message@{Message}}
+\subsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily std\+::string Message\+::type\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{messages_8hpp}{messages.\+hpp}}\item 
+src/message/\mbox{\hyperlink{messages_8cpp}{messages.\+cpp}}\end{DoxyCompactItemize}

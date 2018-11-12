@@ -1,0 +1,68 @@
+\hypertarget{crypto_8cpp}{}\section{src/crypto.cpp File Reference}
+\label{crypto_8cpp}\index{src/crypto.\+cpp@{src/crypto.\+cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$cryptopp/eccrypto.\+h$>$}\newline
+{\ttfamily \#include $<$cryptopp/ripemd.\+h$>$}\newline
+{\ttfamily \#include $<$cryptopp/filters.\+h$>$}\newline
+{\ttfamily \#include $<$cryptopp/hex.\+h$>$}\newline
+{\ttfamily \#include $<$cryptopp/oids.\+h$>$}\newline
+{\ttfamily \#include $<$cryptopp/osrng.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}crypto.\+hpp\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{crypto_8cpp_a38fe04188a987a4105b1b2f4264e568b}{hex\+Public\+Key}} (const E\+C\+P\+::\+Point q)
+\begin{DoxyCompactList}\small\item\em Hex reprensation of a public key. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{crypto_8cpp_a410591edeedf4a396543119822447772}{ripemd160}} (std\+::string message, bool unpack)
+\begin{DoxyCompactList}\small\item\em Take the R\+I\+P\+E\+M\+D160 hash. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{crypto_8cpp_a3f0d6c95e569656d7be2848df2b6df69}{sha256}} (std\+::string message, bool unpack)
+\begin{DoxyCompactList}\small\item\em Take the S\+H\+A256 hash. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{crypto_8cpp_a38fe04188a987a4105b1b2f4264e568b}\label{crypto_8cpp_a38fe04188a987a4105b1b2f4264e568b}} 
+\index{crypto.\+cpp@{crypto.\+cpp}!hex\+Public\+Key@{hex\+Public\+Key}}
+\index{hex\+Public\+Key@{hex\+Public\+Key}!crypto.\+cpp@{crypto.\+cpp}}
+\subsubsection{\texorpdfstring{hex\+Public\+Key()}{hexPublicKey()}}
+{\footnotesize\ttfamily std\+::string hex\+Public\+Key (\begin{DoxyParamCaption}\item[{const E\+C\+P\+::\+Point}]{q }\end{DoxyParamCaption})}
+
+
+
+Hex reprensation of a public key. 
+
+q public point on secp256k1 \mbox{\Hypertarget{crypto_8cpp_a410591edeedf4a396543119822447772}\label{crypto_8cpp_a410591edeedf4a396543119822447772}} 
+\index{crypto.\+cpp@{crypto.\+cpp}!ripemd160@{ripemd160}}
+\index{ripemd160@{ripemd160}!crypto.\+cpp@{crypto.\+cpp}}
+\subsubsection{\texorpdfstring{ripemd160()}{ripemd160()}}
+{\footnotesize\ttfamily std\+::string ripemd160 (\begin{DoxyParamCaption}\item[{std\+::string}]{input,  }\item[{bool}]{unpack = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Take the R\+I\+P\+E\+M\+D160 hash. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & string to be hashed \\
+\hline
+{\em unpack} & handles a binary string \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{crypto_8cpp_a3f0d6c95e569656d7be2848df2b6df69}\label{crypto_8cpp_a3f0d6c95e569656d7be2848df2b6df69}} 
+\index{crypto.\+cpp@{crypto.\+cpp}!sha256@{sha256}}
+\index{sha256@{sha256}!crypto.\+cpp@{crypto.\+cpp}}
+\subsubsection{\texorpdfstring{sha256()}{sha256()}}
+{\footnotesize\ttfamily std\+::string sha256 (\begin{DoxyParamCaption}\item[{std\+::string}]{input,  }\item[{bool}]{unpack = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Take the S\+H\+A256 hash. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & string to be hashed \\
+\hline
+{\em unpack} & handles a binary string \\
+\hline
+\end{DoxyParams}

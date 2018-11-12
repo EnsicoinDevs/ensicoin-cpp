@@ -10,28 +10,62 @@
 #include "transaction.hpp"
 #include "hashmemory.hpp"
 
+
+/// \brief Header of a Block
 struct BlockHeader{
+	/// \brief Version of protocol
 	int version;
+	/// \brief Flags
 	std::vector<std::string> blockFlags;
+	/// \brief Hash of the previous block
 	std::string hashPrevBlock;
+	/// \brief Hash of the Transaction vector
 	std::string hashTransactions;
+	/// \brief Timestamp of the creation
 	std::time_t timestamp;
+	/// \brief Block nonce
 	int nonce;
 };
 
+/// \brief Block of ensicoin Transaction
 class Block{
 	private:
 		BlockHeader header;
 		std::vector<std::shared_ptr<Transaction> > transactions;
 	public:
+		/// \brief Creates a block with only 0 or empty structures
 		Block();
+		/// \brief Construct a Block
+		/// \param head header for the Block
+		/// \param transactionList vector of 
+		/// Transaction to be included in block
 		Block(BlockHeader head, std::vector<std::shared_ptr<Transaction> > transactionList);
+		/// \brief Reads a JSON Block
+		/// \param document a rapidjson::Document pointer
+		/// to be read
+		/// \details Reads a block from the JSON
+		/// representation, does not check if the 
+		/// JSON represents a valid Block.
 		explicit Block(rapidjson::Document* document);
 		
+		/// \brief Raw string represntation
+		/// \details The raw string representation is 
+		/// obtained by concanating each field of the 
+		/// Block without separator
 		std::string rawStr() const;
+
+		/// \brief JSON representation
+		/// \param document a pointer to a 
+		/// rapidjson::Document for memory allocation
 		rapidjson::Value json(rapidjson::Document* document) const;
+		/// \brief Hash of the Block
+		/// \details Creates the hash by applying twice
+		/// sha256 to the raw string
 		std::string hash() const;
 
+		/// \brief Validates the Block
+		/// \details Checks if all Transaction are valid
+		/// and that a coinbase exists
 		bool validate();
 };
 

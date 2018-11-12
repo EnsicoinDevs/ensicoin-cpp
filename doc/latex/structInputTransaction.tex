@@ -1,0 +1,64 @@
+\hypertarget{structInputTransaction}{}\section{Input\+Transaction Struct Reference}
+\label{structInputTransaction}\index{Input\+Transaction@{Input\+Transaction}}
+
+
+{\ttfamily \#include $<$transaction.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structInputTransaction_ac544bf7bb6c65ceafe3aaa76ce04783a}{str}} () const
+\item 
+Value \mbox{\hyperlink{structInputTransaction_a48914f7da4bbaae7196eda78cfb359d3}{json}} (Document $\ast$document) const
+\item 
+void \mbox{\hyperlink{structInputTransaction_a3ce95ac10008ae44a701100579cb4ae4}{load}} (Value $\ast$val)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structTransactionIdentifier}{Transaction\+Identifier}} \mbox{\hyperlink{structInputTransaction_aef6b521b9cfe79765920ffde4436e214}{previous\+Output}}
+\item 
+std\+::stack$<$ std\+::string $>$ \mbox{\hyperlink{structInputTransaction_aa5a4cc7735e13f63091dc5db7752c51f}{input\+Stack}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{structInputTransaction_a48914f7da4bbaae7196eda78cfb359d3}\label{structInputTransaction_a48914f7da4bbaae7196eda78cfb359d3}} 
+\index{Input\+Transaction@{Input\+Transaction}!json@{json}}
+\index{json@{json}!Input\+Transaction@{Input\+Transaction}}
+\subsubsection{\texorpdfstring{json()}{json()}}
+{\footnotesize\ttfamily Value Input\+Transaction\+::json (\begin{DoxyParamCaption}\item[{Document $\ast$}]{document }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{structInputTransaction_a3ce95ac10008ae44a701100579cb4ae4}\label{structInputTransaction_a3ce95ac10008ae44a701100579cb4ae4}} 
+\index{Input\+Transaction@{Input\+Transaction}!load@{load}}
+\index{load@{load}!Input\+Transaction@{Input\+Transaction}}
+\subsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily void Input\+Transaction\+::load (\begin{DoxyParamCaption}\item[{Value $\ast$}]{val }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{structInputTransaction_ac544bf7bb6c65ceafe3aaa76ce04783a}\label{structInputTransaction_ac544bf7bb6c65ceafe3aaa76ce04783a}} 
+\index{Input\+Transaction@{Input\+Transaction}!str@{str}}
+\index{str@{str}!Input\+Transaction@{Input\+Transaction}}
+\subsubsection{\texorpdfstring{str()}{str()}}
+{\footnotesize\ttfamily std\+::string Input\+Transaction\+::str (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structInputTransaction_aa5a4cc7735e13f63091dc5db7752c51f}\label{structInputTransaction_aa5a4cc7735e13f63091dc5db7752c51f}} 
+\index{Input\+Transaction@{Input\+Transaction}!input\+Stack@{input\+Stack}}
+\index{input\+Stack@{input\+Stack}!Input\+Transaction@{Input\+Transaction}}
+\subsubsection{\texorpdfstring{input\+Stack}{inputStack}}
+{\footnotesize\ttfamily std\+::stack$<$std\+::string$>$ Input\+Transaction\+::input\+Stack}
+
+\mbox{\Hypertarget{structInputTransaction_aef6b521b9cfe79765920ffde4436e214}\label{structInputTransaction_aef6b521b9cfe79765920ffde4436e214}} 
+\index{Input\+Transaction@{Input\+Transaction}!previous\+Output@{previous\+Output}}
+\index{previous\+Output@{previous\+Output}!Input\+Transaction@{Input\+Transaction}}
+\subsubsection{\texorpdfstring{previous\+Output}{previousOutput}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structTransactionIdentifier}{Transaction\+Identifier}} Input\+Transaction\+::previous\+Output}
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{transaction_8hpp}{transaction.\+hpp}}\item 
+src/transaction/\mbox{\hyperlink{transactioninput_8cpp}{transactioninput.\+cpp}}\end{DoxyCompactItemize}

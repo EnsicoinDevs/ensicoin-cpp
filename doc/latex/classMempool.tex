@@ -1,0 +1,352 @@
+\hypertarget{classMempool}{}\section{Mempool Class Reference}
+\label{classMempool}\index{Mempool@{Mempool}}
+
+
+Pool of \mbox{\hyperlink{classTransaction}{Transaction}} not in \mbox{\hyperlink{classBlock}{Block}}.  
+
+
+
+
+{\ttfamily \#include $<$mempool.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMempool_a7d26cf499215b7660b991b03f20937dd}{Mempool}} ()
+\begin{DoxyCompactList}\small\item\em Construct \mbox{\hyperlink{classMempool}{Mempool}} and load Level\+DB. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMempool_a7f1fff7b367c389ed3c8b847dde46add}{add\+Transaction}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classTransaction}{Transaction}} $>$ tr)
+\begin{DoxyCompactList}\small\item\em Add \mbox{\hyperlink{classTransaction}{Transaction}} to \mbox{\hyperlink{classMempool}{Mempool}}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classMempool_ab2b01cf87f14318e182b56462c0bf4f6}{get\+Input\+Value}} (\mbox{\hyperlink{utxo_8hpp_a19091d002da03ec92277e19295ac4540}{U\+T\+XO}} id) const
+\begin{DoxyCompactList}\small\item\em Get value of U\+T\+XO. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMempool_a3a11892f1519132f81204e57cc758666}{exists}} (std\+::string tx\+Hash) const
+\begin{DoxyCompactList}\small\item\em Checks if \mbox{\hyperlink{classTransaction}{Transaction}} exists in \mbox{\hyperlink{classMempool}{Mempool}}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMempool_aef85ab57fba69a29f857d805a54a5358}{orphan\+Exists}} (std\+::string tx\+Hash) const
+\begin{DoxyCompactList}\small\item\em Check if a \mbox{\hyperlink{classTransaction}{Transaction}} is a registered Orphan. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMempool_ad72ddf2809bf532f2b6c0f09922a77db}{output\+Exists}} (\mbox{\hyperlink{utxo_8hpp_a19091d002da03ec92277e19295ac4540}{U\+T\+XO}} id) const
+\begin{DoxyCompactList}\small\item\em Check if a indexed output exists. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMempool_a6ccb56de239266bd5cebafac3112b31e}{is\+Orphan}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classTransaction}{Transaction}} $>$ tx) const
+\begin{DoxyCompactList}\small\item\em Check if a \mbox{\hyperlink{classTransaction}{Transaction}} is Orphan. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classMempool_a93dc7c390ae5b561219cd654beddc36a}{get\+Hash\+Signature}} (\mbox{\hyperlink{utxo_8hpp_a19091d002da03ec92277e19295ac4540}{U\+T\+XO}} id) const
+\begin{DoxyCompactList}\small\item\em Gets the hash used to sign a \mbox{\hyperlink{classTransaction}{Transaction}}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMempool_a6ac1288e72c47a9c63841696901d7f3c}{is\+Spendable}} (\mbox{\hyperlink{utxo_8hpp_a19091d002da03ec92277e19295ac4540}{U\+T\+XO}} id) const
+\begin{DoxyCompactList}\small\item\em Check if an output can be spent. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classMempool_ae76e6aba14cedd96990b40d08c47ad1d}{get\+Output\+Script}} (\mbox{\hyperlink{utxo_8hpp_a19091d002da03ec92277e19295ac4540}{U\+T\+XO}} id) const
+\begin{DoxyCompactList}\small\item\em Get the script of an output. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMempool_ad6bb7b0310265f592a29ff9a06656333}{increment\+Height}} ()
+\begin{DoxyCompactList}\small\item\em Add one to the current\+Height. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMempool_a6306559877a38806f0a3a90aa87f8655}{decrement\+Height}} ()
+\begin{DoxyCompactList}\small\item\em Remove one from the current\+Height. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{utxo_8hpp_a19091d002da03ec92277e19295ac4540}{U\+T\+XO}} $>$ \mbox{\hyperlink{classMempool_a54749b3d653ebd1db396fefb1bfc137c}{orphan\+Deps}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classTransaction}{Transaction}} $>$ tx) const
+\begin{DoxyCompactList}\small\item\em Get all inputs which are Orphan. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{transaction_8hpp_a379269e60c4ed3fb09a01778f31ddaad}{T\+X\+Type}} \mbox{\hyperlink{classMempool_a216beee85149f61c603ef8ad5cdd8ef5}{type}} (std\+::string tx\+Hash) const
+\begin{DoxyCompactList}\small\item\em Gets the type of a registered \mbox{\hyperlink{classTransaction}{Transaction}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classMempool_ae658e1104b650fbc63786bc5e77fb328}{update\+Orphan}} (std\+::string orphan\+Hash)
+\begin{DoxyCompactList}\small\item\em Handle an output being registered. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMempool_a589b0f1f4f88862bab6627771574e297}{check\+Orphan}} (std\+::string orphan\+Hash) const
+\begin{DoxyCompactList}\small\item\em Checks if an orphan is still orphan. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classUTXOManager}{U\+T\+X\+O\+Manager}} \mbox{\hyperlink{classMempool_a84442d6065be70b7411d4376887c7858}{utxos}}
+\item 
+int \mbox{\hyperlink{classMempool_ad4ec0d1398ded82c7324a099b92b80cc}{current\+Height}}
+\begin{DoxyCompactList}\small\item\em Height of the \mbox{\hyperlink{classBlockchain}{Blockchain}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classHashMemory}{Hash\+Memory}}$<$ \mbox{\hyperlink{classTransaction}{Transaction}} $>$ \mbox{\hyperlink{classMempool_a6c0f587b34c99369786379717b0b1347}{main\+Pool}}
+\item 
+\mbox{\hyperlink{classHashMemory}{Hash\+Memory}}$<$ \mbox{\hyperlink{classTransaction}{Transaction}} $>$ \mbox{\hyperlink{classMempool_a215dd76ed87ac826511573e8fc91885a}{orphans}}
+\item 
+std\+::map$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{classMempool_a6a590208186b95856029bfa2613fbf04}{orphan\+Using\+U\+T\+XO}}
+\begin{DoxyCompactList}\small\item\em Map of orphan using an U\+T\+XO. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Pool of \mbox{\hyperlink{classTransaction}{Transaction}} not in \mbox{\hyperlink{classBlock}{Block}}. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classMempool_a7d26cf499215b7660b991b03f20937dd}\label{classMempool_a7d26cf499215b7660b991b03f20937dd}} 
+\index{Mempool@{Mempool}!Mempool@{Mempool}}
+\index{Mempool@{Mempool}!Mempool@{Mempool}}
+\subsubsection{\texorpdfstring{Mempool()}{Mempool()}}
+{\footnotesize\ttfamily Mempool\+::\+Mempool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Construct \mbox{\hyperlink{classMempool}{Mempool}} and load Level\+DB. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classMempool_a7f1fff7b367c389ed3c8b847dde46add}\label{classMempool_a7f1fff7b367c389ed3c8b847dde46add}} 
+\index{Mempool@{Mempool}!add\+Transaction@{add\+Transaction}}
+\index{add\+Transaction@{add\+Transaction}!Mempool@{Mempool}}
+\subsubsection{\texorpdfstring{add\+Transaction()}{addTransaction()}}
+{\footnotesize\ttfamily bool Mempool\+::add\+Transaction (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classTransaction}{Transaction}} $>$}]{tr }\end{DoxyParamCaption})}
+
+
+
+Add \mbox{\hyperlink{classTransaction}{Transaction}} to \mbox{\hyperlink{classMempool}{Mempool}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tr} & \mbox{\hyperlink{classTransaction}{Transaction}} to add\\
+\hline
+\end{DoxyParams}
+Checks if \mbox{\hyperlink{classTransaction}{Transaction}} is Orphan and is it is valid \mbox{\Hypertarget{classMempool_a589b0f1f4f88862bab6627771574e297}\label{classMempool_a589b0f1f4f88862bab6627771574e297}} 
+\index{Mempool@{Mempool}!check\+Orphan@{check\+Orphan}}
+\index{check\+Orphan@{check\+Orphan}!Mempool@{Mempool}}
+\subsubsection{\texorpdfstring{check\+Orphan()}{checkOrphan()}}
+{\footnotesize\ttfamily bool Mempool\+::check\+Orphan (\begin{DoxyParamCaption}\item[{std\+::string}]{orphan\+Hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks if an orphan is still orphan. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em orphan\+Hash} & ash of an Orphan \mbox{\hyperlink{classTransaction}{Transaction}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMempool_a6306559877a38806f0a3a90aa87f8655}\label{classMempool_a6306559877a38806f0a3a90aa87f8655}} 
+\index{Mempool@{Mempool}!decrement\+Height@{decrement\+Height}}
+\index{decrement\+Height@{decrement\+Height}!Mempool@{Mempool}}
+\subsubsection{\texorpdfstring{decrement\+Height()}{decrementHeight()}}
+{\footnotesize\ttfamily void Mempool\+::decrement\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Remove one from the current\+Height. 
+
+\mbox{\Hypertarget{classMempool_a3a11892f1519132f81204e57cc758666}\label{classMempool_a3a11892f1519132f81204e57cc758666}} 
+\index{Mempool@{Mempool}!exists@{exists}}
+\index{exists@{exists}!Mempool@{Mempool}}
+\subsubsection{\texorpdfstring{exists()}{exists()}}
+{\footnotesize\ttfamily bool Mempool\+::exists (\begin{DoxyParamCaption}\item[{std\+::string}]{tx\+Hash }\end{DoxyParamCaption}) const}
+
+
+
+Checks if \mbox{\hyperlink{classTransaction}{Transaction}} exists in \mbox{\hyperlink{classMempool}{Mempool}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tx\+Hash} & hash of a \mbox{\hyperlink{classTransaction}{Transaction}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMempool_a93dc7c390ae5b561219cd654beddc36a}\label{classMempool_a93dc7c390ae5b561219cd654beddc36a}} 
+\index{Mempool@{Mempool}!get\+Hash\+Signature@{get\+Hash\+Signature}}
+\index{get\+Hash\+Signature@{get\+Hash\+Signature}!Mempool@{Mempool}}
+\subsubsection{\texorpdfstring{get\+Hash\+Signature()}{getHashSignature()}}
+{\footnotesize\ttfamily std\+::string Mempool\+::get\+Hash\+Signature (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{utxo_8hpp_a19091d002da03ec92277e19295ac4540}{U\+T\+XO}}}]{id }\end{DoxyParamCaption}) const}
+
+
+
+Gets the hash used to sign a \mbox{\hyperlink{classTransaction}{Transaction}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & reference to the \mbox{\hyperlink{classTransaction}{Transaction}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMempool_ab2b01cf87f14318e182b56462c0bf4f6}\label{classMempool_ab2b01cf87f14318e182b56462c0bf4f6}} 
+\index{Mempool@{Mempool}!get\+Input\+Value@{get\+Input\+Value}}
+\index{get\+Input\+Value@{get\+Input\+Value}!Mempool@{Mempool}}
+\subsubsection{\texorpdfstring{get\+Input\+Value()}{getInputValue()}}
+{\footnotesize\ttfamily int Mempool\+::get\+Input\+Value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{utxo_8hpp_a19091d002da03ec92277e19295ac4540}{U\+T\+XO}}}]{id }\end{DoxyParamCaption}) const}
+
+
+
+Get value of U\+T\+XO. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & reference to a \mbox{\hyperlink{classTransaction}{Transaction}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Gets the value of the output pointed by the U\+T\+XO 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMempool_ae76e6aba14cedd96990b40d08c47ad1d}\label{classMempool_ae76e6aba14cedd96990b40d08c47ad1d}} 
+\index{Mempool@{Mempool}!get\+Output\+Script@{get\+Output\+Script}}
+\index{get\+Output\+Script@{get\+Output\+Script}!Mempool@{Mempool}}
+\subsubsection{\texorpdfstring{get\+Output\+Script()}{getOutputScript()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ Mempool\+::get\+Output\+Script (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{utxo_8hpp_a19091d002da03ec92277e19295ac4540}{U\+T\+XO}}}]{id }\end{DoxyParamCaption}) const}
+
+
+
+Get the script of an output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Transation\+Output to get the script from \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMempool_ad6bb7b0310265f592a29ff9a06656333}\label{classMempool_ad6bb7b0310265f592a29ff9a06656333}} 
+\index{Mempool@{Mempool}!increment\+Height@{increment\+Height}}
+\index{increment\+Height@{increment\+Height}!Mempool@{Mempool}}
+\subsubsection{\texorpdfstring{increment\+Height()}{incrementHeight()}}
+{\footnotesize\ttfamily void Mempool\+::increment\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Add one to the current\+Height. 
+
+\mbox{\Hypertarget{classMempool_a6ccb56de239266bd5cebafac3112b31e}\label{classMempool_a6ccb56de239266bd5cebafac3112b31e}} 
+\index{Mempool@{Mempool}!is\+Orphan@{is\+Orphan}}
+\index{is\+Orphan@{is\+Orphan}!Mempool@{Mempool}}
+\subsubsection{\texorpdfstring{is\+Orphan()}{isOrphan()}}
+{\footnotesize\ttfamily bool Mempool\+::is\+Orphan (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classTransaction}{Transaction}} $>$}]{tx }\end{DoxyParamCaption}) const}
+
+
+
+Check if a \mbox{\hyperlink{classTransaction}{Transaction}} is Orphan. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tx} & \mbox{\hyperlink{classTransaction}{Transaction}} to identify \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMempool_a6ac1288e72c47a9c63841696901d7f3c}\label{classMempool_a6ac1288e72c47a9c63841696901d7f3c}} 
+\index{Mempool@{Mempool}!is\+Spendable@{is\+Spendable}}
+\index{is\+Spendable@{is\+Spendable}!Mempool@{Mempool}}
+\subsubsection{\texorpdfstring{is\+Spendable()}{isSpendable()}}
+{\footnotesize\ttfamily bool Mempool\+::is\+Spendable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{utxo_8hpp_a19091d002da03ec92277e19295ac4540}{U\+T\+XO}}}]{id }\end{DoxyParamCaption}) const}
+
+
+
+Check if an output can be spent. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & reference to an output \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the \mbox{\hyperlink{classTransaction}{Transaction}} is regular or if it is a coinbase and 42 \mbox{\hyperlink{classBlock}{Block}} have passed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMempool_a54749b3d653ebd1db396fefb1bfc137c}\label{classMempool_a54749b3d653ebd1db396fefb1bfc137c}} 
+\index{Mempool@{Mempool}!orphan\+Deps@{orphan\+Deps}}
+\index{orphan\+Deps@{orphan\+Deps}!Mempool@{Mempool}}
+\subsubsection{\texorpdfstring{orphan\+Deps()}{orphanDeps()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{utxo_8hpp_a19091d002da03ec92277e19295ac4540}{U\+T\+XO}} $>$ Mempool\+::orphan\+Deps (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classTransaction}{Transaction}} $>$}]{tx }\end{DoxyParamCaption}) const}
+
+
+
+Get all inputs which are Orphan. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tx} & \mbox{\hyperlink{classTransaction}{Transaction}} to check \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMempool_aef85ab57fba69a29f857d805a54a5358}\label{classMempool_aef85ab57fba69a29f857d805a54a5358}} 
+\index{Mempool@{Mempool}!orphan\+Exists@{orphan\+Exists}}
+\index{orphan\+Exists@{orphan\+Exists}!Mempool@{Mempool}}
+\subsubsection{\texorpdfstring{orphan\+Exists()}{orphanExists()}}
+{\footnotesize\ttfamily bool Mempool\+::orphan\+Exists (\begin{DoxyParamCaption}\item[{std\+::string}]{tx\+Hash }\end{DoxyParamCaption}) const}
+
+
+
+Check if a \mbox{\hyperlink{classTransaction}{Transaction}} is a registered Orphan. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tx\+Hash} & hash of a \mbox{\hyperlink{classTransaction}{Transaction}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMempool_ad72ddf2809bf532f2b6c0f09922a77db}\label{classMempool_ad72ddf2809bf532f2b6c0f09922a77db}} 
+\index{Mempool@{Mempool}!output\+Exists@{output\+Exists}}
+\index{output\+Exists@{output\+Exists}!Mempool@{Mempool}}
+\subsubsection{\texorpdfstring{output\+Exists()}{outputExists()}}
+{\footnotesize\ttfamily bool Mempool\+::output\+Exists (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{utxo_8hpp_a19091d002da03ec92277e19295ac4540}{U\+T\+XO}}}]{id }\end{DoxyParamCaption}) const}
+
+
+
+Check if a indexed output exists. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & hash and index of output \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if and only in \mbox{\hyperlink{classTransaction}{Transaction}} exists in main\+Pool and has an input id.\+index 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMempool_a216beee85149f61c603ef8ad5cdd8ef5}\label{classMempool_a216beee85149f61c603ef8ad5cdd8ef5}} 
+\index{Mempool@{Mempool}!type@{type}}
+\index{type@{type}!Mempool@{Mempool}}
+\subsubsection{\texorpdfstring{type()}{type()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{transaction_8hpp_a379269e60c4ed3fb09a01778f31ddaad}{T\+X\+Type}} Mempool\+::type (\begin{DoxyParamCaption}\item[{std\+::string}]{tx\+Hash }\end{DoxyParamCaption}) const}
+
+
+
+Gets the type of a registered \mbox{\hyperlink{classTransaction}{Transaction}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tx\+Hash} & hash of the \mbox{\hyperlink{classTransaction}{Transaction}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMempool_ae658e1104b650fbc63786bc5e77fb328}\label{classMempool_ae658e1104b650fbc63786bc5e77fb328}} 
+\index{Mempool@{Mempool}!update\+Orphan@{update\+Orphan}}
+\index{update\+Orphan@{update\+Orphan}!Mempool@{Mempool}}
+\subsubsection{\texorpdfstring{update\+Orphan()}{updateOrphan()}}
+{\footnotesize\ttfamily void Mempool\+::update\+Orphan (\begin{DoxyParamCaption}\item[{std\+::string}]{orphan\+Hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handle an output being registered. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em orphan\+Hash} & update the orphan depending on a \mbox{\hyperlink{classTransaction}{Transaction}} \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classMempool_ad4ec0d1398ded82c7324a099b92b80cc}\label{classMempool_ad4ec0d1398ded82c7324a099b92b80cc}} 
+\index{Mempool@{Mempool}!current\+Height@{current\+Height}}
+\index{current\+Height@{current\+Height}!Mempool@{Mempool}}
+\subsubsection{\texorpdfstring{current\+Height}{currentHeight}}
+{\footnotesize\ttfamily int Mempool\+::current\+Height\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Height of the \mbox{\hyperlink{classBlockchain}{Blockchain}}. 
+
+\mbox{\Hypertarget{classMempool_a6c0f587b34c99369786379717b0b1347}\label{classMempool_a6c0f587b34c99369786379717b0b1347}} 
+\index{Mempool@{Mempool}!main\+Pool@{main\+Pool}}
+\index{main\+Pool@{main\+Pool}!Mempool@{Mempool}}
+\subsubsection{\texorpdfstring{main\+Pool}{mainPool}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classHashMemory}{Hash\+Memory}}$<$\mbox{\hyperlink{classTransaction}{Transaction}}$>$ Mempool\+::main\+Pool\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMempool_a215dd76ed87ac826511573e8fc91885a}\label{classMempool_a215dd76ed87ac826511573e8fc91885a}} 
+\index{Mempool@{Mempool}!orphans@{orphans}}
+\index{orphans@{orphans}!Mempool@{Mempool}}
+\subsubsection{\texorpdfstring{orphans}{orphans}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classHashMemory}{Hash\+Memory}}$<$\mbox{\hyperlink{classTransaction}{Transaction}}$>$ Mempool\+::orphans\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMempool_a6a590208186b95856029bfa2613fbf04}\label{classMempool_a6a590208186b95856029bfa2613fbf04}} 
+\index{Mempool@{Mempool}!orphan\+Using\+U\+T\+XO@{orphan\+Using\+U\+T\+XO}}
+\index{orphan\+Using\+U\+T\+XO@{orphan\+Using\+U\+T\+XO}!Mempool@{Mempool}}
+\subsubsection{\texorpdfstring{orphan\+Using\+U\+T\+XO}{orphanUsingUTXO}}
+{\footnotesize\ttfamily std\+::map$<$ std\+::string , std\+::string $>$ Mempool\+::orphan\+Using\+U\+T\+XO\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Map of orphan using an U\+T\+XO. 
+
+There by design can\textquotesingle{}t be more than one \mbox{\hyperlink{classTransaction}{Transaction}} using a specified output and as such you can reject all orphans refereing to the same input \mbox{\Hypertarget{classMempool_a84442d6065be70b7411d4376887c7858}\label{classMempool_a84442d6065be70b7411d4376887c7858}} 
+\index{Mempool@{Mempool}!utxos@{utxos}}
+\index{utxos@{utxos}!Mempool@{Mempool}}
+\subsubsection{\texorpdfstring{utxos}{utxos}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classUTXOManager}{U\+T\+X\+O\+Manager}} Mempool\+::utxos\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{mempool_8hpp}{mempool.\+hpp}}\item 
+src/\mbox{\hyperlink{mempool_8cpp}{mempool.\+cpp}}\end{DoxyCompactItemize}

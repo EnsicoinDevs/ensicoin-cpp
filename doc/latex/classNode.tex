@@ -1,0 +1,120 @@
+\hypertarget{classNode}{}\section{Node Class Reference}
+\label{classNode}\index{Node@{Node}}
+
+
+\mbox{\hyperlink{classNode}{Node}} handling messages and processing.  
+
+
+
+
+{\ttfamily \#include $<$node.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classNode_a69479b3f2c9ca25cc6f178c30c8b7da8}{Node}} (asio\+::io\+\_\+context \&io\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Construct a \mbox{\hyperlink{classNode}{Node}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNode_a89bb61a94d73680b692280d83e83d2f4}{run}} ()
+\begin{DoxyCompactList}\small\item\em Main loop of \mbox{\hyperlink{classNode}{Node}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classNode_a7955793e35a52f192e7e5f82dd541092}{handle\+Accept}} (\mbox{\hyperlink{classConnection_a1bb6cd8924ff091e9b053e3368735c9c}{Connection\+::pointer}} new\+Connection)
+\begin{DoxyCompactList}\small\item\em Handles a connection. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMempool}{Mempool}} \mbox{\hyperlink{classNode_a2c3b3df5c2c8f4b7e95e1aa3dfd80e25}{mempool}}
+\item 
+\mbox{\hyperlink{classBlockchain}{Blockchain}} \mbox{\hyperlink{classNode_a631d922988b25901cb0e98a5274c2588}{blockchain}}
+\item 
+asio\+::ip\+::tcp\+::acceptor \mbox{\hyperlink{classNode_a3b0f7b49f99b1aad5ffeffb5b721b7a0}{acceptor}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classConnection_a1bb6cd8924ff091e9b053e3368735c9c}{Connection\+::pointer}} $>$ \mbox{\hyperlink{classNode_ab9ba07b806d024e8461fae70bea349c0}{connections}}
+\begin{DoxyCompactList}\small\item\em Vector of all current connections. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{classNode}{Node}} handling messages and processing. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classNode_a69479b3f2c9ca25cc6f178c30c8b7da8}\label{classNode_a69479b3f2c9ca25cc6f178c30c8b7da8}} 
+\index{Node@{Node}!Node@{Node}}
+\index{Node@{Node}!Node@{Node}}
+\subsubsection{\texorpdfstring{Node()}{Node()}}
+{\footnotesize\ttfamily Node\+::\+Node (\begin{DoxyParamCaption}\item[{asio\+::io\+\_\+context \&}]{io\+\_\+context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Construct a \mbox{\hyperlink{classNode}{Node}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em io\+\_\+context} & an asio\+::io\+\_\+context\\
+\hline
+\end{DoxyParams}
+Executes the startup routine and creates mempools 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classNode_a7955793e35a52f192e7e5f82dd541092}\label{classNode_a7955793e35a52f192e7e5f82dd541092}} 
+\index{Node@{Node}!handle\+Accept@{handle\+Accept}}
+\index{handle\+Accept@{handle\+Accept}!Node@{Node}}
+\subsubsection{\texorpdfstring{handle\+Accept()}{handleAccept()}}
+{\footnotesize\ttfamily void Node\+::handle\+Accept (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classConnection_a1bb6cd8924ff091e9b053e3368735c9c}{Connection\+::pointer}}}]{new\+Connection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles a connection. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Connection} & a shared pointer to the connection \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classNode_a89bb61a94d73680b692280d83e83d2f4}\label{classNode_a89bb61a94d73680b692280d83e83d2f4}} 
+\index{Node@{Node}!run@{run}}
+\index{run@{run}!Node@{Node}}
+\subsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void Node\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Main loop of \mbox{\hyperlink{classNode}{Node}}. 
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classNode_a3b0f7b49f99b1aad5ffeffb5b721b7a0}\label{classNode_a3b0f7b49f99b1aad5ffeffb5b721b7a0}} 
+\index{Node@{Node}!acceptor@{acceptor}}
+\index{acceptor@{acceptor}!Node@{Node}}
+\subsubsection{\texorpdfstring{acceptor}{acceptor}}
+{\footnotesize\ttfamily asio\+::ip\+::tcp\+::acceptor Node\+::acceptor\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classNode_a631d922988b25901cb0e98a5274c2588}\label{classNode_a631d922988b25901cb0e98a5274c2588}} 
+\index{Node@{Node}!blockchain@{blockchain}}
+\index{blockchain@{blockchain}!Node@{Node}}
+\subsubsection{\texorpdfstring{blockchain}{blockchain}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classBlockchain}{Blockchain}} Node\+::blockchain\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classNode_ab9ba07b806d024e8461fae70bea349c0}\label{classNode_ab9ba07b806d024e8461fae70bea349c0}} 
+\index{Node@{Node}!connections@{connections}}
+\index{connections@{connections}!Node@{Node}}
+\subsubsection{\texorpdfstring{connections}{connections}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classConnection_a1bb6cd8924ff091e9b053e3368735c9c}{Connection\+::pointer}}$>$ Node\+::connections\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Vector of all current connections. 
+
+\mbox{\Hypertarget{classNode_a2c3b3df5c2c8f4b7e95e1aa3dfd80e25}\label{classNode_a2c3b3df5c2c8f4b7e95e1aa3dfd80e25}} 
+\index{Node@{Node}!mempool@{mempool}}
+\index{mempool@{mempool}!Node@{Node}}
+\subsubsection{\texorpdfstring{mempool}{mempool}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classMempool}{Mempool}} Node\+::mempool\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{node_8hpp}{node.\+hpp}}\item 
+src/\mbox{\hyperlink{node_8cpp}{node.\+cpp}}\end{DoxyCompactItemize}

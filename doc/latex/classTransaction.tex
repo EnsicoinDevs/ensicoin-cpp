@@ -1,0 +1,217 @@
+\hypertarget{classTransaction}{}\section{Transaction Class Reference}
+\label{classTransaction}\index{Transaction@{Transaction}}
+
+
+{\ttfamily \#include $<$transaction.\+hpp$>$}
+
+Inheritance diagram for Transaction\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classTransaction}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTransaction_ab47005b855d38bc324bb79fd023baa13}{Transaction}} ()
+\item 
+\mbox{\hyperlink{classTransaction_a5a8028d0c89a04fbc5547806bfad7f4e}{Transaction}} (int ver, std\+::vector$<$ std\+::string $>$ initial\+Flags, std\+::vector$<$ \mbox{\hyperlink{structInputTransaction}{Input\+Transaction}} $>$ initial\+Inputs, std\+::vector$<$ \mbox{\hyperlink{structOutputTransaction}{Output\+Transaction}} $>$ initial\+Outputs)
+\item 
+\mbox{\hyperlink{classTransaction_a53699ce216993c3350d299aef80635d5}{Transaction}} (rapidjson\+::\+Document $\ast$doc)
+\item 
+int \mbox{\hyperlink{classTransaction_a133aff45373713e39a7a1317652dc55c}{get\+Version}} () const
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classTransaction_ab539d43c5af22bed8985473f26e8ac20}{get\+Flags}} () const
+\item 
+std\+::vector$<$ \mbox{\hyperlink{structTransactionIdentifier}{Transaction\+Identifier}} $>$ \mbox{\hyperlink{classTransaction_a0422efb4aea64a19437c350b04f7de96}{get\+Inputs\+Id}} () const
+\item 
+int \mbox{\hyperlink{classTransaction_abffdb9f040a484f89920842895d57ed2}{input\+Value}} (\mbox{\hyperlink{classMempool}{Mempool}} $\ast$mempool) const
+\item 
+int \mbox{\hyperlink{classTransaction_a1feb6131c4b683d6c59073dbf754a634}{output\+Value}} () const
+\item 
+int \mbox{\hyperlink{classTransaction_a490a7ae3f1520d95f9050ecc7197d1a0}{get\+Output\+Value}} (int index) const
+\item 
+bool \mbox{\hyperlink{classTransaction_aa2248446ed0d06f64d1685c386189666}{has\+Output}} (int index) const
+\item 
+int \mbox{\hyperlink{classTransaction_affdce860d7691f68b2e665a8f8d413fd}{get\+Output\+Number}} () const
+\item 
+bool \mbox{\hyperlink{classTransaction_a46f1d85f39193e516f795c3afe857c90}{check}} ()
+\item 
+bool \mbox{\hyperlink{classTransaction_afc37b00566ba0dc72e8efa9dd471601d}{validate}} (\mbox{\hyperlink{classMempool}{Mempool}} $\ast$mempool)
+\item 
+bool \mbox{\hyperlink{classTransaction_af326a5ba5ac0b525f326836423f3aa5f}{validate\+Script}} (\mbox{\hyperlink{classMempool}{Mempool}} $\ast$mempool) const
+\item 
+std\+::string \mbox{\hyperlink{classTransaction_a90b3668de562cc1b7f5773e72ac9f6dc}{raw\+Str}} () const
+\item 
+std\+::string \mbox{\hyperlink{classTransaction_a0f5aa15dc325b98730ba5eb786b0ffb2}{hash\+Without\+Inputs}} () const
+\item 
+std\+::string \mbox{\hyperlink{classTransaction_a99a851c61b60c1dd15b3e9bdd50f32f6}{hash}} () const
+\item 
+Value \mbox{\hyperlink{classTransaction_a41561665dfeef8f887fdc86f3c9849f8}{json}} (bool include\+Inputs, Document $\ast$document) const
+\item 
+std\+::string \mbox{\hyperlink{classTransaction_accf9cca56688761bdb9518c3f1b90ed5}{str}} () const
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classTransaction_a7d8682b58b273ea2d0d6071355175ea3}{version}}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classTransaction_afba77571560d1c92a2bb55a2adc4a9fc}{transaction\+Flags}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{structInputTransaction}{Input\+Transaction}} $>$ \mbox{\hyperlink{classTransaction_a3a4705bed22f34645476fd9642baf806}{inputs}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{structOutputTransaction}{Output\+Transaction}} $>$ \mbox{\hyperlink{classTransaction_a1a3d542cd9b8045e1256f128728fab37}{outputs}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classTransaction_ab47005b855d38bc324bb79fd023baa13}\label{classTransaction_ab47005b855d38bc324bb79fd023baa13}} 
+\index{Transaction@{Transaction}!Transaction@{Transaction}}
+\index{Transaction@{Transaction}!Transaction@{Transaction}}
+\subsubsection{\texorpdfstring{Transaction()}{Transaction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Transaction\+::\+Transaction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classTransaction_a5a8028d0c89a04fbc5547806bfad7f4e}\label{classTransaction_a5a8028d0c89a04fbc5547806bfad7f4e}} 
+\index{Transaction@{Transaction}!Transaction@{Transaction}}
+\index{Transaction@{Transaction}!Transaction@{Transaction}}
+\subsubsection{\texorpdfstring{Transaction()}{Transaction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Transaction\+::\+Transaction (\begin{DoxyParamCaption}\item[{int}]{ver,  }\item[{std\+::vector$<$ std\+::string $>$}]{initial\+Flags,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structInputTransaction}{Input\+Transaction}} $>$}]{initial\+Inputs,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structOutputTransaction}{Output\+Transaction}} $>$}]{initial\+Outputs }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classTransaction_a53699ce216993c3350d299aef80635d5}\label{classTransaction_a53699ce216993c3350d299aef80635d5}} 
+\index{Transaction@{Transaction}!Transaction@{Transaction}}
+\index{Transaction@{Transaction}!Transaction@{Transaction}}
+\subsubsection{\texorpdfstring{Transaction()}{Transaction()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Transaction\+::\+Transaction (\begin{DoxyParamCaption}\item[{rapidjson\+::\+Document $\ast$}]{doc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classTransaction_a46f1d85f39193e516f795c3afe857c90}\label{classTransaction_a46f1d85f39193e516f795c3afe857c90}} 
+\index{Transaction@{Transaction}!check@{check}}
+\index{check@{check}!Transaction@{Transaction}}
+\subsubsection{\texorpdfstring{check()}{check()}}
+{\footnotesize\ttfamily bool Transaction\+::check (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classTransaction_ab539d43c5af22bed8985473f26e8ac20}\label{classTransaction_ab539d43c5af22bed8985473f26e8ac20}} 
+\index{Transaction@{Transaction}!get\+Flags@{get\+Flags}}
+\index{get\+Flags@{get\+Flags}!Transaction@{Transaction}}
+\subsubsection{\texorpdfstring{get\+Flags()}{getFlags()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ Transaction\+::get\+Flags (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classTransaction_a0422efb4aea64a19437c350b04f7de96}\label{classTransaction_a0422efb4aea64a19437c350b04f7de96}} 
+\index{Transaction@{Transaction}!get\+Inputs\+Id@{get\+Inputs\+Id}}
+\index{get\+Inputs\+Id@{get\+Inputs\+Id}!Transaction@{Transaction}}
+\subsubsection{\texorpdfstring{get\+Inputs\+Id()}{getInputsId()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{structTransactionIdentifier}{Transaction\+Identifier}} $>$ Transaction\+::get\+Inputs\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classTransaction_affdce860d7691f68b2e665a8f8d413fd}\label{classTransaction_affdce860d7691f68b2e665a8f8d413fd}} 
+\index{Transaction@{Transaction}!get\+Output\+Number@{get\+Output\+Number}}
+\index{get\+Output\+Number@{get\+Output\+Number}!Transaction@{Transaction}}
+\subsubsection{\texorpdfstring{get\+Output\+Number()}{getOutputNumber()}}
+{\footnotesize\ttfamily int Transaction\+::get\+Output\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classTransaction_a490a7ae3f1520d95f9050ecc7197d1a0}\label{classTransaction_a490a7ae3f1520d95f9050ecc7197d1a0}} 
+\index{Transaction@{Transaction}!get\+Output\+Value@{get\+Output\+Value}}
+\index{get\+Output\+Value@{get\+Output\+Value}!Transaction@{Transaction}}
+\subsubsection{\texorpdfstring{get\+Output\+Value()}{getOutputValue()}}
+{\footnotesize\ttfamily int Transaction\+::get\+Output\+Value (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classTransaction_a133aff45373713e39a7a1317652dc55c}\label{classTransaction_a133aff45373713e39a7a1317652dc55c}} 
+\index{Transaction@{Transaction}!get\+Version@{get\+Version}}
+\index{get\+Version@{get\+Version}!Transaction@{Transaction}}
+\subsubsection{\texorpdfstring{get\+Version()}{getVersion()}}
+{\footnotesize\ttfamily int Transaction\+::get\+Version (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classTransaction_a99a851c61b60c1dd15b3e9bdd50f32f6}\label{classTransaction_a99a851c61b60c1dd15b3e9bdd50f32f6}} 
+\index{Transaction@{Transaction}!hash@{hash}}
+\index{hash@{hash}!Transaction@{Transaction}}
+\subsubsection{\texorpdfstring{hash()}{hash()}}
+{\footnotesize\ttfamily std\+::string Transaction\+::hash (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classTransaction_a0f5aa15dc325b98730ba5eb786b0ffb2}\label{classTransaction_a0f5aa15dc325b98730ba5eb786b0ffb2}} 
+\index{Transaction@{Transaction}!hash\+Without\+Inputs@{hash\+Without\+Inputs}}
+\index{hash\+Without\+Inputs@{hash\+Without\+Inputs}!Transaction@{Transaction}}
+\subsubsection{\texorpdfstring{hash\+Without\+Inputs()}{hashWithoutInputs()}}
+{\footnotesize\ttfamily std\+::string Transaction\+::hash\+Without\+Inputs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classTransaction_aa2248446ed0d06f64d1685c386189666}\label{classTransaction_aa2248446ed0d06f64d1685c386189666}} 
+\index{Transaction@{Transaction}!has\+Output@{has\+Output}}
+\index{has\+Output@{has\+Output}!Transaction@{Transaction}}
+\subsubsection{\texorpdfstring{has\+Output()}{hasOutput()}}
+{\footnotesize\ttfamily bool Transaction\+::has\+Output (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classTransaction_abffdb9f040a484f89920842895d57ed2}\label{classTransaction_abffdb9f040a484f89920842895d57ed2}} 
+\index{Transaction@{Transaction}!input\+Value@{input\+Value}}
+\index{input\+Value@{input\+Value}!Transaction@{Transaction}}
+\subsubsection{\texorpdfstring{input\+Value()}{inputValue()}}
+{\footnotesize\ttfamily int Transaction\+::input\+Value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMempool}{Mempool}} $\ast$}]{mempool }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classTransaction_a41561665dfeef8f887fdc86f3c9849f8}\label{classTransaction_a41561665dfeef8f887fdc86f3c9849f8}} 
+\index{Transaction@{Transaction}!json@{json}}
+\index{json@{json}!Transaction@{Transaction}}
+\subsubsection{\texorpdfstring{json()}{json()}}
+{\footnotesize\ttfamily Value Transaction\+::json (\begin{DoxyParamCaption}\item[{bool}]{include\+Inputs,  }\item[{Document $\ast$}]{document }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classTransaction_a1feb6131c4b683d6c59073dbf754a634}\label{classTransaction_a1feb6131c4b683d6c59073dbf754a634}} 
+\index{Transaction@{Transaction}!output\+Value@{output\+Value}}
+\index{output\+Value@{output\+Value}!Transaction@{Transaction}}
+\subsubsection{\texorpdfstring{output\+Value()}{outputValue()}}
+{\footnotesize\ttfamily int Transaction\+::output\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classTransaction_a90b3668de562cc1b7f5773e72ac9f6dc}\label{classTransaction_a90b3668de562cc1b7f5773e72ac9f6dc}} 
+\index{Transaction@{Transaction}!raw\+Str@{raw\+Str}}
+\index{raw\+Str@{raw\+Str}!Transaction@{Transaction}}
+\subsubsection{\texorpdfstring{raw\+Str()}{rawStr()}}
+{\footnotesize\ttfamily std\+::string Transaction\+::raw\+Str (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classTransaction_accf9cca56688761bdb9518c3f1b90ed5}\label{classTransaction_accf9cca56688761bdb9518c3f1b90ed5}} 
+\index{Transaction@{Transaction}!str@{str}}
+\index{str@{str}!Transaction@{Transaction}}
+\subsubsection{\texorpdfstring{str()}{str()}}
+{\footnotesize\ttfamily std\+::string Transaction\+::str (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classTransaction_afc37b00566ba0dc72e8efa9dd471601d}\label{classTransaction_afc37b00566ba0dc72e8efa9dd471601d}} 
+\index{Transaction@{Transaction}!validate@{validate}}
+\index{validate@{validate}!Transaction@{Transaction}}
+\subsubsection{\texorpdfstring{validate()}{validate()}}
+{\footnotesize\ttfamily bool Transaction\+::validate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMempool}{Mempool}} $\ast$}]{mempool }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classTransaction_af326a5ba5ac0b525f326836423f3aa5f}\label{classTransaction_af326a5ba5ac0b525f326836423f3aa5f}} 
+\index{Transaction@{Transaction}!validate\+Script@{validate\+Script}}
+\index{validate\+Script@{validate\+Script}!Transaction@{Transaction}}
+\subsubsection{\texorpdfstring{validate\+Script()}{validateScript()}}
+{\footnotesize\ttfamily bool Transaction\+::validate\+Script (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMempool}{Mempool}} $\ast$}]{mempool }\end{DoxyParamCaption}) const}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classTransaction_a3a4705bed22f34645476fd9642baf806}\label{classTransaction_a3a4705bed22f34645476fd9642baf806}} 
+\index{Transaction@{Transaction}!inputs@{inputs}}
+\index{inputs@{inputs}!Transaction@{Transaction}}
+\subsubsection{\texorpdfstring{inputs}{inputs}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{structInputTransaction}{Input\+Transaction}}$>$ Transaction\+::inputs\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTransaction_a1a3d542cd9b8045e1256f128728fab37}\label{classTransaction_a1a3d542cd9b8045e1256f128728fab37}} 
+\index{Transaction@{Transaction}!outputs@{outputs}}
+\index{outputs@{outputs}!Transaction@{Transaction}}
+\subsubsection{\texorpdfstring{outputs}{outputs}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{structOutputTransaction}{Output\+Transaction}}$>$ Transaction\+::outputs\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTransaction_afba77571560d1c92a2bb55a2adc4a9fc}\label{classTransaction_afba77571560d1c92a2bb55a2adc4a9fc}} 
+\index{Transaction@{Transaction}!transaction\+Flags@{transaction\+Flags}}
+\index{transaction\+Flags@{transaction\+Flags}!Transaction@{Transaction}}
+\subsubsection{\texorpdfstring{transaction\+Flags}{transactionFlags}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ Transaction\+::transaction\+Flags\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTransaction_a7d8682b58b273ea2d0d6071355175ea3}\label{classTransaction_a7d8682b58b273ea2d0d6071355175ea3}} 
+\index{Transaction@{Transaction}!version@{version}}
+\index{version@{version}!Transaction@{Transaction}}
+\subsubsection{\texorpdfstring{version}{version}}
+{\footnotesize\ttfamily int Transaction\+::version\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{transaction_8hpp}{transaction.\+hpp}}\item 
+src/transaction/\mbox{\hyperlink{transaction_8cpp}{transaction.\+cpp}}\end{DoxyCompactItemize}

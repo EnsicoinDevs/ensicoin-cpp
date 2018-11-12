@@ -13,6 +13,8 @@
 #include <memory>
 #include <vector>
 
+/// \brief Node handling messages and processing
+///
 class Node{
 	private:
 //		HashMemory mainChain;
@@ -20,13 +22,21 @@ class Node{
 
 		Mempool mempool;
 		Blockchain blockchain;
-
-		asio::ip::tcp::acceptor acceptor;
-		std::vector<Connection::pointer> connections;
 		
+		asio::ip::tcp::acceptor acceptor;
+		std::vector<Connection::pointer> connections; ///< Vector of all current connections
+		
+		/// \brief Handles a connection
+		/// \param newConnection a shared pointer to the connection
 		void handleAccept(Connection::pointer newConnection);
 	public:
+		/// \brief Construct a Node
+		/// \param io_context an asio::io_context
+		/// \details Executes the startup routine and creates mempools 
 		explicit Node(asio::io_context& io_context);
+		
+		/// \brief Main loop of Node
+		///
 		void run();
 };
 
