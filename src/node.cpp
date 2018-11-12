@@ -1,5 +1,6 @@
 #include "node.hpp"
 #include "connection.hpp"
+#include "constants.hpp"
 #include "messages.hpp"
 
 #include <asio.hpp>
@@ -9,7 +10,7 @@
 #include <stdexcept>
 
 
-Node::Node(asio::io_context& io_context) : acceptor(io_context, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), 4224)) {
+Node::Node(asio::io_context& io_context) : acceptor(io_context, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), PORT)) {
 	acceptor.listen();
 	run();
 
@@ -22,7 +23,7 @@ Node::Node(asio::io_context& io_context) : acceptor(io_context, asio::ip::tcp::e
 	Transaction testTransaction(-1, {"I AM A FLAG", "A FLAGGY FLAG"}, {testInput, testInput}, {testOutput, testOutput});
 	
 	std::string testTrHash = testTransaction.hash();
-	InvData invData("t", {testTrHash});
+	InvData invData("t", {testTrHash, "blaaaaap"});
 
 	const std::string johynIP("78.248.188.120");
 	const std::string myIP("82.235.104.10");
@@ -33,14 +34,14 @@ Node::Node(asio::io_context& io_context) : acceptor(io_context, asio::ip::tcp::e
 	auto msgTestTr = std::make_shared<TransactionMessage>(std::make_shared<Transaction>(testTransaction));
 	auto msgMempool = std::make_shared<GetMempool>();
 
-	std::cout << msgTestTr->str() << std::endl;
+	//std::cout << msgTestTr->str() << std::endl;
 
 	Connection::pointer testConnection = Connection::create(io_context, this);
 	connections.push_back(testConnection);
 	testConnection->bind( asio::ip::address::from_string(johynIP));
 
 	testConnection->sendMessage(invTest);
-	testConnection->sendMessage(msgMempool);
+	//testConnection->sendMessage(msgMempool);
 }
 
 void Node::run(){

@@ -24,7 +24,7 @@ std::string Connection::remote() const{
 }
 
 void Connection::bind(asio::ip::address ipAddress){
-	socket.connect(asio::ip::tcp::endpoint( ipAddress, 4224));
+	socket.connect(asio::ip::tcp::endpoint( ipAddress, PORT));
 	sendMessage(std::make_shared<WhoAmI>());
 }
 
