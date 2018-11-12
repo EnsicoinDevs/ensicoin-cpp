@@ -9,7 +9,7 @@ template<class T>
 class HashMemory{
 	public:
 		using pointer = std::shared_ptr<T>;
-		bool exists(std::string elemHash){
+		bool exists(std::string elemHash) const {
 			return memory.count(elemHash) == 1;
 		}
 		bool add(pointer element){
@@ -19,7 +19,7 @@ class HashMemory{
 			memory[element.hash()] = element;
 			return true;
 		}
-		pointer get(std::string elemHash){
+		pointer get(std::string elemHash) const {
 			return memory[elemHash];
 		}
 	private:
