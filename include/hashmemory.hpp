@@ -25,6 +25,9 @@ class HashMemory{
 		pointer get(std::string elemHash) const {
 			return memory.at(elemHash);
 		}
+		void erase(std::string elemHash){
+			memory.erase(elemHash);
+		}
 	private:
 		std::unordered_map<std::string, pointer > memory;
 };

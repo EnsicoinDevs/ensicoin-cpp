@@ -66,6 +66,7 @@ class Transaction : public std::enable_shared_from_this<Transaction> {
 		
 		int getOutputValue(int index) const;
 		bool hasOutput(int index) const;
+		int getOutputNumber() const;
 
 		bool check();
 		bool validate(Mempool* mempool);

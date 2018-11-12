@@ -59,6 +59,10 @@ bool Transaction::hasOutput(int index) const{
 	return index < outputs.size();
 }
 
+int Transaction::getOutputNumber() const{
+	return outputs.size();
+}
+
 int Transaction::getOutputValue(int index) const{
 	return outputs[index].value;
 }

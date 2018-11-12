@@ -50,6 +50,15 @@ bool Mempool::isOrphan(std::shared_ptr<Transaction> tx) const{
 	}
 	return true;
 }
+bool Mempool::checkOrphan(std::string orphan) const{
+	auto tx = orphans.get(orphan);
+	for(auto& input : tx->getInputsId()){
+		if(exists(input.transactionHash) || utxos.exists(input))
+			return false;
+	}
+	return true;
+}
+
 std::vector<UTXO> Mempool::orphanDeps(std::shared_ptr<Transaction> tx) const{
 	std::vector<UTXO> out;
 	for(auto& inputID : tx->getInputsId()){
@@ -88,7 +97,7 @@ bool Mempool::addTransaction(std::shared_ptr<Transaction> tr){
 				return false;
 		orphans.add(tr);
 		for(auto& dep : orphanDeps(tr))
-			orphanUsingUTXO[dep.str()] = tr->hash();
+			orphanUsingUTXO[dep.str()].push_back(tr->hash());
 		return true;
 	}
 	else{
@@ -97,10 +106,21 @@ bool Mempool::addTransaction(std::shared_ptr<Transaction> tr){
 		if(!tr->validate(this))
 			return false;
 		mainPool.add(tr);
+		for(int i=0; i < tr->getOutputNumber(); i++){
+			UTXO txOutput = {tr->hash(), i};
+			auto orphanDeps = orphanUsingUTXO[txOutput.str()];
+			orphanUsingUTXO.erase(txOutput.str());
+			for(auto& orphan : orphanDeps)
+				updateOrphan(orphan);
+		}
 		return true;
 	}
 }
 
-void Mempool::updateOrphan(UTXO id){
-	
+void Mempool::updateOrphan(std::string orphan){
+	if(!checkOrphan(orphan)){
+		auto tx = orphans.get(orphan);
+		orphans.erase(orphan);
+		addTransaction(tx);
+	}
 }

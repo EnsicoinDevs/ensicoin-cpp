@@ -38,12 +38,13 @@ class Mempool{
 		UTXOManager utxos;
 		int currentHeight;
 		
-		void updateOrphan(UTXO id);
+		void updateOrphan(std::string orphanHash);
+		bool checkOrphan(std::string orphanHash) const;
 
 		HashMemory<Transaction> mainPool;
 		HashMemory<Transaction> orphans;
-		// UTXO str-> Orphan using said UTXO
-		std::map< std::string , std::string > orphanUsingUTXO;
+		// UTXO str-> Orphans using said UTXO
+		std::map< std::string , std::vector<std::string> > orphanUsingUTXO;
 };	
 
 #endif /* MEMPOOL_HPP */
