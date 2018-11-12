@@ -6,6 +6,7 @@
 #include "mempool.hpp"
 
 #include <algorithm>
+#include <memory>
 #include <numeric>
 #include <rapidjson/document.h>
 #include <rapidjson/prettywriter.h>
@@ -63,17 +64,25 @@ std::vector<TransactionIdentifier> Transaction::getInputsId() const{
 
 bool Transaction::validate(Mempool* mempool, int currentHeight){
 	if(!check()) return false;
+	if(mempool->exists(hash())) return false;
 	if(inputValue(mempool) <= outputValue()) return false;
 	if(std::any_of(inputs.begin(), 
 		       inputs.end(),
 		       [mempool, currentHeight](InputTransaction ip){
 				return !mempool->isSpendable(ip.previousOutput, currentHeight);
 			})) return false;
-	if(!validateScript()) return false;
+	if(!validateScript(mempool)) return false;
 	return true;
 }
 
-bool Transaction::validateScript() const{
+bool Transaction::validateScript(Mempool* mempool) const{
+	for(auto& input : inputs){
+		auto outputScript = mempool->getOutputScript(input.previousOutput);
+		Script script(outputScript.begin(), 
+			      outputScript.end(),
+			      input.inputStack,
+			      mempool->getHashSignature(input.previousOutput));
+	}
 	return false;
 }
 

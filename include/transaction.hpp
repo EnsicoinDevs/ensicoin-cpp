@@ -5,6 +5,7 @@
 #include "script.hpp"
 
 #include <iterator>
+#include <memory>
 #include <rapidjson/document.h>
 #include <sstream>
 #include <stack>
@@ -42,7 +43,7 @@ class Mempool;
 
 enum TXType { Orphan, Regular };
 
-class Transaction{
+class Transaction : public std::enable_shared_from_this<Transaction> {
 	private:
 		int version;
 		std::vector<std::string> transactionFlags;
@@ -65,7 +66,7 @@ class Transaction{
 
 		bool check();
 		bool validate(Mempool* mempool,int currentHeight);
-		bool validateScript() const;
+		bool validateScript(Mempool* mempool) const;
 
 		std::string rawStr() const;
 		std::string hashWithoutInputs() const;

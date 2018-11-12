@@ -46,6 +46,14 @@ bool Mempool::isSpendable(UTXO id, int currentHeight) const{
 	else return currentHeight - utxos.getHeight(id) >= 42;
 }
 
+std::vector<std::string> Mempool::getOutputScript(UTXO id) const {
+	return utxos.getOutputScript(id);
+}
+
+std::string Mempool::getHashSignature(UTXO id) const{
+	return utxos.getHashSignature(id);
+}
+
 /*bool Mempool::checkInputReference(std::shared_ptr<Transaction> tx) const{
 
   }

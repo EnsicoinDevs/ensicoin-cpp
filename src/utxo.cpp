@@ -18,6 +18,20 @@ std::string UTXOdata::str() const{
 	doc.AddMember("coinbase", coinbaseVal, doc.GetAllocator());
 	doc.AddMember("value", valueVal, doc.GetAllocator());
 	doc.AddMember("height", height, doc.GetAllocator());
+	
+	rapidjson::Value hashVal;
+	hashVal.SetString(hashWithoutInputs.c_str(), hashWithoutInputs.length(), doc.GetAllocator());
+
+	doc.AddMember("hashWithoutInputs", hashVal, doc.GetAllocator());
+
+	rapidjson::Value scriptVal(rapidjson::kArrayType);
+	for(auto& elem : script){
+		rapidjson::Value strVal;
+		strVal.SetString(elem.c_str(), elem.length(), doc.GetAllocator());
+		scriptVal.PushBack(strVal, doc.GetAllocator());
+	}
+	
+	doc.AddMember("script", scriptVal, doc.GetAllocator());
 
 	StringBuffer buffer;
 	Writer<StringBuffer> writer(buffer);
@@ -39,6 +53,9 @@ UTXOdata::UTXOdata(std::string jsonStr){
 	value = doc["value"].GetInt();
 	coinbase = doc["coinbase"].GetBool();
 	height = doc["height"].GetInt();
+	hashWithoutInputs = doc["hashWithoutInputs"].GetString();
+	for(auto& elem : doc["script"].GetArray())
+		script.push_back(elem.GetString());
 }
 
 UTXOManager::UTXOManager(){
@@ -66,6 +83,12 @@ bool UTXOManager::isCoinbase(UTXO id) const{
 int UTXOManager::getHeight(UTXO id) const{
 	return getData(id).height;
 }
+std::vector<std::string> UTXOManager::getOutputScript(UTXO id) const{
+	return getData(id).script;
+}
+std::string UTXOManager::getHashSignature(UTXO id) const{
+	return getData(id).hashWithoutInputs;
+}
 
 bool UTXOManager::exists(UTXO id) const{
 	std::string strData;
@@ -73,8 +96,8 @@ bool UTXOManager::exists(UTXO id) const{
 	return s.ok();
 }
 
-void UTXOManager::add(UTXO id, int value,bool coinbase){
-	auto s = db->Put(leveldb::WriteOptions(), id.str(), UTXOdata(value, coinbase).str());
+void UTXOManager::add(UTXO id, UTXOdata data){
+	auto s = db->Put(leveldb::WriteOptions(), id.str(), data.str());
 	if (!s.ok())
 		std::cerr << "Error while reading " << id.str() << std::endl;
 }

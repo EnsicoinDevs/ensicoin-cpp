@@ -22,8 +22,10 @@ class Mempool{
 		int getInputValue(UTXO id) const;
 		bool exists(std::string txHash) const;
 		bool isOrphan(std::shared_ptr<Transaction> tx) const;
+		std::string getHashSignature(UTXO id) const;
 
 		bool isSpendable(UTXO id, int currentHeight) const;
+		std::vector<std::string> getOutputScript(UTXO id) const;
 
 		TXType type(std::string txHash) const;
 	private:
