@@ -35,6 +35,4 @@ class Block{
 		bool validate();
 };
 
-using Blockchain = HashMemory<Block>;
-
 #endif /* BLOCKS_HPP */
