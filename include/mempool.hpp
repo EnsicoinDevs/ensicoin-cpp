@@ -11,7 +11,6 @@
 #include <vector>
 
 class Mempool{
-	using outpoint = std::pair<std::string, int>;
 	public:
 		Mempool();
 		
@@ -21,19 +20,30 @@ class Mempool{
 
 		int getInputValue(UTXO id) const;
 		bool exists(std::string txHash) const;
+		bool orphanExists(std::string txHash) const;
+		bool outputExists(UTXO id) const;
+		
 		bool isOrphan(std::shared_ptr<Transaction> tx) const;
 		std::string getHashSignature(UTXO id) const;
 
-		bool isSpendable(UTXO id, int currentHeight) const;
+		bool isSpendable(UTXO id) const;
 		std::vector<std::string> getOutputScript(UTXO id) const;
+		void incrementHeight();
+		void decrementHeight();
+
+		std::vector<UTXO> orphanDeps(std::shared_ptr<Transaction> tx) const;
 
 		TXType type(std::string txHash) const;
 	private:
 		UTXOManager utxos;
+		int currentHeight;
 		
+		void updateOrphan(UTXO id);
+
 		HashMemory<Transaction> mainPool;
 		HashMemory<Transaction> orphans;
-		std::map< outpoint , std::string > orphanUsingHash;
+		// UTXO str-> Orphan using said UTXO
+		std::map< std::string , std::string > orphanUsingUTXO;
 };	
 
 #endif /* MEMPOOL_HPP */

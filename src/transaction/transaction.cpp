@@ -55,6 +55,14 @@ std::vector<std::string> Transaction::getFlags() const {
 	return transactionFlags;
 }
 
+bool Transaction::hasOutput(int index) const{
+	return index < outputs.size();
+}
+
+int Transaction::getOutputValue(int index) const{
+	return outputs[index].value;
+}
+
 std::vector<TransactionIdentifier> Transaction::getInputsId() const{
 	std::vector<TransactionIdentifier> output;
 	for(auto& input : inputs)
@@ -62,14 +70,14 @@ std::vector<TransactionIdentifier> Transaction::getInputsId() const{
 	return output;
 }
 
-bool Transaction::validate(Mempool* mempool, int currentHeight){
+bool Transaction::validate(Mempool* mempool){
 	if(!check()) return false;
 	if(mempool->exists(hash())) return false;
 	if(inputValue(mempool) <= outputValue()) return false;
 	if(std::any_of(inputs.begin(), 
 		       inputs.end(),
-		       [mempool, currentHeight](InputTransaction ip){
-				return !mempool->isSpendable(ip.previousOutput, currentHeight);
+		       [mempool](InputTransaction ip){
+				return !mempool->isSpendable(ip.previousOutput);
 			})) return false;
 	if(!validateScript(mempool)) return false;
 	return true;

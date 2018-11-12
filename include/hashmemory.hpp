@@ -1,7 +1,7 @@
 #ifndef HASHMEMORY_HPP
 #define HASHMEMORY_HPP
 
-#include <map>
+#include <unordered_map>
 #include <memory> 
 #include <string>
 
@@ -12,18 +12,21 @@ class HashMemory{
 		bool exists(std::string elemHash) const {
 			return memory.count(elemHash) == 1;
 		}
+		bool exists(pointer elem) const{
+			return exists(elem->hash());
+		}
 		bool add(pointer element){
 			if(exists(element)){
 				return false;
 			}
-			memory[element.hash()] = element;
+			memory[element->hash()] = element;
 			return true;
 		}
 		pointer get(std::string elemHash) const {
-			return memory[elemHash];
+			return memory.at(elemHash);
 		}
 	private:
-		std::map<std::string, pointer > memory;
+		std::unordered_map<std::string, pointer > memory;
 };
 
 #endif /* HASHMEMORY_HPP */

@@ -63,9 +63,12 @@ class Transaction : public std::enable_shared_from_this<Transaction> {
 		
 		int inputValue(Mempool* mempool) const;
 		int outputValue() const;
+		
+		int getOutputValue(int index) const;
+		bool hasOutput(int index) const;
 
 		bool check();
-		bool validate(Mempool* mempool,int currentHeight);
+		bool validate(Mempool* mempool);
 		bool validateScript(Mempool* mempool) const;
 
 		std::string rawStr() const;

@@ -18,6 +18,21 @@ bool Mempool::exists(std::string txHash ) const{
 	return mainPool.exists(txHash);
 }
 
+bool Mempool::outputExists(UTXO id) const{
+	return exists(id.transactionHash) && mainPool.get(id.transactionHash)->hasOutput(id.index);
+}
+
+bool Mempool::orphanExists(std::string txHash) const{
+	return orphans.exists(txHash);
+}
+
+void Mempool::incrementHeight(){
+	currentHeight++;
+}
+void Mempool::decrementHeight(){
+	currentHeight--;
+}
+
 //Gets the type of a registered transaction
 TXType Mempool::type(std::string txHash) const{
 	if(mainPool.exists(txHash))
@@ -35,12 +50,22 @@ bool Mempool::isOrphan(std::shared_ptr<Transaction> tx) const{
 	}
 	return true;
 }
+std::vector<UTXO> Mempool::orphanDeps(std::shared_ptr<Transaction> tx) const{
+	std::vector<UTXO> out;
+	for(auto& inputID : tx->getInputsId()){
+		if(!exists(inputID.transactionHash) && !utxos.exists(inputID))
+			out.push_back(inputID);
+	}
+	return out;
+}
 
 int Mempool::getInputValue(UTXO id) const{
+	if(outputExists(id))
+		return mainPool.get(id.transactionHash)->getOutputValue(id.index);
 	return utxos.getValue(id);
 }
 
-bool Mempool::isSpendable(UTXO id, int currentHeight) const{
+bool Mempool::isSpendable(UTXO id) const{
 	if(!utxos.isCoinbase(id))
 		return true;
 	else return currentHeight - utxos.getHeight(id) >= 42;
@@ -54,14 +79,28 @@ std::string Mempool::getHashSignature(UTXO id) const{
 	return utxos.getHashSignature(id);
 }
 
-/*bool Mempool::checkInputReference(std::shared_ptr<Transaction> tx) const{
 
-  }
+bool Mempool::addTransaction(std::shared_ptr<Transaction> tr){
+	if(isOrphan(tr)){
+		if(!tr->check())
+			return false;
+		if(orphanExists(tr->hash()))
+				return false;
+		orphans.add(tr);
+		for(auto& dep : orphanDeps(tr))
+			orphanUsingUTXO[dep.str()] = tr->hash();
+		return true;
+	}
+	else{
+		if(exists(tr->hash()))
+			return false;
+		if(!tr->validate(this))
+			return false;
+		mainPool.add(tr);
+		return true;
+	}
+}
 
-  int Mempool::inputValue(std::string txHash) const{
-
-  }
-
-  bool Mempool::addTransaction(std::shared_ptr<Transaction> tr){
-
-  }*/
+void Mempool::updateOrphan(UTXO id){
+	
+}
