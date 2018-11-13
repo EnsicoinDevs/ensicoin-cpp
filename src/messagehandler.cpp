@@ -20,7 +20,7 @@ bool Handler::handle(rapidjson::Document* doc, Node* node, std::shared_ptr<Conne
 		return whoami(param);
 	}
 	else
-		return unknown(param);
+		return unknown();
 }
 
 bool Handler::whoami(params& p){
@@ -28,7 +28,7 @@ bool Handler::whoami(params& p){
 	return true;
 }
 
-bool Handler::unknown(params& p){
+bool Handler::unknown(){
 	std::cerr << "Unknown message" << std::endl;
 	return false;
 }

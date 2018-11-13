@@ -97,7 +97,7 @@ bool Mempool::addTransaction(std::shared_ptr<Transaction> tr){
 				return false;
 		orphans.add(tr);
 		for(auto& dep : orphanDeps(tr))
-			orphanUsingUTXO[dep.str()].push_back(tr->hash());
+			orphanUsingUTXO[dep.str()] = tr->hash();
 		return true;
 	}
 	else{
@@ -108,10 +108,9 @@ bool Mempool::addTransaction(std::shared_ptr<Transaction> tr){
 		mainPool.add(tr);
 		for(int i=0; i < tr->getOutputNumber(); i++){
 			UTXO txOutput = {tr->hash(), i};
-			auto orphanDeps = orphanUsingUTXO[txOutput.str()];
+			auto orphan = orphanUsingUTXO[txOutput.str()];
 			orphanUsingUTXO.erase(txOutput.str());
-			for(auto& orphan : orphanDeps)
-				updateOrphan(orphan);
+			updateOrphan(orphan);
 		}
 		return true;
 	}
