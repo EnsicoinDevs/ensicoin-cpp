@@ -6,8 +6,8 @@
 	* HashMemory, Mempool, UTXOManager, Blockchain
 * **Data Classes**
 	* Block, Transaction, Script
-* **Crypto Classes**
-	* ECDSASignature
+* **Crypto Classes and File**
+	* ECDSASignature, crypto.hpp
 * **Messaging Classes**
 	* Handler, Message, BlockMessage, GetBlocks, GetData, GetMempool, Inv, NotFound, TransactionMessage, WhoAmI
 * **UTXO Classes**
@@ -16,3 +16,5 @@
 	* Transaction, TransactionIdentifier, InputTransaction, OutputTransaction
 * **Block Elemets**
 	* Block, BlockHeader
+* **Constants**
+	* constants.hpp

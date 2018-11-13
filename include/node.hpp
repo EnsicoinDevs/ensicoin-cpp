@@ -19,10 +19,13 @@ class Node{
 	private:
 //		HashMemory mainChain;
 //		std::vector< HashMemory > secondaryChains;
-
+		
+		/// \brief Mempool of the Node
 		Mempool mempool;
+		/// \brief Main Blockchain
 		Blockchain blockchain;
 		
+		/// \brief Accept TCP connections from other nodes
 		asio::ip::tcp::acceptor acceptor;
 		std::vector<Connection::pointer> connections; ///< Vector of all current connections
 		
