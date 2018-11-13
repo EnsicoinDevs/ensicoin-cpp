@@ -46,7 +46,8 @@ rapidjson::Value InvData::json(rapidjson::Document* document) const {
 
 Inv::Inv(InvData dt) : Message("inv"), data(dt)  {}
 
-Inv::Inv(rapidjson::Document* doc) : Message(doc), data(InvData(doc))  {
+Inv::Inv(rapidjson::Document* doc) : Message(doc), 
+				     data(InvData(&(*doc)["message"]))  {
 }
 
 rapidjson::Value Inv::json(rapidjson::Document* document) const{
