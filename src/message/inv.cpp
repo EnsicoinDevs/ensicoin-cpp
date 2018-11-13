@@ -1,9 +1,22 @@
 #include "messages.hpp"
 
+#include <memory>
 #include <rapidjson/document.h>
 #include <string>
 #include <vector>
 #include <iostream>
+
+std::string Inv::getRessourceType() const{
+	return data.type;
+}
+
+std::vector<std::string> Inv::getRessources() const{
+	return data.hashes;
+}
+
+std::shared_ptr<GetData> Inv::respondRequest() const{
+	return std::make_shared<GetData>(data);
+}
 
 InvData::InvData(rapidjson::Value* val) : type((*val)["type"].GetString()){
 	auto& hashArray = (*val)["hashes"];

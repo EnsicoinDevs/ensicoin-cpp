@@ -14,8 +14,8 @@ class Handler {
 		/// \brief Parameters functions use in handling
 		/// a Message
 		struct params{
-			/// \brief Message content
-			Message::messagePointer message;
+			/// \brief JSON representation of a Message
+			rapidjson::Document* doc;
 			/// \breif Node to act on state
 			Node* node;
 			/// \brief Connection to respond
@@ -24,6 +24,11 @@ class Handler {
 		
 		/// \brief Does a WhoAmI handshake beetween the nodes
 		static bool whoami(params&);
+		/// \brief Checks if data if known
+		/// \returns Respond with true if all ressources are
+		/// known (including if the ressource type is
+		/// unknown)
+		static bool inv(params&);
 		/// \brief reports a message is unknown
 		static bool unknown();
 	public:

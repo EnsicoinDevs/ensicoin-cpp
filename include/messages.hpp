@@ -72,23 +72,6 @@ struct InvData {
 	rapidjson::Value json(rapidjson::Document* doc) const;
 };
 
-/// \brief Transmit Block or Transaction to a peer
-class Inv : public Message {
-	private:
-		/// \brief data to be transmited
-		InvData data;
-	public:	
-		/// \brief Create a Inv from an InvData
-		explicit Inv(InvData dt);
-		/// \brief Parse a JSON Document into an Inv
-		/// \param doc JSON to be parsed
-		explicit Inv(rapidjson::Document* doc);
-		/// \brief Create the JSON representation
-		/// \param document Document used for Allocation of
-		/// members
-		rapidjson::Value json(rapidjson::Document* document) const override;
-};
-
 /// \brief Message to get the JSON String representing ressources
 class GetData : public Message {
 	private:
@@ -105,6 +88,34 @@ class GetData : public Message {
 		/// members
 		rapidjson::Value json(rapidjson::Document* document) const override;
 };
+
+/// \brief Transmit Block or Transaction to a peer
+class Inv : public Message {
+	private:
+		/// \brief data to be transmited
+		InvData data;
+	public:
+		/// \brief Retrives the type from InvData
+		std::string getRessourceType() const;
+		/// \brief Retriveses the vector of hashes 
+		/// from InvData
+		std::vector<std::string> getRessources() const;
+		
+		/// \brief Create a response to an Inv to request
+		/// ressources by GetData
+		std::shared_ptr<GetData> respondRequest() const;
+
+		/// \brief Create a Inv from an InvData
+		explicit Inv(InvData dt);
+		/// \brief Parse a JSON Document into an Inv
+		/// \param doc JSON to be parsed
+		explicit Inv(rapidjson::Document* doc);
+		/// \brief Create the JSON representation
+		/// \param document Document used for Allocation of
+		/// members
+		rapidjson::Value json(rapidjson::Document* document) const override;
+};
+
 
 /// \brief Message signaling an asked ressource is unknown
 class NotFound : public Message {

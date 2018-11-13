@@ -38,7 +38,7 @@ Node::Node(asio::io_context& io_context) : acceptor(io_context, asio::ip::tcp::e
 
 	Connection::pointer testConnection = Connection::create(io_context, this);
 	connections.push_back(testConnection);
-	testConnection->bind( asio::ip::address::from_string(johynIP));
+	testConnection->bind( asio::ip::address::from_string(myIP));
 
 	testConnection->sendMessage(invTest);
 	//testConnection->sendMessage(msgMempool);
@@ -51,6 +51,10 @@ void Node::run(){
 	/*for(auto& conn : connections){
 		conn->idle();
 	}*/
+}
+
+bool Node::transactionExists(std::string txHash) const {
+	return mempool.exists(txHash) || mempool.orphanExists(txHash);
 }
 
 void Node::handleAccept(Connection::pointer newConnection){

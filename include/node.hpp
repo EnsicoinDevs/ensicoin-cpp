@@ -35,8 +35,13 @@ class Node{
 	public:
 		/// \brief Construct a Node
 		/// \param io_context an asio::io_context
-		/// \details Executes the startup routine and creates mempools 
+		/// \details Executes the startup 
+		/// routine and creates the mempool
 		explicit Node(asio::io_context& io_context);
+
+		/// \brief Checks if a transaction is known (either
+		/// Orphan or Regular)
+		bool transactionExists(std::string txHash) const;
 		
 		/// \brief Main loop of Node
 		///
