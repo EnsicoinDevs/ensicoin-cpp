@@ -72,31 +72,44 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Data needed to use a UTXO.  
+ <a href="structUTXOdata.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="utxo_8hpp_source.html">utxo.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:abac0ce6dfed6dab29a00a995d37cc62c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUTXOdata.html#abac0ce6dfed6dab29a00a995d37cc62c">UTXOdata</a> (int, bool)</td></tr>
+<tr class="memdesc:abac0ce6dfed6dab29a00a995d37cc62c"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO Add fields and fluent API.  <a href="#abac0ce6dfed6dab29a00a995d37cc62c">More...</a><br /></td></tr>
 <tr class="separator:abac0ce6dfed6dab29a00a995d37cc62c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f569e3b932610a822140104fdd418a9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUTXOdata.html#a0f569e3b932610a822140104fdd418a9">UTXOdata</a> (std::string jsonStr)</td></tr>
+<tr class="memdesc:a0f569e3b932610a822140104fdd418a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse a JSON string into an <a class="el" href="structUTXOdata.html" title="Data needed to use a UTXO. ">UTXOdata</a> object.  <a href="#a0f569e3b932610a822140104fdd418a9">More...</a><br /></td></tr>
 <tr class="separator:a0f569e3b932610a822140104fdd418a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8416d6a4cc715159a8e2f9da47b5519a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUTXOdata.html#a8416d6a4cc715159a8e2f9da47b5519a">str</a> () const</td></tr>
+<tr class="memdesc:a8416d6a4cc715159a8e2f9da47b5519a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the JSON string representing the <a class="el" href="structUTXOdata.html" title="Data needed to use a UTXO. ">UTXOdata</a> object.  <a href="#a8416d6a4cc715159a8e2f9da47b5519a">More...</a><br /></td></tr>
 <tr class="separator:a8416d6a4cc715159a8e2f9da47b5519a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a255dc301eba5d915c6a5dc752ec11a86"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUTXOdata.html#a255dc301eba5d915c6a5dc752ec11a86">value</a></td></tr>
+<tr class="memdesc:a255dc301eba5d915c6a5dc752ec11a86"><td class="mdescLeft">&#160;</td><td class="mdescRight">The value of the output.  <a href="#a255dc301eba5d915c6a5dc752ec11a86">More...</a><br /></td></tr>
 <tr class="separator:a255dc301eba5d915c6a5dc752ec11a86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec980c11dde6738bf2120fb3bd3e541f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUTXOdata.html#aec980c11dde6738bf2120fb3bd3e541f">coinbase</a></td></tr>
+<tr class="memdesc:aec980c11dde6738bf2120fb3bd3e541f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Denotes if the output is a coinbase.  <a href="#aec980c11dde6738bf2120fb3bd3e541f">More...</a><br /></td></tr>
 <tr class="separator:aec980c11dde6738bf2120fb3bd3e541f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac437a55d55e7d7de1bd2558fefccc541"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUTXOdata.html#ac437a55d55e7d7de1bd2558fefccc541">height</a></td></tr>
+<tr class="memdesc:ac437a55d55e7d7de1bd2558fefccc541"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the Height of the <a class="el" href="classBlock.html" title="Block of ensicoin Transaction. ">Block</a> including the <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a>.  <a href="#ac437a55d55e7d7de1bd2558fefccc541">More...</a><br /></td></tr>
 <tr class="separator:ac437a55d55e7d7de1bd2558fefccc541"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2bfbc7be65eb1c5583084572818ddb2"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUTXOdata.html#ae2bfbc7be65eb1c5583084572818ddb2">hashWithoutInputs</a></td></tr>
+<tr class="memdesc:ae2bfbc7be65eb1c5583084572818ddb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The hash of the <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> to check the signature.  <a href="#ae2bfbc7be65eb1c5583084572818ddb2">More...</a><br /></td></tr>
 <tr class="separator:ae2bfbc7be65eb1c5583084572818ddb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9195f06da49760fd982965b008f906c2"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUTXOdata.html#a9195f06da49760fd982965b008f906c2">script</a></td></tr>
+<tr class="memdesc:a9195f06da49760fd982965b008f906c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The code to create the <a class="el" href="classScript.html" title="Script used in Transaction. ">Script</a>.  <a href="#a9195f06da49760fd982965b008f906c2">More...</a><br /></td></tr>
 <tr class="separator:a9195f06da49760fd982965b008f906c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Data needed to use a UTXO. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="abac0ce6dfed6dab29a00a995d37cc62c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abac0ce6dfed6dab29a00a995d37cc62c">&#9670;&nbsp;</a></span>UTXOdata() <span class="overload">[1/2]</span></h2>
 
@@ -122,6 +135,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>TODO Add fields and fluent API. </p>
 
 </div>
 </div>
@@ -149,6 +164,14 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Parse a JSON string into an <a class="el" href="structUTXOdata.html" title="Data needed to use a UTXO. ">UTXOdata</a> object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">jsonStr</td><td>the JSON string to be parsed </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -167,6 +190,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Get the JSON string representing the <a class="el" href="structUTXOdata.html" title="Data needed to use a UTXO. ">UTXOdata</a> object. </p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -182,6 +207,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Denotes if the output is a coinbase. </p>
+
 </div>
 </div>
 <a id="ae2bfbc7be65eb1c5583084572818ddb2"></a>
@@ -195,6 +222,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>The hash of the <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> to check the signature. </p>
 
 </div>
 </div>
@@ -210,6 +239,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Tells the Height of the <a class="el" href="classBlock.html" title="Block of ensicoin Transaction. ">Block</a> including the <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a>. </p>
+
 </div>
 </div>
 <a id="a9195f06da49760fd982965b008f906c2"></a>
@@ -224,6 +255,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>The code to create the <a class="el" href="classScript.html" title="Script used in Transaction. ">Script</a>. </p>
+
 </div>
 </div>
 <a id="a255dc301eba5d915c6a5dc752ec11a86"></a>
@@ -237,6 +270,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>The value of the output. </p>
 
 </div>
 </div>

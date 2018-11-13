@@ -72,25 +72,35 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Represent the output of a <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a>.  
+ <a href="structOutputTransaction.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="transaction_8hpp_source.html">transaction.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a8491046e882593572512bf7717c36285"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOutputTransaction.html#a8491046e882593572512bf7717c36285">str</a> () const</td></tr>
+<tr class="memdesc:a8491046e882593572512bf7717c36285"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the raw string representation.  <a href="#a8491046e882593572512bf7717c36285">More...</a><br /></td></tr>
 <tr class="separator:a8491046e882593572512bf7717c36285"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa68e74419b5d85bcfa550ffbbe8a3287"><td class="memItemLeft" align="right" valign="top">Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOutputTransaction.html#aa68e74419b5d85bcfa550ffbbe8a3287">json</a> (Document *document) const</td></tr>
+<tr class="memdesc:aa68e74419b5d85bcfa550ffbbe8a3287"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the JSON reperesentation  document Document used for the Allocation of members.  <a href="#aa68e74419b5d85bcfa550ffbbe8a3287">More...</a><br /></td></tr>
 <tr class="separator:aa68e74419b5d85bcfa550ffbbe8a3287"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51ddd6b77522fa6fa676c00add6d6e1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOutputTransaction.html#a51ddd6b77522fa6fa676c00add6d6e1a">load</a> (Value *val)</td></tr>
+<tr class="memdesc:a51ddd6b77522fa6fa676c00add6d6e1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load the fields from a JSON object.  <a href="#a51ddd6b77522fa6fa676c00add6d6e1a">More...</a><br /></td></tr>
 <tr class="separator:a51ddd6b77522fa6fa676c00add6d6e1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a938dbaea39f3d053581d744e21281ad4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOutputTransaction.html#a938dbaea39f3d053581d744e21281ad4">value</a></td></tr>
+<tr class="memdesc:a938dbaea39f3d053581d744e21281ad4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Value make available.  <a href="#a938dbaea39f3d053581d744e21281ad4">More...</a><br /></td></tr>
 <tr class="separator:a938dbaea39f3d053581d744e21281ad4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32dcca6abe10eba274ba85f3460ceb84"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOutputTransaction.html#a32dcca6abe10eba274ba85f3460ceb84">scriptInstructions</a></td></tr>
+<tr class="memdesc:a32dcca6abe10eba274ba85f3460ceb84"><td class="mdescLeft">&#160;</td><td class="mdescRight">the code attached to the input  <a href="#a32dcca6abe10eba274ba85f3460ceb84">More...</a><br /></td></tr>
 <tr class="separator:a32dcca6abe10eba274ba85f3460ceb84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represent the output of a <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a>. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="aa68e74419b5d85bcfa550ffbbe8a3287"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa68e74419b5d85bcfa550ffbbe8a3287">&#9670;&nbsp;</a></span>json()</h2>
 
@@ -106,6 +116,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the JSON reperesentation  document Document used for the Allocation of members. </p>
 
 </div>
 </div>
@@ -125,6 +137,14 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Load the fields from a JSON object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">val</td><td>JSON object to be parsed </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a8491046e882593572512bf7717c36285"></a>
@@ -142,6 +162,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Get the raw string representation. </p>
+<p>the raw string representation is obtained by concatanateing all the fields </p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -157,6 +180,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>the code attached to the input </p>
+
 </div>
 </div>
 <a id="a938dbaea39f3d053581d744e21281ad4"></a>
@@ -170,6 +195,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>The Value make available. </p>
 
 </div>
 </div>

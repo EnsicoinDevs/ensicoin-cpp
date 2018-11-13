@@ -69,7 +69,7 @@ $(function() {
 <div class="contents">
 <div class="textblock"><ul>
 <li><b>Managing Classes</b><ul>
-<li><a class="el" href="classNode.html" title="Node handling messages and processing. ">Node</a>, <a class="el" href="classMempool.html" title="Pool of Transaction not in Block. ">Mempool</a>, <a class="el" href="classUTXOManager.html">UTXOManager</a>, <a class="el" href="classBlockchain.html">Blockchain</a></li>
+<li><a class="el" href="classNode.html" title="Node handling messages and processing. ">Node</a>, <a class="el" href="classMempool.html" title="Pool of Transaction not in Block. ">Mempool</a>, <a class="el" href="classUTXOManager.html" title="Managing UTXOs (Unspent OutputTransaction) ">UTXOManager</a>, <a class="el" href="classBlockchain.html">Blockchain</a></li>
 </ul>
 </li>
 <li><b>Networking Classes</b><ul>
@@ -77,11 +77,11 @@ $(function() {
 </ul>
 </li>
 <li><b>Containers</b><ul>
-<li><a class="el" href="classHashMemory.html" title="Wrapper around a std::unordered_map. ">HashMemory</a>, <a class="el" href="classMempool.html" title="Pool of Transaction not in Block. ">Mempool</a>, <a class="el" href="classUTXOManager.html">UTXOManager</a>, <a class="el" href="classBlockchain.html">Blockchain</a></li>
+<li><a class="el" href="classHashMemory.html" title="Wrapper around a std::unordered_map. ">HashMemory</a>, <a class="el" href="classMempool.html" title="Pool of Transaction not in Block. ">Mempool</a>, <a class="el" href="classUTXOManager.html" title="Managing UTXOs (Unspent OutputTransaction) ">UTXOManager</a>, <a class="el" href="classBlockchain.html">Blockchain</a></li>
 </ul>
 </li>
 <li><b>Data Classes</b><ul>
-<li><a class="el" href="classBlock.html" title="Block of ensicoin Transaction. ">Block</a>, <a class="el" href="classTransaction.html">Transaction</a>, <a class="el" href="classScript.html">Script</a></li>
+<li><a class="el" href="classBlock.html" title="Block of ensicoin Transaction. ">Block</a>, <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a>, <a class="el" href="classScript.html" title="Script used in Transaction. ">Script</a></li>
 </ul>
 </li>
 <li><b>Crypto Classes and File</b><ul>
@@ -89,15 +89,15 @@ $(function() {
 </ul>
 </li>
 <li><b>Messaging Classes</b><ul>
-<li><a class="el" href="classHandler.html">Handler</a>, <a class="el" href="classMessage.html">Message</a>, <a class="el" href="classBlockMessage.html">BlockMessage</a>, <a class="el" href="classGetBlocks.html">GetBlocks</a>, <a class="el" href="classGetData.html">GetData</a>, <a class="el" href="classGetMempool.html">GetMempool</a>, <a class="el" href="classInv.html">Inv</a>, <a class="el" href="classNotFound.html">NotFound</a>, <a class="el" href="classTransactionMessage.html">TransactionMessage</a>, <a class="el" href="classWhoAmI.html">WhoAmI</a></li>
+<li><a class="el" href="classHandler.html" title="Handles actions to be taken on Message. ">Handler</a>, <a class="el" href="classMessage.html" title="Base class for all network communcation. ">Message</a>, <a class="el" href="classBlockMessage.html" title="Message sending a Block over. ">BlockMessage</a>, <a class="el" href="classGetBlocks.html" title="Message asking a node to sync Block until a certain point. ">GetBlocks</a>, <a class="el" href="classGetData.html" title="Message to get the JSON String representing ressources. ">GetData</a>, <a class="el" href="classGetMempool.html" title="Message to sync the Mempool with another node. ">GetMempool</a>, <a class="el" href="classInv.html" title="Transmit Block or Transaction to a peer. ">Inv</a>, <a class="el" href="classNotFound.html" title="Message signaling an asked ressource is unknown. ">NotFound</a>, <a class="el" href="classTransactionMessage.html" title="Message sending a Transaction over. ">TransactionMessage</a>, <a class="el" href="classWhoAmI.html" title="Message used for intializing the Connection. ">WhoAmI</a></li>
 </ul>
 </li>
 <li><b>UTXO Classes</b><ul>
-<li><a class="el" href="classUTXOManager.html">UTXOManager</a>, <a class="el" href="structUTXOdata.html">UTXOdata</a></li>
+<li><a class="el" href="classUTXOManager.html" title="Managing UTXOs (Unspent OutputTransaction) ">UTXOManager</a>, <a class="el" href="structUTXOdata.html" title="Data needed to use a UTXO. ">UTXOdata</a></li>
 </ul>
 </li>
-<li><b><a class="el" href="classTransaction.html">Transaction</a> Elements</b><ul>
-<li><a class="el" href="classTransaction.html">Transaction</a>, <a class="el" href="structTransactionIdentifier.html">TransactionIdentifier</a>, <a class="el" href="structInputTransaction.html">InputTransaction</a>, <a class="el" href="structOutputTransaction.html">OutputTransaction</a></li>
+<li><b><a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> Elements</b><ul>
+<li><a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a>, <a class="el" href="structTransactionIdentifier.html" title="Reference to the OutputTransaction of another Transaction. ">TransactionIdentifier</a>, <a class="el" href="structInputTransaction.html" title="Repersent an input of a Transation. ">InputTransaction</a>, <a class="el" href="structOutputTransaction.html" title="Represent the output of a Transaction. ">OutputTransaction</a></li>
 </ul>
 </li>
 <li><b><a class="el" href="classBlock.html" title="Block of ensicoin Transaction. ">Block</a> Elemets</b><ul>

@@ -72,25 +72,35 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Data transmission over the network by mean of hashes.  
+ <a href="structInvData.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="messages_8hpp_source.html">messages.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a04e2f1104af7ef52d684101c61a4873b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structInvData.html#a04e2f1104af7ef52d684101c61a4873b">InvData</a> (std::string t, std::vector&lt; std::string &gt; hL)</td></tr>
+<tr class="memdesc:a04e2f1104af7ef52d684101c61a4873b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates <a class="el" href="structInvData.html" title="Data transmission over the network by mean of hashes. ">InvData</a> from fields.  <a href="#a04e2f1104af7ef52d684101c61a4873b">More...</a><br /></td></tr>
 <tr class="separator:a04e2f1104af7ef52d684101c61a4873b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6b3a71e6b4e0487f33ccf0b22a38813"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structInvData.html#af6b3a71e6b4e0487f33ccf0b22a38813">InvData</a> (rapidjson::Value *val)</td></tr>
+<tr class="memdesc:af6b3a71e6b4e0487f33ccf0b22a38813"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse a JSON Value into an <a class="el" href="structInvData.html" title="Data transmission over the network by mean of hashes. ">InvData</a>.  <a href="#af6b3a71e6b4e0487f33ccf0b22a38813">More...</a><br /></td></tr>
 <tr class="separator:af6b3a71e6b4e0487f33ccf0b22a38813"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a660c6492448faa3a19ac27c62047152d"><td class="memItemLeft" align="right" valign="top">rapidjson::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structInvData.html#a660c6492448faa3a19ac27c62047152d">json</a> (rapidjson::Document *doc) const</td></tr>
+<tr class="memdesc:a660c6492448faa3a19ac27c62047152d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a JSON representation.  <a href="#a660c6492448faa3a19ac27c62047152d">More...</a><br /></td></tr>
 <tr class="separator:a660c6492448faa3a19ac27c62047152d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a65d4044e395865238407578784cfccea"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structInvData.html#a65d4044e395865238407578784cfccea">type</a></td></tr>
+<tr class="memdesc:a65d4044e395865238407578784cfccea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Either "t" or "b" for <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> or <a class="el" href="classBlock.html" title="Block of ensicoin Transaction. ">Block</a>.  <a href="#a65d4044e395865238407578784cfccea">More...</a><br /></td></tr>
 <tr class="separator:a65d4044e395865238407578784cfccea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7cd0400472c8a41a86960bc37ad7a3d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structInvData.html#ac7cd0400472c8a41a86960bc37ad7a3d">hashes</a></td></tr>
+<tr class="memdesc:ac7cd0400472c8a41a86960bc37ad7a3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of hashes of ressoucres communicated.  <a href="#ac7cd0400472c8a41a86960bc37ad7a3d">More...</a><br /></td></tr>
 <tr class="separator:ac7cd0400472c8a41a86960bc37ad7a3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Data transmission over the network by mean of hashes. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a04e2f1104af7ef52d684101c61a4873b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a04e2f1104af7ef52d684101c61a4873b">&#9670;&nbsp;</a></span>InvData() <span class="overload">[1/2]</span></h2>
 
@@ -116,6 +126,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Creates <a class="el" href="structInvData.html" title="Data transmission over the network by mean of hashes. ">InvData</a> from fields. </p>
 
 </div>
 </div>
@@ -143,6 +155,14 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Parse a JSON Value into an <a class="el" href="structInvData.html" title="Data transmission over the network by mean of hashes. ">InvData</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">val</td><td>the JSON representation to be parsed </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -162,6 +182,14 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Create a JSON representation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">doc</td><td>Document for Allocation of memebers </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -177,6 +205,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>List of hashes of ressoucres communicated. </p>
+
 </div>
 </div>
 <a id="a65d4044e395865238407578784cfccea"></a>
@@ -190,6 +220,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Either "t" or "b" for <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> or <a class="el" href="classBlock.html" title="Block of ensicoin Transaction. ">Block</a>. </p>
 
 </div>
 </div>

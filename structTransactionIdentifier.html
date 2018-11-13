@@ -72,25 +72,35 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Reference to the <a class="el" href="structOutputTransaction.html" title="Represent the output of a Transaction. ">OutputTransaction</a> of another <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a>.  
+ <a href="structTransactionIdentifier.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="transaction_8hpp_source.html">transaction.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a00d46c50b8e79327f4c3b9bc32a7f679"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTransactionIdentifier.html#a00d46c50b8e79327f4c3b9bc32a7f679">str</a> () const</td></tr>
+<tr class="memdesc:a00d46c50b8e79327f4c3b9bc32a7f679"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the raw string representation.  <a href="#a00d46c50b8e79327f4c3b9bc32a7f679">More...</a><br /></td></tr>
 <tr class="separator:a00d46c50b8e79327f4c3b9bc32a7f679"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8879716182a6beddfc4093e73703324"><td class="memItemLeft" align="right" valign="top">Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTransactionIdentifier.html#ab8879716182a6beddfc4093e73703324">json</a> (Document *document) const</td></tr>
+<tr class="memdesc:ab8879716182a6beddfc4093e73703324"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the JSON reperesentation  document Document used for the Allocation of members.  <a href="#ab8879716182a6beddfc4093e73703324">More...</a><br /></td></tr>
 <tr class="separator:ab8879716182a6beddfc4093e73703324"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f109058df0aa00717a1acdc10fbc97e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTransactionIdentifier.html#a0f109058df0aa00717a1acdc10fbc97e">load</a> (Value *val)</td></tr>
+<tr class="memdesc:a0f109058df0aa00717a1acdc10fbc97e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load the fields from a JSON object.  <a href="#a0f109058df0aa00717a1acdc10fbc97e">More...</a><br /></td></tr>
 <tr class="separator:a0f109058df0aa00717a1acdc10fbc97e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a4fbb1245879f1cccdc27b64ad7f0cbac"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTransactionIdentifier.html#a4fbb1245879f1cccdc27b64ad7f0cbac">transactionHash</a></td></tr>
+<tr class="memdesc:a4fbb1245879f1cccdc27b64ad7f0cbac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hash of the refrenced <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a>.  <a href="#a4fbb1245879f1cccdc27b64ad7f0cbac">More...</a><br /></td></tr>
 <tr class="separator:a4fbb1245879f1cccdc27b64ad7f0cbac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a667fa04ae76976ba5b3940621fb5f8ad"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTransactionIdentifier.html#a667fa04ae76976ba5b3940621fb5f8ad">index</a></td></tr>
+<tr class="memdesc:a667fa04ae76976ba5b3940621fb5f8ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index of the <a class="el" href="structOutputTransaction.html" title="Represent the output of a Transaction. ">OutputTransaction</a>.  <a href="#a667fa04ae76976ba5b3940621fb5f8ad">More...</a><br /></td></tr>
 <tr class="separator:a667fa04ae76976ba5b3940621fb5f8ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Reference to the <a class="el" href="structOutputTransaction.html" title="Represent the output of a Transaction. ">OutputTransaction</a> of another <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a>. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ab8879716182a6beddfc4093e73703324"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab8879716182a6beddfc4093e73703324">&#9670;&nbsp;</a></span>json()</h2>
 
@@ -106,6 +116,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the JSON reperesentation  document Document used for the Allocation of members. </p>
 
 </div>
 </div>
@@ -125,6 +137,14 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Load the fields from a JSON object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">val</td><td>JSON object to be parsed </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a00d46c50b8e79327f4c3b9bc32a7f679"></a>
@@ -142,6 +162,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Get the raw string representation. </p>
+<p>the raw string representation is obtained by concatanateing all the fields </p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -157,6 +180,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Index of the <a class="el" href="structOutputTransaction.html" title="Represent the output of a Transaction. ">OutputTransaction</a>. </p>
+
 </div>
 </div>
 <a id="a4fbb1245879f1cccdc27b64ad7f0cbac"></a>
@@ -170,6 +195,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Hash of the refrenced <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a>. </p>
 
 </div>
 </div>
