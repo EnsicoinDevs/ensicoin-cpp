@@ -2,7 +2,17 @@
 
 #include <memory>
 #include <rapidjson/document.h>
+#include <string>
+#include <vector>
 #include <iostream>
+
+std::string GetData::dataType() const{
+	return invData.type;
+}
+
+std::vector<std::string> GetData::dataAsked() const{
+	return invData.hashes;
+}
 
 GetData::GetData(InvData inv) : Message("getdata"), invData(inv) {}
 
@@ -14,7 +24,7 @@ rapidjson::Value GetData::json(rapidjson::Document* document) const{
 	rapidjson::Value content(rapidjson::kObjectType);
 	content.AddMember("inv", invValue, document->GetAllocator());
 	
-	messageValue.AddMember("messsage", content, document->GetAllocator());
+	messageValue.AddMember("message", content, document->GetAllocator());
 
 	return messageValue;
 }

@@ -16,14 +16,10 @@ bool Handler::handle(rapidjson::Document* doc, Node* node, std::shared_ptr<Conne
 	std::string type = (*doc)["type"].GetString();
 	
 	std::cerr << type << " from " << connection->remote() << std::endl;
-	if (type == "whoami"){
-		return whoami(param);
-	}
-	if( type == "inv"){
-		return inv(param);
-	}
-	else
-		return unknown();
+	if (type == "whoami") 	return whoami(param);
+	if (type == "inv") 	return inv(param);
+	if (type == "getdata")	return getdata(param);
+	else return unknown();
 }
 
 bool Handler::inv(params& p){
@@ -45,6 +41,24 @@ bool Handler::inv(params& p){
 		std::cerr << "Invalid type in Inv : " << message->getRessourceType() << std::endl;
 		return true;
 	}
+}
+
+bool Handler::getdata(params& p){
+	auto message = std::make_shared<GetData>(p.doc);
+	bool status = true;
+	for(auto& hash : message->dataAsked()){
+		if (message->dataType() == "t"){
+			if(!p.node->transactionExists(hash)){
+				p.connection->sendMessage(std::make_shared<NotFound>("t", hash));
+			}
+		}
+		else if (message->dataType() == "b"){
+			std::cerr << "Blocks unsuported" << std::endl;
+		}
+		else
+			std::cerr << "Unknown ressource : " << message->dataType() << std::endl;
+	}
+	return status;
 }
 
 bool Handler::whoami(params& p){

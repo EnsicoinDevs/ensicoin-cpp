@@ -78,6 +78,11 @@ class GetData : public Message {
 		/// \brief Ressources asked
 		InvData invData;
 	public:
+		/// \brief Gives the type of the data asked
+		std::string dataType() const;
+		/// \brief Gives all the hashes of the asked data
+		std::vector<std::string> dataAsked() const;
+		
 		/// \brief Creates a GetData from an InvData
 		explicit GetData(InvData inv);
 		/// \brief Parses a JSON representation in a GetData

@@ -29,6 +29,10 @@ class Handler {
 		/// known (including if the ressource type is
 		/// unknown)
 		static bool inv(params&);
+		/// \brief Responds with all ressources asked
+		/// \brief \returns false if any of the ressources is
+		/// not found.
+		static bool getdata(params&);
 		/// \brief reports a message is unknown
 		static bool unknown();
 	public:
