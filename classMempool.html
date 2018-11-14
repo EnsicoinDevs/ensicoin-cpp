@@ -86,51 +86,39 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7f1fff7b367c389ed3c8b847dde46add"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMempool.html#a7f1fff7b367c389ed3c8b847dde46add">addTransaction</a> (std::shared_ptr&lt; <a class="el" href="classTransaction.html">Transaction</a> &gt; tr)</td></tr>
 <tr class="memdesc:a7f1fff7b367c389ed3c8b847dde46add"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> to <a class="el" href="classMempool.html" title="Pool of Transaction not in Block. ">Mempool</a>.  <a href="#a7f1fff7b367c389ed3c8b847dde46add">More...</a><br /></td></tr>
 <tr class="separator:a7f1fff7b367c389ed3c8b847dde46add"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2b01cf87f14318e182b56462c0bf4f6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMempool.html#ab2b01cf87f14318e182b56462c0bf4f6">getInputValue</a> (<a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> id) const</td></tr>
-<tr class="memdesc:ab2b01cf87f14318e182b56462c0bf4f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get value of UTXO.  <a href="#ab2b01cf87f14318e182b56462c0bf4f6">More...</a><br /></td></tr>
-<tr class="separator:ab2b01cf87f14318e182b56462c0bf4f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a11892f1519132f81204e57cc758666"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMempool.html#a3a11892f1519132f81204e57cc758666">exists</a> (std::string txHash) const</td></tr>
 <tr class="memdesc:a3a11892f1519132f81204e57cc758666"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> exists in <a class="el" href="classMempool.html" title="Pool of Transaction not in Block. ">Mempool</a>.  <a href="#a3a11892f1519132f81204e57cc758666">More...</a><br /></td></tr>
 <tr class="separator:a3a11892f1519132f81204e57cc758666"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef85ab57fba69a29f857d805a54a5358"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMempool.html#aef85ab57fba69a29f857d805a54a5358">orphanExists</a> (std::string txHash) const</td></tr>
 <tr class="memdesc:aef85ab57fba69a29f857d805a54a5358"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> is a registered Orphan.  <a href="#aef85ab57fba69a29f857d805a54a5358">More...</a><br /></td></tr>
 <tr class="separator:aef85ab57fba69a29f857d805a54a5358"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad72ddf2809bf532f2b6c0f09922a77db"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMempool.html#ad72ddf2809bf532f2b6c0f09922a77db">outputExists</a> (<a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> id) const</td></tr>
-<tr class="memdesc:ad72ddf2809bf532f2b6c0f09922a77db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a indexed output exists.  <a href="#ad72ddf2809bf532f2b6c0f09922a77db">More...</a><br /></td></tr>
-<tr class="separator:ad72ddf2809bf532f2b6c0f09922a77db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ccb56de239266bd5cebafac3112b31e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMempool.html#a6ccb56de239266bd5cebafac3112b31e">isOrphan</a> (std::shared_ptr&lt; <a class="el" href="classTransaction.html">Transaction</a> &gt; tx) const</td></tr>
-<tr class="memdesc:a6ccb56de239266bd5cebafac3112b31e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> is Orphan.  <a href="#a6ccb56de239266bd5cebafac3112b31e">More...</a><br /></td></tr>
-<tr class="separator:a6ccb56de239266bd5cebafac3112b31e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93dc7c390ae5b561219cd654beddc36a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMempool.html#a93dc7c390ae5b561219cd654beddc36a">getHashSignature</a> (<a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> id) const</td></tr>
-<tr class="memdesc:a93dc7c390ae5b561219cd654beddc36a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the hash used to sign a <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a>.  <a href="#a93dc7c390ae5b561219cd654beddc36a">More...</a><br /></td></tr>
-<tr class="separator:a93dc7c390ae5b561219cd654beddc36a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ac1288e72c47a9c63841696901d7f3c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMempool.html#a6ac1288e72c47a9c63841696901d7f3c">isSpendable</a> (<a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> id) const</td></tr>
-<tr class="memdesc:a6ac1288e72c47a9c63841696901d7f3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if an output can be spent.  <a href="#a6ac1288e72c47a9c63841696901d7f3c">More...</a><br /></td></tr>
-<tr class="separator:a6ac1288e72c47a9c63841696901d7f3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae76e6aba14cedd96990b40d08c47ad1d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMempool.html#ae76e6aba14cedd96990b40d08c47ad1d">getOutputScript</a> (<a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> id) const</td></tr>
-<tr class="memdesc:ae76e6aba14cedd96990b40d08c47ad1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the script of an output.  <a href="#ae76e6aba14cedd96990b40d08c47ad1d">More...</a><br /></td></tr>
-<tr class="separator:ae76e6aba14cedd96990b40d08c47ad1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27d844be5aed587cc936b1b4b1fd96f3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMempool.html#a27d844be5aed587cc936b1b4b1fd96f3">valueOfOutput</a> (<a class="el" href="structTransactionIdentifier.html">TransactionIdentifier</a> id) const</td></tr>
+<tr class="memdesc:a27d844be5aed587cc936b1b4b1fd96f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fetches the value of a TransationOutput identified by a <a class="el" href="structTransactionIdentifier.html" title="Reference to the OutputTransaction of another Transaction. ">TransactionIdentifier</a>.  <a href="#a27d844be5aed587cc936b1b4b1fd96f3">More...</a><br /></td></tr>
+<tr class="separator:a27d844be5aed587cc936b1b4b1fd96f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a758a67b582b45efce637b18f4e4a01d0"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMempool.html#a758a67b582b45efce637b18f4e4a01d0">signingHash</a> (std::string txHash) const</td></tr>
+<tr class="memdesc:a758a67b582b45efce637b18f4e4a01d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fetch the hash used to sign a <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> by the <a class="el" href="structTransactionIdentifier.html" title="Reference to the OutputTransaction of another Transaction. ">TransactionIdentifier</a>.  <a href="#a758a67b582b45efce637b18f4e4a01d0">More...</a><br /></td></tr>
+<tr class="separator:a758a67b582b45efce637b18f4e4a01d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bba504baff6944c95ddd0195244bdf0"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMempool.html#a2bba504baff6944c95ddd0195244bdf0">scriptOfOutput</a> (<a class="el" href="structTransactionIdentifier.html">TransactionIdentifier</a> id) const</td></tr>
+<tr class="memdesc:a2bba504baff6944c95ddd0195244bdf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fetch the script of a TransationOutput by the <a class="el" href="structTransactionIdentifier.html" title="Reference to the OutputTransaction of another Transaction. ">TransactionIdentifier</a>.  <a href="#a2bba504baff6944c95ddd0195244bdf0">More...</a><br /></td></tr>
+<tr class="separator:a2bba504baff6944c95ddd0195244bdf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad6bb7b0310265f592a29ff9a06656333"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMempool.html#ad6bb7b0310265f592a29ff9a06656333">incrementHeight</a> ()</td></tr>
 <tr class="memdesc:ad6bb7b0310265f592a29ff9a06656333"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add one to the currentHeight.  <a href="#ad6bb7b0310265f592a29ff9a06656333">More...</a><br /></td></tr>
 <tr class="separator:ad6bb7b0310265f592a29ff9a06656333"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6306559877a38806f0a3a90aa87f8655"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMempool.html#a6306559877a38806f0a3a90aa87f8655">decrementHeight</a> ()</td></tr>
 <tr class="memdesc:a6306559877a38806f0a3a90aa87f8655"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove one from the currentHeight.  <a href="#a6306559877a38806f0a3a90aa87f8655">More...</a><br /></td></tr>
 <tr class="separator:a6306559877a38806f0a3a90aa87f8655"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54749b3d653ebd1db396fefb1bfc137c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMempool.html#a54749b3d653ebd1db396fefb1bfc137c">orphanDeps</a> (std::shared_ptr&lt; <a class="el" href="classTransaction.html">Transaction</a> &gt; tx) const</td></tr>
-<tr class="memdesc:a54749b3d653ebd1db396fefb1bfc137c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all inputs which are Orphan.  <a href="#a54749b3d653ebd1db396fefb1bfc137c">More...</a><br /></td></tr>
-<tr class="separator:a54749b3d653ebd1db396fefb1bfc137c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a216beee85149f61c603ef8ad5cdd8ef5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="transaction_8hpp.html#a379269e60c4ed3fb09a01778f31ddaad">TXType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMempool.html#a216beee85149f61c603ef8ad5cdd8ef5">type</a> (std::string txHash) const</td></tr>
 <tr class="memdesc:a216beee85149f61c603ef8ad5cdd8ef5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of a registered <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a>.  <a href="#a216beee85149f61c603ef8ad5cdd8ef5">More...</a><br /></td></tr>
 <tr class="separator:a216beee85149f61c603ef8ad5cdd8ef5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
+<tr class="memitem:a49f4348d01f198a4ea2a8945518e7091"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMempool.html#a49f4348d01f198a4ea2a8945518e7091">registerTransaction</a> (<a class="el" href="classLinkedTransaction.html#a5a9ac2804bf9a272cfa7c5de4a4d88f7">LinkedTransaction::pointer</a> tx)</td></tr>
+<tr class="memdesc:a49f4348d01f198a4ea2a8945518e7091"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process either a new <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> or an Orphan who found all the corresponding UTXO.  <a href="#a49f4348d01f198a4ea2a8945518e7091">More...</a><br /></td></tr>
+<tr class="separator:a49f4348d01f198a4ea2a8945518e7091"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae658e1104b650fbc63786bc5e77fb328"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMempool.html#ae658e1104b650fbc63786bc5e77fb328">updateOrphan</a> (std::string orphanHash)</td></tr>
 <tr class="memdesc:ae658e1104b650fbc63786bc5e77fb328"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle an output being registered.  <a href="#ae658e1104b650fbc63786bc5e77fb328">More...</a><br /></td></tr>
 <tr class="separator:ae658e1104b650fbc63786bc5e77fb328"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a589b0f1f4f88862bab6627771574e297"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMempool.html#a589b0f1f4f88862bab6627771574e297">checkOrphan</a> (std::string orphanHash) const</td></tr>
-<tr class="memdesc:a589b0f1f4f88862bab6627771574e297"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if an orphan is still orphan.  <a href="#a589b0f1f4f88862bab6627771574e297">More...</a><br /></td></tr>
-<tr class="separator:a589b0f1f4f88862bab6627771574e297"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -139,10 +127,10 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:ad4ec0d1398ded82c7324a099b92b80cc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMempool.html#ad4ec0d1398ded82c7324a099b92b80cc">currentHeight</a></td></tr>
 <tr class="memdesc:ad4ec0d1398ded82c7324a099b92b80cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Height of the <a class="el" href="classBlockchain.html">Blockchain</a>.  <a href="#ad4ec0d1398ded82c7324a099b92b80cc">More...</a><br /></td></tr>
 <tr class="separator:ad4ec0d1398ded82c7324a099b92b80cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c0f587b34c99369786379717b0b1347"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classHashMemory.html">HashMemory</a>&lt; <a class="el" href="classTransaction.html">Transaction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMempool.html#a6c0f587b34c99369786379717b0b1347">mainPool</a></td></tr>
-<tr class="separator:a6c0f587b34c99369786379717b0b1347"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a215dd76ed87ac826511573e8fc91885a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classHashMemory.html">HashMemory</a>&lt; <a class="el" href="classTransaction.html">Transaction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMempool.html#a215dd76ed87ac826511573e8fc91885a">orphans</a></td></tr>
-<tr class="separator:a215dd76ed87ac826511573e8fc91885a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa569bbd47fb06a9ffd0cd8aac73a2e5f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classHashMemory.html">HashMemory</a>&lt; <a class="el" href="classLinkedTransaction.html">LinkedTransaction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMempool.html#aa569bbd47fb06a9ffd0cd8aac73a2e5f">mainPool</a></td></tr>
+<tr class="separator:aa569bbd47fb06a9ffd0cd8aac73a2e5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4af11ce854dd3b0a7197ae3e8099b42b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classHashMemory.html">HashMemory</a>&lt; <a class="el" href="classLinkedTransaction.html">LinkedTransaction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMempool.html#a4af11ce854dd3b0a7197ae3e8099b42b">orphans</a></td></tr>
+<tr class="separator:a4af11ce854dd3b0a7197ae3e8099b42b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a590208186b95856029bfa2613fbf04"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMempool.html#a6a590208186b95856029bfa2613fbf04">orphanUsingUTXO</a></td></tr>
 <tr class="memdesc:a6a590208186b95856029bfa2613fbf04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map of orphan using an UTXO.  <a href="#a6a590208186b95856029bfa2613fbf04">More...</a><br /></td></tr>
 <tr class="separator:a6a590208186b95856029bfa2613fbf04"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -197,40 +185,6 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a589b0f1f4f88862bab6627771574e297"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a589b0f1f4f88862bab6627771574e297">&#9670;&nbsp;</a></span>checkOrphan()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Mempool::checkOrphan </td>
-          <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>orphanHash</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Checks if an orphan is still orphan. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">orphanHash</td><td>ash of an Orphan <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a6306559877a38806f0a3a90aa87f8655"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6306559877a38806f0a3a90aa87f8655">&#9670;&nbsp;</a></span>decrementHeight()</h2>
 
@@ -276,85 +230,6 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a93dc7c390ae5b561219cd654beddc36a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93dc7c390ae5b561219cd654beddc36a">&#9670;&nbsp;</a></span>getHashSignature()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string Mempool::getHashSignature </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a>&#160;</td>
-          <td class="paramname"><em>id</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets the hash used to sign a <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">id</td><td>reference to the <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ab2b01cf87f14318e182b56462c0bf4f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab2b01cf87f14318e182b56462c0bf4f6">&#9670;&nbsp;</a></span>getInputValue()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Mempool::getInputValue </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a>&#160;</td>
-          <td class="paramname"><em>id</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get value of UTXO. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">id</td><td>reference to a <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Gets the value of the output pointed by the UTXO </dd></dl>
-
-</div>
-</div>
-<a id="ae76e6aba14cedd96990b40d08c47ad1d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae76e6aba14cedd96990b40d08c47ad1d">&#9670;&nbsp;</a></span>getOutputScript()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; std::string &gt; Mempool::getOutputScript </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a>&#160;</td>
-          <td class="paramname"><em>id</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get the script of an output. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">id</td><td>TransationOutput to get the script from </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="ad6bb7b0310265f592a29ff9a06656333"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad6bb7b0310265f592a29ff9a06656333">&#9670;&nbsp;</a></span>incrementHeight()</h2>
 
@@ -371,85 +246,6 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Add one to the currentHeight. </p>
-
-</div>
-</div>
-<a id="a6ccb56de239266bd5cebafac3112b31e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6ccb56de239266bd5cebafac3112b31e">&#9670;&nbsp;</a></span>isOrphan()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Mempool::isOrphan </td>
-          <td>(</td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classTransaction.html">Transaction</a> &gt;&#160;</td>
-          <td class="paramname"><em>tx</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Check if a <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> is Orphan. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">tx</td><td><a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> to identify </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a6ac1288e72c47a9c63841696901d7f3c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6ac1288e72c47a9c63841696901d7f3c">&#9670;&nbsp;</a></span>isSpendable()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Mempool::isSpendable </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a>&#160;</td>
-          <td class="paramname"><em>id</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Check if an output can be spent. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">id</td><td>reference to an output </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if the <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> is regular or if it is a coinbase and 42 <a class="el" href="classBlock.html" title="Block of ensicoin Transaction. ">Block</a> have passed </dd></dl>
-
-</div>
-</div>
-<a id="a54749b3d653ebd1db396fefb1bfc137c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a54749b3d653ebd1db396fefb1bfc137c">&#9670;&nbsp;</a></span>orphanDeps()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> &gt; Mempool::orphanDeps </td>
-          <td>(</td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classTransaction.html">Transaction</a> &gt;&#160;</td>
-          <td class="paramname"><em>tx</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get all inputs which are Orphan. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">tx</td><td><a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> to check </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -479,30 +275,71 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ad72ddf2809bf532f2b6c0f09922a77db"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad72ddf2809bf532f2b6c0f09922a77db">&#9670;&nbsp;</a></span>outputExists()</h2>
+<a id="a49f4348d01f198a4ea2a8945518e7091"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49f4348d01f198a4ea2a8945518e7091">&#9670;&nbsp;</a></span>registerTransaction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mempool::registerTransaction </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classLinkedTransaction.html#a5a9ac2804bf9a272cfa7c5de4a4d88f7">LinkedTransaction::pointer</a>&#160;</td>
+          <td class="paramname"><em>tx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Process either a new <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> or an Orphan who found all the corresponding UTXO. </p>
+
+</div>
+</div>
+<a id="a2bba504baff6944c95ddd0195244bdf0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bba504baff6944c95ddd0195244bdf0">&#9670;&nbsp;</a></span>scriptOfOutput()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mempool::outputExists </td>
+          <td class="memname">std::vector&lt; std::string &gt; Mempool::scriptOfOutput </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="structTransactionIdentifier.html">TransactionIdentifier</a>&#160;</td>
           <td class="paramname"><em>id</em></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Check if a indexed output exists. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">id</td><td>hash and index of output </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if and only in <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> exists in mainPool and has an input id.index </dd></dl>
+<p>Fetch the script of a TransationOutput by the <a class="el" href="structTransactionIdentifier.html" title="Reference to the OutputTransaction of another Transaction. ">TransactionIdentifier</a>. </p>
+
+</div>
+</div>
+<a id="a758a67b582b45efce637b18f4e4a01d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a758a67b582b45efce637b18f4e4a01d0">&#9670;&nbsp;</a></span>signingHash()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Mempool::signingHash </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>txHash</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fetch the hash used to sign a <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> by the <a class="el" href="structTransactionIdentifier.html" title="Reference to the OutputTransaction of another Transaction. ">TransactionIdentifier</a>. </p>
 
 </div>
 </div>
@@ -566,6 +403,26 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a27d844be5aed587cc936b1b4b1fd96f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27d844be5aed587cc936b1b4b1fd96f3">&#9670;&nbsp;</a></span>valueOfOutput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Mempool::valueOfOutput </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structTransactionIdentifier.html">TransactionIdentifier</a>&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fetches the value of a TransationOutput identified by a <a class="el" href="structTransactionIdentifier.html" title="Reference to the OutputTransaction of another Transaction. ">TransactionIdentifier</a>. </p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="ad4ec0d1398ded82c7324a099b92b80cc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad4ec0d1398ded82c7324a099b92b80cc">&#9670;&nbsp;</a></span>currentHeight</h2>
@@ -591,8 +448,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a6c0f587b34c99369786379717b0b1347"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c0f587b34c99369786379717b0b1347">&#9670;&nbsp;</a></span>mainPool</h2>
+<a id="aa569bbd47fb06a9ffd0cd8aac73a2e5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa569bbd47fb06a9ffd0cd8aac73a2e5f">&#9670;&nbsp;</a></span>mainPool</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -601,7 +458,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classHashMemory.html">HashMemory</a>&lt;<a class="el" href="classTransaction.html">Transaction</a>&gt; Mempool::mainPool</td>
+          <td class="memname"><a class="el" href="classHashMemory.html">HashMemory</a>&lt;<a class="el" href="classLinkedTransaction.html">LinkedTransaction</a>&gt; Mempool::mainPool</td>
         </tr>
       </table>
   </td>
@@ -613,8 +470,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a215dd76ed87ac826511573e8fc91885a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a215dd76ed87ac826511573e8fc91885a">&#9670;&nbsp;</a></span>orphans</h2>
+<a id="a4af11ce854dd3b0a7197ae3e8099b42b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4af11ce854dd3b0a7197ae3e8099b42b">&#9670;&nbsp;</a></span>orphans</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -623,7 +480,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classHashMemory.html">HashMemory</a>&lt;<a class="el" href="classTransaction.html">Transaction</a>&gt; Mempool::orphans</td>
+          <td class="memname"><a class="el" href="classHashMemory.html">HashMemory</a>&lt;<a class="el" href="classLinkedTransaction.html">LinkedTransaction</a>&gt; Mempool::orphans</td>
         </tr>
       </table>
   </td>

@@ -1,7 +1,6 @@
 var searchData=
 [
   ['check',['check',['../classTransaction.html#a46f1d85f39193e516f795c3afe857c90',1,'Transaction']]],
-  ['checkorphan',['checkOrphan',['../classMempool.html#a589b0f1f4f88862bab6627771574e297',1,'Mempool']]],
   ['codepointer',['codePointer',['../classScript.html#ad5811f724787c30487d0af0948015a11',1,'Script']]],
   ['coinbase',['coinbase',['../structUTXOdata.html#aec980c11dde6738bf2120fb3bd3e541f',1,'UTXOdata']]],
   ['connected',['connected',['../classConnection.html#a1445f1ca4d7fd2155a7de480340b370a',1,'Connection']]],

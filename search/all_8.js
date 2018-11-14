@@ -1,4 +1,15 @@
 var searchData=
 [
-  ['json',['json',['../classBlock.html#a9c57b74c726d68e48e96586d3511d19b',1,'Block::json()'],['../classMessage.html#a6f8e3ac2eed3a8afe9400fcd5b3447b2',1,'Message::json()'],['../classWhoAmI.html#a998c4b21d6235a84f15bd994b76be59d',1,'WhoAmI::json()'],['../structInvData.html#a660c6492448faa3a19ac27c62047152d',1,'InvData::json()'],['../classInv.html#a815854f9808009dbf9f0fdb1159061c5',1,'Inv::json()'],['../classGetData.html#a2fb121264fc1c5821e769f4f2389c6ff',1,'GetData::json()'],['../classNotFound.html#a67ee661e6a87c681d167da585c106240',1,'NotFound::json()'],['../classBlockMessage.html#afe33ddfdae83a25d98dd28541bc2fcfe',1,'BlockMessage::json()'],['../classTransactionMessage.html#af8675087bd26b6aa0c30a3e3141dda4e',1,'TransactionMessage::json()'],['../classGetBlocks.html#a8b77916e999ba0a730e31b90b4733928',1,'GetBlocks::json()'],['../classGetMempool.html#a3e6fb495c609ade4e8efd3d5668c28cf',1,'GetMempool::json()'],['../structTransactionIdentifier.html#ab8879716182a6beddfc4093e73703324',1,'TransactionIdentifier::json()'],['../structInputTransaction.html#a48914f7da4bbaae7196eda78cfb359d3',1,'InputTransaction::json()'],['../structOutputTransaction.html#aa68e74419b5d85bcfa550ffbbe8a3287',1,'OutputTransaction::json()'],['../classTransaction.html#a41561665dfeef8f887fdc86f3c9849f8',1,'Transaction::json()']]]
+  ['idle',['idle',['../classConnection.html#a4f79c85d33fd0a9e640405ec665cc01d',1,'Connection']]],
+  ['incrementheight',['incrementHeight',['../classMempool.html#ad6bb7b0310265f592a29ff9a06656333',1,'Mempool']]],
+  ['index',['index',['../structTransactionIdentifier.html#a667fa04ae76976ba5b3940621fb5f8ad',1,'TransactionIdentifier']]],
+  ['inputs',['inputs',['../classTransaction.html#a3a4705bed22f34645476fd9642baf806',1,'Transaction']]],
+  ['inputstack',['inputStack',['../structInputTransaction.html#aa5a4cc7735e13f63091dc5db7752c51f',1,'InputTransaction']]],
+  ['inputtransaction',['InputTransaction',['../structInputTransaction.html',1,'']]],
+  ['inputvalue',['inputValue',['../classLinkedTransaction.html#aa7a90c3eb24197ea0f5a273e0f3a2db6',1,'LinkedTransaction']]],
+  ['inv',['Inv',['../classInv.html',1,'Inv'],['../classHandler.html#a57e993a6980c5459b021aed8a429d480',1,'Handler::inv()'],['../classInv.html#adb19ce28d1bf632581bfe7f7c3a3e9e1',1,'Inv::Inv(InvData dt)'],['../classInv.html#a4b26ec79d84c931c4e09d0c1111c4f74',1,'Inv::Inv(rapidjson::Document *doc)']]],
+  ['inv_2ecpp',['inv.cpp',['../inv_8cpp.html',1,'']]],
+  ['invdata',['InvData',['../structInvData.html',1,'InvData'],['../classGetData.html#a964b166c01dbec2325e35a62f65e504c',1,'GetData::invData()'],['../structInvData.html#a04e2f1104af7ef52d684101c61a4873b',1,'InvData::InvData(std::string t, std::vector&lt; std::string &gt; hL)'],['../structInvData.html#af6b3a71e6b4e0487f33ccf0b22a38813',1,'InvData::InvData(rapidjson::Value *val)']]],
+  ['isorphan',['isOrphan',['../classLinkedTransaction.html#aa8d18db6acc05d07a63d0710e8edb45d',1,'LinkedTransaction']]],
+  ['isspendable',['isSpendable',['../classUTXOManager.html#acd99b2a1f6941e3ac30179dcc3041dd8',1,'UTXOManager']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['mempool',['Mempool',['../classMempool.html',1,'']]],
-  ['message',['Message',['../classMessage.html',1,'']]]
+  ['linkedtransaction',['LinkedTransaction',['../classLinkedTransaction.html',1,'']]]
 ];

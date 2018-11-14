@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['port',['PORT',['../constants_8hpp.html#a765a3ccfceadb6670202a0753b6f61f1',1,'constants.hpp']]],
-  ['previousoutput',['previousOutput',['../structInputTransaction.html#aef6b521b9cfe79765920ffde4436e214',1,'InputTransaction']]]
+  ['orphans',['orphans',['../classMempool.html#a4af11ce854dd3b0a7197ae3e8099b42b',1,'Mempool']]],
+  ['orphanusingutxo',['orphanUsingUTXO',['../classMempool.html#a6a590208186b95856029bfa2613fbf04',1,'Mempool']]],
+  ['outputs',['outputs',['../classTransaction.html#a1a3d542cd9b8045e1256f128728fab37',1,'Transaction']]]
 ];

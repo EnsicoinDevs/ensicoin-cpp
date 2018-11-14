@@ -69,7 +69,9 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#typedef-members">Typedefs</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">utxo.hpp File Reference</div>  </div>
 </div><!--header-->
@@ -83,6 +85,8 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstd_1_1hash_3_01UTXO_01_4.html">std::hash&lt; UTXO &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUTXOdata.html">UTXOdata</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data needed to use a UTXO.  <a href="structUTXOdata.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -90,10 +94,22 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Managing UTXOs (Unspent <a class="el" href="structOutputTransaction.html" title="Represent the output of a Transaction. ">OutputTransaction</a>)  <a href="classUTXOManager.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespacestd"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacestd.html">std</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:a19091d002da03ec92277e19295ac4540"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> = <a class="el" href="structTransactionIdentifier.html">TransactionIdentifier</a></td></tr>
 <tr class="separator:a19091d002da03ec92277e19295ac4540"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a70f6e64aff56091e21b6f792569f367c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utxo_8hpp.html#a70f6e64aff56091e21b6f792569f367c">operator==</a> (const <a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> &amp;lhs, const <a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> &amp;rhs)</td></tr>
+<tr class="separator:a70f6e64aff56091e21b6f792569f367c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeedd5e8260561501998f664fd7aa2c28"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utxo_8hpp.html#aeedd5e8260561501998f664fd7aa2c28">operator!=</a> (const <a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> &amp;lhs, const <a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> &amp;rhs)</td></tr>
+<tr class="separator:aeedd5e8260561501998f664fd7aa2c28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="a19091d002da03ec92277e19295ac4540"></a>
@@ -106,6 +122,79 @@ Typedefs</h2></td></tr>
           <td class="memname">using <a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> =  <a class="el" href="structTransactionIdentifier.html">TransactionIdentifier</a></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="aeedd5e8260561501998f664fd7aa2c28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeedd5e8260561501998f664fd7aa2c28">&#9670;&nbsp;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a70f6e64aff56091e21b6f792569f367c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70f6e64aff56091e21b6f792569f367c">&#9670;&nbsp;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

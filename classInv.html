@@ -88,6 +88,15 @@ Inheritance diagram for Inv:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a68b8cbc4d46dce513cd3ce068d9678ff"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInv.html#a68b8cbc4d46dce513cd3ce068d9678ff">getRessourceType</a> () const</td></tr>
+<tr class="memdesc:a68b8cbc4d46dce513cd3ce068d9678ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrives the type from <a class="el" href="structInvData.html" title="Data transmission over the network by mean of hashes. ">InvData</a>.  <a href="#a68b8cbc4d46dce513cd3ce068d9678ff">More...</a><br /></td></tr>
+<tr class="separator:a68b8cbc4d46dce513cd3ce068d9678ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91f651d555fd5dd69c42b6e47f7b455b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInv.html#a91f651d555fd5dd69c42b6e47f7b455b">getRessources</a> () const</td></tr>
+<tr class="memdesc:a91f651d555fd5dd69c42b6e47f7b455b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retriveses the vector of hashes from <a class="el" href="structInvData.html" title="Data transmission over the network by mean of hashes. ">InvData</a>.  <a href="#a91f651d555fd5dd69c42b6e47f7b455b">More...</a><br /></td></tr>
+<tr class="separator:a91f651d555fd5dd69c42b6e47f7b455b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3658ba884bcac87a40fb8e63dbe86063"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classGetData.html">GetData</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInv.html#a3658ba884bcac87a40fb8e63dbe86063">respondRequest</a> () const</td></tr>
+<tr class="memdesc:a3658ba884bcac87a40fb8e63dbe86063"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a response to an <a class="el" href="classInv.html" title="Transmit Block or Transaction to a peer. ">Inv</a> to request ressources by <a class="el" href="classGetData.html" title="Message to get the JSON String representing ressources. ">GetData</a>.  <a href="#a3658ba884bcac87a40fb8e63dbe86063">More...</a><br /></td></tr>
+<tr class="separator:a3658ba884bcac87a40fb8e63dbe86063"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb19ce28d1bf632581bfe7f7c3a3e9e1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInv.html#adb19ce28d1bf632581bfe7f7c3a3e9e1">Inv</a> (<a class="el" href="structInvData.html">InvData</a> dt)</td></tr>
 <tr class="memdesc:adb19ce28d1bf632581bfe7f7c3a3e9e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a <a class="el" href="classInv.html" title="Transmit Block or Transaction to a peer. ">Inv</a> from an <a class="el" href="structInvData.html" title="Data transmission over the network by mean of hashes. ">InvData</a>.  <a href="#adb19ce28d1bf632581bfe7f7c3a3e9e1">More...</a><br /></td></tr>
 <tr class="separator:adb19ce28d1bf632581bfe7f7c3a3e9e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -202,6 +211,44 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a91f651d555fd5dd69c42b6e47f7b455b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91f651d555fd5dd69c42b6e47f7b455b">&#9670;&nbsp;</a></span>getRessources()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::string &gt; Inv::getRessources </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retriveses the vector of hashes from <a class="el" href="structInvData.html" title="Data transmission over the network by mean of hashes. ">InvData</a>. </p>
+
+</div>
+</div>
+<a id="a68b8cbc4d46dce513cd3ce068d9678ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68b8cbc4d46dce513cd3ce068d9678ff">&#9670;&nbsp;</a></span>getRessourceType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Inv::getRessourceType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrives the type from <a class="el" href="structInvData.html" title="Data transmission over the network by mean of hashes. ">InvData</a>. </p>
+
+</div>
+</div>
 <a id="a815854f9808009dbf9f0fdb1159061c5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a815854f9808009dbf9f0fdb1159061c5">&#9670;&nbsp;</a></span>json()</h2>
 
@@ -235,6 +282,25 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Reimplemented from <a class="el" href="classMessage.html#a6f8e3ac2eed3a8afe9400fcd5b3447b2">Message</a>.</p>
+
+</div>
+</div>
+<a id="a3658ba884bcac87a40fb8e63dbe86063"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3658ba884bcac87a40fb8e63dbe86063">&#9670;&nbsp;</a></span>respondRequest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="classGetData.html">GetData</a> &gt; Inv::respondRequest </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a response to an <a class="el" href="classInv.html" title="Transmit Block or Transaction to a peer. ">Inv</a> to request ressources by <a class="el" href="classGetData.html" title="Message to get the JSON String representing ressources. ">GetData</a>. </p>
 
 </div>
 </div>

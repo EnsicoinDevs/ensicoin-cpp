@@ -1,9 +1,21 @@
 var searchData=
 [
-  ['node',['Node',['../classNode.html',1,'Node'],['../classNode.html#a69479b3f2c9ca25cc6f178c30c8b7da8',1,'Node::Node()'],['../classConnection.html#a0e90a6ef9361901f3d7c25e00d0a2016',1,'Connection::node()'],['../structHandler_1_1params.html#a9c2d75c37d122d3b8186a5b37c1d2526',1,'Handler::params::node()']]],
-  ['node_2ecpp',['node.cpp',['../node_8cpp.html',1,'']]],
-  ['node_2ehpp',['node.hpp',['../node_8hpp.html',1,'']]],
-  ['nonce',['nonce',['../structBlockHeader.html#ad6a79d57f2ca6045c2940ce4af58f879',1,'BlockHeader']]],
-  ['notfound',['NotFound',['../classNotFound.html',1,'NotFound'],['../classNotFound.html#aa7fd834fc95565278a43553d7bae018c',1,'NotFound::NotFound(std::string resType, std::string hashType)'],['../classNotFound.html#a52f321414fbd643f0af503f977f78078',1,'NotFound::NotFound(rapidjson::Document *doc)']]],
-  ['notfound_2ecpp',['notfound.cpp',['../notfound_8cpp.html',1,'']]]
+  ['magic',['magic',['../classMessage.html#a5bb4366b0a888886fec19ca2b2903d00',1,'Message::magic()'],['../constants_8hpp.html#aec426389714e5cfff7d295211c805dc0',1,'MAGIC():&#160;constants.hpp']]],
+  ['main',['main',['../main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main.cpp']]],
+  ['main_2ecpp',['main.cpp',['../main_8cpp.html',1,'']]],
+  ['mainpage_2emd',['mainpage.md',['../mainpage_8md.html',1,'']]],
+  ['mainpool',['mainPool',['../classMempool.html#aa569bbd47fb06a9ffd0cd8aac73a2e5f',1,'Mempool']]],
+  ['max_5fblock_5fsize',['MAX_BLOCK_SIZE',['../constants_8hpp.html#ab3abf628bb70723a3fa493968117815b',1,'constants.hpp']]],
+  ['memory',['memory',['../classHashMemory.html#a816a44aa2d5eb7f29284856f3f27ec5f',1,'HashMemory']]],
+  ['mempool',['Mempool',['../classMempool.html',1,'Mempool'],['../classLinkedTransaction.html#a3d1b6614a0f447987c0c1c5afde48415',1,'LinkedTransaction::mempool()'],['../classNode.html#a2c3b3df5c2c8f4b7e95e1aa3dfd80e25',1,'Node::mempool()'],['../classMempool.html#a7d26cf499215b7660b991b03f20937dd',1,'Mempool::Mempool()']]],
+  ['mempool_2ecpp',['mempool.cpp',['../mempool_8cpp.html',1,'']]],
+  ['mempool_2ehpp',['mempool.hpp',['../mempool_8hpp.html',1,'']]],
+  ['mempooldeps',['mempoolDeps',['../classLinkedTransaction.html#a95934344e1d63d6c73202592d7d0c8c5',1,'LinkedTransaction']]],
+  ['message',['Message',['../classMessage.html',1,'Message'],['../classMessage.html#aa222cbc5bf7865d5464a841740f45c11',1,'Message::Message(std::string type)'],['../classMessage.html#a92ef92d05b8d6ca2647aff6eeb61df70',1,'Message::Message(rapidjson::Document *doc)']]],
+  ['message_5flimit',['MESSAGE_LIMIT',['../constants_8hpp.html#aa83d2186d4c042afdbcb997b8525e493',1,'constants.hpp']]],
+  ['messagehandler_2ecpp',['messagehandler.cpp',['../messagehandler_8cpp.html',1,'']]],
+  ['messagehandler_2ehpp',['messagehandler.hpp',['../messagehandler_8hpp.html',1,'']]],
+  ['messagepointer',['messagePointer',['../classMessage.html#a3f7f2aa1058cb5f0b74a1fbb7fcd00e5',1,'Message']]],
+  ['messages_2ecpp',['messages.cpp',['../messages_8cpp.html',1,'']]],
+  ['messages_2ehpp',['messages.hpp',['../messages_8hpp.html',1,'']]]
 ];

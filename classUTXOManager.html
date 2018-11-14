@@ -65,7 +65,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classUTXOManager-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -83,36 +82,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa08c4e17616d0a2436df1c8307b5da26"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUTXOManager.html#aa08c4e17616d0a2436df1c8307b5da26">UTXOManager</a> ()</td></tr>
 <tr class="memdesc:aa08c4e17616d0a2436df1c8307b5da26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the database.  <a href="#aa08c4e17616d0a2436df1c8307b5da26">More...</a><br /></td></tr>
 <tr class="separator:aa08c4e17616d0a2436df1c8307b5da26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae326f42b81d5d21b5232b715e7cef076"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUTXOManager.html#ae326f42b81d5d21b5232b715e7cef076">getValue</a> (<a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> id) const</td></tr>
-<tr class="memdesc:ae326f42b81d5d21b5232b715e7cef076"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the value of an UTXO.  <a href="#ae326f42b81d5d21b5232b715e7cef076">More...</a><br /></td></tr>
-<tr class="separator:ae326f42b81d5d21b5232b715e7cef076"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4bcd0b36baf1ed245c48a826db241345"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUTXOManager.html#a4bcd0b36baf1ed245c48a826db241345">isCoinbase</a> (<a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> id) const</td></tr>
-<tr class="memdesc:a4bcd0b36baf1ed245c48a826db241345"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if an UTXO is a coinbase.  <a href="#a4bcd0b36baf1ed245c48a826db241345">More...</a><br /></td></tr>
-<tr class="separator:a4bcd0b36baf1ed245c48a826db241345"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ae666af31dc1be4bd160a179aeef2ce"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUTXOManager.html#a4ae666af31dc1be4bd160a179aeef2ce">getHeight</a> (<a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> id) const</td></tr>
-<tr class="memdesc:a4ae666af31dc1be4bd160a179aeef2ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the height of the <a class="el" href="classBlock.html" title="Block of ensicoin Transaction. ">Block</a> including the UTXO.  <a href="#a4ae666af31dc1be4bd160a179aeef2ce">More...</a><br /></td></tr>
-<tr class="separator:a4ae666af31dc1be4bd160a179aeef2ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a156c895274840fa2c6c93fead39b38e5"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUTXOManager.html#a156c895274840fa2c6c93fead39b38e5">getOutputScript</a> (<a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> id) const</td></tr>
-<tr class="memdesc:a156c895274840fa2c6c93fead39b38e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the script of the UTXO.  <a href="#a156c895274840fa2c6c93fead39b38e5">More...</a><br /></td></tr>
-<tr class="separator:a156c895274840fa2c6c93fead39b38e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acfad0e67f3b475bd4d6a9fd0fb977e6a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUTXOManager.html#acfad0e67f3b475bd4d6a9fd0fb977e6a">getHashSignature</a> (<a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> id) const</td></tr>
-<tr class="memdesc:acfad0e67f3b475bd4d6a9fd0fb977e6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the hash to be used for calculating the signature.  <a href="#acfad0e67f3b475bd4d6a9fd0fb977e6a">More...</a><br /></td></tr>
-<tr class="separator:acfad0e67f3b475bd4d6a9fd0fb977e6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7aabe910f5f8d24604d33429f5d4bafd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structUTXOdata.html">UTXOdata</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUTXOManager.html#a7aabe910f5f8d24604d33429f5d4bafd">getData</a> (<a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> id) const</td></tr>
+<tr class="memdesc:a7aabe910f5f8d24604d33429f5d4bafd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrive an element from the database.  <a href="#a7aabe910f5f8d24604d33429f5d4bafd">More...</a><br /></td></tr>
+<tr class="separator:a7aabe910f5f8d24604d33429f5d4bafd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a599c57b261e313bd99a3783e1ad7def5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUTXOManager.html#a599c57b261e313bd99a3783e1ad7def5">exists</a> (<a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> id) const</td></tr>
 <tr class="memdesc:a599c57b261e313bd99a3783e1ad7def5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check the existence of an UTXO.  <a href="#a599c57b261e313bd99a3783e1ad7def5">More...</a><br /></td></tr>
 <tr class="separator:a599c57b261e313bd99a3783e1ad7def5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd99b2a1f6941e3ac30179dcc3041dd8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUTXOManager.html#acd99b2a1f6941e3ac30179dcc3041dd8">isSpendable</a> (<a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> id, int currentHeight) const</td></tr>
+<tr class="memdesc:acd99b2a1f6941e3ac30179dcc3041dd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells if an UTXO can be spend at a given height.  <a href="#acd99b2a1f6941e3ac30179dcc3041dd8">More...</a><br /></td></tr>
+<tr class="separator:acd99b2a1f6941e3ac30179dcc3041dd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0ed356ad058c35e0bd4f97a8eb34380"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUTXOManager.html#ab0ed356ad058c35e0bd4f97a8eb34380">add</a> (<a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> id, <a class="el" href="structUTXOdata.html">UTXOdata</a> data)</td></tr>
 <tr class="memdesc:ab0ed356ad058c35e0bd4f97a8eb34380"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an UTXO to the database.  <a href="#ab0ed356ad058c35e0bd4f97a8eb34380">More...</a><br /></td></tr>
 <tr class="separator:ab0ed356ad058c35e0bd4f97a8eb34380"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af08863b6400556a6350b3d7122cd1dc4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUTXOManager.html#af08863b6400556a6350b3d7122cd1dc4">spend</a> (<a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> txid)</td></tr>
 <tr class="memdesc:af08863b6400556a6350b3d7122cd1dc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete an UTXO because it was spent.  <a href="#af08863b6400556a6350b3d7122cd1dc4">More...</a><br /></td></tr>
 <tr class="separator:af08863b6400556a6350b3d7122cd1dc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
-Private Member Functions</h2></td></tr>
-<tr class="memitem:a7aabe910f5f8d24604d33429f5d4bafd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structUTXOdata.html">UTXOdata</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUTXOManager.html#a7aabe910f5f8d24604d33429f5d4bafd">getData</a> (<a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> id) const</td></tr>
-<tr class="memdesc:a7aabe910f5f8d24604d33429f5d4bafd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrive an element from the database.  <a href="#a7aabe910f5f8d24604d33429f5d4bafd">More...</a><br /></td></tr>
-<tr class="separator:a7aabe910f5f8d24604d33429f5d4bafd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -198,9 +182,6 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="structUTXOdata.html">UTXOdata</a> UTXOManager::getData </td>
@@ -210,114 +191,39 @@ Private Attributes</h2></td></tr>
           <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Retrive an element from the database. </p>
 
 </div>
 </div>
-<a id="acfad0e67f3b475bd4d6a9fd0fb977e6a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acfad0e67f3b475bd4d6a9fd0fb977e6a">&#9670;&nbsp;</a></span>getHashSignature()</h2>
+<a id="acd99b2a1f6941e3ac30179dcc3041dd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd99b2a1f6941e3ac30179dcc3041dd8">&#9670;&nbsp;</a></span>isSpendable()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string UTXOManager::getHashSignature </td>
+          <td class="memname">bool UTXOManager::isSpendable </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a>&#160;</td>
-          <td class="paramname"><em>id</em></td><td>)</td>
-          <td> const</td>
+          <td class="paramname"><em>id</em>, </td>
         </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get the hash to be used for calculating the signature. </p>
-
-</div>
-</div>
-<a id="a4ae666af31dc1be4bd160a179aeef2ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4ae666af31dc1be4bd160a179aeef2ce">&#9670;&nbsp;</a></span>getHeight()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
         <tr>
-          <td class="memname">int UTXOManager::getHeight </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a>&#160;</td>
-          <td class="paramname"><em>id</em></td><td>)</td>
-          <td> const</td>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>currentHeight</em>&#160;</td>
         </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get the height of the <a class="el" href="classBlock.html" title="Block of ensicoin Transaction. ">Block</a> including the UTXO. </p>
-
-</div>
-</div>
-<a id="a156c895274840fa2c6c93fead39b38e5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a156c895274840fa2c6c93fead39b38e5">&#9670;&nbsp;</a></span>getOutputScript()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; std::string &gt; UTXOManager::getOutputScript </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a>&#160;</td>
-          <td class="paramname"><em>id</em></td><td>)</td>
-          <td> const</td>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get the script of the UTXO. </p>
-
-</div>
-</div>
-<a id="ae326f42b81d5d21b5232b715e7cef076"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae326f42b81d5d21b5232b715e7cef076">&#9670;&nbsp;</a></span>getValue()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int UTXOManager::getValue </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a>&#160;</td>
-          <td class="paramname"><em>id</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get the value of an UTXO. </p>
-
-</div>
-</div>
-<a id="a4bcd0b36baf1ed245c48a826db241345"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4bcd0b36baf1ed245c48a826db241345">&#9670;&nbsp;</a></span>isCoinbase()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool UTXOManager::isCoinbase </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a>&#160;</td>
-          <td class="paramname"><em>id</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Check if an UTXO is a coinbase. </p>
+<p>Tells if an UTXO can be spend at a given height. </p>
 
 </div>
 </div>

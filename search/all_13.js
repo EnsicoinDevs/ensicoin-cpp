@@ -1,7 +1,10 @@
 var searchData=
 [
-  ['wave',['wave',['../classConnection.html#a2e12f0ca3e66692c1bc3ad858dfa2d4e',1,'Connection']]],
-  ['waved',['waved',['../classConnection.html#ac8ec569c3d8e883446c1498d6b0fa425',1,'Connection']]],
-  ['whoami',['WhoAmI',['../classWhoAmI.html',1,'WhoAmI'],['../classWhoAmI.html#ae41a2e70254eb102102cd123d26b6c9f',1,'WhoAmI::WhoAmI()'],['../classWhoAmI.html#aa6d2d42633a1fd76e4aa76442f39c29a',1,'WhoAmI::WhoAmI(rapidjson::Document *doc)'],['../classHandler.html#afe1ccc0e741e068b6d0c667fc421b820',1,'Handler::whoami()']]],
-  ['whoami_2ecpp',['whoami.cpp',['../whoami_8cpp.html',1,'']]]
+  ['valid',['valid',['../classScript.html#a2754a6aa74c68bd58271955e157ce73a',1,'Script']]],
+  ['validate',['validate',['../classBlock.html#a95b93fe89c43e5528e26316c6bb0af50',1,'Block::validate()'],['../classLinkedTransaction.html#a29b71cf739db7699726b73250b3a83b5',1,'LinkedTransaction::validate()']]],
+  ['validatescript',['validateScript',['../classLinkedTransaction.html#add82aab5dc3845f57309cf117cf2ecbf',1,'LinkedTransaction']]],
+  ['value',['value',['../structOutputTransaction.html#a938dbaea39f3d053581d744e21281ad4',1,'OutputTransaction::value()'],['../structUTXOdata.html#a255dc301eba5d915c6a5dc752ec11a86',1,'UTXOdata::value()']]],
+  ['valueofoutput',['valueOfOutput',['../classLinkedTransaction.html#a77e3d1d7ff6d7bde7695d9c20c70f8d1',1,'LinkedTransaction::valueOfOutput()'],['../classMempool.html#a27d844be5aed587cc936b1b4b1fd96f3',1,'Mempool::valueOfOutput()'],['../classTransaction.html#ab63ea38a0837fccd9baf6d3b0f89c3c5',1,'Transaction::valueOfOutput()']]],
+  ['verify',['verify',['../classECDSASignature.html#aae4f75f7c0b41adddee0123392d8d960',1,'ECDSASignature']]],
+  ['version',['version',['../structBlockHeader.html#a0df73a2de060f5cabeffb4ae97500c75',1,'BlockHeader::version()'],['../classWhoAmI.html#a5438cc57146d05f4f6b4fdfc155316fc',1,'WhoAmI::version()'],['../classTransaction.html#a7d8682b58b273ea2d0d6071355175ea3',1,'Transaction::version()'],['../constants_8hpp.html#a2b4d9172503c0e7acc008c8064e7a759',1,'VERSION():&#160;constants.hpp']]]
 ];

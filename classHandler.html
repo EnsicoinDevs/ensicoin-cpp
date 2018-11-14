@@ -95,6 +95,12 @@ Static Private Member Functions</h2></td></tr>
 <tr class="memitem:afe1ccc0e741e068b6d0c667fc421b820"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHandler.html#afe1ccc0e741e068b6d0c667fc421b820">whoami</a> (<a class="el" href="structHandler_1_1params.html">params</a> &amp;)</td></tr>
 <tr class="memdesc:afe1ccc0e741e068b6d0c667fc421b820"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does a <a class="el" href="classWhoAmI.html" title="Message used for intializing the Connection. ">WhoAmI</a> handshake beetween the nodes.  <a href="#afe1ccc0e741e068b6d0c667fc421b820">More...</a><br /></td></tr>
 <tr class="separator:afe1ccc0e741e068b6d0c667fc421b820"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57e993a6980c5459b021aed8a429d480"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHandler.html#a57e993a6980c5459b021aed8a429d480">inv</a> (<a class="el" href="structHandler_1_1params.html">params</a> &amp;)</td></tr>
+<tr class="memdesc:a57e993a6980c5459b021aed8a429d480"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if data if known.  <a href="#a57e993a6980c5459b021aed8a429d480">More...</a><br /></td></tr>
+<tr class="separator:a57e993a6980c5459b021aed8a429d480"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab36bd271fadc33cf7048246ae6d680ad"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHandler.html#ab36bd271fadc33cf7048246ae6d680ad">getdata</a> (<a class="el" href="structHandler_1_1params.html">params</a> &amp;)</td></tr>
+<tr class="memdesc:ab36bd271fadc33cf7048246ae6d680ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Responds with all ressources asked.  <a href="#ab36bd271fadc33cf7048246ae6d680ad">More...</a><br /></td></tr>
+<tr class="separator:ab36bd271fadc33cf7048246ae6d680ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac574e0e2145e6cd5b25ac5e9a535be29"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHandler.html#ac574e0e2145e6cd5b25ac5e9a535be29">unknown</a> ()</td></tr>
 <tr class="memdesc:ac574e0e2145e6cd5b25ac5e9a535be29"><td class="mdescLeft">&#160;</td><td class="mdescRight">reports a message is unknown  <a href="#ac574e0e2145e6cd5b25ac5e9a535be29">More...</a><br /></td></tr>
 <tr class="separator:ac574e0e2145e6cd5b25ac5e9a535be29"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -102,6 +108,35 @@ Static Private Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Handles actions to be taken on <a class="el" href="classMessage.html" title="Base class for all network communcation. ">Message</a>. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ab36bd271fadc33cf7048246ae6d680ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab36bd271fadc33cf7048246ae6d680ad">&#9670;&nbsp;</a></span>getdata()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Handler::getdata </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structHandler_1_1params.html">params</a> &amp;&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Responds with all ressources asked. </p>
+<dl class="section return"><dt>Returns</dt><dd>false if any of the ressources is not found. </dd></dl>
+
+</div>
+</div>
 <a id="afab4c935cf54ff1bce38c97cc4392b26"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afab4c935cf54ff1bce38c97cc4392b26">&#9670;&nbsp;</a></span>handle()</h2>
 
@@ -151,6 +186,35 @@ Static Private Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a57e993a6980c5459b021aed8a429d480"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57e993a6980c5459b021aed8a429d480">&#9670;&nbsp;</a></span>inv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Handler::inv </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structHandler_1_1params.html">params</a> &amp;&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks if data if known. </p>
+<dl class="section return"><dt>Returns</dt><dd>Respond with true if all ressources are known (including if the ressource type is unknown) </dd></dl>
 
 </div>
 </div>

@@ -83,6 +83,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a69479b3f2c9ca25cc6f178c30c8b7da8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNode.html#a69479b3f2c9ca25cc6f178c30c8b7da8">Node</a> (asio::io_context &amp;io_context)</td></tr>
 <tr class="memdesc:a69479b3f2c9ca25cc6f178c30c8b7da8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a <a class="el" href="classNode.html" title="Node handling messages and processing. ">Node</a>.  <a href="#a69479b3f2c9ca25cc6f178c30c8b7da8">More...</a><br /></td></tr>
 <tr class="separator:a69479b3f2c9ca25cc6f178c30c8b7da8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cd47ec233da458213deba11964ee663"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNode.html#a9cd47ec233da458213deba11964ee663">transactionExists</a> (std::string txHash) const</td></tr>
+<tr class="memdesc:a9cd47ec233da458213deba11964ee663"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a transaction is known (either Orphan or Regular)  <a href="#a9cd47ec233da458213deba11964ee663">More...</a><br /></td></tr>
+<tr class="separator:a9cd47ec233da458213deba11964ee663"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89bb61a94d73680b692280d83e83d2f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNode.html#a89bb61a94d73680b692280d83e83d2f4">run</a> ()</td></tr>
 <tr class="memdesc:a89bb61a94d73680b692280d83e83d2f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main loop of <a class="el" href="classNode.html" title="Node handling messages and processing. ">Node</a>.  <a href="#a89bb61a94d73680b692280d83e83d2f4">More...</a><br /></td></tr>
 <tr class="separator:a89bb61a94d73680b692280d83e83d2f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,7 +145,7 @@ Private Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>Executes the startup routine and creates mempools </p>
+<p>Executes the startup routine and creates the mempool </p>
 
 </div>
 </div>
@@ -197,6 +200,26 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Main loop of <a class="el" href="classNode.html" title="Node handling messages and processing. ">Node</a>. </p>
+
+</div>
+</div>
+<a id="a9cd47ec233da458213deba11964ee663"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cd47ec233da458213deba11964ee663">&#9670;&nbsp;</a></span>transactionExists()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Node::transactionExists </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>txHash</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if a transaction is known (either Orphan or Regular) </p>
 
 </div>
 </div>

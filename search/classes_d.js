@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['whoami',['WhoAmI',['../classWhoAmI.html',1,'']]]
+  ['utxodata',['UTXOdata',['../structUTXOdata.html',1,'']]],
+  ['utxomanager',['UTXOManager',['../classUTXOManager.html',1,'']]]
 ];
