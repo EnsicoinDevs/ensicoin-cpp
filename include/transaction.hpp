@@ -106,31 +106,28 @@ class Transaction : public std::enable_shared_from_this<Transaction> {
 		std::vector<std::string> getFlags() const;
 		/// \brief returns all Transaction referenced
 		std::vector<TransactionIdentifier> getInputsId() const;
-		/// \brief Calculate the value of all 
-		/// InputTransaction
-		/// \param mempool references to the UTXO
-		int inputValue(Mempool* mempool) const;
 		/// \brief Calculate the value of all
 		/// OutputTransaction
 		int outputValue() const;
 		
-		/// \brief Get the value of an OutputTransaction
-		/// \param index index of the OutputTransaction
-		int getOutputValue(int index) const;
+		/// \brief Get all the InputTransaction
+		std::vector<InputTransaction> getInputs() const;
+		/// \brief Get the script for the designed
+		/// OutputTransaction
+		std::vector<std::string> getScriptOfOutput(int index) const;
+
 		/// \brief Checks if the transaction has an 
 		/// OutputTransaction
 		/// \param index index to be verified if exists
 		bool hasOutput(int index) const;
+		/// \brief Get the value of the index-th output
+		int valueOfOutput(int index) const;
 		/// \brief Gets the number of OutputTransaction
-		int getOutputNumber() const;
+		int outputCount() const;
 
 		/// \brief Checks if the Transaction is valid by
 		/// itself
 		bool check();
-		/// \brief Checks if the Transaction is valid
-		bool validate(Mempool* mempool);
-		/// \brief Checks if all scripts are validated
-		bool validateScript(Mempool* mempool) const;
 		
 		/// \brief Get the raw string representation
 		/// \details The raw string is obtained by 

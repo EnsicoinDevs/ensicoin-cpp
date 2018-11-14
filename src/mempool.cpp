@@ -1,5 +1,6 @@
 #include "mempool.hpp"
 #include "hashmemory.hpp"
+#include "linkedtransaction.hpp"
 #include "transaction.hpp"
 #include "utxo.hpp"
 
@@ -18,10 +19,6 @@ bool Mempool::exists(std::string txHash ) const{
 	return mainPool.exists(txHash);
 }
 
-bool Mempool::outputExists(UTXO id) const{
-	return exists(id.transactionHash) && mainPool.get(id.transactionHash)->hasOutput(id.index);
-}
-
 bool Mempool::orphanExists(std::string txHash) const{
 	return orphans.exists(txHash);
 }
@@ -31,6 +28,16 @@ void Mempool::incrementHeight(){
 }
 void Mempool::decrementHeight(){
 	currentHeight--;
+}
+
+int Mempool::valueOfOutput(TransactionIdentifier id) const {
+	return mainPool.get(id.transactionHash)->valueOfOutput(id.index);
+}
+std::string Mempool::signingHash(std::string txHash) const{
+	return mainPool.get(txHash)->signingHash();
+}
+std::vector<std::string> Mempool::scriptOfOutput(TransactionIdentifier id) const{
+	return mainPool.get(id.transactionHash)->scriptOfOutput(id.index);
 }
 
 //Gets the type of a registered transaction
@@ -43,83 +50,44 @@ TXType Mempool::type(std::string txHash) const{
 		throw std::runtime_error("Cannot give type of non-existant transaction");
 }
 
-bool Mempool::isOrphan(std::shared_ptr<Transaction> tx) const{
-	for(auto& input : tx->getInputsId()){
-		if(exists(input.transactionHash) || utxos.exists(input))
-			return false;
-	}
-	return true;
-}
-bool Mempool::checkOrphan(std::string orphan) const{
-	auto tx = orphans.get(orphan);
-	for(auto& input : tx->getInputsId()){
-		if(exists(input.transactionHash) || utxos.exists(input))
-			return false;
-	}
-	return true;
-}
-
-std::vector<UTXO> Mempool::orphanDeps(std::shared_ptr<Transaction> tx) const{
-	std::vector<UTXO> out;
-	for(auto& inputID : tx->getInputsId()){
-		if(!exists(inputID.transactionHash) && !utxos.exists(inputID))
-			out.push_back(inputID);
-	}
-	return out;
-}
-
-int Mempool::getInputValue(UTXO id) const{
-	if(outputExists(id))
-		return mainPool.get(id.transactionHash)->getOutputValue(id.index);
-	return utxos.getValue(id);
-}
-
-bool Mempool::isSpendable(UTXO id) const{
-	if(!utxos.isCoinbase(id))
-		return true;
-	else return currentHeight - utxos.getHeight(id) >= 42;
-}
-
-std::vector<std::string> Mempool::getOutputScript(UTXO id) const {
-	return utxos.getOutputScript(id);
-}
-
-std::string Mempool::getHashSignature(UTXO id) const{
-	return utxos.getHashSignature(id);
-}
-
-
 bool Mempool::addTransaction(std::shared_ptr<Transaction> tr){
-	if(isOrphan(tr)){
-		if(!tr->check())
-			return false;
-		if(orphanExists(tr->hash()))
+	if(!tr->check()) 
+		return false;
+	auto linkedTX = std::make_shared<LinkedTransaction>(tr, this, &utxos);
+	if(linkedTX->isOrphan()){
+		if(orphanExists(linkedTX->hash()))
 				return false;
-		orphans.add(tr);
-		for(auto& dep : orphanDeps(tr))
-			orphanUsingUTXO[dep.str()] = tr->hash();
+		orphans.add(linkedTX);
+		for(auto& dep : linkedTX->getOrphanDeps())
+			orphanUsingUTXO[dep.str()] = 
+				linkedTX->hash();
 		return true;
 	}
 	else{
-		if(exists(tr->hash()))
+		if(exists(linkedTX->hash()))
 			return false;
-		if(!tr->validate(this))
+		if(!linkedTX->validate(currentHeight))
 			return false;
-		mainPool.add(tr);
-		for(int i=0; i < tr->getOutputNumber(); i++){
-			UTXO txOutput = {tr->hash(), i};
-			auto orphan = orphanUsingUTXO[txOutput.str()];
-			orphanUsingUTXO.erase(txOutput.str());
-			updateOrphan(orphan);
-		}
+		mainPool.add(linkedTX);
+		registerTransaction(linkedTX);
 		return true;
+	}
+}
+
+void Mempool::registerTransaction(LinkedTransaction::pointer tx){
+	for(int i=0; i < tx->outputCount(); i++){
+		UTXO txOutput = {tx->hash(), i};
+		auto orphan = orphanUsingUTXO[txOutput.str()];
+		orphanUsingUTXO.erase(txOutput.str());
+		updateOrphan(orphan);
 	}
 }
 
 void Mempool::updateOrphan(std::string orphan){
-	if(!checkOrphan(orphan)){
-		auto tx = orphans.get(orphan);
+	auto lTx = orphans.get(orphan);
+	if(!lTx->isOrphan()){
 		orphans.erase(orphan);
-		addTransaction(tx);
+		mainPool.add(lTx);
+		registerTransaction(lTx);
 	}
 }

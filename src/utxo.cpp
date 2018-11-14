@@ -32,6 +32,7 @@ std::string UTXOdata::str() const{
 	}
 	
 	doc.AddMember("script", scriptVal, doc.GetAllocator());
+	doc.AddMember("fromMempool", fromMempool, doc.GetAllocator());
 
 	StringBuffer buffer;
 	Writer<StringBuffer> writer(buffer);
@@ -56,6 +57,7 @@ UTXOdata::UTXOdata(std::string jsonStr){
 	hashWithoutInputs = doc["hashWithoutInputs"].GetString();
 	for(auto& elem : doc["script"].GetArray())
 		script.push_back(elem.GetString());
+	fromMempool = doc["fromMempool"].GetBool();
 }
 
 UTXOManager::UTXOManager(){
@@ -72,22 +74,6 @@ UTXOdata UTXOManager::getData(UTXO id) const{
 	}	
 	UTXOdata data(strData);
 	return data;
-}
-
-int UTXOManager::getValue(UTXO id) const{
-	return getData(id).value;
-}
-bool UTXOManager::isCoinbase(UTXO id) const{
-	return getData(id).coinbase;
-}
-int UTXOManager::getHeight(UTXO id) const{
-	return getData(id).height;
-}
-std::vector<std::string> UTXOManager::getOutputScript(UTXO id) const{
-	return getData(id).script;
-}
-std::string UTXOManager::getHashSignature(UTXO id) const{
-	return getData(id).hashWithoutInputs;
 }
 
 bool UTXOManager::exists(UTXO id) const{
@@ -108,3 +94,8 @@ void UTXOManager::spend(UTXO id){
 		std::cerr << "Error while deleting " << id.str() << std::endl;
 }
 
+bool UTXOManager::isSpendable(UTXO id, int currentHeight) const{
+	auto data = getData(id);
+	if (!data.coinbase) return true;
+	else return currentHeight - data.height >= 42;
+}

@@ -59,11 +59,11 @@ bool Transaction::hasOutput(int index) const{
 	return index < outputs.size();
 }
 
-int Transaction::getOutputNumber() const{
+int Transaction::outputCount() const{
 	return outputs.size();
 }
 
-int Transaction::getOutputValue(int index) const{
+int Transaction::valueOfOutput(int index) const{
 	return outputs[index].value;
 }
 
@@ -74,29 +74,14 @@ std::vector<TransactionIdentifier> Transaction::getInputsId() const{
 	return output;
 }
 
-bool Transaction::validate(Mempool* mempool){
-	if(!check()) return false;
-	if(mempool->exists(hash())) return false;
-	if(inputValue(mempool) <= outputValue()) return false;
-	if(std::any_of(inputs.begin(), 
-		       inputs.end(),
-		       [mempool](InputTransaction ip){
-				return !mempool->isSpendable(ip.previousOutput);
-			})) return false;
-	if(!validateScript(mempool)) return false;
-	return true;
+std::vector<InputTransaction> Transaction::getInputs() const{
+	return inputs;
 }
 
-bool Transaction::validateScript(Mempool* mempool) const{
-	for(auto& input : inputs){
-		auto outputScript = mempool->getOutputScript(input.previousOutput);
-		Script script(outputScript.begin(), 
-			      outputScript.end(),
-			      input.inputStack,
-			      mempool->getHashSignature(input.previousOutput));
-	}
-	return false;
+std::vector<std::string> Transaction::getScriptOfOutput(int index) const{
+	return outputs[index].scriptInstructions;
 }
+
 
 bool Transaction::check(){
 	if(inputs.empty() || outputs.empty())
@@ -113,17 +98,6 @@ int Transaction::outputValue() const{
 			sum,
 			[](int s, OutputTransaction op){
 				return s + op.value;
-			});
-	return sum;
-}
-
-int Transaction::inputValue(Mempool* mempool) const{
-	auto sum = 0;
-	std::accumulate(inputs.begin(), 
-			inputs.end(), 
-			sum, 
-			[mempool](int s,InputTransaction ip){
-				return s + mempool->getInputValue(ip.previousOutput);
 			});
 	return sum;
 }

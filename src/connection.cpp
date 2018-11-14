@@ -75,6 +75,9 @@ void Connection::handleRead(){
 		idle();
 	else{
 		resetBuffer();
+		
+		std::cerr << "JsonCompleted : " << jsonData << std::endl;
+		
 		Handler::handle(&doc, node, shared_from_this());
 		idle();	
 	}
