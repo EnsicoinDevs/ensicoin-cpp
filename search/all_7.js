@@ -5,7 +5,7 @@ var searchData=
   ['handler',['Handler',['../classHandler.html',1,'']]],
   ['handleread',['handleRead',['../classConnection.html#af084bfb2043337222d885cc8cc46201d',1,'Connection']]],
   ['handlewrite',['handleWrite',['../classConnection.html#a0b08401c5769b84c2a2b4b99363925fa',1,'Connection']]],
-  ['hash',['hash',['../classNotFound.html#ace964753b12aac33c1f05bbdb6bf813b',1,'NotFound::hash()'],['../classBlock.html#aee23e922b822767c6e0f1851f8af382f',1,'Block::hash()'],['../classLinkedTransaction.html#a5a3c41939d147ca11a46955ee70fff65',1,'LinkedTransaction::hash()'],['../classTransaction.html#a99a851c61b60c1dd15b3e9bdd50f32f6',1,'Transaction::hash()']]],
+  ['hash',['hash',['../classNotFound.html#ace964753b12aac33c1f05bbdb6bf813b',1,'NotFound::hash()'],['../classBlock.html#aee23e922b822767c6e0f1851f8af382f',1,'Block::hash()'],['../classTransaction.html#a99a851c61b60c1dd15b3e9bdd50f32f6',1,'Transaction::hash()']]],
   ['hash_3c_20utxo_20_3e',['hash&lt; UTXO &gt;',['../structstd_1_1hash_3_01UTXO_01_4.html',1,'std']]],
   ['hashes',['hashes',['../structInvData.html#ac7cd0400472c8a41a86960bc37ad7a3d',1,'InvData']]],
   ['hashmemory',['HashMemory',['../classHashMemory.html',1,'']]],

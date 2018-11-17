@@ -4,7 +4,6 @@ var searchData=
   ['transaction',['transaction',['../classTransactionMessage.html#a5949ed4449ab8031ffc6342268b981ff',1,'TransactionMessage']]],
   ['transactionflags',['transactionFlags',['../classTransaction.html#afba77571560d1c92a2bb55a2adc4a9fc',1,'Transaction']]],
   ['transactionhash',['transactionHash',['../classScript.html#a483186fc03c980f1db03cc185ea51785',1,'Script::transactionHash()'],['../structTransactionIdentifier.html#a4fbb1245879f1cccdc27b64ad7f0cbac',1,'TransactionIdentifier::transactionHash()']]],
-  ['transactionpointer',['transactionPointer',['../classLinkedTransaction.html#a3c3846c7c9bc06302f38e1a83ad99d1d',1,'LinkedTransaction']]],
   ['transactions',['transactions',['../classBlock.html#a871f51555b26a13d77a437a0255804f5',1,'Block']]],
   ['type',['type',['../classMessage.html#ae9dead264183a4243c120026e6259b6f',1,'Message::type()'],['../structInvData.html#a65d4044e395865238407578784cfccea',1,'InvData::type()']]]
 ];

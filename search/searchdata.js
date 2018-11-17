@@ -9,7 +9,7 @@ var indexSectionsWithContent =
   6: "empu",
   7: "t",
   8: "or",
-  9: "e"
+  9: "et"
 };
 
 var indexSectionNames =

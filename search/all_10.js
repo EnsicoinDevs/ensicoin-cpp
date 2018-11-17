@@ -1,14 +1,14 @@
 var searchData=
 [
-  ['script',['Script',['../classScript.html',1,'Script'],['../classScript.html#ac5dfef3a38ce09aa3d664b041b4b47e1',1,'Script::Script()'],['../structUTXOdata.html#a9195f06da49760fd982965b008f906c2',1,'UTXOdata::script()']]],
+  ['script',['Script',['../classScript.html',1,'Script'],['../structUTXOdata.html#a9195f06da49760fd982965b008f906c2',1,'UTXOdata::script()'],['../classScript.html#ac5dfef3a38ce09aa3d664b041b4b47e1',1,'Script::Script()']]],
   ['script_2ecpp',['script.cpp',['../script_8cpp.html',1,'']]],
   ['script_2ehpp',['script.hpp',['../script_8hpp.html',1,'']]],
   ['scriptinstructions',['scriptInstructions',['../structOutputTransaction.html#a32dcca6abe10eba274ba85f3460ceb84',1,'OutputTransaction']]],
-  ['scriptofoutput',['scriptOfOutput',['../classLinkedTransaction.html#a5b4cd635610b0dec4d156d6dbe731bf3',1,'LinkedTransaction::scriptOfOutput()'],['../classMempool.html#a2bba504baff6944c95ddd0195244bdf0',1,'Mempool::scriptOfOutput()']]],
+  ['scriptofoutput',['scriptOfOutput',['../classMempool.html#a2bba504baff6944c95ddd0195244bdf0',1,'Mempool']]],
   ['sendmessage',['sendMessage',['../classConnection.html#ad8fa49332af5ccc42768f94bdf711187',1,'Connection']]],
   ['sha256',['sha256',['../crypto_8hpp.html#a6ba01f11a1b2f987950b2909a08fef50',1,'sha256(std::string input, bool unpack=false):&#160;crypto.cpp'],['../crypto_8cpp.html#a3f0d6c95e569656d7be2848df2b6df69',1,'sha256(std::string message, bool unpack):&#160;crypto.cpp']]],
   ['signature',['signature',['../classECDSASignature.html#aae4afcd90bbe797c9c60fb6967dd0849',1,'ECDSASignature']]],
-  ['signinghash',['signingHash',['../classLinkedTransaction.html#ad0627630608baabc01afa6deaf8f6d70',1,'LinkedTransaction::signingHash()'],['../classMempool.html#a758a67b582b45efce637b18f4e4a01d0',1,'Mempool::signingHash()']]],
+  ['signinghash',['signingHash',['../classMempool.html#a758a67b582b45efce637b18f4e4a01d0',1,'Mempool']]],
   ['socket',['socket',['../classConnection.html#a8b4cf76de02e4eaa6a2afdc65c42cfdc',1,'Connection']]],
   ['spend',['spend',['../classUTXOManager.html#af08863b6400556a6350b3d7122cd1dc4',1,'UTXOManager']]],
   ['start',['start',['../classConnection.html#a47c25a31352a71e2a6902d37fc5fa2ba',1,'Connection']]],
