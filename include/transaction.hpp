@@ -26,7 +26,7 @@ struct TransactionIdentifier{
 	/// by concatanateing all the fields
 	std::string str() const;
 	/// \brief Get the JSON reperesentation
-	/// \parama document Document used for the Allocation of
+	/// \param document Document used for the Allocation of
 	/// members
 	Value json(Document* document) const;
 	/// \brief Load the fields from a JSON object
@@ -45,7 +45,7 @@ struct InputTransaction{
 	/// by concatanateing all the fields
 	std::string str() const;
 	/// \brief Get the JSON reperesentation
-	/// \parama document Document used for the Allocation of
+	/// \param document Document used for the Allocation of
 	/// members
 	Value json(Document* document) const;
 	/// \brief Load the fields from a JSON object
@@ -65,7 +65,7 @@ struct OutputTransaction{
 	/// by concatanateing all the fields
 	std::string str() const;
 	/// \brief Get the JSON reperesentation
-	/// \parama document Document used for the Allocation of
+	/// \param document Document used for the Allocation of
 	/// members
 	Value json(Document* document) const;
 	/// \brief Load the fields from a JSON object
@@ -79,7 +79,7 @@ enum TXType { Orphan, Regular };
 
 /// \brief A class representing an exchange of ensicoins
 class Transaction : public std::enable_shared_from_this<Transaction> {
-	private:
+	protected:
 		/// \brief Referenced in constants.hpp
 		int version;
 		/// \brief User defined flags

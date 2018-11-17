@@ -34,10 +34,10 @@ int Mempool::valueOfOutput(TransactionIdentifier id) const {
 	return mainPool.get(id.transactionHash)->valueOfOutput(id.index);
 }
 std::string Mempool::signingHash(std::string txHash) const{
-	return mainPool.get(txHash)->signingHash();
+	return mainPool.get(txHash)->hashWithoutInputs();
 }
 std::vector<std::string> Mempool::scriptOfOutput(TransactionIdentifier id) const{
-	return mainPool.get(id.transactionHash)->scriptOfOutput(id.index);
+	return mainPool.get(id.transactionHash)->getScriptOfOutput(id.index);
 }
 
 //Gets the type of a registered transaction

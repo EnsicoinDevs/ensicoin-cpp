@@ -26,13 +26,13 @@ LinkedTransaction::LinkedTransaction(std::shared_ptr<Transaction> tx,
 
 bool LinkedTransaction::isOrphan() const{
 	return (dependencies.size() + mempoolDeps.size()) != 
-	        transactionPointer->getInputsId().size();
+	        inputs.size();
 }
 
 std::vector<UTXO> LinkedTransaction::getOrphanDeps() const{
 	std::vector<UTXO> orphaned;
-	std::copy_if( transactionPointer->getInputsId().begin(),
-		      transactionPointer->getInputsId().end(),
+	std::copy_if( getInputsId().begin(),
+		      getInputsId().end(),
 		      std::back_inserter(orphaned),
 		      [&dependencies = dependencies,
 		      &mempoolDeps = mempoolDeps](UTXO id){
@@ -40,13 +40,6 @@ std::vector<UTXO> LinkedTransaction::getOrphanDeps() const{
 				&& (mempoolDeps.count(id) == 0);
 		      });
 	return orphaned;
-}
-
-int LinkedTransaction::outputValue() const{
-	return transactionPointer->outputValue();
-}
-std::string LinkedTransaction::signingHash() const{
-	return transactionPointer->hashWithoutInputs();
 }
 
 int LinkedTransaction::inputValue() const{
@@ -72,30 +65,14 @@ int LinkedTransaction::inputValue() const{
 	return sum;
 }
 
-std::string LinkedTransaction::hash() const{
-	return transactionPointer->hash();
-}
-
-int LinkedTransaction::outputCount() const{
-	return transactionPointer->outputCount();
-}
-
-int LinkedTransaction::valueOfOutput(int index) const{
-	return transactionPointer->valueOfOutput(index);
-}
-
-std::vector<std::string> LinkedTransaction::scriptOfOutput(int index) const{
-	return transactionPointer->getScriptOfOutput(index);
-}
-
 bool LinkedTransaction::validate(int currentHeight){
-	if(!transactionPointer->check()) return false;
+	if(!check()) return false;
 	if(isOrphan()) return false;
 	if(mempool->exists(hash())) return false;
 	if(inputValue() <= 
-	   transactionPointer->outputValue()) return false;
-	if(std::any_of(transactionPointer->getInputsId().begin(), 
-		       transactionPointer->getInputsId().end(),
+	   outputValue()) return false;
+	if(std::any_of(getInputsId().begin(), 
+		       getInputsId().end(),
 		       [&utxos = utxos, currentHeight](UTXO id){
 				return !utxos->isSpendable(id, currentHeight);
 			})) return false;
@@ -104,7 +81,7 @@ bool LinkedTransaction::validate(int currentHeight){
 }
 
 bool LinkedTransaction::validateScript(){
-	for(auto& input : transactionPointer->getInputs()){
+	for(auto& input : inputs){
 		auto id = input.previousOutput;
 		std::vector<std::string> scriptInstr;
 		std::string hashToSign;
