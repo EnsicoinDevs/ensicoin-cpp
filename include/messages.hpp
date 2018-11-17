@@ -206,7 +206,7 @@ class GetMempool : public Message{
 		/// \param doc JSON to be parsed
 		explicit GetMempool(rapidjson::Document* doc);
 		/// \brief Create the JSON representation
-		/// \param document Document used for Allocation of 
+		/// \param doc Document used for Allocation of 
 		/// members
 		rapidjson::Value json(rapidjson::Document* doc) const override;
 };

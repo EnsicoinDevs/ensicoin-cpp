@@ -16,7 +16,7 @@ class Handler {
 		struct params{
 			/// \brief JSON representation of a Message
 			rapidjson::Document* doc;
-			/// \breif Node to act on state
+			/// \brief Node to act on state
 			Node* node;
 			/// \brief Connection to respond
 			std::shared_ptr<Connection> connection;
