@@ -11,6 +11,46 @@
 
 using namespace rapidjson;
 
+void BlockTarget::update(int timeTaken){
+
+}
+
+bool BlockTarget::blockInferior(const Block& target) const {
+	return target.compressedHash() < value;
+}
+
+std::string BlockHeader::rawStr() const{
+	std::ostringstream os;
+	os << version;
+	for(const auto& flag: blockFlags){
+		os << flag;
+	}
+	os << hashPrevBlock << 
+	      hashTransactions << 
+	      timestamp << 
+	      nonce;
+	return os.str();
+}
+
+std::string BlockHeader::hash() const{
+	return sha256(sha256(rawStr()),true);
+}
+
+std::string Block::compressedHash() const{
+	auto blockHash = hash();
+	int trailingZeroCount = 0;
+	int hashLength = blockHash.length();
+	while( trailingZeroCount < hashLength && blockHash[trailingZeroCount] == '0')
+		++trailingZeroCount;
+	// From here on trailingZeroCount count the number of trailling zeros
+	int exponent = (64-trailingZeroCount) / 2;
+	std::string mantissa = blockHash.substr(trailingZeroCount, 6);
+	
+	std::stringstream ss;
+	ss << std::hex << exponent << mantissa;
+	return ss.str();
+}
+
 Block::Block(BlockHeader head, std::vector<std::shared_ptr<Transaction> > transactionList) :
 	header(head),
 	transactions(transactionList) {}
@@ -77,11 +117,7 @@ Value Block::json(Document* document) const {
 
 std::string Block::rawStr() const {
 	std::ostringstream os;
-	os << header.version;
-	for(const auto& flag: header.blockFlags){
-		os << flag;
-	}
-	os << header.hashPrevBlock << header.hashTransactions << header.timestamp << header.nonce;
+	os << header.rawStr();
 	for(const auto& transaction : transactions){
 		os << transaction->rawStr(); 
 	}
@@ -89,7 +125,7 @@ std::string Block::rawStr() const {
 }
 
 std::string Block::hash() const{
-	return sha256(sha256(rawStr()),true);
+	return header.hash();
 }
 
 bool Block::validate(){

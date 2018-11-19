@@ -25,6 +25,9 @@ struct BlockHeader{
 	std::time_t timestamp;
 	/// \brief Block nonce
 	int nonce;
+
+	std::string rawStr() const;
+	std::string hash() const;
 };
 
 /// \brief Block of ensicoin Transaction
@@ -62,11 +65,24 @@ class Block{
 		/// \details Creates the hash by applying twice
 		/// sha256 to the raw string
 		std::string hash() const;
+		/// \brief lossy compression of the hash for 
+		/// BlockTarget comparaison
+		std::string compressedHash() const;
 
 		/// \brief Validates the Block
 		/// \details Checks if all Transaction are valid
 		/// and that a coinbase exists
 		bool validate();
 };
+
+/// \brief A target for a Block
+class BlockTarget{
+	private:
+		std::string value;
+	public:
+		void update(int timeTaken);
+		bool blockInferior(const Block& block) const;
+};
+
 
 #endif /* BLOCKS_HPP */
