@@ -25,7 +25,7 @@ class LinkedTransaction : public Transaction {
 		/// \brief Gives all inputs who are orphaned
 		std::vector<UTXO> getOrphanDeps() const;
 		/// \brief Get the value of inputs
-		int inputValue() const;
+		unsigned int inputValue() const;
 		
 
 		/// \brief Validate the Transaction

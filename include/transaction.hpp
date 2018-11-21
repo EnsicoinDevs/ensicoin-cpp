@@ -19,7 +19,7 @@ struct TransactionIdentifier{
 	/// \brief Hash of the refrenced Transaction
 	std::string transactionHash;
 	/// \brief Index of the OutputTransaction
-	int index;
+	unsigned int index;
 	
 	/// \brief Get the raw string representation
 	/// \details the raw string representation is obtained
@@ -108,7 +108,7 @@ class Transaction : public std::enable_shared_from_this<Transaction> {
 		std::vector<TransactionIdentifier> getInputsId() const;
 		/// \brief Calculate the value of all
 		/// OutputTransaction
-		int outputValue() const;
+		unsigned int outputValue() const;
 		
 		/// \brief Get all the InputTransaction
 		std::vector<InputTransaction> getInputs() const;
@@ -119,11 +119,11 @@ class Transaction : public std::enable_shared_from_this<Transaction> {
 		/// \brief Checks if the transaction has an 
 		/// OutputTransaction
 		/// \param index index to be verified if exists
-		bool hasOutput(int index) const;
+		bool hasOutput(unsigned int index) const;
 		/// \brief Get the value of the index-th output
-		int valueOfOutput(int index) const;
+		unsigned int valueOfOutput(unsigned int index) const;
 		/// \brief Gets the number of OutputTransaction
-		int outputCount() const;
+		unsigned int outputCount() const;
 
 		/// \brief Checks if the Transaction is valid by
 		/// itself

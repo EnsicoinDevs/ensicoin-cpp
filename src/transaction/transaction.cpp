@@ -55,15 +55,15 @@ std::vector<std::string> Transaction::getFlags() const {
 	return transactionFlags;
 }
 
-bool Transaction::hasOutput(int index) const{
+bool Transaction::hasOutput(unsigned int index) const{
 	return index < outputs.size();
 }
 
-int Transaction::outputCount() const{
+unsigned int Transaction::outputCount() const{
 	return outputs.size();
 }
 
-int Transaction::valueOfOutput(int index) const{
+unsigned int Transaction::valueOfOutput(unsigned int index) const{
 	return outputs[index].value;
 }
 
@@ -91,7 +91,7 @@ bool Transaction::check(){
 	return !std::any_of(outputs.begin(), outputs.end(), [](OutputTransaction output){return output.value<=0;});
 }
 
-int Transaction::outputValue() const{
+unsigned int Transaction::outputValue() const{
 	auto sum = 0;
 	std::accumulate(outputs.begin(),
 			outputs.end(),
