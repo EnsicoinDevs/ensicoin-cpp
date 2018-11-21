@@ -22,5 +22,7 @@ extern const std::string DATA_PATH;
 extern const std::string UTXO_DB;
 /// \brief folder of Blockchain database
 extern const std::string BLOCKCHAIN_DB;
+/// \brief file with stats for the Blockchain
+extern const std::string BLOCKCHAIN_STAT;
 
 #endif /* CONSTANTS_HPP */
