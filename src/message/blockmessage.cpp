@@ -16,8 +16,8 @@ BlockMessage::BlockMessage(rapidjson::Document* doc) : Message(doc) {
 
 rapidjson::Value BlockMessage::json(rapidjson::Document* document) const{
 	rapidjson::Value messageValue = Message::json(document);
-	rapidjson::Value content = block->json(document);
+	//rapidjson::Value content = block->json(document);
 	
-	messageValue.AddMember("message", content, document->GetAllocator());
+	//messageValue.AddMember("message", content, document->GetAllocator());
 	return messageValue;
 }

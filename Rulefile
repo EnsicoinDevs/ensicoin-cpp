@@ -1,97 +1,105 @@
 obj/messagehandler.o: src/messagehandler.cpp include/messagehandler.hpp \
-  include/messages.hpp include/blocks.hpp include/transaction.hpp \
-  include/hashmemory.hpp include/script.hpp include/connection.hpp \
-  include/node.hpp include/blockchain.hpp include/mempool.hpp \
-  include/linkedtransaction.hpp include/utxo.hpp
+  include/messages.hpp include/blocks.hpp include/jsonable.hpp \
+  include/transaction.hpp include/hashmemory.hpp include/script.hpp \
+  include/connection.hpp include/node.hpp include/blockchain.hpp \
+  include/mempool.hpp include/linkedtransaction.hpp include/utxo.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/blockchain.o: src/blockchain.cpp include/blockchain.hpp \
-  include/blocks.hpp include/transaction.hpp include/hashmemory.hpp \
-  include/script.hpp include/constants.hpp
+  include/blocks.hpp include/jsonable.hpp include/transaction.hpp \
+  include/hashmemory.hpp include/script.hpp include/constants.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/getdata.o: src/message/getdata.cpp include/messages.hpp \
-  include/blocks.hpp include/transaction.hpp include/hashmemory.hpp \
-  include/script.hpp
+  include/blocks.hpp include/jsonable.hpp include/transaction.hpp \
+  include/hashmemory.hpp include/script.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/script.o: src/script.cpp include/script.hpp include/crypto.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/messages.o: src/message/messages.cpp include/messages.hpp \
-  include/blocks.hpp include/transaction.hpp include/hashmemory.hpp \
-  include/script.hpp include/constants.hpp
+  include/blocks.hpp include/jsonable.hpp include/transaction.hpp \
+  include/hashmemory.hpp include/script.hpp include/constants.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/linkedtransaction.o: src/linkedtransaction.cpp \
   include/linkedtransaction.hpp include/transaction.hpp \
-  include/hashmemory.hpp include/script.hpp include/utxo.hpp \
-  include/mempool.hpp
+  include/hashmemory.hpp include/jsonable.hpp include/script.hpp \
+  include/utxo.hpp include/mempool.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/connection.o: src/connection.cpp include/connection.hpp \
-  include/messages.hpp include/blocks.hpp include/transaction.hpp \
-  include/hashmemory.hpp include/script.hpp include/constants.hpp \
-  include/messagehandler.hpp
+  include/messages.hpp include/blocks.hpp include/jsonable.hpp \
+  include/transaction.hpp include/hashmemory.hpp include/script.hpp \
+  include/constants.hpp include/messagehandler.hpp
+	$(CXX) -c -o $@ $< $(CXXFLAGS)
+obj/jsonable.o: src/jsonable.cpp include/jsonable.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/inv.o: src/message/inv.cpp include/messages.hpp include/blocks.hpp \
-  include/transaction.hpp include/hashmemory.hpp include/script.hpp
-	$(CXX) -c -o $@ $< $(CXXFLAGS)
-obj/whoami.o: src/message/whoami.cpp include/messages.hpp include/blocks.hpp \
-  include/transaction.hpp include/hashmemory.hpp include/script.hpp \
-  include/constants.hpp
-	$(CXX) -c -o $@ $< $(CXXFLAGS)
-obj/notfound.o: src/message/notfound.cpp include/messages.hpp \
-  include/blocks.hpp include/transaction.hpp include/hashmemory.hpp \
+  include/jsonable.hpp include/transaction.hpp include/hashmemory.hpp \
   include/script.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
-obj/transactionid.o: src/transaction/transactionid.cpp \
-  include/transaction.hpp include/hashmemory.hpp include/script.hpp
+obj/whoami.o: src/message/whoami.cpp include/messages.hpp include/blocks.hpp \
+  include/jsonable.hpp include/transaction.hpp include/hashmemory.hpp \
+  include/script.hpp include/constants.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
-obj/utxo.o: src/utxo.cpp include/utxo.hpp include/transaction.hpp \
-  include/hashmemory.hpp include/script.hpp include/constants.hpp
-	$(CXX) -c -o $@ $< $(CXXFLAGS)
-obj/blocks.o: src/blocks.cpp include/blocks.hpp include/transaction.hpp \
-  include/hashmemory.hpp include/script.hpp include/crypto.hpp
-	$(CXX) -c -o $@ $< $(CXXFLAGS)
-obj/transactionmessage.o: src/message/transactionmessage.cpp \
-  include/messages.hpp include/blocks.hpp include/transaction.hpp \
+obj/notfound.o: src/message/notfound.cpp include/messages.hpp \
+  include/blocks.hpp include/jsonable.hpp include/transaction.hpp \
   include/hashmemory.hpp include/script.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
+obj/transactionid.o: src/transaction/transactionid.cpp \
+  include/transaction.hpp include/hashmemory.hpp include/jsonable.hpp \
+  include/script.hpp
+	$(CXX) -c -o $@ $< $(CXXFLAGS)
+obj/utxo.o: src/utxo.cpp include/utxo.hpp include/transaction.hpp \
+  include/hashmemory.hpp include/jsonable.hpp include/script.hpp \
+  include/constants.hpp
+	$(CXX) -c -o $@ $< $(CXXFLAGS)
+obj/blocks.o: src/blocks.cpp include/blocks.hpp include/jsonable.hpp \
+  include/transaction.hpp include/hashmemory.hpp include/script.hpp \
+  include/crypto.hpp
+	$(CXX) -c -o $@ $< $(CXXFLAGS)
+obj/transactionmessage.o: src/message/transactionmessage.cpp \
+  include/messages.hpp include/blocks.hpp include/jsonable.hpp \
+  include/transaction.hpp include/hashmemory.hpp include/script.hpp
+	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/transaction.o: src/transaction/transaction.cpp include/transaction.hpp \
-  include/hashmemory.hpp include/script.hpp include/blocks.hpp \
-  include/constants.hpp include/crypto.hpp include/mempool.hpp \
-  include/linkedtransaction.hpp include/utxo.hpp
+  include/hashmemory.hpp include/jsonable.hpp include/script.hpp \
+  include/blocks.hpp include/constants.hpp include/crypto.hpp \
+  include/mempool.hpp include/linkedtransaction.hpp include/utxo.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/crypto.o: src/crypto.cpp include/crypto.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/transactionoutput.o: src/transaction/transactionoutput.cpp \
-  include/transaction.hpp include/hashmemory.hpp include/script.hpp
+  include/transaction.hpp include/hashmemory.hpp include/jsonable.hpp \
+  include/script.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/main.o: src/main.cpp include/constants.hpp include/crypto.hpp \
-  include/script.hpp include/blocks.hpp include/transaction.hpp \
-  include/hashmemory.hpp include/node.hpp include/blockchain.hpp \
-  include/connection.hpp include/messages.hpp include/mempool.hpp \
-  include/linkedtransaction.hpp include/utxo.hpp
+  include/script.hpp include/blocks.hpp include/jsonable.hpp \
+  include/transaction.hpp include/hashmemory.hpp include/node.hpp \
+  include/blockchain.hpp include/connection.hpp include/messages.hpp \
+  include/mempool.hpp include/linkedtransaction.hpp include/utxo.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/getmempool.o: src/message/getmempool.cpp include/messages.hpp \
-  include/blocks.hpp include/transaction.hpp include/hashmemory.hpp \
-  include/script.hpp
+  include/blocks.hpp include/jsonable.hpp include/transaction.hpp \
+  include/hashmemory.hpp include/script.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/constants.o: src/constants.cpp include/constants.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/getblocks.o: src/message/getblocks.cpp include/messages.hpp \
-  include/blocks.hpp include/transaction.hpp include/hashmemory.hpp \
-  include/script.hpp
+  include/blocks.hpp include/jsonable.hpp include/transaction.hpp \
+  include/hashmemory.hpp include/script.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/mempool.o: src/mempool.cpp include/mempool.hpp include/hashmemory.hpp \
   include/linkedtransaction.hpp include/transaction.hpp \
-  include/script.hpp include/utxo.hpp
+  include/jsonable.hpp include/script.hpp include/utxo.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/blockmessage.o: src/message/blockmessage.cpp include/messages.hpp \
-  include/blocks.hpp include/transaction.hpp include/hashmemory.hpp \
-  include/script.hpp
+  include/blocks.hpp include/jsonable.hpp include/transaction.hpp \
+  include/hashmemory.hpp include/script.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/transactioninput.o: src/transaction/transactioninput.cpp \
-  include/transaction.hpp include/hashmemory.hpp include/script.hpp
+  include/transaction.hpp include/hashmemory.hpp include/jsonable.hpp \
+  include/script.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/node.o: src/node.cpp include/node.hpp include/blockchain.hpp \
-  include/blocks.hpp include/transaction.hpp include/hashmemory.hpp \
-  include/script.hpp include/connection.hpp include/messages.hpp \
-  include/mempool.hpp include/linkedtransaction.hpp include/utxo.hpp \
-  include/constants.hpp
+  include/blocks.hpp include/jsonable.hpp include/transaction.hpp \
+  include/hashmemory.hpp include/script.hpp include/connection.hpp \
+  include/messages.hpp include/mempool.hpp include/linkedtransaction.hpp \
+  include/utxo.hpp include/constants.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)

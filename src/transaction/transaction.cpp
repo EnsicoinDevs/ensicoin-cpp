@@ -106,18 +106,6 @@ std::string Transaction::hash() const{
 	return sha256(sha256(rawStr()), true);
 }
 
-std::string Transaction::str() const{
-	rapidjson::Document* d = new rapidjson::Document();
-	d->SetObject();
-
-	rapidjson::Value val = this->json(true,d);
-	
-	rapidjson::StringBuffer docBuffer;
-	rapidjson::PrettyWriter<StringBuffer> writer(docBuffer);
-	val.Accept(writer);
-
-	return docBuffer.GetString();
-}
 std::string Transaction::rawStr() const {
 	std::ostringstream os;
 	os << version;
@@ -132,33 +120,32 @@ std::string Transaction::rawStr() const {
 	}
 	return os.str();
 }
-Value Transaction::json(bool includeInputs,Document* document) const {
-	Value transaction(kObjectType);
-	transaction.AddMember("version", version, document->GetAllocator());
+Document Transaction::json() const {
+	Document document(kObjectType);
+	document.AddMember("version", version, document.GetAllocator());
 	
 	Value flagArray(kArrayType);
 	for(auto& flag : transactionFlags){
 		Value strValue;
-		strValue.SetString(flag.c_str(), flag.length(), document->GetAllocator());
+		strValue.SetString(flag.c_str(), flag.length(), document.GetAllocator());
 		
-		flagArray.PushBack(strValue, document->GetAllocator());
+		flagArray.PushBack(strValue, document.GetAllocator());
 	}
-	transaction.AddMember("flags",flagArray, document->GetAllocator());
-	if(includeInputs){
-		Value inputsValue(kArrayType);
-		for(auto& input : inputs){
-			inputsValue.PushBack(input.json(document), document->GetAllocator());
-		}
-		transaction.AddMember("inputs",inputsValue,document->GetAllocator());
+	document.AddMember("flags",flagArray, document.GetAllocator());
+	Value inputsValue(kArrayType);
+	for(auto& input : inputs){
+		inputsValue.PushBack(input.json(&document), document.GetAllocator());
 	}
+	document.AddMember("inputs",inputsValue,document.GetAllocator());
+	
 
 	Value outputValue(kArrayType);
 	for(auto& output : outputs){
-		outputValue.PushBack(output.json(document), document->GetAllocator());
+		outputValue.PushBack(output.json(&document), document.GetAllocator());
 	}
-	transaction.AddMember("outputs", outputValue, document->GetAllocator());
+	document.AddMember("outputs", outputValue, document.GetAllocator());
 
-	return transaction;
+	return document;
 }
 
 std::string Transaction::hashWithoutInputs() const{

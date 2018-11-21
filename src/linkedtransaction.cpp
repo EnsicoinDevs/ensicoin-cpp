@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <iostream>
 #include <numeric>
+#include <rapidjson/document.h>
 
 LinkedTransaction::LinkedTransaction(std::shared_ptr<Transaction> tx,
 		Mempool* mempoolPtr,
@@ -104,3 +105,5 @@ bool LinkedTransaction::validateScript(){
 	}
 	return false;
 }
+
+

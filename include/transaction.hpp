@@ -2,6 +2,7 @@
 #define TRANSACTION_HPP
 
 #include "hashmemory.hpp"
+#include "jsonable.hpp"
 #include "script.hpp"
 
 #include <iterator>
@@ -78,7 +79,7 @@ class Mempool;
 enum TXType { Orphan, Regular };
 
 /// \brief A class representing an exchange of ensicoins
-class Transaction : public std::enable_shared_from_this<Transaction> {
+class Transaction : public JSONAble, public std::enable_shared_from_this<Transaction> {
 	protected:
 		/// \brief Referenced in constants.hpp
 		int version;
@@ -139,15 +140,7 @@ class Transaction : public std::enable_shared_from_this<Transaction> {
 		std::string hashWithoutInputs() const;
 		/// \brief Taking two times sha256 of the rawStr
 		std::string hash() const;
-		/// \brief JSON representation of the Transaction
-		/// \param includeInputs does the representation
-		/// include the inputs
-		/// \param document Document used for Allocating
-		/// members
-		Value json(bool includeInputs, Document* document) const;
-		/// \brief Get the JSON string representing the
-		/// Transaction
-		std::string str() const;
+		rapidjson::Document json() const final;
 };
 
 #endif /* TRANSACTION_HPP */

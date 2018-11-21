@@ -7,6 +7,7 @@
 #include <ctime>
 #include <rapidjson/document.h>
 
+#include "jsonable.hpp"
 #include "transaction.hpp"
 #include "hashmemory.hpp"
 
@@ -31,18 +32,20 @@ struct BlockHeader{
 };
 
 /// \brief Block of ensicoin Transaction
-class Block{
+class Block final : public JSONAble {
 	private:
 		BlockHeader header;
 		std::vector<std::shared_ptr<Transaction> > transactions;
 	public:
-		/// \brief Creates a block with only 0 or empty structures
+		/// \brief Creates a block with only 0 or
+		/// empty structures
 		Block();
 		/// \brief Construct a Block
 		/// \param head header for the Block
 		/// \param transactionList vector of 
 		/// Transaction to be included in block
-		Block(BlockHeader head, std::vector<std::shared_ptr<Transaction> > transactionList);
+		Block(BlockHeader head, 
+		      std::vector<std::shared_ptr<Transaction> > transactionList);
 		/// \brief Reads a JSON Block
 		/// \param document a rapidjson::Document pointer
 		/// to be read
@@ -57,10 +60,6 @@ class Block{
 		/// Block without separator
 		std::string rawStr() const;
 
-		/// \brief JSON representation
-		/// \param document a pointer to a 
-		/// rapidjson::Document for memory allocation
-		rapidjson::Value json(rapidjson::Document* document) const;
 		/// \brief Hash of the Block
 		/// \details Creates the hash by applying twice
 		/// sha256 to the raw string
@@ -73,6 +72,8 @@ class Block{
 		/// \details Checks if all Transaction are valid
 		/// and that a coinbase exists
 		bool validate();
+
+		rapidjson::Document json() const override;
 };
 
 /// \brief A target for a Block

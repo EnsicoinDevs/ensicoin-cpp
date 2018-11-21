@@ -77,42 +77,41 @@ Block::Block(rapidjson::Document* doc){
 		
 		transactions.push_back(std::make_shared<Transaction>(&trDoc));
 	}
-
 }
 
-Value Block::json(Document* document) const {
-	Value blockValue(kObjectType);
-	blockValue.AddMember("version", header.version, document->GetAllocator());
+Document Block::json() const {
+	Document document(kObjectType);
+	document.AddMember("version", header.version, document.GetAllocator());
 
 	Value flagArray(kArrayType);
 	for(const auto& flag: header.blockFlags){
 		Value flagValue;
-		flagValue.SetString(flag.c_str(), flag.length(), document->GetAllocator()); 
-		flagArray.PushBack(flagValue, document->GetAllocator());
+		flagValue.SetString(flag.c_str(), flag.length(), document.GetAllocator()); 
+		flagArray.PushBack(flagValue, document.GetAllocator());
 	}
-	blockValue.AddMember("flags", flagArray, document->GetAllocator());
+	document.AddMember("flags", flagArray, document.GetAllocator());
 
 	Value hashPrev;
-	hashPrev.SetString(header.hashPrevBlock.c_str(), header.hashPrevBlock.length(), document->GetAllocator());
-	blockValue.AddMember("hashPrevBlock",hashPrev, document->GetAllocator());
+	hashPrev.SetString(header.hashPrevBlock.c_str(), header.hashPrevBlock.length(), document.GetAllocator());
+	document.AddMember("hashPrevBlock",hashPrev, document.GetAllocator());
 	Value hashTransactionValue;
-	hashTransactionValue.SetString(header.hashTransactions.c_str(), header.hashTransactions.length(), document->GetAllocator());
-	blockValue.AddMember("hashTransactions",hashTransactionValue, document->GetAllocator());
+	hashTransactionValue.SetString(header.hashTransactions.c_str(), header.hashTransactions.length(), document.GetAllocator());
+	document.AddMember("hashTransactions",hashTransactionValue, document.GetAllocator());
 
 	Value timestampValue(header.timestamp);
-	blockValue.AddMember("timestamp", timestampValue, document->GetAllocator());
+	document.AddMember("timestamp", timestampValue, document.GetAllocator());
 
 	Value nonceValue(header.nonce);
-	blockValue.AddMember("nonce", nonceValue, document->GetAllocator());
+	document.AddMember("nonce", nonceValue, document.GetAllocator());
 
 	Value transactionArray(kArrayType);
 	for(const auto& transaction : transactions){
-		transactionArray.PushBack(transaction->json(true, document), document->GetAllocator());
+		transactionArray.PushBack(transaction->json(), document.GetAllocator());
 	}
 
-	blockValue.AddMember("transactions", transactionArray, document->GetAllocator());
+	document.AddMember("transactions", transactionArray, document.GetAllocator());
 
-	return blockValue;
+	return document;
 }
 
 std::string Block::rawStr() const {

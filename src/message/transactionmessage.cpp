@@ -17,8 +17,8 @@ TransactionMessage::TransactionMessage(rapidjson::Document* doc) : Message(doc) 
 
 rapidjson::Value TransactionMessage::json(rapidjson::Document* doc) const{
 	rapidjson::Value messageValue = Message::json(doc);
-	rapidjson::Value content = transaction->json(true, doc);
+	//rapidjson::Document content = transaction->json(true, doc);
 
-	messageValue.AddMember("message", content, doc->GetAllocator());
+	//messageValue.AddMember("message", content, doc->GetAllocator());
 	return messageValue;
 }
