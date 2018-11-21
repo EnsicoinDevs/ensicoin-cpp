@@ -2,7 +2,6 @@
 #include "crypto.hpp"
 #include "transaction.hpp"
 
-
 #include <rapidjson/document.h>
 #include <vector>
 #include <string>
@@ -43,8 +42,9 @@ std::string Block::compressedHash() const{
 	while( trailingZeroCount < hashLength && blockHash[trailingZeroCount] == '0')
 		++trailingZeroCount;
 	// From here on trailingZeroCount count the number of trailling zeros
-	int exponent = (64-trailingZeroCount) / 2;
-	std::string mantissa = blockHash.substr(trailingZeroCount, 6);
+	int mantissaSize = 6;
+	int exponent = (64-trailingZeroCount-mantissaSize) / 2;
+	std::string mantissa = blockHash.substr(trailingZeroCount, mantissaSize);
 	
 	std::stringstream ss;
 	ss << std::hex << exponent << mantissa;

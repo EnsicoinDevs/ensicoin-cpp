@@ -12,7 +12,6 @@
 #include <string>
 
 Mempool::Mempool() {
-
 }
 
 bool Mempool::exists(std::string txHash ) const{
@@ -75,7 +74,7 @@ bool Mempool::addTransaction(std::shared_ptr<Transaction> tr){
 }
 
 void Mempool::registerTransaction(LinkedTransaction::pointer tx){
-	for(int i=0; i < tx->outputCount(); i++){
+	for(unsigned int i=0; i < tx->outputCount(); i++){
 		UTXO txOutput = {tx->hash(), i};
 		auto orphan = orphanUsingUTXO[txOutput.str()];
 		orphanUsingUTXO.erase(txOutput.str());
