@@ -16,9 +16,11 @@
 
 #include "constants.hpp"
 #include "crypto.hpp"
+#include "debug.hpp"
 #include "script.hpp"
 #include "blocks.hpp"
 #include "node.hpp"
+#include "networkable.hpp"
 
 using namespace CryptoPP;
 using namespace asio;
@@ -55,10 +57,16 @@ int main(){
 	else{
 		std::cout << "Directory set" << std::endl;
 	}
+	
+	Var_uint x(0x123456789acd);
+	std::cout << " X : " << x.byteRepr() << std::endl;
+	auto byteX =  x.asBytes();
+	Var_uint y(byteX);
+	std::cout << " Y : " << y.byteRepr() << std::endl;
 
 	asio::io_context io_context;
-	Node node(io_context);
-	io_context.run();
+	//Node node(io_context);
+	//io_context.run();
 
 	return 0;
 }
