@@ -82,7 +82,8 @@ Inheritance diagram for Transaction:</div>
  <div class="center">
   <img src="classTransaction.png" usemap="#Transaction_map" alt=""/>
   <map id="Transaction_map" name="Transaction_map">
-<area href="classLinkedTransaction.html" title="Links a Transaction to the UTXO it depends on. " alt="LinkedTransaction" shape="rect" coords="0,112,266,136"/>
+<area href="classJSONAble.html" title="Class that can be reprsented in JSON. " alt="JSONAble" shape="rect" coords="0,0,266,24"/>
+<area href="classLinkedTransaction.html" title="Links a Transaction to the UTXO it depends on. " alt="LinkedTransaction" shape="rect" coords="138,112,404,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -106,24 +107,24 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0422efb4aea64a19437c350b04f7de96"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structTransactionIdentifier.html">TransactionIdentifier</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#a0422efb4aea64a19437c350b04f7de96">getInputsId</a> () const</td></tr>
 <tr class="memdesc:a0422efb4aea64a19437c350b04f7de96"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns all <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> referenced  <a href="#a0422efb4aea64a19437c350b04f7de96">More...</a><br /></td></tr>
 <tr class="separator:a0422efb4aea64a19437c350b04f7de96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1feb6131c4b683d6c59073dbf754a634"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#a1feb6131c4b683d6c59073dbf754a634">outputValue</a> () const</td></tr>
-<tr class="memdesc:a1feb6131c4b683d6c59073dbf754a634"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the value of all <a class="el" href="structOutputTransaction.html" title="Represent the output of a Transaction. ">OutputTransaction</a>.  <a href="#a1feb6131c4b683d6c59073dbf754a634">More...</a><br /></td></tr>
-<tr class="separator:a1feb6131c4b683d6c59073dbf754a634"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd84094a7c84870d07e4c50190e97747"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#afd84094a7c84870d07e4c50190e97747">outputValue</a> () const</td></tr>
+<tr class="memdesc:afd84094a7c84870d07e4c50190e97747"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the value of all <a class="el" href="structOutputTransaction.html" title="Represent the output of a Transaction. ">OutputTransaction</a>.  <a href="#afd84094a7c84870d07e4c50190e97747">More...</a><br /></td></tr>
+<tr class="separator:afd84094a7c84870d07e4c50190e97747"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f60f298fe7d3da92520dea9b69cb1e5"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structInputTransaction.html">InputTransaction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#a6f60f298fe7d3da92520dea9b69cb1e5">getInputs</a> () const</td></tr>
 <tr class="memdesc:a6f60f298fe7d3da92520dea9b69cb1e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all the <a class="el" href="structInputTransaction.html" title="Repersent an input of a Transation. ">InputTransaction</a>.  <a href="#a6f60f298fe7d3da92520dea9b69cb1e5">More...</a><br /></td></tr>
 <tr class="separator:a6f60f298fe7d3da92520dea9b69cb1e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af495d85c3e2c3a6962ead228be7b25ca"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#af495d85c3e2c3a6962ead228be7b25ca">getScriptOfOutput</a> (int index) const</td></tr>
 <tr class="memdesc:af495d85c3e2c3a6962ead228be7b25ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the script for the designed <a class="el" href="structOutputTransaction.html" title="Represent the output of a Transaction. ">OutputTransaction</a>.  <a href="#af495d85c3e2c3a6962ead228be7b25ca">More...</a><br /></td></tr>
 <tr class="separator:af495d85c3e2c3a6962ead228be7b25ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2248446ed0d06f64d1685c386189666"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#aa2248446ed0d06f64d1685c386189666">hasOutput</a> (int index) const</td></tr>
-<tr class="memdesc:aa2248446ed0d06f64d1685c386189666"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the transaction has an <a class="el" href="structOutputTransaction.html" title="Represent the output of a Transaction. ">OutputTransaction</a>.  <a href="#aa2248446ed0d06f64d1685c386189666">More...</a><br /></td></tr>
-<tr class="separator:aa2248446ed0d06f64d1685c386189666"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab63ea38a0837fccd9baf6d3b0f89c3c5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#ab63ea38a0837fccd9baf6d3b0f89c3c5">valueOfOutput</a> (int index) const</td></tr>
-<tr class="memdesc:ab63ea38a0837fccd9baf6d3b0f89c3c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the value of the index-th output.  <a href="#ab63ea38a0837fccd9baf6d3b0f89c3c5">More...</a><br /></td></tr>
-<tr class="separator:ab63ea38a0837fccd9baf6d3b0f89c3c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a572029bcaf3928183f86da38824f1aa2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#a572029bcaf3928183f86da38824f1aa2">outputCount</a> () const</td></tr>
-<tr class="memdesc:a572029bcaf3928183f86da38824f1aa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of <a class="el" href="structOutputTransaction.html" title="Represent the output of a Transaction. ">OutputTransaction</a>.  <a href="#a572029bcaf3928183f86da38824f1aa2">More...</a><br /></td></tr>
-<tr class="separator:a572029bcaf3928183f86da38824f1aa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a751a3ef0e8056b64348cae8383560834"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#a751a3ef0e8056b64348cae8383560834">hasOutput</a> (unsigned int index) const</td></tr>
+<tr class="memdesc:a751a3ef0e8056b64348cae8383560834"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the transaction has an <a class="el" href="structOutputTransaction.html" title="Represent the output of a Transaction. ">OutputTransaction</a>.  <a href="#a751a3ef0e8056b64348cae8383560834">More...</a><br /></td></tr>
+<tr class="separator:a751a3ef0e8056b64348cae8383560834"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6bcfb24afe4079e8ebd39e9132a8dcf"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#ad6bcfb24afe4079e8ebd39e9132a8dcf">valueOfOutput</a> (unsigned int index) const</td></tr>
+<tr class="memdesc:ad6bcfb24afe4079e8ebd39e9132a8dcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the value of the index-th output.  <a href="#ad6bcfb24afe4079e8ebd39e9132a8dcf">More...</a><br /></td></tr>
+<tr class="separator:ad6bcfb24afe4079e8ebd39e9132a8dcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a592d4eb054d208ed38bfafcd0d44a89b"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#a592d4eb054d208ed38bfafcd0d44a89b">outputCount</a> () const</td></tr>
+<tr class="memdesc:a592d4eb054d208ed38bfafcd0d44a89b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of <a class="el" href="structOutputTransaction.html" title="Represent the output of a Transaction. ">OutputTransaction</a>.  <a href="#a592d4eb054d208ed38bfafcd0d44a89b">More...</a><br /></td></tr>
+<tr class="separator:a592d4eb054d208ed38bfafcd0d44a89b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46f1d85f39193e516f795c3afe857c90"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#a46f1d85f39193e516f795c3afe857c90">check</a> ()</td></tr>
 <tr class="memdesc:a46f1d85f39193e516f795c3afe857c90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> is valid by itself.  <a href="#a46f1d85f39193e516f795c3afe857c90">More...</a><br /></td></tr>
 <tr class="separator:a46f1d85f39193e516f795c3afe857c90"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -136,12 +137,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a99a851c61b60c1dd15b3e9bdd50f32f6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#a99a851c61b60c1dd15b3e9bdd50f32f6">hash</a> () const</td></tr>
 <tr class="memdesc:a99a851c61b60c1dd15b3e9bdd50f32f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Taking two times sha256 of the rawStr.  <a href="#a99a851c61b60c1dd15b3e9bdd50f32f6">More...</a><br /></td></tr>
 <tr class="separator:a99a851c61b60c1dd15b3e9bdd50f32f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41561665dfeef8f887fdc86f3c9849f8"><td class="memItemLeft" align="right" valign="top">Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#a41561665dfeef8f887fdc86f3c9849f8">json</a> (bool includeInputs, Document *document) const</td></tr>
-<tr class="memdesc:a41561665dfeef8f887fdc86f3c9849f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">JSON representation of the <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a>.  <a href="#a41561665dfeef8f887fdc86f3c9849f8">More...</a><br /></td></tr>
-<tr class="separator:a41561665dfeef8f887fdc86f3c9849f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:accf9cca56688761bdb9518c3f1b90ed5"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#accf9cca56688761bdb9518c3f1b90ed5">str</a> () const</td></tr>
-<tr class="memdesc:accf9cca56688761bdb9518c3f1b90ed5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the JSON string representing the <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a>.  <a href="#accf9cca56688761bdb9518c3f1b90ed5">More...</a><br /></td></tr>
-<tr class="separator:accf9cca56688761bdb9518c3f1b90ed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a583d7276a7e8c249a9096ec26b74b56e"><td class="memItemLeft" align="right" valign="top">rapidjson::Document&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#a583d7276a7e8c249a9096ec26b74b56e">json</a> () const final</td></tr>
+<tr class="separator:a583d7276a7e8c249a9096ec26b74b56e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classJSONAble"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classJSONAble')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classJSONAble.html">JSONAble</a></td></tr>
+<tr class="memitem:a20296de15772b7cbc33e162abdd742b5 inherit pub_methods_classJSONAble"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSONAble.html#a20296de15772b7cbc33e162abdd742b5">str</a> () const</td></tr>
+<tr class="memdesc:a20296de15772b7cbc33e162abdd742b5 inherit pub_methods_classJSONAble"><td class="mdescLeft">&#160;</td><td class="mdescRight">represents a string as JSON  <a href="classJSONAble.html#a20296de15772b7cbc33e162abdd742b5">More...</a><br /></td></tr>
+<tr class="separator:a20296de15772b7cbc33e162abdd742b5 inherit pub_methods_classJSONAble"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a232d085dca21bde89585f0ae76d0bdf1 inherit pub_methods_classJSONAble"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSONAble.html#a232d085dca21bde89585f0ae76d0bdf1">~JSONAble</a> ()</td></tr>
+<tr class="separator:a232d085dca21bde89585f0ae76d0bdf1 inherit pub_methods_classJSONAble"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -157,6 +160,9 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a1a3d542cd9b8045e1256f128728fab37"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structOutputTransaction.html">OutputTransaction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#a1a3d542cd9b8045e1256f128728fab37">outputs</a></td></tr>
 <tr class="memdesc:a1a3d542cd9b8045e1256f128728fab37"><td class="mdescLeft">&#160;</td><td class="mdescRight">All <a class="el" href="structOutputTransaction.html" title="Represent the output of a Transaction. ">OutputTransaction</a>.  <a href="#a1a3d542cd9b8045e1256f128728fab37">More...</a><br /></td></tr>
 <tr class="separator:a1a3d542cd9b8045e1256f128728fab37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A class representing an exchange of ensicoins. </p>
@@ -410,8 +416,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aa2248446ed0d06f64d1685c386189666"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa2248446ed0d06f64d1685c386189666">&#9670;&nbsp;</a></span>hasOutput()</h2>
+<a id="a751a3ef0e8056b64348cae8383560834"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a751a3ef0e8056b64348cae8383560834">&#9670;&nbsp;</a></span>hasOutput()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -419,7 +425,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname">bool Transaction::hasOutput </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">unsigned int&#160;</td>
           <td class="paramname"><em>index</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -436,51 +442,41 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a41561665dfeef8f887fdc86f3c9849f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a41561665dfeef8f887fdc86f3c9849f8">&#9670;&nbsp;</a></span>json()</h2>
+<a id="a583d7276a7e8c249a9096ec26b74b56e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a583d7276a7e8c249a9096ec26b74b56e">&#9670;&nbsp;</a></span>json()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Value Transaction::json </td>
+          <td class="memname">Document Transaction::json </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>includeInputs</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Document *&#160;</td>
-          <td class="paramname"><em>document</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>JSON representation of the <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">includeInputs</td><td>does the representation include the inputs </td></tr>
-    <tr><td class="paramname">document</td><td>Document used for Allocating members </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Implements <a class="el" href="classJSONAble.html#a8c80a36b9f8c179b5a6599927c7d7bec">JSONAble</a>.</p>
 
 </div>
 </div>
-<a id="a572029bcaf3928183f86da38824f1aa2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a572029bcaf3928183f86da38824f1aa2">&#9670;&nbsp;</a></span>outputCount()</h2>
+<a id="a592d4eb054d208ed38bfafcd0d44a89b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a592d4eb054d208ed38bfafcd0d44a89b">&#9670;&nbsp;</a></span>outputCount()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Transaction::outputCount </td>
+          <td class="memname">unsigned int Transaction::outputCount </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -492,14 +488,14 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a1feb6131c4b683d6c59073dbf754a634"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1feb6131c4b683d6c59073dbf754a634">&#9670;&nbsp;</a></span>outputValue()</h2>
+<a id="afd84094a7c84870d07e4c50190e97747"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd84094a7c84870d07e4c50190e97747">&#9670;&nbsp;</a></span>outputValue()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Transaction::outputValue </td>
+          <td class="memname">unsigned int Transaction::outputValue </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -531,35 +527,16 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="accf9cca56688761bdb9518c3f1b90ed5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#accf9cca56688761bdb9518c3f1b90ed5">&#9670;&nbsp;</a></span>str()</h2>
+<a id="ad6bcfb24afe4079e8ebd39e9132a8dcf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6bcfb24afe4079e8ebd39e9132a8dcf">&#9670;&nbsp;</a></span>valueOfOutput()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string Transaction::str </td>
+          <td class="memname">unsigned int Transaction::valueOfOutput </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get the JSON string representing the <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a>. </p>
-
-</div>
-</div>
-<a id="ab63ea38a0837fccd9baf6d3b0f89c3c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab63ea38a0837fccd9baf6d3b0f89c3c5">&#9670;&nbsp;</a></span>valueOfOutput()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Transaction::valueOfOutput </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">unsigned int&#160;</td>
           <td class="paramname"><em>index</em></td><td>)</td>
           <td> const</td>
         </tr>

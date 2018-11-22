@@ -72,6 +72,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Stores <a class="el" href="classBlock.html" title="Block of ensicoin Transaction. ">Block</a> on disk and links them.  
+ <a href="classBlockchain.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="blockchain_8hpp_source.html">blockchain.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -81,10 +84,19 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a97704cc18273d09f4add0ffc91e90df3"><td class="memItemLeft" align="right" valign="top">leveldb::DB *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBlockchain.html#a97704cc18273d09f4add0ffc91e90df3">db</a></td></tr>
-<tr class="separator:a97704cc18273d09f4add0ffc91e90df3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4453479b404b749cfcde62ae19bf4ae2"><td class="memItemLeft" align="right" valign="top">leveldb::DB *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBlockchain.html#a4453479b404b749cfcde62ae19bf4ae2">blocksDB</a></td></tr>
+<tr class="memdesc:a4453479b404b749cfcde62ae19bf4ae2"><td class="mdescLeft">&#160;</td><td class="mdescRight">DB storing <a class="el" href="classBlock.html" title="Block of ensicoin Transaction. ">Block</a>.  <a href="#a4453479b404b749cfcde62ae19bf4ae2">More...</a><br /></td></tr>
+<tr class="separator:a4453479b404b749cfcde62ae19bf4ae2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5d1af8794fa53302950f50953ea9ee9"><td class="memItemLeft" align="right" valign="top">leveldb::DB *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBlockchain.html#ae5d1af8794fa53302950f50953ea9ee9">chainDB</a></td></tr>
+<tr class="memdesc:ae5d1af8794fa53302950f50953ea9ee9"><td class="mdescLeft">&#160;</td><td class="mdescRight">DB storing the following <a class="el" href="classBlock.html" title="Block of ensicoin Transaction. ">Block</a>.  <a href="#ae5d1af8794fa53302950f50953ea9ee9">More...</a><br /></td></tr>
+<tr class="separator:ae5d1af8794fa53302950f50953ea9ee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c6bfae127a9cc1ebaa55798793f4d81"><td class="memItemLeft" align="right" valign="top">leveldb::DB *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBlockchain.html#a5c6bfae127a9cc1ebaa55798793f4d81">statDB</a></td></tr>
+<tr class="memdesc:a5c6bfae127a9cc1ebaa55798793f4d81"><td class="mdescLeft">&#160;</td><td class="mdescRight">DB storing stats on the <a class="el" href="classBlockchain.html" title="Stores Block on disk and links them. ">Blockchain</a>.  <a href="#a5c6bfae127a9cc1ebaa55798793f4d81">More...</a><br /></td></tr>
+<tr class="separator:a5c6bfae127a9cc1ebaa55798793f4d81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Stores <a class="el" href="classBlock.html" title="Block of ensicoin Transaction. ">Block</a> on disk and links them. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="afb66c736ee870ebf75913d01a50f87a4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afb66c736ee870ebf75913d01a50f87a4">&#9670;&nbsp;</a></span>Blockchain()</h2>
 
@@ -103,8 +115,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a97704cc18273d09f4add0ffc91e90df3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a97704cc18273d09f4add0ffc91e90df3">&#9670;&nbsp;</a></span>db</h2>
+<a id="a4453479b404b749cfcde62ae19bf4ae2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4453479b404b749cfcde62ae19bf4ae2">&#9670;&nbsp;</a></span>blocksDB</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -113,7 +125,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">leveldb::DB* Blockchain::db</td>
+          <td class="memname">leveldb::DB* Blockchain::blocksDB</td>
         </tr>
       </table>
   </td>
@@ -122,6 +134,56 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>DB storing <a class="el" href="classBlock.html" title="Block of ensicoin Transaction. ">Block</a>. </p>
+
+</div>
+</div>
+<a id="ae5d1af8794fa53302950f50953ea9ee9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5d1af8794fa53302950f50953ea9ee9">&#9670;&nbsp;</a></span>chainDB</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">leveldb::DB* Blockchain::chainDB</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>DB storing the following <a class="el" href="classBlock.html" title="Block of ensicoin Transaction. ">Block</a>. </p>
+
+</div>
+</div>
+<a id="a5c6bfae127a9cc1ebaa55798793f4d81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c6bfae127a9cc1ebaa55798793f4d81">&#9670;&nbsp;</a></span>statDB</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">leveldb::DB* Blockchain::statDB</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>DB storing stats on the <a class="el" href="classBlockchain.html" title="Stores Block on disk and links them. ">Blockchain</a>. </p>
 
 </div>
 </div>

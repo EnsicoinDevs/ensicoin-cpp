@@ -1,6 +1,7 @@
 var searchData=
 [
   ['unknown',['unknown',['../classHandler.html#ac574e0e2145e6cd5b25ac5e9a535be29',1,'Handler']]],
+  ['update',['update',['../classBlockTarget.html#a83fd117cae01e4cb890ee4cbbd3a6c07',1,'BlockTarget']]],
   ['updateorphan',['updateOrphan',['../classMempool.html#ae658e1104b650fbc63786bc5e77fb328',1,'Mempool']]],
   ['utxo',['UTXO',['../utxo_8hpp.html#a19091d002da03ec92277e19295ac4540',1,'utxo.hpp']]],
   ['utxo_2ecpp',['utxo.cpp',['../utxo_8cpp.html',1,'']]],

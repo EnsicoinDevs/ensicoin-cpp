@@ -11,7 +11,7 @@ var searchData=
   ['mempool_2ecpp',['mempool.cpp',['../mempool_8cpp.html',1,'']]],
   ['mempool_2ehpp',['mempool.hpp',['../mempool_8hpp.html',1,'']]],
   ['mempooldeps',['mempoolDeps',['../classLinkedTransaction.html#a95934344e1d63d6c73202592d7d0c8c5',1,'LinkedTransaction']]],
-  ['message',['Message',['../classMessage.html',1,'Message'],['../classMessage.html#aa222cbc5bf7865d5464a841740f45c11',1,'Message::Message(std::string type)'],['../classMessage.html#a92ef92d05b8d6ca2647aff6eeb61df70',1,'Message::Message(rapidjson::Document *doc)']]],
+  ['message',['Message',['../classMessage.html',1,'Message'],['../classMessage.html#aa222cbc5bf7865d5464a841740f45c11',1,'Message::Message(std::string type)'],['../classMessage.html#aba4e52b33dcfa35778ad50ba060cb1d9',1,'Message::Message(rapidjson::Document *binaryString)']]],
   ['message_5flimit',['MESSAGE_LIMIT',['../constants_8hpp.html#aa83d2186d4c042afdbcb997b8525e493',1,'constants.hpp']]],
   ['messagehandler_2ecpp',['messagehandler.cpp',['../messagehandler_8cpp.html',1,'']]],
   ['messagehandler_2ehpp',['messagehandler.hpp',['../messagehandler_8hpp.html',1,'']]],

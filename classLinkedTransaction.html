@@ -83,7 +83,8 @@ Inheritance diagram for LinkedTransaction:</div>
  <div class="center">
   <img src="classLinkedTransaction.png" usemap="#LinkedTransaction_map" alt=""/>
   <map id="LinkedTransaction_map" name="LinkedTransaction_map">
-<area href="classTransaction.html" title="A class representing an exchange of ensicoins. " alt="Transaction" shape="rect" coords="0,56,266,80"/>
+<area href="classTransaction.html" title="A class representing an exchange of ensicoins. " alt="Transaction" shape="rect" coords="138,56,404,80"/>
+<area href="classJSONAble.html" title="Class that can be reprsented in JSON. " alt="JSONAble" shape="rect" coords="0,0,266,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -102,9 +103,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4ceffdf2d754b7ab336d924749e84e3f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="utxo_8hpp.html#a19091d002da03ec92277e19295ac4540">UTXO</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLinkedTransaction.html#a4ceffdf2d754b7ab336d924749e84e3f">getOrphanDeps</a> () const</td></tr>
 <tr class="memdesc:a4ceffdf2d754b7ab336d924749e84e3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gives all inputs who are orphaned.  <a href="#a4ceffdf2d754b7ab336d924749e84e3f">More...</a><br /></td></tr>
 <tr class="separator:a4ceffdf2d754b7ab336d924749e84e3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7a90c3eb24197ea0f5a273e0f3a2db6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLinkedTransaction.html#aa7a90c3eb24197ea0f5a273e0f3a2db6">inputValue</a> () const</td></tr>
-<tr class="memdesc:aa7a90c3eb24197ea0f5a273e0f3a2db6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the value of inputs.  <a href="#aa7a90c3eb24197ea0f5a273e0f3a2db6">More...</a><br /></td></tr>
-<tr class="separator:aa7a90c3eb24197ea0f5a273e0f3a2db6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a0355e4ae11181b4f7bd2ce7aa6d663"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLinkedTransaction.html#a1a0355e4ae11181b4f7bd2ce7aa6d663">inputValue</a> () const</td></tr>
+<tr class="memdesc:a1a0355e4ae11181b4f7bd2ce7aa6d663"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the value of inputs.  <a href="#a1a0355e4ae11181b4f7bd2ce7aa6d663">More...</a><br /></td></tr>
+<tr class="separator:a1a0355e4ae11181b4f7bd2ce7aa6d663"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29b71cf739db7699726b73250b3a83b5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLinkedTransaction.html#a29b71cf739db7699726b73250b3a83b5">validate</a> (int currentHeight)</td></tr>
 <tr class="memdesc:a29b71cf739db7699726b73250b3a83b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validate the <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a>.  <a href="#a29b71cf739db7699726b73250b3a83b5">More...</a><br /></td></tr>
 <tr class="separator:a29b71cf739db7699726b73250b3a83b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -130,24 +131,24 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0422efb4aea64a19437c350b04f7de96 inherit pub_methods_classTransaction"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structTransactionIdentifier.html">TransactionIdentifier</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#a0422efb4aea64a19437c350b04f7de96">getInputsId</a> () const</td></tr>
 <tr class="memdesc:a0422efb4aea64a19437c350b04f7de96 inherit pub_methods_classTransaction"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns all <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> referenced  <a href="classTransaction.html#a0422efb4aea64a19437c350b04f7de96">More...</a><br /></td></tr>
 <tr class="separator:a0422efb4aea64a19437c350b04f7de96 inherit pub_methods_classTransaction"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1feb6131c4b683d6c59073dbf754a634 inherit pub_methods_classTransaction"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#a1feb6131c4b683d6c59073dbf754a634">outputValue</a> () const</td></tr>
-<tr class="memdesc:a1feb6131c4b683d6c59073dbf754a634 inherit pub_methods_classTransaction"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the value of all <a class="el" href="structOutputTransaction.html" title="Represent the output of a Transaction. ">OutputTransaction</a>.  <a href="classTransaction.html#a1feb6131c4b683d6c59073dbf754a634">More...</a><br /></td></tr>
-<tr class="separator:a1feb6131c4b683d6c59073dbf754a634 inherit pub_methods_classTransaction"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd84094a7c84870d07e4c50190e97747 inherit pub_methods_classTransaction"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#afd84094a7c84870d07e4c50190e97747">outputValue</a> () const</td></tr>
+<tr class="memdesc:afd84094a7c84870d07e4c50190e97747 inherit pub_methods_classTransaction"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the value of all <a class="el" href="structOutputTransaction.html" title="Represent the output of a Transaction. ">OutputTransaction</a>.  <a href="classTransaction.html#afd84094a7c84870d07e4c50190e97747">More...</a><br /></td></tr>
+<tr class="separator:afd84094a7c84870d07e4c50190e97747 inherit pub_methods_classTransaction"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f60f298fe7d3da92520dea9b69cb1e5 inherit pub_methods_classTransaction"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structInputTransaction.html">InputTransaction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#a6f60f298fe7d3da92520dea9b69cb1e5">getInputs</a> () const</td></tr>
 <tr class="memdesc:a6f60f298fe7d3da92520dea9b69cb1e5 inherit pub_methods_classTransaction"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all the <a class="el" href="structInputTransaction.html" title="Repersent an input of a Transation. ">InputTransaction</a>.  <a href="classTransaction.html#a6f60f298fe7d3da92520dea9b69cb1e5">More...</a><br /></td></tr>
 <tr class="separator:a6f60f298fe7d3da92520dea9b69cb1e5 inherit pub_methods_classTransaction"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af495d85c3e2c3a6962ead228be7b25ca inherit pub_methods_classTransaction"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#af495d85c3e2c3a6962ead228be7b25ca">getScriptOfOutput</a> (int index) const</td></tr>
 <tr class="memdesc:af495d85c3e2c3a6962ead228be7b25ca inherit pub_methods_classTransaction"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the script for the designed <a class="el" href="structOutputTransaction.html" title="Represent the output of a Transaction. ">OutputTransaction</a>.  <a href="classTransaction.html#af495d85c3e2c3a6962ead228be7b25ca">More...</a><br /></td></tr>
 <tr class="separator:af495d85c3e2c3a6962ead228be7b25ca inherit pub_methods_classTransaction"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2248446ed0d06f64d1685c386189666 inherit pub_methods_classTransaction"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#aa2248446ed0d06f64d1685c386189666">hasOutput</a> (int index) const</td></tr>
-<tr class="memdesc:aa2248446ed0d06f64d1685c386189666 inherit pub_methods_classTransaction"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the transaction has an <a class="el" href="structOutputTransaction.html" title="Represent the output of a Transaction. ">OutputTransaction</a>.  <a href="classTransaction.html#aa2248446ed0d06f64d1685c386189666">More...</a><br /></td></tr>
-<tr class="separator:aa2248446ed0d06f64d1685c386189666 inherit pub_methods_classTransaction"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab63ea38a0837fccd9baf6d3b0f89c3c5 inherit pub_methods_classTransaction"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#ab63ea38a0837fccd9baf6d3b0f89c3c5">valueOfOutput</a> (int index) const</td></tr>
-<tr class="memdesc:ab63ea38a0837fccd9baf6d3b0f89c3c5 inherit pub_methods_classTransaction"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the value of the index-th output.  <a href="classTransaction.html#ab63ea38a0837fccd9baf6d3b0f89c3c5">More...</a><br /></td></tr>
-<tr class="separator:ab63ea38a0837fccd9baf6d3b0f89c3c5 inherit pub_methods_classTransaction"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a572029bcaf3928183f86da38824f1aa2 inherit pub_methods_classTransaction"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#a572029bcaf3928183f86da38824f1aa2">outputCount</a> () const</td></tr>
-<tr class="memdesc:a572029bcaf3928183f86da38824f1aa2 inherit pub_methods_classTransaction"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of <a class="el" href="structOutputTransaction.html" title="Represent the output of a Transaction. ">OutputTransaction</a>.  <a href="classTransaction.html#a572029bcaf3928183f86da38824f1aa2">More...</a><br /></td></tr>
-<tr class="separator:a572029bcaf3928183f86da38824f1aa2 inherit pub_methods_classTransaction"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a751a3ef0e8056b64348cae8383560834 inherit pub_methods_classTransaction"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#a751a3ef0e8056b64348cae8383560834">hasOutput</a> (unsigned int index) const</td></tr>
+<tr class="memdesc:a751a3ef0e8056b64348cae8383560834 inherit pub_methods_classTransaction"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the transaction has an <a class="el" href="structOutputTransaction.html" title="Represent the output of a Transaction. ">OutputTransaction</a>.  <a href="classTransaction.html#a751a3ef0e8056b64348cae8383560834">More...</a><br /></td></tr>
+<tr class="separator:a751a3ef0e8056b64348cae8383560834 inherit pub_methods_classTransaction"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6bcfb24afe4079e8ebd39e9132a8dcf inherit pub_methods_classTransaction"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#ad6bcfb24afe4079e8ebd39e9132a8dcf">valueOfOutput</a> (unsigned int index) const</td></tr>
+<tr class="memdesc:ad6bcfb24afe4079e8ebd39e9132a8dcf inherit pub_methods_classTransaction"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the value of the index-th output.  <a href="classTransaction.html#ad6bcfb24afe4079e8ebd39e9132a8dcf">More...</a><br /></td></tr>
+<tr class="separator:ad6bcfb24afe4079e8ebd39e9132a8dcf inherit pub_methods_classTransaction"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a592d4eb054d208ed38bfafcd0d44a89b inherit pub_methods_classTransaction"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#a592d4eb054d208ed38bfafcd0d44a89b">outputCount</a> () const</td></tr>
+<tr class="memdesc:a592d4eb054d208ed38bfafcd0d44a89b inherit pub_methods_classTransaction"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of <a class="el" href="structOutputTransaction.html" title="Represent the output of a Transaction. ">OutputTransaction</a>.  <a href="classTransaction.html#a592d4eb054d208ed38bfafcd0d44a89b">More...</a><br /></td></tr>
+<tr class="separator:a592d4eb054d208ed38bfafcd0d44a89b inherit pub_methods_classTransaction"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46f1d85f39193e516f795c3afe857c90 inherit pub_methods_classTransaction"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#a46f1d85f39193e516f795c3afe857c90">check</a> ()</td></tr>
 <tr class="memdesc:a46f1d85f39193e516f795c3afe857c90 inherit pub_methods_classTransaction"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> is valid by itself.  <a href="classTransaction.html#a46f1d85f39193e516f795c3afe857c90">More...</a><br /></td></tr>
 <tr class="separator:a46f1d85f39193e516f795c3afe857c90 inherit pub_methods_classTransaction"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -160,12 +161,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a99a851c61b60c1dd15b3e9bdd50f32f6 inherit pub_methods_classTransaction"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#a99a851c61b60c1dd15b3e9bdd50f32f6">hash</a> () const</td></tr>
 <tr class="memdesc:a99a851c61b60c1dd15b3e9bdd50f32f6 inherit pub_methods_classTransaction"><td class="mdescLeft">&#160;</td><td class="mdescRight">Taking two times sha256 of the rawStr.  <a href="classTransaction.html#a99a851c61b60c1dd15b3e9bdd50f32f6">More...</a><br /></td></tr>
 <tr class="separator:a99a851c61b60c1dd15b3e9bdd50f32f6 inherit pub_methods_classTransaction"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41561665dfeef8f887fdc86f3c9849f8 inherit pub_methods_classTransaction"><td class="memItemLeft" align="right" valign="top">Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#a41561665dfeef8f887fdc86f3c9849f8">json</a> (bool includeInputs, Document *document) const</td></tr>
-<tr class="memdesc:a41561665dfeef8f887fdc86f3c9849f8 inherit pub_methods_classTransaction"><td class="mdescLeft">&#160;</td><td class="mdescRight">JSON representation of the <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a>.  <a href="classTransaction.html#a41561665dfeef8f887fdc86f3c9849f8">More...</a><br /></td></tr>
-<tr class="separator:a41561665dfeef8f887fdc86f3c9849f8 inherit pub_methods_classTransaction"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:accf9cca56688761bdb9518c3f1b90ed5 inherit pub_methods_classTransaction"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#accf9cca56688761bdb9518c3f1b90ed5">str</a> () const</td></tr>
-<tr class="memdesc:accf9cca56688761bdb9518c3f1b90ed5 inherit pub_methods_classTransaction"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the JSON string representing the <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a>.  <a href="classTransaction.html#accf9cca56688761bdb9518c3f1b90ed5">More...</a><br /></td></tr>
-<tr class="separator:accf9cca56688761bdb9518c3f1b90ed5 inherit pub_methods_classTransaction"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a583d7276a7e8c249a9096ec26b74b56e inherit pub_methods_classTransaction"><td class="memItemLeft" align="right" valign="top">rapidjson::Document&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransaction.html#a583d7276a7e8c249a9096ec26b74b56e">json</a> () const final</td></tr>
+<tr class="separator:a583d7276a7e8c249a9096ec26b74b56e inherit pub_methods_classTransaction"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classJSONAble"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classJSONAble')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classJSONAble.html">JSONAble</a></td></tr>
+<tr class="memitem:a20296de15772b7cbc33e162abdd742b5 inherit pub_methods_classJSONAble"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSONAble.html#a20296de15772b7cbc33e162abdd742b5">str</a> () const</td></tr>
+<tr class="memdesc:a20296de15772b7cbc33e162abdd742b5 inherit pub_methods_classJSONAble"><td class="mdescLeft">&#160;</td><td class="mdescRight">represents a string as JSON  <a href="classJSONAble.html#a20296de15772b7cbc33e162abdd742b5">More...</a><br /></td></tr>
+<tr class="separator:a20296de15772b7cbc33e162abdd742b5 inherit pub_methods_classJSONAble"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a232d085dca21bde89585f0ae76d0bdf1 inherit pub_methods_classJSONAble"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSONAble.html#a232d085dca21bde89585f0ae76d0bdf1">~JSONAble</a> ()</td></tr>
+<tr class="separator:a232d085dca21bde89585f0ae76d0bdf1 inherit pub_methods_classJSONAble"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -277,14 +280,14 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="aa7a90c3eb24197ea0f5a273e0f3a2db6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa7a90c3eb24197ea0f5a273e0f3a2db6">&#9670;&nbsp;</a></span>inputValue()</h2>
+<a id="a1a0355e4ae11181b4f7bd2ce7aa6d663"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a0355e4ae11181b4f7bd2ce7aa6d663">&#9670;&nbsp;</a></span>inputValue()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int LinkedTransaction::inputValue </td>
+          <td class="memname">unsigned int LinkedTransaction::inputValue </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>

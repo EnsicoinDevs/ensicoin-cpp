@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['rawstr',['rawStr',['../classBlock.html#ae69a2e1c0d586541c5633f9d8d4da693',1,'Block::rawStr()'],['../classTransaction.html#a90b3668de562cc1b7f5773e72ac9f6dc',1,'Transaction::rawStr()']]],
+  ['rawstr',['rawStr',['../structBlockHeader.html#a79fe40e950480eeef125e5cc810fb669',1,'BlockHeader::rawStr()'],['../classBlock.html#ae69a2e1c0d586541c5633f9d8d4da693',1,'Block::rawStr()'],['../classTransaction.html#a90b3668de562cc1b7f5773e72ac9f6dc',1,'Transaction::rawStr()']]],
   ['readme_2emd',['README.md',['../README_8md.html',1,'']]],
   ['registertransaction',['registerTransaction',['../classMempool.html#a49f4348d01f198a4ea2a8945518e7091',1,'Mempool']]],
   ['regular',['Regular',['../transaction_8hpp.html#a379269e60c4ed3fb09a01778f31ddaada66dfad2fc66aab9e6bb47cfad78b4b6b',1,'transaction.hpp']]],

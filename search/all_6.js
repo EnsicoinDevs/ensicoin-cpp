@@ -16,5 +16,6 @@ var searchData=
   ['getscriptofoutput',['getScriptOfOutput',['../classTransaction.html#af495d85c3e2c3a6962ead228be7b25ca',1,'Transaction']]],
   ['getsocket',['getSocket',['../classConnection.html#ac854436a3a6fdf7fdb16be04b9696447',1,'Connection']]],
   ['gettype',['getType',['../classMessage.html#aeb65039d076cefaff79b21044a4d8d29',1,'Message']]],
+  ['getvalue',['getValue',['../classVar__uint.html#afce70ac475fd4ac727c76d32637a153e',1,'Var_uint']]],
   ['getversion',['getVersion',['../classTransaction.html#a133aff45373713e39a7a1317652dc55c',1,'Transaction']]]
 ];
