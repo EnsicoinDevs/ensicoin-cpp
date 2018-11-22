@@ -19,7 +19,7 @@ std::string Networkable::asBytes() const{
 	return decodedBytes;
 }
 
-Var_uint::Var_uint(unsigned long val) : value(val) {}
+Var_uint::Var_uint(uint64_t val) : value(val) {}
 
 Var_uint::Var_uint(const std::string& binaryString){
 	if ( binaryString[0] < char(0xfd) ){
@@ -38,10 +38,14 @@ Var_uint::Var_uint(const std::string& binaryString){
 	else{
 		for(int i = 2; i < 9; ++i){
 			auto byte = (unsigned char)(binaryString[i]);
-			value |= (unsigned long)(byte) << 8*(8-i);
+			value |= (uint64_t)(byte) << 8*(8-i);
 		}
 		binaryString[9];
 	}
+}
+
+uint64_t Var_uint::getValue() const{
+	return value;
 }
 
 std::string Var_uint::byteRepr() const{
