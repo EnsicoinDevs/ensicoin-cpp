@@ -13,7 +13,7 @@ LIBS=-lcryptopp -pthread -lleveldb
 
 ODIR=obj
 
-OBJS:=$(patsubst %.cpp, obj/%.o, $(shell find src/ -type f -printf "%f "))
+OBJS:=$(patsubst %.cpp, obj/%.o, $(shell find src/ -name '*.cpp' -type f -printf "%f "))
 
 ensicoin-node: $(OBJS)
 	$(CXX) -o $(BDIR)/$@ $^ $(CXXFLAGS) $(LIBS)
