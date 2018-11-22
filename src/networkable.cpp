@@ -1,5 +1,5 @@
 #include "networkable.hpp"
-#include "debug.hpp"
+#include "util.hpp"
 
 #include <iostream>
 #include <cryptopp/hex.h>
@@ -53,7 +53,7 @@ std::string Var_uint::byteRepr() const{
 	sstream << std::hex << value;
 	auto rawStr = sstream.str();
 	if(value <= 252){
-		return rawStr;
+		return std::string(2-rawStr.length(), '0') + rawStr;
 	}
 	if(value <= 0xffff){
 		return "fd" + 
@@ -73,8 +73,31 @@ std::string Var_uint::byteRepr() const{
 	// 9 0xFF.value
 }
 
-Var_str::Var_str(std::string val) : value(val) {}
+Var_str::Var_str(std::string val, bool) : value(val) {}
 
+Var_str::Var_str(const std::string& binaryString){
+	if(binaryString[0] == char(0xfd)){
+		value = binaryString.substr(3);
+	}
+	else if(binaryString[0] == char(0xfe)){
+		value = binaryString.substr(5);
+	}
+	else if(binaryString[0] == char(0xff)){
+		value = binaryString.substr(9);
+	}
+	else{
+		value = binaryString.substr(1);
+	}
+}
+
+std::string Var_str::getValue() const{
+	return value;
+}
 std::string Var_str::byteRepr() const{
-	return Var_uint(value.size()).byteRepr() + value;
+	std::ostringstream bss;
+	bss << Var_uint(value.size()).byteRepr();
+	for(auto& chr : value){
+		bss << util::hex(chr);
+	}
+	return bss.str();
 }

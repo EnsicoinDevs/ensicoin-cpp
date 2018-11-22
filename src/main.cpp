@@ -16,7 +16,7 @@
 
 #include "constants.hpp"
 #include "crypto.hpp"
-#include "debug.hpp"
+#include "util.hpp"
 #include "script.hpp"
 #include "blocks.hpp"
 #include "node.hpp"
@@ -58,12 +58,10 @@ int main(){
 		std::cout << "Directory set" << std::endl;
 	}
 	
-	Var_uint x(0x123456789acd);
-	std::cout << " X : " << x.byteRepr() << std::endl;
-	auto byteX =  x.asBytes();
-	Var_uint y(byteX);
-	std::cout << " Y : " << y.byteRepr() << std::endl;
-
+	Var_str x("kat",true);
+	std::cout << "X : " << x.getValue() << ", ByteRepr : " << x.byteRepr() << ", as binaryString : " << x.asBytes() << std::endl; 
+	util::printBinaryString(x.asBytes());
+	
 	asio::io_context io_context;
 	//Node node(io_context);
 	//io_context.run();

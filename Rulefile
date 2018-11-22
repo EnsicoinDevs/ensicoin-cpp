@@ -74,14 +74,14 @@ obj/transactionoutput.o: src/transaction/transactionoutput.cpp \
   include/script.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/main.o: src/main.cpp include/constants.hpp include/crypto.hpp \
-  include/script.hpp include/blocks.hpp include/jsonable.hpp \
-  include/transaction.hpp include/hashmemory.hpp include/node.hpp \
-  include/blockchain.hpp include/connection.hpp include/messages.hpp \
-  include/networkable.hpp include/mempool.hpp \
+  include/util.hpp include/script.hpp include/blocks.hpp \
+  include/jsonable.hpp include/transaction.hpp include/hashmemory.hpp \
+  include/node.hpp include/blockchain.hpp include/connection.hpp \
+  include/messages.hpp include/networkable.hpp include/mempool.hpp \
   include/linkedtransaction.hpp include/utxo.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/networkable.o: src/networkable.cpp include/networkable.hpp \
-  include/debug.hpp
+  include/util.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/getmempool.o: src/message/getmempool.cpp include/messages.hpp \
   include/blocks.hpp include/jsonable.hpp include/transaction.hpp \
@@ -106,6 +106,8 @@ obj/debug.o: src/debug.cpp include/debug.hpp
 obj/transactioninput.o: src/transaction/transactioninput.cpp \
   include/transaction.hpp include/hashmemory.hpp include/jsonable.hpp \
   include/script.hpp
+	$(CXX) -c -o $@ $< $(CXXFLAGS)
+obj/util.o: src/util.cpp include/util.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/node.o: src/node.cpp include/node.hpp include/blockchain.hpp \
   include/blocks.hpp include/jsonable.hpp include/transaction.hpp \

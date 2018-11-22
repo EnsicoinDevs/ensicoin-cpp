@@ -40,10 +40,14 @@ class Var_str : public Networkable{
 	protected:
 		std::string value;
 	public:
+		/// \brief Returns the underlying value
+		std::string getValue() const;
 		/// \brief Representation as packed hex string
 		std::string byteRepr() const override;
 		/// \brief Create a Var_str
-		explicit Var_str(std::string val);
+		explicit Var_str(std::string val, bool);
+		/// \brief Construct a Var_str from a binary string
+		explicit Var_str(const std::string& binaryString);
 };
 
 #endif /* NETWORKABLE_HPP */
