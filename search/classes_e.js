@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['utxodata',['UTXOdata',['../structUTXOdata.html',1,'']]],
-  ['utxomanager',['UTXOManager',['../classUTXOManager.html',1,'']]]
+  ['transaction',['Transaction',['../classTransaction.html',1,'']]],
+  ['transactionidentifier',['TransactionIdentifier',['../structTransactionIdentifier.html',1,'']]],
+  ['transactionmessage',['TransactionMessage',['../classmessage_1_1TransactionMessage.html',1,'message']]]
 ];

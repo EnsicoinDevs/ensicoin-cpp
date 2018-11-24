@@ -89,12 +89,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a38fe04188a987a4105b1b2f4264e568b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crypto_8cpp.html#a38fe04188a987a4105b1b2f4264e568b">hexPublicKey</a> (const ECP::Point q)</td></tr>
 <tr class="memdesc:a38fe04188a987a4105b1b2f4264e568b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hex reprensation of a public key.  <a href="#a38fe04188a987a4105b1b2f4264e568b">More...</a><br /></td></tr>
 <tr class="separator:a38fe04188a987a4105b1b2f4264e568b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a410591edeedf4a396543119822447772"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crypto_8cpp.html#a410591edeedf4a396543119822447772">ripemd160</a> (std::string message, bool unpack)</td></tr>
-<tr class="memdesc:a410591edeedf4a396543119822447772"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the RIPEMD160 hash.  <a href="#a410591edeedf4a396543119822447772">More...</a><br /></td></tr>
-<tr class="separator:a410591edeedf4a396543119822447772"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f0d6c95e569656d7be2848df2b6df69"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crypto_8cpp.html#a3f0d6c95e569656d7be2848df2b6df69">sha256</a> (std::string message, bool unpack)</td></tr>
-<tr class="memdesc:a3f0d6c95e569656d7be2848df2b6df69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the SHA256 hash.  <a href="#a3f0d6c95e569656d7be2848df2b6df69">More...</a><br /></td></tr>
-<tr class="separator:a3f0d6c95e569656d7be2848df2b6df69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcafd166655c7861f3b03a4db5dc5c4a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crypto_8cpp.html#abcafd166655c7861f3b03a4db5dc5c4a">ripemd160</a> (const std::string &amp;binaryMessage)</td></tr>
+<tr class="memdesc:abcafd166655c7861f3b03a4db5dc5c4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the RIPEMD160 hash.  <a href="#abcafd166655c7861f3b03a4db5dc5c4a">More...</a><br /></td></tr>
+<tr class="separator:abcafd166655c7861f3b03a4db5dc5c4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add62b521d07dd8c22b163d585c513abf"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crypto_8cpp.html#add62b521d07dd8c22b163d585c513abf">sha256</a> (const std::string &amp;binaryMessage)</td></tr>
+<tr class="memdesc:add62b521d07dd8c22b163d585c513abf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the SHA256 hash.  <a href="#add62b521d07dd8c22b163d585c513abf">More...</a><br /></td></tr>
+<tr class="separator:add62b521d07dd8c22b163d585c513abf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a38fe04188a987a4105b1b2f4264e568b"></a>
@@ -118,8 +118,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a410591edeedf4a396543119822447772"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a410591edeedf4a396543119822447772">&#9670;&nbsp;</a></span>ripemd160()</h2>
+<a id="abcafd166655c7861f3b03a4db5dc5c4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcafd166655c7861f3b03a4db5dc5c4a">&#9670;&nbsp;</a></span>ripemd160()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -127,19 +127,9 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">std::string ripemd160 </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>binaryString</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>unpack</em> = <code>false</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -155,8 +145,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a3f0d6c95e569656d7be2848df2b6df69"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3f0d6c95e569656d7be2848df2b6df69">&#9670;&nbsp;</a></span>sha256()</h2>
+<a id="add62b521d07dd8c22b163d585c513abf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add62b521d07dd8c22b163d585c513abf">&#9670;&nbsp;</a></span>sha256()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -164,19 +154,9 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">std::string sha256 </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>binaryString</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>unpack</em> = <code>false</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -184,8 +164,7 @@ Functions</h2></td></tr>
 <p>Take the SHA256 hash. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">input</td><td>string to be hashed </td></tr>
-    <tr><td class="paramname">unpack</td><td>handles a binary string </td></tr>
+    <tr><td class="paramname">binaryString</td><td>binary input to be hashed </td></tr>
   </table>
   </dd>
 </dl>

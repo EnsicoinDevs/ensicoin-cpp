@@ -90,95 +90,23 @@ Inheritance diagram for JSONAble:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a20296de15772b7cbc33e162abdd742b5"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSONAble.html#a20296de15772b7cbc33e162abdd742b5">str</a> () const</td></tr>
-<tr class="memdesc:a20296de15772b7cbc33e162abdd742b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">represents a string as JSON  <a href="#a20296de15772b7cbc33e162abdd742b5">More...</a><br /></td></tr>
+<tr class="memitem:a20296de15772b7cbc33e162abdd742b5"><td class="memItemLeft" align="right" valign="top"><a id="a20296de15772b7cbc33e162abdd742b5"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSONAble.html#a20296de15772b7cbc33e162abdd742b5">str</a> () const</td></tr>
+<tr class="memdesc:a20296de15772b7cbc33e162abdd742b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the rapidjson::Document into a string. <br /></td></tr>
 <tr class="separator:a20296de15772b7cbc33e162abdd742b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a232d085dca21bde89585f0ae76d0bdf1"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSONAble.html#a232d085dca21bde89585f0ae76d0bdf1">~JSONAble</a> ()</td></tr>
-<tr class="separator:a232d085dca21bde89585f0ae76d0bdf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a8c80a36b9f8c179b5a6599927c7d7bec"><td class="memItemLeft" align="right" valign="top">virtual rapidjson::Document&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSONAble.html#a8c80a36b9f8c179b5a6599927c7d7bec">json</a> () const =0</td></tr>
+<tr class="memitem:a8c80a36b9f8c179b5a6599927c7d7bec"><td class="memItemLeft" align="right" valign="top"><a id="a8c80a36b9f8c179b5a6599927c7d7bec"></a>
+virtual rapidjson::Document&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSONAble.html#a8c80a36b9f8c179b5a6599927c7d7bec">json</a> () const =0</td></tr>
+<tr class="memdesc:a8c80a36b9f8c179b5a6599927c7d7bec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a rapidjson::Document from an object. <br /></td></tr>
 <tr class="separator:a8c80a36b9f8c179b5a6599927c7d7bec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class that can be reprsented in JSON. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a232d085dca21bde89585f0ae76d0bdf1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a232d085dca21bde89585f0ae76d0bdf1">&#9670;&nbsp;</a></span>~JSONAble()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">JSONAble::~JSONAble </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a8c80a36b9f8c179b5a6599927c7d7bec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8c80a36b9f8c179b5a6599927c7d7bec">&#9670;&nbsp;</a></span>json()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual rapidjson::Document JSONAble::json </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="classTransaction.html#a583d7276a7e8c249a9096ec26b74b56e">Transaction</a>, and <a class="el" href="classBlock.html#a6249b0af904708a022243f3a79a92b02">Block</a>.</p>
-
-</div>
-</div>
-<a id="a20296de15772b7cbc33e162abdd742b5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a20296de15772b7cbc33e162abdd742b5">&#9670;&nbsp;</a></span>str()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string JSONAble::str </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>represents a string as JSON </p>
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="jsonable_8hpp_source.html">jsonable.hpp</a></li>
-<li>src/<a class="el" href="jsonable_8cpp.html">jsonable.cpp</a></li>
+<li>src/jsonable.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

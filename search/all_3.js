@@ -1,13 +1,10 @@
 var searchData=
 [
-  ['data',['data',['../classInv.html#a6d4e11f9a1b4ff85c7afc65fc21bc4a9',1,'Inv::data()'],['../classScript.html#a30e43a826a3f24edc5165535de541b6b',1,'Script::data()']]],
-  ['data_5fpath',['DATA_PATH',['../constants_8hpp.html#adc448fae121fe6b350fa3034e3948d3e',1,'DATA_PATH():&#160;constants.cpp'],['../constants_8cpp.html#adc448fae121fe6b350fa3034e3948d3e',1,'DATA_PATH():&#160;constants.cpp']]],
-  ['dataasked',['dataAsked',['../classGetData.html#a245f327c753d3e69206308d8bcf0b4c6',1,'GetData']]],
-  ['datatype',['dataType',['../classGetData.html#a847b560ab9b57d6471464d3a68821753',1,'GetData']]],
+  ['data',['data',['../classmessage_1_1GetData.html#ad8f7c0920d9b41c11a30f923e93bb247',1,'message::GetData::data()'],['../classmessage_1_1Inv.html#a283e6359b85c4b13e4939cac12052b37',1,'message::Inv::data()'],['../classmessage_1_1NotFound.html#ac7f4e303d7de14be05dea535676a59a0',1,'message::NotFound::data()'],['../classScript.html#a30e43a826a3f24edc5165535de541b6b',1,'Script::data()']]],
+  ['dataasked',['dataAsked',['../classmessage_1_1GetData.html#adadc556532b3ce1c05a8d2bcebcda90c',1,'message::GetData']]],
+  ['datatype',['dataType',['../classmessage_1_1GetData.html#a6438e7193d1d0a7147613fe3063e25c1',1,'message::GetData']]],
   ['db',['db',['../classUTXOManager.html#a41e7280e7d1384aca9dbf2e15b1085cf',1,'UTXOManager']]],
-  ['debug',['debug',['../namespacedebug.html',1,'debug'],['../classScript.html#aeabf9b6665b69309c6e825606d19202d',1,'Script::debug()']]],
-  ['debug_2ecpp',['debug.cpp',['../debug_8cpp.html',1,'']]],
-  ['debug_2ehpp',['debug.hpp',['../debug_8hpp.html',1,'']]],
+  ['debug',['debug',['../classScript.html#aeabf9b6665b69309c6e825606d19202d',1,'Script']]],
   ['decrementheight',['decrementHeight',['../classMempool.html#a6306559877a38806f0a3a90aa87f8655',1,'Mempool']]],
   ['dependencies',['dependencies',['../classLinkedTransaction.html#af5927fd17601f194269b31522be5a112',1,'LinkedTransaction']]],
   ['doc',['doc',['../structHandler_1_1params.html#a3545b38ef1b2d2e06264c10229bfb6a1',1,'Handler::params']]],

@@ -70,7 +70,7 @@ $(function() {
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classMessage-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Message Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+<div class="title">Message Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -84,56 +84,80 @@ Inheritance diagram for Message:</div>
  <div class="center">
   <img src="classMessage.png" usemap="#Message_map" alt=""/>
   <map id="Message_map" name="Message_map">
-<area href="classBlockMessage.html" title="Message sending a Block over. " alt="BlockMessage" shape="rect" coords="261,112,512,136"/>
-<area href="classGetBlocks.html" title="Message asking a node to sync Block until a certain point. " alt="GetBlocks" shape="rect" coords="261,168,512,192"/>
-<area href="classGetData.html" title="Message to get the JSON String representing ressources. " alt="GetData" shape="rect" coords="261,224,512,248"/>
-<area href="classGetMempool.html" title="Message to sync the Mempool with another node. " alt="GetMempool" shape="rect" coords="261,280,512,304"/>
-<area href="classInv.html" title="Transmit Block or Transaction to a peer. " alt="Inv" shape="rect" coords="261,336,512,360"/>
-<area href="classNotFound.html" title="Message signaling an asked ressource is unknown. " alt="NotFound" shape="rect" coords="261,392,512,416"/>
-<area href="classTransactionMessage.html" title="Message sending a Transaction over. " alt="TransactionMessage" shape="rect" coords="261,448,512,472"/>
-<area href="classWhoAmI.html" title="Message used for intializing the Connection. " alt="WhoAmI" shape="rect" coords="261,504,512,528"/>
+<area href="classNetworkable.html" title="Object to be send to another Node in a byte list. " alt="Networkable" shape="rect" coords="261,0,512,24"/>
+<area href="classBlockMessage.html" title="Message sending a Block over. " alt="BlockMessage" shape="rect" coords="391,112,642,136"/>
+<area href="classGetBlocks.html" title="Message asking a node to sync Block until a certain point. " alt="GetBlocks" shape="rect" coords="391,168,642,192"/>
+<area href="classGetData.html" title="Message to get the JSON String representing ressources. " alt="GetData" shape="rect" coords="391,224,642,248"/>
+<area href="classGetMempool.html" title="Message to sync the Mempool with another node. " alt="GetMempool" shape="rect" coords="391,280,642,304"/>
+<area href="classInv.html" title="Transmit Block or Transaction to a peer. " alt="Inv" shape="rect" coords="391,336,642,360"/>
+<area href="classNotFound.html" title="Message signaling an asked ressource is unknown. " alt="NotFound" shape="rect" coords="391,392,642,416"/>
+<area href="classTransactionMessage.html" title="Message sending a Transaction over. " alt="TransactionMessage" shape="rect" coords="391,448,642,472"/>
+<area href="classWhoAmI.html" title="Message used for intializing the Connection. " alt="WhoAmI" shape="rect" coords="391,504,642,528"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
+<tr class="memitem:a9b98fc6fc1adc8e3ea80ddc348e7efaf"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efaf">message_type</a> { <br />
+&#160;&#160;<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efafa0f5a9d6182ba5badfde9f87776a876cb">whoami</a>, 
+<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efafac941e06d9ecff03410ddf42ec00b450f">whoamiack</a>, 
+<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efafa8485c6ca43d1722130540090c348d5a1">getaddr</a>, 
+<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efafada5310f88d75781c900760f2fb4ea74a">addr</a>, 
+<br />
+&#160;&#160;<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efafadfdebcb760705e1a92371c9bb6325a33">inv</a>, 
+<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efafa7902311efa52b8b95ced4bbdadcc6915">getdata</a>, 
+<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efafa11bda378ac2bb98a447a9145ddf247a7">notfound</a>, 
+<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efafa9df0ad300a3d852353ec33bc2708beed">block</a>, 
+<br />
+&#160;&#160;<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efafac3c02564b6e5e8ad8afd3828a7e3f7ae">tx</a>, 
+<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efafa810952765d76189acfe2f93de51d7d08">getblocks</a>, 
+<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efafa61ea444fc5508ae3f6d267b4ad01cab0">getmempool</a>, 
+<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efafa7af854489fd4c321b239d2a3a2577e61">unknown</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:a9b98fc6fc1adc8e3ea80ddc348e7efaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Possible <a class="el" href="classMessage.html" title="Base class for all network communcation. ">Message</a> types.  <a href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efaf">More...</a><br /></td></tr>
+<tr class="separator:a9b98fc6fc1adc8e3ea80ddc348e7efaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f7f2aa1058cb5f0b74a1fbb7fcd00e5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a3f7f2aa1058cb5f0b74a1fbb7fcd00e5">messagePointer</a> = std::shared_ptr&lt; <a class="el" href="classMessage.html">Message</a> &gt;</td></tr>
 <tr class="separator:a3f7f2aa1058cb5f0b74a1fbb7fcd00e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:afde1ad2efd7e7af3ed65bbbb08e2e172"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#afde1ad2efd7e7af3ed65bbbb08e2e172">str</a> () const</td></tr>
-<tr class="memdesc:afde1ad2efd7e7af3ed65bbbb08e2e172"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the JSON string representation  <a href="#afde1ad2efd7e7af3ed65bbbb08e2e172">More...</a><br /></td></tr>
-<tr class="separator:afde1ad2efd7e7af3ed65bbbb08e2e172"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb65039d076cefaff79b21044a4d8d29"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#aeb65039d076cefaff79b21044a4d8d29">getType</a> () const</td></tr>
-<tr class="memdesc:aeb65039d076cefaff79b21044a4d8d29"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the type of the <a class="el" href="classMessage.html" title="Base class for all network communcation. ">Message</a>  <a href="#aeb65039d076cefaff79b21044a4d8d29">More...</a><br /></td></tr>
-<tr class="separator:aeb65039d076cefaff79b21044a4d8d29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f8e3ac2eed3a8afe9400fcd5b3447b2"><td class="memItemLeft" align="right" valign="top">virtual rapidjson::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a6f8e3ac2eed3a8afe9400fcd5b3447b2">json</a> (rapidjson::Document *document) const</td></tr>
-<tr class="memdesc:a6f8e3ac2eed3a8afe9400fcd5b3447b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the JSON representation of the <a class="el" href="classMessage.html" title="Base class for all network communcation. ">Message</a>.  <a href="#a6f8e3ac2eed3a8afe9400fcd5b3447b2">More...</a><br /></td></tr>
-<tr class="separator:a6f8e3ac2eed3a8afe9400fcd5b3447b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7ecaab66dfea90ed7bf9a3147bcf129"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#ad7ecaab66dfea90ed7bf9a3147bcf129">~Message</a> ()=0</td></tr>
-<tr class="separator:ad7ecaab66dfea90ed7bf9a3147bcf129"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bbc183223414131794d076ce7a85c62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efaf">message_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a1bbc183223414131794d076ce7a85c62">getType</a> () const</td></tr>
+<tr class="memdesc:a1bbc183223414131794d076ce7a85c62"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the type of the <a class="el" href="classMessage.html" title="Base class for all network communcation. ">Message</a>  <a href="#a1bbc183223414131794d076ce7a85c62">More...</a><br /></td></tr>
+<tr class="separator:a1bbc183223414131794d076ce7a85c62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8f8604a8a3e481634cd81758dc344ca"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#af8f8604a8a3e481634cd81758dc344ca">getTypeAsString</a> () const</td></tr>
+<tr class="memdesc:af8f8604a8a3e481634cd81758dc344ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the message_type as a string.  <a href="#af8f8604a8a3e481634cd81758dc344ca">More...</a><br /></td></tr>
+<tr class="separator:af8f8604a8a3e481634cd81758dc344ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfbae005357df17dbe9ec006f88993c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efaf">message_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#adfbae005357df17dbe9ec006f88993c6">typeFromString</a> (const std::string &amp;typeString) const</td></tr>
+<tr class="memdesc:adfbae005357df17dbe9ec006f88993c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse a string into message_type.  <a href="#adfbae005357df17dbe9ec006f88993c6">More...</a><br /></td></tr>
+<tr class="separator:adfbae005357df17dbe9ec006f88993c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b85c60be17b0a7b0dcfb40ba26f3cc6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a2b85c60be17b0a7b0dcfb40ba26f3cc6">byteRepr</a> () const override</td></tr>
+<tr class="memdesc:a2b85c60be17b0a7b0dcfb40ba26f3cc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the hex string representation.  <a href="#a2b85c60be17b0a7b0dcfb40ba26f3cc6">More...</a><br /></td></tr>
+<tr class="separator:a2b85c60be17b0a7b0dcfb40ba26f3cc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classNetworkable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classNetworkable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classNetworkable.html">Networkable</a></td></tr>
+<tr class="memitem:aa4bfe59d096ff83a3d201782918a39d8 inherit pub_methods_classNetworkable"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkable.html#aa4bfe59d096ff83a3d201782918a39d8">asBytes</a> () const</td></tr>
+<tr class="memdesc:aa4bfe59d096ff83a3d201782918a39d8 inherit pub_methods_classNetworkable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the binary string represesentation of the <a class="el" href="classNetworkable.html" title="Object to be send to another Node in a byte list. ">Networkable</a> object.  <a href="classNetworkable.html#aa4bfe59d096ff83a3d201782918a39d8">More...</a><br /></td></tr>
+<tr class="separator:aa4bfe59d096ff83a3d201782918a39d8 inherit pub_methods_classNetworkable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a435a3455fc1b0efd571eaf54f8a62cf9 inherit pub_methods_classNetworkable"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkable.html#a435a3455fc1b0efd571eaf54f8a62cf9">~Networkable</a> ()=0</td></tr>
+<tr class="separator:a435a3455fc1b0efd571eaf54f8a62cf9 inherit pub_methods_classNetworkable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:aa222cbc5bf7865d5464a841740f45c11"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#aa222cbc5bf7865d5464a841740f45c11">Message</a> (std::string <a class="el" href="classMessage.html#ae9dead264183a4243c120026e6259b6f">type</a>)</td></tr>
-<tr class="memdesc:aa222cbc5bf7865d5464a841740f45c11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construc a <a class="el" href="classMessage.html" title="Base class for all network communcation. ">Message</a> with empty content.  <a href="#aa222cbc5bf7865d5464a841740f45c11">More...</a><br /></td></tr>
-<tr class="separator:aa222cbc5bf7865d5464a841740f45c11"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba4e52b33dcfa35778ad50ba060cb1d9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#aba4e52b33dcfa35778ad50ba060cb1d9">Message</a> (rapidjson::Document *binaryString)</td></tr>
-<tr class="memdesc:aba4e52b33dcfa35778ad50ba060cb1d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a rapidjson::Document in a <a class="el" href="classMessage.html" title="Base class for all network communcation. ">Message</a>.  <a href="#aba4e52b33dcfa35778ad50ba060cb1d9">More...</a><br /></td></tr>
-<tr class="separator:aba4e52b33dcfa35778ad50ba060cb1d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9669b1ce389c1813c08d6057997a0688"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a9669b1ce389c1813c08d6057997a0688">Message</a> (<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efaf">message_type</a> <a class="el" href="classMessage.html#a169e83551b3a28e0de1223bbaf883e6f">type</a>)</td></tr>
+<tr class="memdesc:a9669b1ce389c1813c08d6057997a0688"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construc a <a class="el" href="classMessage.html" title="Base class for all network communcation. ">Message</a> with empty content.  <a href="#a9669b1ce389c1813c08d6057997a0688">More...</a><br /></td></tr>
+<tr class="separator:a9669b1ce389c1813c08d6057997a0688"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31f31e9259b397cbf205aa595345cdc6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a31f31e9259b397cbf205aa595345cdc6">Message</a> (const std::string &amp;binaryString)</td></tr>
+<tr class="memdesc:a31f31e9259b397cbf205aa595345cdc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a rapidjson::Document in a <a class="el" href="classMessage.html" title="Base class for all network communcation. ">Message</a>.  <a href="#a31f31e9259b397cbf205aa595345cdc6">More...</a><br /></td></tr>
+<tr class="separator:a31f31e9259b397cbf205aa595345cdc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a5bb4366b0a888886fec19ca2b2903d00"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a5bb4366b0a888886fec19ca2b2903d00">magic</a></td></tr>
 <tr class="memdesc:a5bb4366b0a888886fec19ca2b2903d00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defined in <a class="el" href="constants_8hpp.html">constants.hpp</a>.  <a href="#a5bb4366b0a888886fec19ca2b2903d00">More...</a><br /></td></tr>
 <tr class="separator:a5bb4366b0a888886fec19ca2b2903d00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9dead264183a4243c120026e6259b6f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#ae9dead264183a4243c120026e6259b6f">type</a></td></tr>
-<tr class="memdesc:ae9dead264183a4243c120026e6259b6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of message.  <a href="#ae9dead264183a4243c120026e6259b6f">More...</a><br /></td></tr>
-<tr class="separator:ae9dead264183a4243c120026e6259b6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78b882ca696ae5b4387b829132ff21ab"><td class="memItemLeft" align="right" valign="top">std::time_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a78b882ca696ae5b4387b829132ff21ab">timestamp</a></td></tr>
-<tr class="memdesc:a78b882ca696ae5b4387b829132ff21ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creation timestamp.  <a href="#a78b882ca696ae5b4387b829132ff21ab">More...</a><br /></td></tr>
-<tr class="separator:a78b882ca696ae5b4387b829132ff21ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a169e83551b3a28e0de1223bbaf883e6f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efaf">message_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a169e83551b3a28e0de1223bbaf883e6f">type</a></td></tr>
+<tr class="memdesc:a169e83551b3a28e0de1223bbaf883e6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of message.  <a href="#a169e83551b3a28e0de1223bbaf883e6f">More...</a><br /></td></tr>
+<tr class="separator:a169e83551b3a28e0de1223bbaf883e6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Base class for all network communcation. </p>
@@ -152,9 +176,40 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="a9b98fc6fc1adc8e3ea80ddc348e7efaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b98fc6fc1adc8e3ea80ddc348e7efaf">&#9670;&nbsp;</a></span>message_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efaf">Message::message_type</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Possible <a class="el" href="classMessage.html" title="Base class for all network communcation. ">Message</a> types. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a9b98fc6fc1adc8e3ea80ddc348e7efafa0f5a9d6182ba5badfde9f87776a876cb"></a>whoami&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a9b98fc6fc1adc8e3ea80ddc348e7efafac941e06d9ecff03410ddf42ec00b450f"></a>whoamiack&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a9b98fc6fc1adc8e3ea80ddc348e7efafa8485c6ca43d1722130540090c348d5a1"></a>getaddr&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a9b98fc6fc1adc8e3ea80ddc348e7efafada5310f88d75781c900760f2fb4ea74a"></a>addr&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a9b98fc6fc1adc8e3ea80ddc348e7efafadfdebcb760705e1a92371c9bb6325a33"></a>inv&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a9b98fc6fc1adc8e3ea80ddc348e7efafa7902311efa52b8b95ced4bbdadcc6915"></a>getdata&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a9b98fc6fc1adc8e3ea80ddc348e7efafa11bda378ac2bb98a447a9145ddf247a7"></a>notfound&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a9b98fc6fc1adc8e3ea80ddc348e7efafa9df0ad300a3d852353ec33bc2708beed"></a>block&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a9b98fc6fc1adc8e3ea80ddc348e7efafac3c02564b6e5e8ad8afd3828a7e3f7ae"></a>tx&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a9b98fc6fc1adc8e3ea80ddc348e7efafa810952765d76189acfe2f93de51d7d08"></a>getblocks&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a9b98fc6fc1adc8e3ea80ddc348e7efafa61ea444fc5508ae3f6d267b4ad01cab0"></a>getmempool&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a9b98fc6fc1adc8e3ea80ddc348e7efafa7af854489fd4c321b239d2a3a2577e61"></a>unknown&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aa222cbc5bf7865d5464a841740f45c11"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa222cbc5bf7865d5464a841740f45c11">&#9670;&nbsp;</a></span>Message() <span class="overload">[1/2]</span></h2>
+<a id="a9669b1ce389c1813c08d6057997a0688"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9669b1ce389c1813c08d6057997a0688">&#9670;&nbsp;</a></span>Message() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -165,7 +220,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname">Message::Message </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
+          <td class="paramtype"><a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efaf">message_type</a>&#160;</td>
           <td class="paramname"><em>type</em></td><td>)</td>
           <td></td>
         </tr>
@@ -187,8 +242,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aba4e52b33dcfa35778ad50ba060cb1d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba4e52b33dcfa35778ad50ba060cb1d9">&#9670;&nbsp;</a></span>Message() <span class="overload">[2/2]</span></h2>
+<a id="a31f31e9259b397cbf205aa595345cdc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31f31e9259b397cbf205aa595345cdc6">&#9670;&nbsp;</a></span>Message() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -199,7 +254,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname">Message::Message </td>
           <td>(</td>
-          <td class="paramtype">rapidjson::Document *&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>binaryString</em></td><td>)</td>
           <td></td>
         </tr>
@@ -214,15 +269,16 @@ Protected Attributes</h2></td></tr>
 <p>Parses a rapidjson::Document in a <a class="el" href="classMessage.html" title="Base class for all network communcation. ">Message</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">doc</td><td>JSON representation </td></tr>
+    <tr><td class="paramname">binaryString</td><td>Unpacked string </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="ad7ecaab66dfea90ed7bf9a3147bcf129"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad7ecaab66dfea90ed7bf9a3147bcf129">&#9670;&nbsp;</a></span>~Message()</h2>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a2b85c60be17b0a7b0dcfb40ba26f3cc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b85c60be17b0a7b0dcfb40ba26f3cc6">&#9670;&nbsp;</a></span>byteRepr()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -231,30 +287,35 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Message::~Message </td>
+          <td class="memname">std::string Message::byteRepr </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
+<p>Get the hex string representation. </p>
+
+<p>Implements <a class="el" href="classNetworkable.html#a87c92ab187f15005e08f3aef88006adc">Networkable</a>.</p>
+
+<p>Reimplemented in <a class="el" href="classGetMempool.html#a8a5321a043e3dfc99a0e8de83558af41">GetMempool</a>, <a class="el" href="classGetBlocks.html#a0e0c48e1cb05b112fc65427c91ec8b11">GetBlocks</a>, <a class="el" href="classTransactionMessage.html#a55b13a046f3fe1eabe2240917a3357ff">TransactionMessage</a>, <a class="el" href="classBlockMessage.html#a1d4f518764c127d6b385785baa0c0720">BlockMessage</a>, <a class="el" href="classNotFound.html#a728e3c726123c66c4f6d71d1384a9ef5">NotFound</a>, <a class="el" href="classInv.html#a354f9a73894463f5f5ed821164419dbb">Inv</a>, <a class="el" href="classGetData.html#aef28dfcd199c9a3868f1ef920a32d2e5">GetData</a>, and <a class="el" href="classWhoAmI.html#aec49929adef58fd6c848c622ac8f3ae8">WhoAmI</a>.</p>
+
 </div>
 </div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="aeb65039d076cefaff79b21044a4d8d29"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb65039d076cefaff79b21044a4d8d29">&#9670;&nbsp;</a></span>getType()</h2>
+<a id="a1bbc183223414131794d076ce7a85c62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bbc183223414131794d076ce7a85c62">&#9670;&nbsp;</a></span>getType()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string Message::getType </td>
+          <td class="memname"><a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efaf">Message::message_type</a> Message::getType </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -266,50 +327,14 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a6f8e3ac2eed3a8afe9400fcd5b3447b2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f8e3ac2eed3a8afe9400fcd5b3447b2">&#9670;&nbsp;</a></span>json()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Value Message::json </td>
-          <td>(</td>
-          <td class="paramtype">rapidjson::Document *&#160;</td>
-          <td class="paramname"><em>document</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the JSON representation of the <a class="el" href="classMessage.html" title="Base class for all network communcation. ">Message</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">document</td><td>Allocator for creating members </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Reimplemented in <a class="el" href="classGetMempool.html#a3e6fb495c609ade4e8efd3d5668c28cf">GetMempool</a>, <a class="el" href="classGetBlocks.html#a8b77916e999ba0a730e31b90b4733928">GetBlocks</a>, <a class="el" href="classTransactionMessage.html#af8675087bd26b6aa0c30a3e3141dda4e">TransactionMessage</a>, <a class="el" href="classBlockMessage.html#afe33ddfdae83a25d98dd28541bc2fcfe">BlockMessage</a>, <a class="el" href="classNotFound.html#a67ee661e6a87c681d167da585c106240">NotFound</a>, <a class="el" href="classInv.html#a815854f9808009dbf9f0fdb1159061c5">Inv</a>, <a class="el" href="classGetData.html#a2fb121264fc1c5821e769f4f2389c6ff">GetData</a>, and <a class="el" href="classWhoAmI.html#a998c4b21d6235a84f15bd994b76be59d">WhoAmI</a>.</p>
-
-</div>
-</div>
-<a id="afde1ad2efd7e7af3ed65bbbb08e2e172"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afde1ad2efd7e7af3ed65bbbb08e2e172">&#9670;&nbsp;</a></span>str()</h2>
+<a id="af8f8604a8a3e481634cd81758dc344ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8f8604a8a3e481634cd81758dc344ca">&#9670;&nbsp;</a></span>getTypeAsString()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string Message::str </td>
+          <td class="memname">std::string Message::getTypeAsString </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -317,7 +342,27 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>gets the JSON string representation </p>
+<p>Get the message_type as a string. </p>
+
+</div>
+</div>
+<a id="adfbae005357df17dbe9ec006f88993c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfbae005357df17dbe9ec006f88993c6">&#9670;&nbsp;</a></span>typeFromString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efaf">Message::message_type</a> Message::typeFromString </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>typeString</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parse a string into message_type. </p>
 
 </div>
 </div>
@@ -346,8 +391,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a78b882ca696ae5b4387b829132ff21ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a78b882ca696ae5b4387b829132ff21ab">&#9670;&nbsp;</a></span>timestamp</h2>
+<a id="a169e83551b3a28e0de1223bbaf883e6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a169e83551b3a28e0de1223bbaf883e6f">&#9670;&nbsp;</a></span>type</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -356,31 +401,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::time_t Message::timestamp</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Creation timestamp. </p>
-
-</div>
-</div>
-<a id="ae9dead264183a4243c120026e6259b6f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae9dead264183a4243c120026e6259b6f">&#9670;&nbsp;</a></span>type</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string Message::type</td>
+          <td class="memname"><a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efaf">message_type</a> Message::type</td>
         </tr>
       </table>
   </td>

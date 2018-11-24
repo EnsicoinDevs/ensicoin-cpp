@@ -1,12 +1,17 @@
 var searchData=
 [
-  ['script',['Script',['../classScript.html#ac5dfef3a38ce09aa3d664b041b4b47e1',1,'Script']]],
-  ['scriptofoutput',['scriptOfOutput',['../classMempool.html#a2bba504baff6944c95ddd0195244bdf0',1,'Mempool']]],
-  ['sendmessage',['sendMessage',['../classConnection.html#ad8fa49332af5ccc42768f94bdf711187',1,'Connection']]],
-  ['sha256',['sha256',['../crypto_8hpp.html#a6ba01f11a1b2f987950b2909a08fef50',1,'sha256(std::string input, bool unpack=false):&#160;crypto.cpp'],['../crypto_8cpp.html#a3f0d6c95e569656d7be2848df2b6df69',1,'sha256(std::string message, bool unpack):&#160;crypto.cpp']]],
-  ['signinghash',['signingHash',['../classMempool.html#a758a67b582b45efce637b18f4e4a01d0',1,'Mempool']]],
-  ['spend',['spend',['../classUTXOManager.html#af08863b6400556a6350b3d7122cd1dc4',1,'UTXOManager']]],
-  ['start',['start',['../classConnection.html#a47c25a31352a71e2a6902d37fc5fa2ba',1,'Connection']]],
-  ['step',['step',['../classScript.html#a8491a3c9b5e51e2bf9c0b6f9bf13f6e9',1,'Script']]],
-  ['str',['str',['../classJSONAble.html#a20296de15772b7cbc33e162abdd742b5',1,'JSONAble::str()'],['../classMessage.html#afde1ad2efd7e7af3ed65bbbb08e2e172',1,'Message::str()'],['../structTransactionIdentifier.html#a00d46c50b8e79327f4c3b9bc32a7f679',1,'TransactionIdentifier::str()'],['../structInputTransaction.html#ac544bf7bb6c65ceafe3aaa76ce04783a',1,'InputTransaction::str()'],['../structOutputTransaction.html#a8491046e882593572512bf7717c36285',1,'OutputTransaction::str()'],['../structUTXOdata.html#a8416d6a4cc715159a8e2f9da47b5519a',1,'UTXOdata::str()']]]
+  ['rawstr',['rawStr',['../classBlock.html#ae69a2e1c0d586541c5633f9d8d4da693',1,'Block::rawStr()'],['../classTransaction.html#a90b3668de562cc1b7f5773e72ac9f6dc',1,'Transaction::rawStr()']]],
+  ['readaddress',['readAddress',['../classNetworkBuffer.html#aa3ccb39257f27aad42ccdfaf692496df',1,'NetworkBuffer']]],
+  ['readhash',['readHash',['../classNetworkBuffer.html#aa9062339d76b6808430a07ca40dd2397',1,'NetworkBuffer']]],
+  ['readinv_5fvect',['readInv_vect',['../classNetworkBuffer.html#aef6b0008b27c27e9e0a794404feec7ac',1,'NetworkBuffer']]],
+  ['readmessageheader',['readMessageHeader',['../classNetworkBuffer.html#a2f0a819d2a1becc75b61f2b0114fdc2b',1,'NetworkBuffer']]],
+  ['readuint16',['readUint16',['../classNetworkBuffer.html#a7a5df5653f8dccc4d867ad7aed1d1fed',1,'NetworkBuffer']]],
+  ['readuint32',['readUint32',['../classNetworkBuffer.html#a950de3c7cdda181b7635127d2154dc84',1,'NetworkBuffer']]],
+  ['readuint64',['readUint64',['../classNetworkBuffer.html#a7625c43b16192482f6733e56a775837c',1,'NetworkBuffer']]],
+  ['readvar_5fstr',['readVar_str',['../classNetworkBuffer.html#a147233277b1b18576a2393da65ba153e',1,'NetworkBuffer']]],
+  ['readvar_5fuint',['readVar_uint',['../classNetworkBuffer.html#a6ef944b1bf26964241d212df562bdf30',1,'NetworkBuffer']]],
+  ['registertransaction',['registerTransaction',['../classMempool.html#a49f4348d01f198a4ea2a8945518e7091',1,'Mempool']]],
+  ['remote',['remote',['../classConnection.html#ae1d2f498761143716cc12fdc76b46203',1,'Connection']]],
+  ['resetbuffer',['resetBuffer',['../classConnection.html#a489def548f673328fe383c5625224367',1,'Connection']]],
+  ['run',['run',['../classNode.html#a89bb61a94d73680b692280d83e83d2f4',1,'Node']]]
 ];

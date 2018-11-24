@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['debug',['debug',['../namespacedebug.html',1,'']]]
+  ['message',['message',['../namespacemessage.html',1,'']]]
 ];

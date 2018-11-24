@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['txtype',['TXType',['../transaction_8hpp.html#a379269e60c4ed3fb09a01778f31ddaad',1,'transaction.hpp']]]
+  ['message_5ftype',['message_type',['../classmessage_1_1Message.html#ab4353498130e075132da66e6ec1cb982',1,'message::Message']]]
 ];

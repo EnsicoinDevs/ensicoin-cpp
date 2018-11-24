@@ -95,12 +95,12 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac2f5f72ad1535f19f85ac0d91c896e6c"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crypto_8hpp.html#ac2f5f72ad1535f19f85ac0d91c896e6c">ripemd160</a> (std::string input, bool unpack=false)</td></tr>
-<tr class="memdesc:ac2f5f72ad1535f19f85ac0d91c896e6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the RIPEMD160 hash.  <a href="#ac2f5f72ad1535f19f85ac0d91c896e6c">More...</a><br /></td></tr>
-<tr class="separator:ac2f5f72ad1535f19f85ac0d91c896e6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ba01f11a1b2f987950b2909a08fef50"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crypto_8hpp.html#a6ba01f11a1b2f987950b2909a08fef50">sha256</a> (std::string input, bool unpack=false)</td></tr>
-<tr class="memdesc:a6ba01f11a1b2f987950b2909a08fef50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the SHA256 hash.  <a href="#a6ba01f11a1b2f987950b2909a08fef50">More...</a><br /></td></tr>
-<tr class="separator:a6ba01f11a1b2f987950b2909a08fef50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90b2e2d3c27e17e641b53416c3f3376a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crypto_8hpp.html#a90b2e2d3c27e17e641b53416c3f3376a">ripemd160</a> (const std::string &amp;binaryString)</td></tr>
+<tr class="memdesc:a90b2e2d3c27e17e641b53416c3f3376a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the RIPEMD160 hash.  <a href="#a90b2e2d3c27e17e641b53416c3f3376a">More...</a><br /></td></tr>
+<tr class="separator:a90b2e2d3c27e17e641b53416c3f3376a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cbba30eaab2eeb73b2cc6d1cb672838"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crypto_8hpp.html#a2cbba30eaab2eeb73b2cc6d1cb672838">sha256</a> (const std::string &amp;binaryString)</td></tr>
+<tr class="memdesc:a2cbba30eaab2eeb73b2cc6d1cb672838"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the SHA256 hash.  <a href="#a2cbba30eaab2eeb73b2cc6d1cb672838">More...</a><br /></td></tr>
+<tr class="separator:a2cbba30eaab2eeb73b2cc6d1cb672838"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38fe04188a987a4105b1b2f4264e568b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crypto_8hpp.html#a38fe04188a987a4105b1b2f4264e568b">hexPublicKey</a> (const ECP::Point q)</td></tr>
 <tr class="memdesc:a38fe04188a987a4105b1b2f4264e568b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hex reprensation of a public key.  <a href="#a38fe04188a987a4105b1b2f4264e568b">More...</a><br /></td></tr>
 <tr class="separator:a38fe04188a987a4105b1b2f4264e568b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,8 +142,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ac2f5f72ad1535f19f85ac0d91c896e6c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2f5f72ad1535f19f85ac0d91c896e6c">&#9670;&nbsp;</a></span>ripemd160()</h2>
+<a id="a90b2e2d3c27e17e641b53416c3f3376a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90b2e2d3c27e17e641b53416c3f3376a">&#9670;&nbsp;</a></span>ripemd160()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -151,19 +151,9 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">std::string ripemd160 </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>binaryString</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>unpack</em> = <code>false</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -179,8 +169,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a6ba01f11a1b2f987950b2909a08fef50"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6ba01f11a1b2f987950b2909a08fef50">&#9670;&nbsp;</a></span>sha256()</h2>
+<a id="a2cbba30eaab2eeb73b2cc6d1cb672838"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cbba30eaab2eeb73b2cc6d1cb672838">&#9670;&nbsp;</a></span>sha256()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -188,19 +178,9 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">std::string sha256 </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>binaryString</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>unpack</em> = <code>false</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -208,8 +188,7 @@ Functions</h2></td></tr>
 <p>Take the SHA256 hash. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">input</td><td>string to be hashed </td></tr>
-    <tr><td class="paramname">unpack</td><td>handles a binary string </td></tr>
+    <tr><td class="paramname">binaryString</td><td>binary input to be hashed </td></tr>
   </table>
   </dd>
 </dl>

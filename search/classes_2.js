@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ecdsasignature',['ECDSASignature',['../classECDSASignature.html',1,'']]]
+  ['connection',['Connection',['../classConnection.html',1,'']]]
 ];

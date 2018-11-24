@@ -81,7 +81,8 @@ Inheritance diagram for GetMempool:</div>
  <div class="center">
   <img src="classGetMempool.png" usemap="#GetMempool_map" alt=""/>
   <map id="GetMempool_map" name="GetMempool_map">
-<area href="classMessage.html" title="Base class for all network communcation. " alt="Message" shape="rect" coords="0,56,251,80"/>
+<area href="classMessage.html" title="Base class for all network communcation. " alt="Message" shape="rect" coords="130,56,381,80"/>
+<area href="classNetworkable.html" title="Object to be send to another Node in a byte list. " alt="Networkable" shape="rect" coords="261,0,512,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -90,44 +91,67 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a337115b4fa5609bd3d6ae8433382ab28"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGetMempool.html#a337115b4fa5609bd3d6ae8433382ab28">GetMempool</a> ()</td></tr>
 <tr class="memdesc:a337115b4fa5609bd3d6ae8433382ab28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a <a class="el" href="classGetMempool.html" title="Message to sync the Mempool with another node. ">GetMempool</a>.  <a href="#a337115b4fa5609bd3d6ae8433382ab28">More...</a><br /></td></tr>
 <tr class="separator:a337115b4fa5609bd3d6ae8433382ab28"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99f4e2b501cd290d13833116aa48e0f7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGetMempool.html#a99f4e2b501cd290d13833116aa48e0f7">GetMempool</a> (rapidjson::Document *doc)</td></tr>
-<tr class="memdesc:a99f4e2b501cd290d13833116aa48e0f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a JSON representation in a <a class="el" href="classGetData.html" title="Message to get the JSON String representing ressources. ">GetData</a>.  <a href="#a99f4e2b501cd290d13833116aa48e0f7">More...</a><br /></td></tr>
-<tr class="separator:a99f4e2b501cd290d13833116aa48e0f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e6fb495c609ade4e8efd3d5668c28cf"><td class="memItemLeft" align="right" valign="top">rapidjson::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGetMempool.html#a3e6fb495c609ade4e8efd3d5668c28cf">json</a> (rapidjson::Document *doc) const override</td></tr>
-<tr class="memdesc:a3e6fb495c609ade4e8efd3d5668c28cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create the JSON representation.  <a href="#a3e6fb495c609ade4e8efd3d5668c28cf">More...</a><br /></td></tr>
-<tr class="separator:a3e6fb495c609ade4e8efd3d5668c28cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45571a039ed28143abfaa2511ef37ce1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGetMempool.html#a45571a039ed28143abfaa2511ef37ce1">GetMempool</a> (const std::string &amp;binaryString)</td></tr>
+<tr class="memdesc:a45571a039ed28143abfaa2511ef37ce1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a JSON representation in a <a class="el" href="classGetData.html" title="Message to get the JSON String representing ressources. ">GetData</a>.  <a href="#a45571a039ed28143abfaa2511ef37ce1">More...</a><br /></td></tr>
+<tr class="separator:a45571a039ed28143abfaa2511ef37ce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a5321a043e3dfc99a0e8de83558af41"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGetMempool.html#a8a5321a043e3dfc99a0e8de83558af41">byteRepr</a> () const override</td></tr>
+<tr class="memdesc:a8a5321a043e3dfc99a0e8de83558af41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the hex string representation.  <a href="#a8a5321a043e3dfc99a0e8de83558af41">More...</a><br /></td></tr>
+<tr class="separator:a8a5321a043e3dfc99a0e8de83558af41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classMessage"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMessage')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classMessage.html">Message</a></td></tr>
-<tr class="memitem:afde1ad2efd7e7af3ed65bbbb08e2e172 inherit pub_methods_classMessage"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#afde1ad2efd7e7af3ed65bbbb08e2e172">str</a> () const</td></tr>
-<tr class="memdesc:afde1ad2efd7e7af3ed65bbbb08e2e172 inherit pub_methods_classMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the JSON string representation  <a href="classMessage.html#afde1ad2efd7e7af3ed65bbbb08e2e172">More...</a><br /></td></tr>
-<tr class="separator:afde1ad2efd7e7af3ed65bbbb08e2e172 inherit pub_methods_classMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb65039d076cefaff79b21044a4d8d29 inherit pub_methods_classMessage"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#aeb65039d076cefaff79b21044a4d8d29">getType</a> () const</td></tr>
-<tr class="memdesc:aeb65039d076cefaff79b21044a4d8d29 inherit pub_methods_classMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the type of the <a class="el" href="classMessage.html" title="Base class for all network communcation. ">Message</a>  <a href="classMessage.html#aeb65039d076cefaff79b21044a4d8d29">More...</a><br /></td></tr>
-<tr class="separator:aeb65039d076cefaff79b21044a4d8d29 inherit pub_methods_classMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7ecaab66dfea90ed7bf9a3147bcf129 inherit pub_methods_classMessage"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#ad7ecaab66dfea90ed7bf9a3147bcf129">~Message</a> ()=0</td></tr>
-<tr class="separator:ad7ecaab66dfea90ed7bf9a3147bcf129 inherit pub_methods_classMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bbc183223414131794d076ce7a85c62 inherit pub_methods_classMessage"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efaf">message_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a1bbc183223414131794d076ce7a85c62">getType</a> () const</td></tr>
+<tr class="memdesc:a1bbc183223414131794d076ce7a85c62 inherit pub_methods_classMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the type of the <a class="el" href="classMessage.html" title="Base class for all network communcation. ">Message</a>  <a href="classMessage.html#a1bbc183223414131794d076ce7a85c62">More...</a><br /></td></tr>
+<tr class="separator:a1bbc183223414131794d076ce7a85c62 inherit pub_methods_classMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8f8604a8a3e481634cd81758dc344ca inherit pub_methods_classMessage"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#af8f8604a8a3e481634cd81758dc344ca">getTypeAsString</a> () const</td></tr>
+<tr class="memdesc:af8f8604a8a3e481634cd81758dc344ca inherit pub_methods_classMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the message_type as a string.  <a href="classMessage.html#af8f8604a8a3e481634cd81758dc344ca">More...</a><br /></td></tr>
+<tr class="separator:af8f8604a8a3e481634cd81758dc344ca inherit pub_methods_classMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfbae005357df17dbe9ec006f88993c6 inherit pub_methods_classMessage"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efaf">message_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#adfbae005357df17dbe9ec006f88993c6">typeFromString</a> (const std::string &amp;typeString) const</td></tr>
+<tr class="memdesc:adfbae005357df17dbe9ec006f88993c6 inherit pub_methods_classMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse a string into message_type.  <a href="classMessage.html#adfbae005357df17dbe9ec006f88993c6">More...</a><br /></td></tr>
+<tr class="separator:adfbae005357df17dbe9ec006f88993c6 inherit pub_methods_classMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classNetworkable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classNetworkable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classNetworkable.html">Networkable</a></td></tr>
+<tr class="memitem:aa4bfe59d096ff83a3d201782918a39d8 inherit pub_methods_classNetworkable"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkable.html#aa4bfe59d096ff83a3d201782918a39d8">asBytes</a> () const</td></tr>
+<tr class="memdesc:aa4bfe59d096ff83a3d201782918a39d8 inherit pub_methods_classNetworkable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the binary string represesentation of the <a class="el" href="classNetworkable.html" title="Object to be send to another Node in a byte list. ">Networkable</a> object.  <a href="classNetworkable.html#aa4bfe59d096ff83a3d201782918a39d8">More...</a><br /></td></tr>
+<tr class="separator:aa4bfe59d096ff83a3d201782918a39d8 inherit pub_methods_classNetworkable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a435a3455fc1b0efd571eaf54f8a62cf9 inherit pub_methods_classNetworkable"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkable.html#a435a3455fc1b0efd571eaf54f8a62cf9">~Networkable</a> ()=0</td></tr>
+<tr class="separator:a435a3455fc1b0efd571eaf54f8a62cf9 inherit pub_methods_classNetworkable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_types_classMessage"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classMessage')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classMessage.html">Message</a></td></tr>
+<tr class="memitem:a9b98fc6fc1adc8e3ea80ddc348e7efaf inherit pub_types_classMessage"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efaf">message_type</a> { <br />
+&#160;&#160;<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efafa0f5a9d6182ba5badfde9f87776a876cb">whoami</a>, 
+<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efafac941e06d9ecff03410ddf42ec00b450f">whoamiack</a>, 
+<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efafa8485c6ca43d1722130540090c348d5a1">getaddr</a>, 
+<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efafada5310f88d75781c900760f2fb4ea74a">addr</a>, 
+<br />
+&#160;&#160;<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efafadfdebcb760705e1a92371c9bb6325a33">inv</a>, 
+<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efafa7902311efa52b8b95ced4bbdadcc6915">getdata</a>, 
+<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efafa11bda378ac2bb98a447a9145ddf247a7">notfound</a>, 
+<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efafa9df0ad300a3d852353ec33bc2708beed">block</a>, 
+<br />
+&#160;&#160;<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efafac3c02564b6e5e8ad8afd3828a7e3f7ae">tx</a>, 
+<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efafa810952765d76189acfe2f93de51d7d08">getblocks</a>, 
+<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efafa61ea444fc5508ae3f6d267b4ad01cab0">getmempool</a>, 
+<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efafa7af854489fd4c321b239d2a3a2577e61">unknown</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:a9b98fc6fc1adc8e3ea80ddc348e7efaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Possible <a class="el" href="classMessage.html" title="Base class for all network communcation. ">Message</a> types.  <a href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efaf">More...</a><br /></td></tr>
+<tr class="separator:a9b98fc6fc1adc8e3ea80ddc348e7efaf inherit pub_types_classMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f7f2aa1058cb5f0b74a1fbb7fcd00e5 inherit pub_types_classMessage"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a3f7f2aa1058cb5f0b74a1fbb7fcd00e5">messagePointer</a> = std::shared_ptr&lt; <a class="el" href="classMessage.html">Message</a> &gt;</td></tr>
 <tr class="separator:a3f7f2aa1058cb5f0b74a1fbb7fcd00e5 inherit pub_types_classMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classMessage"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classMessage')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classMessage.html">Message</a></td></tr>
-<tr class="memitem:aa222cbc5bf7865d5464a841740f45c11 inherit pro_methods_classMessage"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#aa222cbc5bf7865d5464a841740f45c11">Message</a> (std::string <a class="el" href="classMessage.html#ae9dead264183a4243c120026e6259b6f">type</a>)</td></tr>
-<tr class="memdesc:aa222cbc5bf7865d5464a841740f45c11 inherit pro_methods_classMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construc a <a class="el" href="classMessage.html" title="Base class for all network communcation. ">Message</a> with empty content.  <a href="classMessage.html#aa222cbc5bf7865d5464a841740f45c11">More...</a><br /></td></tr>
-<tr class="separator:aa222cbc5bf7865d5464a841740f45c11 inherit pro_methods_classMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba4e52b33dcfa35778ad50ba060cb1d9 inherit pro_methods_classMessage"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#aba4e52b33dcfa35778ad50ba060cb1d9">Message</a> (rapidjson::Document *binaryString)</td></tr>
-<tr class="memdesc:aba4e52b33dcfa35778ad50ba060cb1d9 inherit pro_methods_classMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a rapidjson::Document in a <a class="el" href="classMessage.html" title="Base class for all network communcation. ">Message</a>.  <a href="classMessage.html#aba4e52b33dcfa35778ad50ba060cb1d9">More...</a><br /></td></tr>
-<tr class="separator:aba4e52b33dcfa35778ad50ba060cb1d9 inherit pro_methods_classMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9669b1ce389c1813c08d6057997a0688 inherit pro_methods_classMessage"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a9669b1ce389c1813c08d6057997a0688">Message</a> (<a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efaf">message_type</a> <a class="el" href="classMessage.html#a169e83551b3a28e0de1223bbaf883e6f">type</a>)</td></tr>
+<tr class="memdesc:a9669b1ce389c1813c08d6057997a0688 inherit pro_methods_classMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construc a <a class="el" href="classMessage.html" title="Base class for all network communcation. ">Message</a> with empty content.  <a href="classMessage.html#a9669b1ce389c1813c08d6057997a0688">More...</a><br /></td></tr>
+<tr class="separator:a9669b1ce389c1813c08d6057997a0688 inherit pro_methods_classMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31f31e9259b397cbf205aa595345cdc6 inherit pro_methods_classMessage"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a31f31e9259b397cbf205aa595345cdc6">Message</a> (const std::string &amp;binaryString)</td></tr>
+<tr class="memdesc:a31f31e9259b397cbf205aa595345cdc6 inherit pro_methods_classMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a rapidjson::Document in a <a class="el" href="classMessage.html" title="Base class for all network communcation. ">Message</a>.  <a href="classMessage.html#a31f31e9259b397cbf205aa595345cdc6">More...</a><br /></td></tr>
+<tr class="separator:a31f31e9259b397cbf205aa595345cdc6 inherit pro_methods_classMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classMessage"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classMessage')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classMessage.html">Message</a></td></tr>
 <tr class="memitem:a5bb4366b0a888886fec19ca2b2903d00 inherit pro_attribs_classMessage"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a5bb4366b0a888886fec19ca2b2903d00">magic</a></td></tr>
 <tr class="memdesc:a5bb4366b0a888886fec19ca2b2903d00 inherit pro_attribs_classMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defined in <a class="el" href="constants_8hpp.html">constants.hpp</a>.  <a href="classMessage.html#a5bb4366b0a888886fec19ca2b2903d00">More...</a><br /></td></tr>
 <tr class="separator:a5bb4366b0a888886fec19ca2b2903d00 inherit pro_attribs_classMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9dead264183a4243c120026e6259b6f inherit pro_attribs_classMessage"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#ae9dead264183a4243c120026e6259b6f">type</a></td></tr>
-<tr class="memdesc:ae9dead264183a4243c120026e6259b6f inherit pro_attribs_classMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of message.  <a href="classMessage.html#ae9dead264183a4243c120026e6259b6f">More...</a><br /></td></tr>
-<tr class="separator:ae9dead264183a4243c120026e6259b6f inherit pro_attribs_classMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78b882ca696ae5b4387b829132ff21ab inherit pro_attribs_classMessage"><td class="memItemLeft" align="right" valign="top">std::time_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a78b882ca696ae5b4387b829132ff21ab">timestamp</a></td></tr>
-<tr class="memdesc:a78b882ca696ae5b4387b829132ff21ab inherit pro_attribs_classMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creation timestamp.  <a href="classMessage.html#a78b882ca696ae5b4387b829132ff21ab">More...</a><br /></td></tr>
-<tr class="separator:a78b882ca696ae5b4387b829132ff21ab inherit pro_attribs_classMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a169e83551b3a28e0de1223bbaf883e6f inherit pro_attribs_classMessage"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMessage.html#a9b98fc6fc1adc8e3ea80ddc348e7efaf">message_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a169e83551b3a28e0de1223bbaf883e6f">type</a></td></tr>
+<tr class="memdesc:a169e83551b3a28e0de1223bbaf883e6f inherit pro_attribs_classMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of message.  <a href="classMessage.html#a169e83551b3a28e0de1223bbaf883e6f">More...</a><br /></td></tr>
+<tr class="separator:a169e83551b3a28e0de1223bbaf883e6f inherit pro_attribs_classMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classMessage.html" title="Base class for all network communcation. ">Message</a> to sync the <a class="el" href="classMempool.html" title="Pool of Transaction not in Block. ">Mempool</a> with another node. </p>
@@ -151,8 +175,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a99f4e2b501cd290d13833116aa48e0f7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99f4e2b501cd290d13833116aa48e0f7">&#9670;&nbsp;</a></span>GetMempool() <span class="overload">[2/2]</span></h2>
+<a id="a45571a039ed28143abfaa2511ef37ce1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45571a039ed28143abfaa2511ef37ce1">&#9670;&nbsp;</a></span>GetMempool() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -163,8 +187,8 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">GetMempool::GetMempool </td>
           <td>(</td>
-          <td class="paramtype">rapidjson::Document *&#160;</td>
-          <td class="paramname"><em>doc</em></td><td>)</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>binaryString</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -178,7 +202,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Parses a JSON representation in a <a class="el" href="classGetData.html" title="Message to get the JSON String representing ressources. ">GetData</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">doc</td><td>JSON to be parsed </td></tr>
+    <tr><td class="paramname">binaryString</td><td>unpacked string to be parsed </td></tr>
   </table>
   </dd>
 </dl>
@@ -186,8 +210,8 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a3e6fb495c609ade4e8efd3d5668c28cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e6fb495c609ade4e8efd3d5668c28cf">&#9670;&nbsp;</a></span>json()</h2>
+<a id="a8a5321a043e3dfc99a0e8de83558af41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a5321a043e3dfc99a0e8de83558af41">&#9670;&nbsp;</a></span>byteRepr()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -196,10 +220,9 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">rapidjson::Value GetMempool::json </td>
+          <td class="memname">std::string GetMempool::byteRepr </td>
           <td>(</td>
-          <td class="paramtype">rapidjson::Document *&#160;</td>
-          <td class="paramname"><em>doc</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -210,15 +233,9 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Create the JSON representation. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">doc</td><td>Document used for Allocation of members </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Get the hex string representation. </p>
 
-<p>Reimplemented from <a class="el" href="classMessage.html#a6f8e3ac2eed3a8afe9400fcd5b3447b2">Message</a>.</p>
+<p>Reimplemented from <a class="el" href="classMessage.html#a2b85c60be17b0a7b0dcfb40ba26f3cc6">Message</a>.</p>
 
 </div>
 </div>

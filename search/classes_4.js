@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['handler',['Handler',['../classHandler.html',1,'']]],
-  ['hash_3c_20utxo_20_3e',['hash&lt; UTXO &gt;',['../structstd_1_1hash_3_01UTXO_01_4.html',1,'std']]],
-  ['hashmemory',['HashMemory',['../classHashMemory.html',1,'']]],
-  ['hashmemory_3c_20linkedtransaction_20_3e',['HashMemory&lt; LinkedTransaction &gt;',['../classHashMemory.html',1,'']]],
-  ['hexcharstruct',['HexCharStruct',['../structdebug_1_1HexCharStruct.html',1,'debug']]]
+  ['getaddr',['GetAddr',['../classmessage_1_1GetAddr.html',1,'message']]],
+  ['getblocks',['GetBlocks',['../classmessage_1_1GetBlocks.html',1,'message']]],
+  ['getdata',['GetData',['../classmessage_1_1GetData.html',1,'message']]],
+  ['getmempool',['GetMempool',['../classmessage_1_1GetMempool.html',1,'message']]]
 ];

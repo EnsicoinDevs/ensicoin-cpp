@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['linkedtransaction',['LinkedTransaction',['../classLinkedTransaction.html',1,'']]]
+  ['jsonable',['JSONAble',['../classJSONAble.html',1,'']]]
 ];

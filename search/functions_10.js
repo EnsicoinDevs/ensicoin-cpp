@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['unknown',['unknown',['../classHandler.html#ac574e0e2145e6cd5b25ac5e9a535be29',1,'Handler']]],
-  ['update',['update',['../classBlockTarget.html#a83fd117cae01e4cb890ee4cbbd3a6c07',1,'BlockTarget']]],
-  ['updateorphan',['updateOrphan',['../classMempool.html#ae658e1104b650fbc63786bc5e77fb328',1,'Mempool']]],
-  ['utxodata',['UTXOdata',['../structUTXOdata.html#abac0ce6dfed6dab29a00a995d37cc62c',1,'UTXOdata::UTXOdata(int, bool)'],['../structUTXOdata.html#a0f569e3b932610a822140104fdd418a9',1,'UTXOdata::UTXOdata(std::string jsonStr)']]],
-  ['utxomanager',['UTXOManager',['../classUTXOManager.html#aa08c4e17616d0a2436df1c8307b5da26',1,'UTXOManager']]]
+  ['transaction',['Transaction',['../classTransaction.html#ab47005b855d38bc324bb79fd023baa13',1,'Transaction::Transaction()'],['../classTransaction.html#a5a8028d0c89a04fbc5547806bfad7f4e',1,'Transaction::Transaction(int ver, std::vector&lt; std::string &gt; initialFlags, std::vector&lt; InputTransaction &gt; initialInputs, std::vector&lt; OutputTransaction &gt; initialOutputs)'],['../classTransaction.html#a53699ce216993c3350d299aef80635d5',1,'Transaction::Transaction(rapidjson::Document *doc)']]],
+  ['transactionexists',['transactionExists',['../classNode.html#a9cd47ec233da458213deba11964ee663',1,'Node']]],
+  ['transactionmessage',['TransactionMessage',['../classmessage_1_1TransactionMessage.html#a91ad431736dc356590b56454a613b870',1,'message::TransactionMessage::TransactionMessage(std::shared_ptr&lt; Transaction &gt; trPtr)'],['../classmessage_1_1TransactionMessage.html#a6530a82efa80c838c50c7dffe47d8e59',1,'message::TransactionMessage::TransactionMessage(NetworkBuffer *networkBuffer)']]],
+  ['type',['type',['../classMempool.html#a216beee85149f61c603ef8ad5cdd8ef5',1,'Mempool']]],
+  ['typefromstring',['typeFromString',['../classmessage_1_1Message.html#a8717ad1d7ec3a89eec7909b31c351a3a',1,'message::Message']]]
 ];
