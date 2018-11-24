@@ -13,11 +13,10 @@ using eCurve = ECDSA<ECP, SHA256> ;
 /// \brief Take the RIPEMD160 hash
 /// \param input string to be hashed
 /// \param unpack handles a binary string
-std::string ripemd160(std::string input,bool unpack=false);
+std::string ripemd160(const std::string& binaryString);
 /// \brief Take the SHA256 hash
-/// \param input string to be hashed
-/// \param unpack handles a binary string
-std::string sha256(std::string input,bool unpack=false);
+/// \param binaryString binary input to be hashed
+std::string sha256(const std::string& binaryString);
 
 /// \brief Signatures using secp256k1
 class ECDSASignature{
