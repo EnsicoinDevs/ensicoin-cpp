@@ -1,22 +1,32 @@
 #include "messages.hpp"
 
 #include "constants.hpp"
+#include "networkable.hpp"
+#include "networkbuffer.hpp"
 
-#include <rapidjson/document.h>
+#include <ctime>
 #include <string>
 
-using rapidjson::Value;
-using rapidjson::Document;
+namespace message{
 
-WhoAmI::WhoAmI() : Message("whoami"), version(VERSION) {}
+	WhoAmI::WhoAmI() : Message(whoami), 
+			   version(VERSION),
+			   timestamp(std::time(nullptr)) {}
 
-WhoAmI::WhoAmI(rapidjson::Document* document) : Message(document), version((*document)["message"]["version"].GetInt()) {}
+	WhoAmI::WhoAmI(NetworkBuffer* networkBuffer) : 
+		Message(whoami),
+		version(networkBuffer->readUint32()),
+		timestamp(networkBuffer->readUint64()) {}
 
-Value WhoAmI::json(Document* document) const{
-	Value messageValue = Message::json(document);
-	Value messageContent(rapidjson::kObjectType);
-	messageContent.AddMember("version",version,document->GetAllocator());
-	messageValue.AddMember("message",messageContent,document->GetAllocator());
+	std::string WhoAmI::payload() const{
+		return version.byteRepr() + 
+			timestamp.byteRepr();
+	}
+	
+	WhoAmIAck::WhoAmIAck() : Message(whoamiack) {}
 
-	return messageValue;
-}
+	std::string WhoAmIAck::payload() const{
+		return "";
+	}
+
+} //namespace message

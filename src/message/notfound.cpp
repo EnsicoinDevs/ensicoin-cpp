@@ -1,26 +1,29 @@
 #include "messages.hpp"
+#include "networkable.hpp"
+#include "networkbuffer.hpp"
 
-#include <rapidjson/document.h>
 #include <string>
 
-NotFound::NotFound(std::string type, std::string resHash) : Message("notfound"), resType(type), hash(resHash) {}
+namespace message{
+	NotFound::NotFound(std::vector<networkable::Inv_vect> invData):
+		Message(notfound), data(invData) {}
+	
+	GetData::GetData(NetworkBuffer* networkBuffer) : 
+		Message(notfound) {
+			auto size = networkBuffer->readVar_uint()\
+				    	.getValue();
+			for(uint64_t i=0; i < size; ++i){
+				data.push_back(networkBuffer->\
+						readInv_vect());
+			}
+		}
 
-NotFound::NotFound(rapidjson::Document* doc) : Message(doc), resType((*doc)["message"]["type"].GetString()),
-							     hash((*doc)["message"]["hash"].GetString()) {}
-
-rapidjson::Value NotFound::json(rapidjson::Document* document) const{
-	rapidjson::Value messageValue = Message::json(document);
-	rapidjson::Value content(rapidjson::kObjectType);
-	rapidjson::Value typeVal;
-	rapidjson::Value hashVal;
-
-	typeVal.SetString(resType.c_str(), resType.length(), document->GetAllocator());
-	hashVal.SetString(hash.c_str(), hash.length(), document->GetAllocator());
-
-	content.AddMember("type", typeVal, document->GetAllocator());
-	content.AddMember("hash", hashVal, document->GetAllocator());
-
-	messageValue.AddMember("message", content, document->GetAllocator());
-
-	return messageValue;
-}
+	std::string GetData::payload() const{
+		std::string bytes = networkable::Var_uint(
+					data.size()).byteRepr();
+		for(auto& iv : data){
+			bytes += iv.byteRepr();
+		}
+		return bytes;
+	}
+} // namespace message

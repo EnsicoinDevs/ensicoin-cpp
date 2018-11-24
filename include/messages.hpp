@@ -2,213 +2,261 @@
 #define MESSAGES_HPP
 
 #include "blocks.hpp"
+#include "networkable.hpp"
+#include "networkbuffer.hpp"
 #include "transaction.hpp"
 
 #include <ctime>
 #include <memory>
-#include <rapidjson/document.h>
 #include <string>
 #include <vector>
 
 
-/// \brief Base class for all network communcation
-class Message : public std::enable_shared_from_this<Message> {
-	protected:
-		/// \brief Defined in constants.hpp
-		int magic;
-		/// \brief Type of message
-		std::string type;
-		/// \brief Creation timestamp
-		std::time_t timestamp;
+/// \brief Networkable content to be sent
+namespace message{
 
-		/// \brief Construc a Message with empty content
-		/// \param type set the type of the content
-		explicit Message(std::string type);
-		/// \brief Parses a rapidjson::Document in a Message
-		/// \param doc JSON representation
-		explicit Message(rapidjson::Document* doc);
-	public:
-		using messagePointer = std::shared_ptr<Message>;
-		/// \brief gets the JSON string representation
-		std::string str() const;
-		/// \brief get the type of the Message
-		std::string getType() const;
-		/// \brief Get the JSON representation of the Message
-		/// \param document Allocator for creating members
-		virtual rapidjson::Value json(rapidjson::Document* document) const;
-		virtual ~Message() = 0;
-};
+	/// \brief Base class for all network communcation
+	class Message : public std::enable_shared_from_this<Message>,
+	public networkable::Networkable {
+		public:
+			/// \brief Shared_pointer to a Message
+			using messagePointer = std::shared_ptr\
+					       <Message>;
+			/// \brief Possible Message types
+			enum message_type{	
+				whoami, 
+				whoamiack, 
+				getaddr, 
+				addr, 
+				inv, 
+				getdata, 
+				notfound, 
+				block, 
+				tx, 
+				getblocks, 
+				getmempool,
+				unknown};
+			/// \brief get the type of the Message
+			message_type getType() const;
+			/// \brief Get the message_type as a string
+			std::string getTypeAsString() const;
+			/// \brief Parse a string into message_type
+			message_type typeFromString(
+					const std::string& 
+					typeString) const;
+			std::string byteRepr() const override;
+		protected:
+			/// \brief Defined in constants.hpp
+			int magic;
+			/// \brief Type of message
+			message_type type;
 
-/// \brief Message used for intializing the Connection
-class WhoAmI : public Message {
-	private:
-		/// \brief Defined in constants.hpp
-		int version;
-	public:
-		/// \brief Construct a WhoAmI Message
-		WhoAmI();
-		/// \brief Parses a WhoAmI JSON Message
-		/// \param doc JSON representation
-		explicit WhoAmI(rapidjson::Document* doc);
-		/// \brief Gets the JSON representation
-		/// \param document Allocator for members
-		rapidjson::Value json(rapidjson::Document* document) const override;
-};
+			/// \brief Get the payload as a byteRepr
+			virtual std::string payload() const = 0;
 
-/// \brief Data transmission over the network by mean of hashes
-struct InvData {
-	/// \brief Either "t" or "b" for Transaction or Block
-	std::string type;
-	/// \brief List of hashes of ressoucres communicated
-	std::vector<std::string> hashes;
-	
-	/// \brief Creates InvData from fields
-	InvData(std::string t, std::vector<std::string> hL);
-	/// \brief Parse a JSON Value into an InvData
-	/// \param val the JSON representation to be parsed
-	explicit InvData(rapidjson::Value* val);
-	/// \brief Create a JSON representation
-	/// \param doc Document for Allocation of memebers
-	rapidjson::Value json(rapidjson::Document* doc) const;
-};
+			/// \brief Construct a Message with empty 
+			/// Payload
+			/// \param type set the type of the content
+			explicit Message(message_type type);
+	};
 
-/// \brief Message to get the JSON String representing ressources
-class GetData : public Message {
-	private:
-		/// \brief Ressources asked
-		InvData invData;
-	public:
-		/// \brief Gives the type of the data asked
-		std::string dataType() const;
-		/// \brief Gives all the hashes of the asked data
-		std::vector<std::string> dataAsked() const;
-		
-		/// \brief Creates a GetData from an InvData
-		explicit GetData(InvData inv);
-		/// \brief Parses a JSON representation in a GetData
-		/// \param doc JSON to be parsed
-		explicit GetData(rapidjson::Document* doc);
-		/// \brief Create the JSON representation
-		/// \param document Document used for Allocation of 
-		/// members
-		rapidjson::Value json(rapidjson::Document* document) const override;
-};
+	/// \brief Message used for intializing the Connection
+	class WhoAmI : public Message {
+		private:
+			std::string payload() const override;
+			/// \brief Defined in constants.hpp
+			networkable::Uint32 version;
+			/// \brief Current time
+			networkable::Uint64 timestamp;
+		public:
+			/// \brief Construct a WhoAmI Message
+			WhoAmI();
+			/// \brief Parses a WhoAmI Message
+			/// \param networkBuffer buffer containing
+			/// the raw Representation
+			explicit WhoAmI(NetworkBuffer* 
+					networkBuffer);
+	};
 
-/// \brief Transmit Block or Transaction to a peer
-class Inv : public Message {
-	private:
-		/// \brief data to be transmited
-		InvData data;
-	public:
-		/// \brief Retrives the type from InvData
-		std::string getRessourceType() const;
-		/// \brief Retriveses the vector of hashes 
-		/// from InvData
-		std::vector<std::string> getRessources() const;
-		
-		/// \brief Create a response to an Inv to request
-		/// ressources by GetData
-		std::shared_ptr<GetData> respondRequest() const;
+	/// \brief Acknowledge a Connection after a WhoAmI
+	class WhoAmIAck : public Message {
+		private:
+			std::string payload() const override;
+		public:
+			/// \brief Construct a WhoAmIAck
+			WhoAmIAck();
+	};
 
-		/// \brief Create a Inv from an InvData
-		explicit Inv(InvData dt);
-		/// \brief Parse a JSON Document into an Inv
-		/// \param doc JSON to be parsed
-		explicit Inv(rapidjson::Document* doc);
-		/// \brief Create the JSON representation
-		/// \param document Document used for Allocation of
-		/// members
-		rapidjson::Value json(rapidjson::Document* document) const override;
-};
+	/// \brief Send all known Node
+	class Addr : public Message {
+		private:
+			std::string payload() const override;
+			/// \brief List of known Node address
+			std::vector<networkable::Address> addresses;
+		public:
+			/// \brief Construt a Addr from addresses
+			explicit Addr(std::vector<networkable::\
+					Address> addressList);
+			/// \brief Parse a Addr Message
+			/// \param networkBuffer buffer containing
+			/// the raw representation
+			explicit Addr(NetworkBuffer* networkBuffer);
+	};
+
+	/// \brief Ask for all the Node known
+	class GetAddr : public Message{
+		private:
+			std::string payload() const override;
+		public:
+			/// Construct a GetAddr
+			GetAddr();
+	};
+
+	/// \brief Message to get the JSON String representing 
+	/// ressources
+	class GetData : public Message {
+		private:
+			std::string payload() const override;
+			/// \brief Ressources asked
+			std::vector<networkable::Inv_vect> data;
+		public:
+			/// \brief Gives the type of the data asked
+			networkable::Inv_vect::ressource_type 
+				dataType() const;
+			/// \brief Gives all the hashes of the 
+			/// asked data
+			std::vector<std::string> dataAsked() const;
+
+			/// \brief Creates a GetData 
+			/// from a vector of networkable::Inv_vect
+			explicit GetData(std::vector<networkable::\
+					Inv_vect> invData);
+			/// \brief Parses a GetData
+			/// \param networkBuffer buffer containing 
+			/// the raw data
+			explicit GetData(NetworkBuffer* 
+					networkBuffer);
+	};
+
+	/// \brief Transmit Block or Transaction to a peer
+	class Inv : public Message {
+		private:
+			std::string payload() const override;
+
+			/// \brief data to be transmited
+			std::vector<networkable::Inv_vect> data;
+		public:
+			/// \brief Retrives the type from InvData
+			networkable::Inv_vect::ressource_type 
+				getRessourceType() const;
+			/// \brief Retriveses the hashes of each 
+			/// Inv_vect
+			std::vector<std::string> 
+				getRessourceHashes() const;
+
+			/// \brief Create a Inv from a vector of
+			/// Inv_vect
+			explicit Inv(std::vector<networkable::\
+					Inv_vect> invData);
+			/// \brief Parse an Inv
+			/// \param networkBuffer buffer containing 
+			/// the raw data
+			explicit Inv(NetworkBuffer* networkBuffer);
+	};
 
 
-/// \brief Message signaling an asked ressource is unknown
-class NotFound : public Message {
-	private:
-		/// \brief Either "b" or "t" for Block or Transaction
-		std::string resType;
-		/// \brief The unknown hash
-		std::string hash;
-	public:
-		/// \brief Create a NotFound from the ressource
-		NotFound(std::string resType, std::string hashType);
-		/// \brief Parses a JSON representation in a GetData
-		/// \param doc JSON to be parsed
-		explicit NotFound(rapidjson::Document* doc);
-		/// \brief Create the JSON representation
-		/// \param document Document used for Allocation of 
-		/// members
-		rapidjson::Value json(rapidjson::Document* document) const override;
-};
+	/// \brief Message signaling an asked ressource is unknown
+	class NotFound : public Message {
+		private:
+			std::string payload() const override;
+			/// \brief Unknown ressources
+			std::vector<networkable::Inv_vect> data;
+		public:
+			/// \brief Create a NotFound from the 
+			/// ressources
+			explicit NotFound(std::vector<networkable::\
+					Inv_vect> invData);
+			/// \brief Parses a NotFound
+			/// \param networkBuffer buffer containing
+			/// the raw data
+			explicit NotFound(NetworkBuffer* 
+					networkBuffer);
+	};
 
-/// \brief Message sending a Block over
-class BlockMessage : public Message {
-	private:
-		/// \brief Pointer to the sent Block to avoid RAM
-		/// usage
-		std::shared_ptr<Block> block;
-	public:
-		/// \brief Create a BlockMessage from a Block
-		explicit BlockMessage(std::shared_ptr<Block> blockPtr);
-		/// \brief Parses a JSON representation in a GetData
-		/// \param doc JSON to be parsed
-		explicit BlockMessage(rapidjson::Document* doc);
-		/// \brief Create the JSON representation
-		/// \param document Document used for Allocation of 
-		/// members
-		rapidjson::Value json(rapidjson::Document* document) const override;
-};
+	/// \brief Message sending a Block over
+	class BlockMessage : public Message {
+		private:
+			std::string payload() const override;
+			/// \brief Pointer to the sent Block to avoid
+			/// RAM usage
+			std::shared_ptr<Block> blockRef;
+		public:
+			/// \brief Returns a pointer to the Block
+			std::shared_ptr<Block> getBlock() const;
+			/// \brief Create a BlockMessage from a Block
+			explicit BlockMessage(std::shared_ptr<Block>
+					blockPtr);
+			/// \brief Parses a binary string in a 
+			/// BlockMessage
+			/// \param networkBuffer buffer containing
+			/// the raw data
+			explicit BlockMessage(NetworkBuffer* 
+					networkBuffer);
+	};
 
-/// \brief Message sending a Transaction over
-class TransactionMessage : public Message {
-	private:
-		/// \brief Pointer to the sent Transaction to 
-		/// avoid RAM usgae
-		std::shared_ptr<Transaction> transaction;
-	public:
-		/// \brief Create a TransactionMessage from a
-		/// Transaction
-		explicit TransactionMessage(std::shared_ptr<Transaction> trPtr);
-		/// \brief Parses a JSON representation in a GetData
-		/// \param doc JSON to be parsed
-		explicit TransactionMessage(rapidjson::Document* doc);
-		/// \brief Create the JSON representation
-		/// \param doc Document used for Allocation of 
-		/// members
-		rapidjson::Value json(rapidjson::Document* doc) const override;
-};
+	/// \brief Message sending a Transaction over
+	class TransactionMessage : public Message {
+		private:
+			std::string payload() const override;
+			/// \brief Pointer to the sent Transaction to
+			/// avoid RAM usgae
+			std::shared_ptr<Transaction> transaction;
+		public:
+			std::shared_ptr<Transaction> getTx() const;
+			/// \brief Create a TransactionMessage from a
+			/// Transaction
+			explicit TransactionMessage(std::shared_ptr\
+					<Transaction> trPtr);
+			/// \brief Parses a binary string in a 
+			/// TransactionMessage
+			/// \param networkBuffer buffer containing 
+			/// the raw data
+			explicit TransactionMessage(NetworkBuffer* 
+					networkBuffer);
+	};
 
-/// \brief Message asking a node to sync Block until a certain point
-class GetBlocks : public Message {
-	private:
-		/// \brief Known Block for reference
-		std::vector< std::string > blockHashes;
-		/// \brief Where to stop sending Block
-		std::string stopHash;
-	public:
-		/// \brief Create a GetBlocks from the known hashes
-		GetBlocks(std::vector< std::string > hashList, std::string stopHashString);
-		/// \brief Parses a JSON representation in a GetData
-		/// \param doc JSON to be parsed
-		explicit GetBlocks(rapidjson::Document* doc);
-		/// \brief Create the JSON representation
-		/// \param doc Document used for Allocation of 
-		/// members
-		rapidjson::Value json(rapidjson::Document* doc) const override;
-};
+	/// \brief Message asking a node to sync Block 
+	/// until a certain point
+	class GetBlocks : public Message {
+		private:
+			std::string payload() const override;
+			/// \brief Known Block for reference
+			std::vector< std::string > blockHashes;
+			/// \brief Where to stop sending Block
+			std::string stopHash;
+		public:
+			/// \brief Create a GetBlocks from the 
+			/// known hashes
+			GetBlocks(std::vector< std::string > 
+					hashList, 
+					std::string stopHashString);
+			/// \brief Parses a binary string in a 
+			/// GetBlocks
+			/// \param networkBuffer buffer containing 
+			/// the raw data
+			explicit GetBlocks(NetworkBuffer* 
+					networkBuffer);
+	};
 
-/// \brief Message to sync the Mempool with another node
-class GetMempool : public Message{
-	public:
-		/// \brief Create a GetMempool
-		GetMempool();
-		/// \brief Parses a JSON representation in a GetData
-		/// \param doc JSON to be parsed
-		explicit GetMempool(rapidjson::Document* doc);
-		/// \brief Create the JSON representation
-		/// \param doc Document used for Allocation of 
-		/// members
-		rapidjson::Value json(rapidjson::Document* doc) const override;
-};
+	/// \brief Message to sync the Mempool with another node
+	class GetMempool : public Message{
+		private:
+			std::string payload() const override;
+		public:
+			/// \brief Create a GetMempool
+			GetMempool();
+	};
+
+}; // namespace message
 
 #endif /* MESSAGES_HPP */

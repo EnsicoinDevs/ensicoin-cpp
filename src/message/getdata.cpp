@@ -1,30 +1,49 @@
 #include "messages.hpp"
+#include "networkable.hpp"
+#include "networkbuffer.hpp"
 
-#include <memory>
-#include <rapidjson/document.h>
+#include <algorithm>
 #include <string>
 #include <vector>
-#include <iostream>
 
-std::string GetData::dataType() const{
-	return invData.type;
-}
-
-std::vector<std::string> GetData::dataAsked() const{
-	return invData.hashes;
-}
-
-GetData::GetData(InvData inv) : Message("getdata"), invData(inv) {}
-
-GetData::GetData(rapidjson::Document* doc) : Message(doc), invData(InvData(&(*doc)["message"]["inv"])) {}
-
-rapidjson::Value GetData::json(rapidjson::Document* document) const{
-	rapidjson::Value messageValue = Message::json(document);
-	rapidjson::Value invValue = invData.json(document);
-	rapidjson::Value content(rapidjson::kObjectType);
-	content.AddMember("inv", invValue, document->GetAllocator());
+namespace message{
+	networkable::Inv_vect::ressource_type GetData::dataType() 
+		const{
+			if(data.empty())
+				return networkable::Inv_vect::\
+					invalidRes;
+			return data[0].type;
+		}
 	
-	messageValue.AddMember("message", content, document->GetAllocator());
+	std::vector<std::string> GetData::dataAsked() const{
+		std::vector<std::string> out;
+		std::transform(data.begin(), data.end(), 
+				std::back_inserter(out),
+				[](networkable::Inv_vect i){
+				return i.hash;
+				});
+		return out;
+	}
 
-	return messageValue;
-}
+	GetData::GetData(std::vector<networkable::Inv_vect> invData):
+		Message(getdata), data(invData) {}
+	
+	GetData::GetData(NetworkBuffer* networkBuffer) : 
+		Message(getdata) {
+			auto size = networkBuffer->readVar_uint()\
+				    	.getValue();
+			for(uint64_t i=0; i < size; ++i){
+				data.push_back(networkBuffer->\
+						readInv_vect());
+			}
+		}
+
+	std::string GetData::payload() const{
+		std::string bytes = networkable::Var_uint(
+					data.size()).byteRepr();
+		for(auto& iv : data){
+			bytes += iv.byteRepr();
+		}
+		return bytes;
+	}
+} // namespace message

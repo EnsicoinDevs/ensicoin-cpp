@@ -1,58 +1,51 @@
 #include "messages.hpp"
+#include "networkable.hpp"
+#include "networkbuffer.hpp"
 
+#include <algorithm>
 #include <memory>
-#include <rapidjson/document.h>
 #include <string>
 #include <vector>
-#include <iostream>
 
-std::string Inv::getRessourceType() const{
-	return data.type;
-}
-
-std::vector<std::string> Inv::getRessources() const{
-	return data.hashes;
-}
-
-std::shared_ptr<GetData> Inv::respondRequest() const{
-	return std::make_shared<GetData>(data);
-}
-
-InvData::InvData(rapidjson::Value* val) : type((*val)["type"].GetString()){
-	auto& hashArray = (*val)["hashes"];
-	for(auto& hash : hashArray.GetArray()){
-		hashes.push_back(hash.GetString());
+namespace message{
+	networkable::Inv_vect::ressource_type Inv::\
+		getRessourceType() const{
+			if(data.empty())
+				return networkable::Inv_vect::\
+					invalidRes;
+			return data[0].type;
+		}
+	
+	std::vector<std::string> Inv::getRessourceHashes() const{
+		std::vector<std::string> out;
+		std::transform(data.begin(), data.end(), 
+				std::back_inserter(out),
+				[](networkable::Inv_vect i){
+				return i.hash;
+				});
+		return out;
 	}
-}
 
-InvData::InvData(std::string t, std::vector<std::string> hL) : type(t), hashes(hL) {}
+	Inv::Inv(std::vector<networkable::Inv_vect> invData):
+		Message(inv), data(invData) {}
+	
+	Inv::Inv(NetworkBuffer* networkBuffer) : 
+		Message(inv) {
+			auto size = networkBuffer->readVar_uint()\
+				    	.getValue();
+			for(uint64_t i=0; i < size; ++i){
+				data.push_back(networkBuffer->\
+						readInv_vect());
+			}
+		}
 
-rapidjson::Value InvData::json(rapidjson::Document* document) const {
-	rapidjson::Value content(rapidjson::kObjectType);
-
-	rapidjson::Value hashArray(rapidjson::kArrayType);
-	for(auto& resHash : hashes){
-		rapidjson::Value strVal;
-		strVal.SetString(resHash.c_str(), resHash.length(), document->GetAllocator());
-		hashArray.PushBack(strVal, document->GetAllocator());
+	std::string Inv::payload() const{
+		std::string bytes = networkable::Var_uint(
+					data.size()).byteRepr();
+		for(auto& iv : data){
+			bytes += iv.byteRepr();
+		}
+		return bytes;
 	}
-	rapidjson::Value typeVal;
-	typeVal.SetString(type.c_str(), type.length(), document->GetAllocator());
+} // namespace message
 
-	content.AddMember("type", typeVal, document->GetAllocator());
-	content.AddMember("hashes", hashArray, document->GetAllocator());
-	return content;
-}
-
-Inv::Inv(InvData dt) : Message("inv"), data(dt)  {}
-
-Inv::Inv(rapidjson::Document* doc) : Message(doc), 
-				     data(InvData(&(*doc)["message"]))  {
-}
-
-rapidjson::Value Inv::json(rapidjson::Document* document) const{
-	rapidjson::Value messageValue = Message::json(document);
-	auto content = data.json(document);
-	messageValue.AddMember("message", content, document->GetAllocator());
-	return messageValue;
-}
