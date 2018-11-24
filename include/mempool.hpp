@@ -51,6 +51,7 @@ class Mempool{
 		/// \param txHash hash of the Transaction
 		TXType type(std::string txHash) const;
 	private:
+		/// \brief UTXOManager used to acces the UTXO database
 		UTXOManager utxos;
 		/// \brief Height of the Blockchain
 		int currentHeight;
@@ -64,7 +65,11 @@ class Mempool{
 		/// a Transaction
 		void updateOrphan(std::string orphanHash);
 
+		/// \brief Storage of all valid Transaction not in a block
+		/// as LinkedTransaction
 		HashMemory<LinkedTransaction> mainPool;
+		/// \brief Storage of all orphaned Transaction as 
+		/// a LinkedTransaction
 		HashMemory<LinkedTransaction> orphans;
 		/// \brief Map of orphan using an UTXO
 		/// \details There by design can't be more than

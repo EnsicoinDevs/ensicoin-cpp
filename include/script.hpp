@@ -9,8 +9,10 @@
 /// \brief Script used in Transaction
 class Script{
 	private:
-		/// \brief Iterators used to execute the script
-		std::vector<std::string>::iterator codePointer, endCode;
+		/// \brief Iterator to track the current instruction
+		std::vector<std::string>::iterator codePointer;
+		/// \brief End of the Script
+		std::vector<std::string>::iterator endCode;
 		/// \brief Stack of the program
 		std::stack<std::string> data;
 		/// \brief Validity of the Transaction due to the

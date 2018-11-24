@@ -97,6 +97,9 @@ obj/mempool.o: src/mempool.cpp include/mempool.hpp include/hashmemory.hpp \
   include/linkedtransaction.hpp include/transaction.hpp \
   include/jsonable.hpp include/script.hpp include/utxo.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
+obj/networkbuffer.o: src/networkbuffer.cpp include/networkbuffer.hpp \
+  include/networkable.hpp
+	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/blockmessage.o: src/message/blockmessage.cpp include/messages.hpp \
   include/blocks.hpp include/jsonable.hpp include/transaction.hpp \
   include/hashmemory.hpp include/script.hpp include/networkable.hpp

@@ -12,6 +12,7 @@ using UTXO = TransactionIdentifier;
 namespace std {
 	template <> struct hash<UTXO>
 	{
+		/// \brief Get the hash of the UTXO as the hash of the rawStr()
 		size_t operator()(const UTXO & x) const
 		{
 			return hash<std::string>()(x.str());

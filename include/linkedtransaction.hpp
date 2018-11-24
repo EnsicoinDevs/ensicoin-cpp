@@ -13,6 +13,7 @@ class Mempool;
 /// \todo Add Transaction as parent class
 class LinkedTransaction : public Transaction {
 	public:
+		/// \brief Shared pointer to a LinkedTransaction
 		using pointer = std::shared_ptr<LinkedTransaction>;
 		/// \brief Retrieves necessary UTXOs to create 
 		/// the LinkedTransaction from a Transaction
@@ -21,6 +22,8 @@ class LinkedTransaction : public Transaction {
 			Mempool* mempool, 
 			UTXOManager* utxos);
 		
+		/// \brief Checks if all inputs are linked to
+		/// an UTXO
 		bool isOrphan() const;
 		/// \brief Gives all inputs who are orphaned
 		std::vector<UTXO> getOrphanDeps() const;
@@ -34,10 +37,15 @@ class LinkedTransaction : public Transaction {
 		/// validate the Transaction
 		bool validateScript();
 	private:
+		/// \brief Reference to a Mempool to fetch UTXO
 		Mempool* mempool;
+		/// \brief Reference to a UTXOManager to fetch
+		/// UTXO
 		UTXOManager* utxos;
 
+		/// \brief List of Linked UTXO in blocks
 		std::unordered_set< UTXO > dependencies;
+		/// \brief List of Linked UTXO in a Mempool
 		std::unordered_set< UTXO > mempoolDeps;
 };
 

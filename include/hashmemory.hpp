@@ -11,6 +11,7 @@
 template<class T>
 class HashMemory{
 	public:
+		/// \brief Shared pointer to the stored type
 		using pointer = std::shared_ptr<T>;
 		/// \brief Check existence of hash
 		/// \param elemHash hash of element
@@ -43,6 +44,7 @@ class HashMemory{
 			memory.erase(elemHash);
 		}
 	private:
+		/// \brief Structure used to store the elements
 		std::unordered_map<std::string, pointer > memory;
 };
 

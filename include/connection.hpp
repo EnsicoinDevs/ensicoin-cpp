@@ -12,6 +12,7 @@ class Node;
 /// \brief A Connection to a peer
 class Connection : public std::enable_shared_from_this<Connection>{
 	public:
+		/// \brief Shared pointer to a Connection
 		using pointer = std::shared_ptr<Connection>;
 		
 		/// \brief Creates a shared_ptr of Connection
@@ -36,17 +37,22 @@ class Connection : public std::enable_shared_from_this<Connection>{
 		/// \brief Exchange of WhoAmI
 		void wave();
 	private:
+		/// \brief Construct a Connection
 		Connection(asio::io_context& io_context, Node* node);
 
 		/// \brief Called when reading a Message
 		void handleRead();
 		/// \brief Called when writing a Message
 		void handleWrite(std::string type);
-			
+		
+		/// \brief Empty the buffer
+		/// \todo Change the implementation of Connection to use a NetworkBuffer
 		void resetBuffer();
 
+		/// \brief Socket used for network access
 		asio::ip::tcp::socket socket;
 		
+		/// \brief Pointer to the node to handle Message actions
 		Node* node;
 		
 		/// \brief has the node send a WhoAmI
@@ -56,6 +62,7 @@ class Connection : public std::enable_shared_from_this<Connection>{
 		
 		/// \brief Message buffered before WhoAmI exchange
 		std::vector<Message::messagePointer> bufferedMessages;
+		/// \brief Buffered content read from the node
 		asio::streambuf buffer;
 };
 

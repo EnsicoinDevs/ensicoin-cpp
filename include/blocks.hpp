@@ -26,7 +26,7 @@ struct BlockHeader{
 	std::time_t timestamp;
 	/// \brief Block nonce
 	int nonce;
-
+	
 	std::string rawStr() const;
 	std::string hash() const;
 };
