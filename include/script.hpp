@@ -58,6 +58,7 @@ namespace ressources{
 			/// \brief chains the script execution
 			void chain(Script* following);
 		private:
+			/// \brief Code to be run
 			code scriptInstructions;
 			/// \brief Iterator to track the current
 			/// instruction

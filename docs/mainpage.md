@@ -1,20 +1,22 @@
 * **Managing Classes**
-	* Node, Mempool, UTXOManager, Blockchain
+	* Node, Mempool, manager::UTXOManager, Blockchain
 * **Networking Classes**
-	* Connection
+	* Connection, NetworkBuffer
 * **Containers**
-	* HashMemory, Mempool, UTXOManager, Blockchain
-* **Data Classes**
-	* Block, Transaction, LinkedTransaction, Script
+	* HashMemory, Mempool, manager::UTXOManager, Blockchain
+* **Ressources Classes**
+	* Block, ressources::Transaction, ressources::LinkedTransaction, ressources::Script
 * **Crypto Classes and File**
 	* ECDSASignature, crypto.hpp
 * **Messaging Classes**
-	* Handler, Message, BlockMessage, GetBlocks, GetData, GetMempool, Inv, NotFound, TransactionMessage, WhoAmI
+	* Handler, message::Message, message::BlockMessage, message::GetBlocks, message::GetData, message::GetMempool, message::Inv, message::NotFound, message::TransactionMessage, message::WhoAmI, message::WhoAmIAck, message::Addr, message::GetAddr
 * **UTXO Classes**
 	* UTXOManager, UTXOdata
 * **Transaction Elements**
-	* Transaction, LinkedTransaction, TransactionIdentifier, InputTransaction, OutputTransaction
+	* ressources::Transaction, LinkedTransaction, ressources::TransactionIdentifier, ressources::InputTransaction, ressources::OutputTransaction
 * **Block Elemets**
 	* Block, BlockHeader
+* **Networkable Base Types**
+	networkable::Networkable, networkable::Var_uint, networkable::Uint16, networkable::Uint32, networkable::Uint64, networkable::Str, networkable::Var_str, networkable::Inv_vect, networkable::Address, networkable::MessageHeader
 * **Constants**
 	* constants.hpp

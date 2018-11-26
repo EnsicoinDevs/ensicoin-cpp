@@ -210,13 +210,13 @@ namespace message{
 			std::string payload() const override;
 			/// \brief Pointer to the sent Transaction to
 			/// avoid RAM usgae
-			std::shared_ptr<Transaction> transaction;
+			ressources::Transaction::pointer transaction;
 		public:
-			std::shared_ptr<Transaction> getTx() const;
+			/// \brief Returns a shared pointet to teh ressources::Transaction
+			ressources::Transaction::pointer getTx() const;
 			/// \brief Create a TransactionMessage from a
 			/// Transaction
-			explicit TransactionMessage(std::shared_ptr\
-					<Transaction> trPtr);
+			explicit TransactionMessage(ressources::Transaction::pointer);
 			/// \brief Parses a binary string in a 
 			/// TransactionMessage
 			/// \param networkBuffer buffer containing 

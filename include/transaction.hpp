@@ -81,7 +81,6 @@ namespace ressources {
 
 	class Mempool;
 
-	enum TXType { Orphan, Regular };
 
 	/// \brief A class representing an exchange of ensicoins
 	class Transaction : public JSONAble,
@@ -97,6 +96,9 @@ namespace ressources {
 			/// \brief All OutputTransaction
 			std::vector<OutputTransaction> outputs;
 		public:
+			/// \brief Types a Transaction can be
+			enum TXType { Orphan, Regular };
+			/// \brief Shared ptr to a Transaction
 			using pointer = std::shared_ptr<Transaction>;
 			/// \brief Creates an empty Transaction
 			Transaction();
