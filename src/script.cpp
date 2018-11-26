@@ -53,10 +53,10 @@ namespace ressources{
 		return networkable::Var_str(out.str()).byteRepr();
 	}
 
-	Script::Script( code instructions, std::string txHash) :
+	Script::Script( code instructions, std::string shash) :
 		scriptInstructions(instructions),
 		valid(true),
-		transactionHash(txHash){
+		signingHash(shash){
 		codePointer = scriptInstructions.begin();
 	}
 
@@ -136,7 +136,7 @@ namespace ressources{
 					}
 
 					ECDSASignature signature(sss.str());
-					if(!signature.verify(transactionHash, 
+					if(!signature.verify(signingHash, 
 											ssk.str())){
 						valid = false;
 					}

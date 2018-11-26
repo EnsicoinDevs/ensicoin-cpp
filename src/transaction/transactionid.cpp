@@ -31,6 +31,11 @@ namespace ressources{
 		transactionHash(networkBuffer->readHash()),
 		index(networkBuffer->readVar_uint().getValue()) {}
 
+	TransactionIdentifier::TransactionIdentifier(std::string hash,
+			unsigned int idx) : 
+		transactionHash(hash),
+		index(idx) {}
+
 	std::string TransactionIdentifier::byteRepr() const{
 		return networkable::Str(transactionHash).byteRepr() +
 			networkable::Var_uint(index).byteRepr();

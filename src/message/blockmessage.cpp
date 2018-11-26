@@ -8,13 +8,13 @@
 #include <vector>
 
 namespace message{
-	BlockMessage::BlockMessage(std::shared_ptr<Block> blockPtr) :
+	BlockMessage::BlockMessage(ressources::Block::pointer blockPtr) :
 		Message(block),
 		blockRef(blockPtr) {}
 	BlockMessage::BlockMessage(NetworkBuffer* networkBuffer) :
 		Message(block),
-		blockRef(std::make_shared<Block>(networkBuffer)) {}
-	std::shared_ptr<Block> BlockMessage::getBlock() const{
+		blockRef(std::make_shared<ressources::Block>(networkBuffer)) {}
+	ressources::Block::pointer BlockMessage::getBlock() const{
 		return blockRef;
 	}
 

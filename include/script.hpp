@@ -43,7 +43,7 @@ namespace ressources{
 			/// \brief Create a Script from the 
 			/// necessary data
 			Script(	code instructions,
-					std::string transactionHash);
+					std::string shash);
 			/// \brief Extract a script from a 
 			/// NetworkBuffer
 			explicit Script(NetworkBuffer* 
@@ -70,7 +70,7 @@ namespace ressources{
 			bool valid;
 			/// \brief Hash to be used to check
 			/// the signature
-			std::string transactionHash;
+			std::string signingHash;
 	};
 
 } // namespace ressources

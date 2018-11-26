@@ -1,5 +1,5 @@
 #include "messages.hpp"
-#include "blocks.hpp"
+#include "transaction.hpp"
 #include "networkable.hpp"
 #include "networkbuffer.hpp"
 
@@ -8,16 +8,15 @@
 #include <vector>
 
 namespace message{
-	TransactionMessage::TransactionMessage(std::shared_ptr\
-			<Transaction> txPtr) :
+	TransactionMessage::TransactionMessage(ressources::Transaction::pointer txPtr) :
 		Message(tx),
 		transaction(txPtr) {}
 	TransactionMessage::TransactionMessage(NetworkBuffer* 
 			networkBuffer) :
 		Message(block),
 		transaction(std::make_shared\
-				<Transaction>(networkBuffer)) {}
-	std::shared_ptr<Transaction> TransactionMessage::getTx() 
+				<ressources::Transaction>(networkBuffer)) {}
+	ressources::Transaction::pointer TransactionMessage::getTx() 
 		const{
 		return transaction;
 	}

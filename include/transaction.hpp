@@ -19,7 +19,8 @@
 namespace ressources {
 
 	/// \brief Reference to the OutputTransaction of another
-	/// Transaction
+	/// Transaction 
+	/// \todo change index to uint[x]
 	struct TransactionIdentifier : 
 		public networkable::Networkable {
 		/// \brief Hash of the refrenced Transaction
@@ -32,6 +33,11 @@ namespace ressources {
 		/// TransactionIdentifier
 		explicit TransactionIdentifier(NetworkBuffer*
 				networkBuffer);
+
+		/// \brief Construct a TransactionIdentifier from
+		/// the data fields
+		TransactionIdentifier(std::string transactionHash,
+				unsigned int index);
 
 		/// \brief Get the JSON reperesentation
 		/// \param document Document used for the 
@@ -100,8 +106,6 @@ namespace ressources {
 			enum TXType { Orphan, Regular };
 			/// \brief Shared ptr to a Transaction
 			using pointer = std::shared_ptr<Transaction>;
-			/// \brief Creates an empty Transaction
-			Transaction();
 			/// \brief Create a Transaction from
 			/// all data fields
 			Transaction(	int ver, 	
@@ -135,8 +139,7 @@ namespace ressources {
 				getInputs() const;
 			/// \brief Get the script for the designed
 			/// OutputTransaction
-			std::vector<std::string> 
-				getScriptOfOutput(int index) const;
+			Script getScriptOfOutput(int index) const;
 
 			/// \brief Checks if the transaction has an 
 			/// OutputTransaction
@@ -155,18 +158,13 @@ namespace ressources {
 			/// valid by itself
 			bool check();
 
-			/// \brief Get the raw string representation
-			/// \details The raw string is obtained by 
-			/// concatanateing all the raw strings of the
-			/// fields
-			std::string rawStr() const;
-			/// \brief Get the hash to be used for
-			/// signing the Transaction
-			std::string hashWithoutInputs() const;
 			std::string byteRepr() const override;
 			/// \brief Taking two times sha256 of the
 			/// byteRepr
 			std::string hash() const;
+			/// \brief Get the hash to be used for
+			/// signing the Transaction
+			std::string signingHash() const;
 			rapidjson::Document json() const final;
 	};
 

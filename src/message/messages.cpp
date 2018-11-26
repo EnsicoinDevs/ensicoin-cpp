@@ -37,7 +37,7 @@ namespace message{
 		}
 	}
 
-	Message::message_type Message::typeFromString(const std::string& typeStr) const{
+	Message::message_type Message::typeFromString(const std::string& typeStr){
 		if(typeStr == "whoami")
 			return whoami;
 		else if(typeStr == "whoamiack")

@@ -20,8 +20,7 @@ namespace message{
 	public networkable::Networkable {
 		public:
 			/// \brief Shared_pointer to a Message
-			using messagePointer = std::shared_ptr\
-					       <Message>;
+			using pointer = std::shared_ptr<Message>;
 			/// \brief Possible Message types
 			enum message_type{	
 				whoami, 
@@ -41,9 +40,9 @@ namespace message{
 			/// \brief Get the message_type as a string
 			std::string getTypeAsString() const;
 			/// \brief Parse a string into message_type
-			message_type typeFromString(
+			static message_type typeFromString(
 					const std::string& 
-					typeString) const;
+					typeString);
 			std::string byteRepr() const override;
 		protected:
 			/// \brief Defined in constants.hpp
@@ -183,18 +182,18 @@ namespace message{
 					networkBuffer);
 	};
 
-	/// \brief Message sending a Block over
+	/// \brief Message sending a ressources::Block over
 	class BlockMessage : public Message {
 		private:
 			std::string payload() const override;
-			/// \brief Pointer to the sent Block to avoid
+			/// \brief Pointer to the sent ressources::Block to avoid
 			/// RAM usage
-			std::shared_ptr<Block> blockRef;
+			ressources::Block::pointer blockRef;
 		public:
-			/// \brief Returns a pointer to the Block
-			std::shared_ptr<Block> getBlock() const;
-			/// \brief Create a BlockMessage from a Block
-			explicit BlockMessage(std::shared_ptr<Block>
+			/// \brief Returns a pointer to the ressources::Block
+			ressources::Block::pointer getBlock() const;
+			/// \brief Create a BlockMessage from a ressources::Block
+			explicit BlockMessage(ressources::Block::pointer
 					blockPtr);
 			/// \brief Parses a binary string in a 
 			/// BlockMessage
@@ -204,18 +203,18 @@ namespace message{
 					networkBuffer);
 	};
 
-	/// \brief Message sending a Transaction over
+	/// \brief Message sending a ressources::Transaction over
 	class TransactionMessage : public Message {
 		private:
 			std::string payload() const override;
-			/// \brief Pointer to the sent Transaction to
+			/// \brief Pointer to the sent ressources::Transaction to
 			/// avoid RAM usgae
 			ressources::Transaction::pointer transaction;
 		public:
-			/// \brief Returns a shared pointet to teh ressources::Transaction
+			/// \brief Returns a shared pointer to the ressources::Transaction
 			ressources::Transaction::pointer getTx() const;
 			/// \brief Create a TransactionMessage from a
-			/// Transaction
+			/// ressources::Transaction
 			explicit TransactionMessage(ressources::Transaction::pointer);
 			/// \brief Parses a binary string in a 
 			/// TransactionMessage
@@ -225,14 +224,14 @@ namespace message{
 					networkBuffer);
 	};
 
-	/// \brief Message asking a node to sync Block 
+	/// \brief Message asking a node to sync ressources::Block 
 	/// until a certain point
 	class GetBlocks : public Message {
 		private:
 			std::string payload() const override;
-			/// \brief Known Block for reference
+			/// \brief Known ressources::Block for reference
 			std::vector< std::string > blockHashes;
-			/// \brief Where to stop sending Block
+			/// \brief Where to stop sending ressources::Block
 			std::string stopHash;
 		public:
 			/// \brief Create a GetBlocks from the 
