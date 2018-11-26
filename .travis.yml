@@ -1,4 +1,7 @@
 language: cpp
+before_install:
+  - apt-cache pkgnames | grep -i crypto++
+  - sudo apt-get install -y libcrypto++8 libcrypto++8-dbg libcrypto++-dev rapidjson-dev libasio-dev libleveldb-dev
 script: make; make doc
 compiler: clang
 deploy:
