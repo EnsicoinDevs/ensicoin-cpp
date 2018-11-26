@@ -2,6 +2,7 @@
 #include "connection.hpp"
 #include "constants.hpp"
 #include "messages.hpp"
+#include "networkable.hpp"
 
 #include <asio.hpp>
 #include <functional>
@@ -14,38 +15,42 @@ Node::Node(asio::io_context& io_context) : acceptor(io_context, asio::ip::tcp::e
 	acceptor.listen();
 	run();
 
-	Block GenesisBlock({0,{"ici cest limag"},"","",1566862920,42},{});
+	//ressources::Block GenesisBlock({0,{"ici cest limag"},"","",1566862920,42},{});
 	
-	TransactionIdentifier testID = { "obiwan kenobi", 42};
-	InputTransaction testInput = { testID, std::stack<std::string>({"Bip", "Bop"})};
-	OutputTransaction testOutput = { 42, {"Truc", "Bidule"}};
+	ressources::TransactionIdentifier testID("obiwan kenobi", 42);
+
+	ressources::InputTransaction testInput(testID, ressources::Script({},"KABAK"));
+
+	ressources::OutputTransaction testOutput(42, ressources::Script({},"BAKAAK"));
 	
-	Transaction testTransaction(-1, {"I AM A FLAG", "A FLAGGY FLAG"}, {testInput, testInput}, {testOutput, testOutput});
-	
+	ressources::Transaction testTransaction(-1, {"I AM A FLAG", "A FLAGGY FLAG"}, {testInput, testInput}, {testOutput, testOutput});
+	auto testTxPtr = std::make_shared<ressources::Transaction>(testTransaction);
+
 	std::string testTrHash = testTransaction.hash();
-	InvData invData("t", {testTrHash, "blaaaaap"});
+	networkable::Inv_vect invData(networkable::Inv_vect::ressource_type::txRes, testTrHash);
 
 	const std::string johynIP("78.248.188.120");
 	const std::string myIP("82.235.104.10");
-	auto messageTest = std::make_shared<WhoAmI>();
-	auto invTest = Message::messagePointer( new Inv(invData));
-	auto getDataTest = Message::messagePointer( new GetData(invData));
-	auto sendGenesis = std::make_shared<BlockMessage>(std::make_shared<Block>(GenesisBlock));
-	auto msgTestTr = std::make_shared<TransactionMessage>(std::make_shared<Transaction>(testTransaction));
-	auto msgMempool = std::make_shared<GetMempool>();
+	const std::string jauvioNathan("92.129.133.102");
+	auto messageTest = std::make_shared<message::WhoAmI>();
+	auto invTest = message::Message::pointer( new message::Inv({invData}));
+	auto getDataTest = message::Message::pointer( new message::GetData({invData}));
+	//auto sendGenesis = std::make_shared<message::BlockMessage>(std::make_shared<ressources::Block>(GenesisBlock));
+	auto msgTestTr = std::make_shared<message::TransactionMessage>(testTxPtr);
+	auto msgMempool = std::make_shared<message::GetMempool>();
 
 	//std::cout << msgTestTr->str() << std::endl;
 
-	Connection::pointer testConnection = Connection::create(io_context, this);
+	network::Connection::pointer testConnection = network::Connection::create(io_context, this);
 	connections.push_back(testConnection);
-	testConnection->bind( asio::ip::address::from_string(myIP));
+	testConnection->bind( asio::ip::address::from_string(johynIP));
 
 	testConnection->sendMessage(invTest);
 	//testConnection->sendMessage(msgMempool);
 }
 
 void Node::run(){
-	Connection::pointer newConnection = Connection::create(acceptor.get_executor().context(), this);
+	network::Connection::pointer newConnection = network::Connection::create(acceptor.get_executor().context(), this);
 	acceptor.async_accept(newConnection->getSocket(), std::bind( &Node::handleAccept, this, newConnection ));
 
 	/*for(auto& conn : connections){
@@ -57,7 +62,7 @@ bool Node::transactionExists(std::string txHash) const {
 	return mempool.exists(txHash) || mempool.orphanExists(txHash);
 }
 
-void Node::handleAccept(Connection::pointer newConnection){
+void Node::handleAccept(network::Connection::pointer newConnection){
 	newConnection->start();
 	connections.push_back(newConnection);
 	run();

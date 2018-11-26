@@ -28,7 +28,7 @@ using asio::ip::tcp;
 
 
 int main(){
-	Block GenesisBlock({0,{"ici cest limag"},"","",1566862920,42},{});
+	//Block GenesisBlock({0,{"ici cest limag"},"","",1566862920,42},{});
 
 	AutoSeededRandomPool prng, rrng;
 
@@ -43,10 +43,6 @@ int main(){
 
 	std::string message("TEST PLEASE");
 	ECDSASignature signature(message, privateKey);
-
-	std::vector<std::string> code = {"OP_DUP","OP_HASH160", ripemd160(hexPublicKey(q)), "OP_EQUAL", "OP_VERIFY", "OP_CHECKSIG"};
-	std::stack<std::string> data({signature.hex(), hexPublicKey(q)});
-	Script testScript(code.begin(), code.end(), data, message);
 	
 	int status;
 	status = mkdir(DATA_PATH.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
@@ -58,9 +54,9 @@ int main(){
 		std::cout << "Directory set" << std::endl;
 	}
 	
-	Var_str x("kat",true);
-	std::cout << "X : " << x.getValue() << ", ByteRepr : " << x.byteRepr() << ", as binaryString : " << x.asBytes() << std::endl; 
-	util::printBinaryString(x.asBytes());
+	networkable::Var_str x("kat");
+	std::cout << "X : " << x.getValue() << ", ByteRepr : " << x.byteRepr() << std::endl;
+	util::printBinaryString(x.byteRepr());
 	
 	asio::io_context io_context;
 	//Node node(io_context);

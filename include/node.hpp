@@ -21,17 +21,17 @@ class Node{
 //		std::vector< HashMemory > secondaryChains;
 		
 		/// \brief Mempool of the Node
-		Mempool mempool;
+		manager::Mempool mempool;
 		/// \brief Main Blockchain
 		Blockchain blockchain;
 		
 		/// \brief Accept TCP connections from other nodes
 		asio::ip::tcp::acceptor acceptor;
-		std::vector<Connection::pointer> connections; ///< Vector of all current connections
+		std::vector<network::Connection::pointer> connections; ///< Vector of all current connections
 		
 		/// \brief Handles a connection
 		/// \param newConnection a shared pointer to the connection
-		void handleAccept(Connection::pointer newConnection);
+		void handleAccept(network::Connection::pointer newConnection);
 	public:
 		/// \brief Construct a Node
 		/// \param io_context an asio::io_context
