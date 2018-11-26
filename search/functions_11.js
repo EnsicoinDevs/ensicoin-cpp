@@ -5,6 +5,6 @@ var searchData=
   ['uint64',['Uint64',['../classnetworkable_1_1Uint64.html#a7196d75a11ff89e6a358eabafdb1c20d',1,'networkable::Uint64']]],
   ['unknown',['unknown',['../classHandler.html#ac574e0e2145e6cd5b25ac5e9a535be29',1,'Handler']]],
   ['updateorphan',['updateOrphan',['../classMempool.html#ae658e1104b650fbc63786bc5e77fb328',1,'Mempool']]],
-  ['utxodata',['UTXOdata',['../structUTXOdata.html#abac0ce6dfed6dab29a00a995d37cc62c',1,'UTXOdata::UTXOdata(int, bool)'],['../structUTXOdata.html#a0f569e3b932610a822140104fdd418a9',1,'UTXOdata::UTXOdata(std::string jsonStr)']]],
-  ['utxomanager',['UTXOManager',['../classUTXOManager.html#aa08c4e17616d0a2436df1c8307b5da26',1,'UTXOManager']]]
+  ['utxodata',['UTXOdata',['../structmanager_1_1UTXOdata.html#a1a7529f65af6297eae1ed7811dfc3b35',1,'manager::UTXOdata::UTXOdata(int val, bool isCoinbase, int ht, std::string shash, bool isFromMempool, ressources::Script sc)'],['../structmanager_1_1UTXOdata.html#a7e6ab61c35c9ebf86a0822a769df0c12',1,'manager::UTXOdata::UTXOdata(NetworkBuffer *networkBuffer)']]],
+  ['utxomanager',['UTXOManager',['../classmanager_1_1UTXOManager.html#aa903ba36477f8c322280c6c484455035',1,'manager::UTXOManager']]]
 ];

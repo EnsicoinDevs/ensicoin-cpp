@@ -77,7 +77,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="classmessage_1_1Message.html" title="Base class for all network communcation. ">Message</a> sending a <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> over.  
+<p><a class="el" href="classmessage_1_1Message.html" title="Base class for all network communcation. ">Message</a> sending a Transaction over.  
  <a href="classmessage_1_1TransactionMessage.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="messages_8hpp_source.html">messages.hpp</a>&gt;</code></p>
@@ -95,12 +95,13 @@ Inheritance diagram for message::TransactionMessage:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a8c1575fd0b5f1dd02512a6dc9672bb1e"><td class="memItemLeft" align="right" valign="top"><a id="a8c1575fd0b5f1dd02512a6dc9672bb1e"></a>
-std::shared_ptr&lt; <a class="el" href="classTransaction.html">Transaction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getTx</b> () const</td></tr>
+<a class="el" href="classressources_1_1Transaction.html#a7f4c450b4fbbb6d8061cae954568a8f3">ressources::Transaction::pointer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1TransactionMessage.html#a8c1575fd0b5f1dd02512a6dc9672bb1e">getTx</a> () const</td></tr>
+<tr class="memdesc:a8c1575fd0b5f1dd02512a6dc9672bb1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a shared pointet to teh <a class="el" href="classressources_1_1Transaction.html" title="A class representing an exchange of ensicoins. ">ressources::Transaction</a>. <br /></td></tr>
 <tr class="separator:a8c1575fd0b5f1dd02512a6dc9672bb1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91ad431736dc356590b56454a613b870"><td class="memItemLeft" align="right" valign="top"><a id="a91ad431736dc356590b56454a613b870"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1TransactionMessage.html#a91ad431736dc356590b56454a613b870">TransactionMessage</a> (std::shared_ptr&lt; <a class="el" href="classTransaction.html">Transaction</a> &gt; trPtr)</td></tr>
-<tr class="memdesc:a91ad431736dc356590b56454a613b870"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a <a class="el" href="classmessage_1_1TransactionMessage.html" title="Message sending a Transaction over. ">TransactionMessage</a> from a <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a>. <br /></td></tr>
-<tr class="separator:a91ad431736dc356590b56454a613b870"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefca8b07bf1ff73a6e8dda12f4c4f76f"><td class="memItemLeft" align="right" valign="top"><a id="aefca8b07bf1ff73a6e8dda12f4c4f76f"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1TransactionMessage.html#aefca8b07bf1ff73a6e8dda12f4c4f76f">TransactionMessage</a> (<a class="el" href="classressources_1_1Transaction.html#a7f4c450b4fbbb6d8061cae954568a8f3">ressources::Transaction::pointer</a>)</td></tr>
+<tr class="memdesc:aefca8b07bf1ff73a6e8dda12f4c4f76f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a <a class="el" href="classmessage_1_1TransactionMessage.html" title="Message sending a Transaction over. ">TransactionMessage</a> from a Transaction. <br /></td></tr>
+<tr class="separator:aefca8b07bf1ff73a6e8dda12f4c4f76f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6530a82efa80c838c50c7dffe47d8e59"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1TransactionMessage.html#a6530a82efa80c838c50c7dffe47d8e59">TransactionMessage</a> (<a class="el" href="classNetworkBuffer.html">NetworkBuffer</a> *networkBuffer)</td></tr>
 <tr class="memdesc:a6530a82efa80c838c50c7dffe47d8e59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a binary string in a <a class="el" href="classmessage_1_1TransactionMessage.html" title="Message sending a Transaction over. ">TransactionMessage</a>.  <a href="#a6530a82efa80c838c50c7dffe47d8e59">More...</a><br /></td></tr>
 <tr class="separator:a6530a82efa80c838c50c7dffe47d8e59"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -121,11 +122,6 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1Message.html#a1c1e979c78fbfed83f22c2ccbf2d0c81">byteRepr</a> () const override</td></tr>
 <tr class="memdesc:a1c1e979c78fbfed83f22c2ccbf2d0c81 inherit pub_methods_classmessage_1_1Message"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the represention of the object as a packed hexadecimal string. <br /></td></tr>
 <tr class="separator:a1c1e979c78fbfed83f22c2ccbf2d0c81 inherit pub_methods_classmessage_1_1Message"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_classnetworkable_1_1Networkable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classnetworkable_1_1Networkable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classnetworkable_1_1Networkable.html">networkable::Networkable</a></td></tr>
-<tr class="memitem:ad351c48d7e0e7676bf0b8325ec5ee6f9 inherit pub_methods_classnetworkable_1_1Networkable"><td class="memItemLeft" align="right" valign="top"><a id="ad351c48d7e0e7676bf0b8325ec5ee6f9"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetworkable_1_1Networkable.html#ad351c48d7e0e7676bf0b8325ec5ee6f9">asBytes</a> () const</td></tr>
-<tr class="memdesc:ad351c48d7e0e7676bf0b8325ec5ee6f9 inherit pub_methods_classnetworkable_1_1Networkable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the binary string represesentation of the <a class="el" href="classnetworkable_1_1Networkable.html" title="Object to be send to another Node in a byte list. ">Networkable</a> object. <br /></td></tr>
-<tr class="separator:ad351c48d7e0e7676bf0b8325ec5ee6f9 inherit pub_methods_classnetworkable_1_1Networkable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -136,10 +132,10 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a266feb94f7b54f6e8c73f27630fd7fab"><td class="memItemLeft" align="right" valign="top"><a id="a266feb94f7b54f6e8c73f27630fd7fab"></a>
-std::shared_ptr&lt; <a class="el" href="classTransaction.html">Transaction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1TransactionMessage.html#a266feb94f7b54f6e8c73f27630fd7fab">transaction</a></td></tr>
-<tr class="memdesc:a266feb94f7b54f6e8c73f27630fd7fab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the sent <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> to avoid RAM usgae. <br /></td></tr>
-<tr class="separator:a266feb94f7b54f6e8c73f27630fd7fab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26676b748184e883317a522aa55e850b"><td class="memItemLeft" align="right" valign="top"><a id="a26676b748184e883317a522aa55e850b"></a>
+<a class="el" href="classressources_1_1Transaction.html#a7f4c450b4fbbb6d8061cae954568a8f3">ressources::Transaction::pointer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1TransactionMessage.html#a26676b748184e883317a522aa55e850b">transaction</a></td></tr>
+<tr class="memdesc:a26676b748184e883317a522aa55e850b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the sent Transaction to avoid RAM usgae. <br /></td></tr>
+<tr class="separator:a26676b748184e883317a522aa55e850b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -171,6 +167,11 @@ using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 <tr class="memitem:aa49008957c5422376fc4edf63f575c11 inherit pro_methods_classmessage_1_1Message"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1Message.html#aa49008957c5422376fc4edf63f575c11">Message</a> (<a class="el" href="classmessage_1_1Message.html#ab4353498130e075132da66e6ec1cb982">message_type</a> <a class="el" href="classmessage_1_1Message.html#aacfa19e3fe3a82db5c329cb1b81f26ed">type</a>)</td></tr>
 <tr class="memdesc:aa49008957c5422376fc4edf63f575c11 inherit pro_methods_classmessage_1_1Message"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a <a class="el" href="classmessage_1_1Message.html" title="Base class for all network communcation. ">Message</a> with empty Payload.  <a href="classmessage_1_1Message.html#aa49008957c5422376fc4edf63f575c11">More...</a><br /></td></tr>
 <tr class="separator:aa49008957c5422376fc4edf63f575c11 inherit pro_methods_classmessage_1_1Message"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classnetworkable_1_1Networkable"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classnetworkable_1_1Networkable')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classnetworkable_1_1Networkable.html">networkable::Networkable</a></td></tr>
+<tr class="memitem:ab9711ee298772be4787f251f83f0391e inherit pro_methods_classnetworkable_1_1Networkable"><td class="memItemLeft" align="right" valign="top"><a id="ab9711ee298772be4787f251f83f0391e"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetworkable_1_1Networkable.html#ab9711ee298772be4787f251f83f0391e">encode</a> (const std::string &amp;packedString) const</td></tr>
+<tr class="memdesc:ab9711ee298772be4787f251f83f0391e inherit pro_methods_classnetworkable_1_1Networkable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the binary string represesentation of a packed string. <br /></td></tr>
+<tr class="separator:ab9711ee298772be4787f251f83f0391e inherit pro_methods_classnetworkable_1_1Networkable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classmessage_1_1Message"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classmessage_1_1Message')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classmessage_1_1Message.html">message::Message</a></td></tr>
 <tr class="memitem:aec3c7bdbf6a494be6453f566813eb211 inherit pro_attribs_classmessage_1_1Message"><td class="memItemLeft" align="right" valign="top"><a id="aec3c7bdbf6a494be6453f566813eb211"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1Message.html#aec3c7bdbf6a494be6453f566813eb211">magic</a></td></tr>
@@ -182,7 +183,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
 <tr class="separator:aacfa19e3fe3a82db5c329cb1b81f26ed inherit pro_attribs_classmessage_1_1Message"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="classmessage_1_1Message.html" title="Base class for all network communcation. ">Message</a> sending a <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> over. </p>
+<div class="textblock"><p><a class="el" href="classmessage_1_1Message.html" title="Base class for all network communcation. ">Message</a> sending a Transaction over. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a6530a82efa80c838c50c7dffe47d8e59"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6530a82efa80c838c50c7dffe47d8e59">&#9670;&nbsp;</a></span>TransactionMessage()</h2>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['outputtransaction',['OutputTransaction',['../structOutputTransaction.html',1,'']]]
+  ['outputtransaction',['OutputTransaction',['../structressources_1_1OutputTransaction.html',1,'ressources']]]
 ];

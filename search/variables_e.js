@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['utxos',['utxos',['../classLinkedTransaction.html#a34bf6113aed732d3b276f9c4f0dc4bf5',1,'LinkedTransaction::utxos()'],['../classMempool.html#a84442d6065be70b7411d4376887c7858',1,'Mempool::utxos()']]]
+  ['valid',['valid',['../classressources_1_1Script.html#a0ef16d4979f7b7d12203f52389c06bb0',1,'ressources::Script']]],
+  ['value',['value',['../classnetworkable_1_1Var__uint.html#aa8f44e093d89252eb89cd7f7237b90b8',1,'networkable::Var_uint::value()'],['../classnetworkable_1_1Uint16.html#a54015c1cd450ba4e9531b74f5bd47a80',1,'networkable::Uint16::value()'],['../classnetworkable_1_1Uint32.html#ac1c8f331a6751e2f89fde7b426bcf8f9',1,'networkable::Uint32::value()'],['../classnetworkable_1_1Uint64.html#a27e22051aacf836cef17ed48c9f48dc5',1,'networkable::Uint64::value()'],['../classnetworkable_1_1Str.html#ad6222114d590752c2a35e8187aff5596',1,'networkable::Str::value()'],['../classnetworkable_1_1Var__str.html#ac490b81a57d1b1672e6454a2ec0cd67c',1,'networkable::Var_str::value()'],['../structressources_1_1OutputTransaction.html#a5c536ef46aed7b70b8df98fe9bd3e5c1',1,'ressources::OutputTransaction::value()'],['../structmanager_1_1UTXOdata.html#a7e6c04c1974e333d1e229200f8f234f9',1,'manager::UTXOdata::value()']]],
+  ['version',['version',['../structBlockHeader.html#a0df73a2de060f5cabeffb4ae97500c75',1,'BlockHeader::version()'],['../classmessage_1_1WhoAmI.html#afb1ae0f3c6f15295ffb900215a6ac9dd',1,'message::WhoAmI::version()'],['../classressources_1_1Transaction.html#acb812bff08cece6b37b2cf42c8868be4',1,'ressources::Transaction::version()']]]
 ];

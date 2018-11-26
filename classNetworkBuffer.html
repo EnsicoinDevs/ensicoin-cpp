@@ -106,9 +106,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2f0a819d2a1becc75b61f2b0114fdc2b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structnetworkable_1_1MessageHeader.html">networkable::MessageHeader</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkBuffer.html#a2f0a819d2a1becc75b61f2b0114fdc2b">readMessageHeader</a> ()</td></tr>
 <tr class="memdesc:a2f0a819d2a1becc75b61f2b0114fdc2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a <a class="el" href="structnetworkable_1_1MessageHeader.html" title="A header for a message::Message. ">networkable::MessageHeader</a> from the buffer.  <a href="#a2f0a819d2a1becc75b61f2b0114fdc2b">More...</a><br /></td></tr>
 <tr class="separator:a2f0a819d2a1becc75b61f2b0114fdc2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a686a90314bdf24eacfd5b68b4a839b53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkBuffer.html#a686a90314bdf24eacfd5b68b4a839b53">appendBytes</a> (const std::string &amp;binaryString)</td></tr>
-<tr class="memdesc:a686a90314bdf24eacfd5b68b4a839b53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a binary string to the StreamBuffer.  <a href="#a686a90314bdf24eacfd5b68b4a839b53">More...</a><br /></td></tr>
-<tr class="separator:a686a90314bdf24eacfd5b68b4a839b53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24f20c6a31f8696e3d1e7d2eee95dfdf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnetworkable_1_1Str.html">networkable::Str</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkBuffer.html#a24f20c6a31f8696e3d1e7d2eee95dfdf">readStr</a> (size_t length)</td></tr>
+<tr class="memdesc:a24f20c6a31f8696e3d1e7d2eee95dfdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a <a class="el" href="classnetworkable_1_1Str.html" title="Represent string as packed hexadecimal. ">networkable::Str</a> from the buffer.  <a href="#a24f20c6a31f8696e3d1e7d2eee95dfdf">More...</a><br /></td></tr>
+<tr class="separator:a24f20c6a31f8696e3d1e7d2eee95dfdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a985c0c466a8dab62639490c2122b6fc3"><td class="memItemLeft" align="right" valign="top"><a id="a985c0c466a8dab62639490c2122b6fc3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkBuffer.html#a985c0c466a8dab62639490c2122b6fc3">appendBytes</a> (const <a class="el" href="classnetworkable_1_1Networkable.html">networkable::Networkable</a> &amp;object)</td></tr>
+<tr class="memdesc:a985c0c466a8dab62639490c2122b6fc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a <a class="el" href="classnetworkable_1_1Networkable.html" title="Object to be send to another Node in a byte list. ">networkable::Networkable</a> to the StreamBuffer. <br /></td></tr>
+<tr class="separator:a985c0c466a8dab62639490c2122b6fc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a160af6b9dee55f620066aff7cc400be4"><td class="memItemLeft" align="right" valign="top"><a id="a160af6b9dee55f620066aff7cc400be4"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkBuffer.html#a160af6b9dee55f620066aff7cc400be4">NetworkBuffer</a> (const std::string &amp;binaryString)</td></tr>
+<tr class="memdesc:a160af6b9dee55f620066aff7cc400be4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a <a class="el" href="classNetworkBuffer.html" title="Class to hold Networkable data. ">NetworkBuffer</a> from a binaryString. <br /></td></tr>
+<tr class="separator:a160af6b9dee55f620066aff7cc400be4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -120,27 +128,6 @@ std::stringstream&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class to hold Networkable data. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a686a90314bdf24eacfd5b68b4a839b53"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a686a90314bdf24eacfd5b68b4a839b53">&#9670;&nbsp;</a></span>appendBytes()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void NetworkBuffer::appendBytes </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>binaryString</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Add a binary string to the StreamBuffer. </p>
-<p>Consume the bytes from the buffer </p>
-
-</div>
-</div>
 <a id="aa3ccb39257f27aad42ccdfaf692496df"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa3ccb39257f27aad42ccdfaf692496df">&#9670;&nbsp;</a></span>readAddress()</h2>
 
@@ -217,6 +204,33 @@ std::stringstream&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 </div><div class="memdoc">
 
 <p>Read a <a class="el" href="structnetworkable_1_1MessageHeader.html" title="A header for a message::Message. ">networkable::MessageHeader</a> from the buffer. </p>
+<p>Consume the bytes from the buffer </p>
+
+</div>
+</div>
+<a id="a24f20c6a31f8696e3d1e7d2eee95dfdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24f20c6a31f8696e3d1e7d2eee95dfdf">&#9670;&nbsp;</a></span>readStr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classnetworkable_1_1Str.html">networkable::Str</a> NetworkBuffer::readStr </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>length</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read a <a class="el" href="classnetworkable_1_1Str.html" title="Represent string as packed hexadecimal. ">networkable::Str</a> from the buffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">length</td><td>of the string</td></tr>
+  </table>
+  </dd>
+</dl>
 <p>Consume the bytes from the buffer </p>
 
 </div>

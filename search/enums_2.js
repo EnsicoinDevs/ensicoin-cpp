@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['txtype',['TXType',['../transaction_8hpp.html#a379269e60c4ed3fb09a01778f31ddaad',1,'transaction.hpp']]]
+  ['ressource_5ftype',['ressource_type',['../structnetworkable_1_1Inv__vect.html#abe35281159cc98517318ef4e174fe260',1,'networkable::Inv_vect']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['frommempool',['fromMempool',['../structUTXOdata.html#a1e929f9cf6bba1439260fa4f80efac1e',1,'UTXOdata']]]
+  ['frommempool',['fromMempool',['../structmanager_1_1UTXOdata.html#a2ffa230dba256cac7ad49490167218fa',1,'manager::UTXOdata']]]
 ];

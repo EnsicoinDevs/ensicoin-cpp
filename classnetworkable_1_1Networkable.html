@@ -69,6 +69,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classnetworkable_1_1Networkable-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">networkable::Networkable Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
@@ -85,28 +86,38 @@ Inheritance diagram for networkable::Networkable:</div>
  <div class="center">
   <img src="classnetworkable_1_1Networkable.png" usemap="#networkable::Networkable_map" alt=""/>
   <map id="networkable::Networkable_map" name="networkable::Networkable_map">
-<area href="classmessage_1_1Message.html" title="Base class for all network communcation. " alt="message::Message" shape="rect" coords="189,56,368,80"/>
-<area href="classnetworkable_1_1Address.html" title="Network address of a known Node. " alt="networkable::Address" shape="rect" coords="189,112,368,136"/>
-<area href="structnetworkable_1_1Inv__vect.html" title="Ressource reference (hash and type) " alt="networkable::Inv_vect" shape="rect" coords="189,168,368,192"/>
-<area href="structnetworkable_1_1MessageHeader.html" title="A header for a message::Message. " alt="networkable::MessageHeader" shape="rect" coords="189,224,368,248"/>
-<area href="classnetworkable_1_1Uint16.html" title="Networkable uint16. " alt="networkable::Uint16" shape="rect" coords="189,280,368,304"/>
-<area href="classnetworkable_1_1Uint32.html" title="Networkable uint32. " alt="networkable::Uint32" shape="rect" coords="189,336,368,360"/>
-<area href="classnetworkable_1_1Uint64.html" title="Networkable uint64. " alt="networkable::Uint64" shape="rect" coords="189,392,368,416"/>
-<area href="classnetworkable_1_1Var__str.html" title="Networkable string of variable length. " alt="networkable::Var_str" shape="rect" coords="189,448,368,472"/>
-<area href="classnetworkable_1_1Var__uint.html" title="Networkable unsigned int of variable length. " alt="networkable::Var_uint" shape="rect" coords="189,504,368,528"/>
+<area href="structmanager_1_1UTXOdata.html" title="Data needed to use a UTXO. " alt="manager::UTXOdata" shape="rect" coords="206,56,402,80"/>
+<area href="classmessage_1_1Message.html" title="Base class for all network communcation. " alt="message::Message" shape="rect" coords="206,112,402,136"/>
+<area href="classnetworkable_1_1Address.html" title="Network address of a known Node. " alt="networkable::Address" shape="rect" coords="206,168,402,192"/>
+<area href="structnetworkable_1_1Inv__vect.html" title="Ressource reference (hash and type) " alt="networkable::Inv_vect" shape="rect" coords="206,224,402,248"/>
+<area href="structnetworkable_1_1MessageHeader.html" title="A header for a message::Message. " alt="networkable::MessageHeader" shape="rect" coords="206,280,402,304"/>
+<area href="classnetworkable_1_1Str.html" title="Represent string as packed hexadecimal. " alt="networkable::Str" shape="rect" coords="206,336,402,360"/>
+<area href="classnetworkable_1_1Uint16.html" title="Networkable uint16. " alt="networkable::Uint16" shape="rect" coords="206,392,402,416"/>
+<area href="classnetworkable_1_1Uint32.html" title="Networkable uint32. " alt="networkable::Uint32" shape="rect" coords="206,448,402,472"/>
+<area href="classnetworkable_1_1Uint64.html" title="Networkable uint64. " alt="networkable::Uint64" shape="rect" coords="206,504,402,528"/>
+<area href="classnetworkable_1_1Var__str.html" title="Networkable string of variable length. " alt="networkable::Var_str" shape="rect" coords="206,560,402,584"/>
+<area href="classnetworkable_1_1Var__uint.html" title="Networkable unsigned int of variable length. " alt="networkable::Var_uint" shape="rect" coords="206,616,402,640"/>
+<area href="structressources_1_1InputTransaction.html" title="Repersent an input of a Transation. " alt="ressources::InputTransaction" shape="rect" coords="206,672,402,696"/>
+<area href="structressources_1_1OutputTransaction.html" title="Represent the output of a Transaction. " alt="ressources::OutputTransaction" shape="rect" coords="206,728,402,752"/>
+<area href="classressources_1_1Script.html" title="Script used in Transaction. " alt="ressources::Script" shape="rect" coords="206,784,402,808"/>
+<area href="classressources_1_1Transaction.html" title="A class representing an exchange of ensicoins. " alt="ressources::Transaction" shape="rect" coords="206,840,402,864"/>
+<area href="structressources_1_1TransactionIdentifier.html" title="Reference to the OutputTransaction of another Transaction. " alt="ressources::TransactionIdentifier" shape="rect" coords="206,896,402,920"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad351c48d7e0e7676bf0b8325ec5ee6f9"><td class="memItemLeft" align="right" valign="top"><a id="ad351c48d7e0e7676bf0b8325ec5ee6f9"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetworkable_1_1Networkable.html#ad351c48d7e0e7676bf0b8325ec5ee6f9">asBytes</a> () const</td></tr>
-<tr class="memdesc:ad351c48d7e0e7676bf0b8325ec5ee6f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the binary string represesentation of the <a class="el" href="classnetworkable_1_1Networkable.html" title="Object to be send to another Node in a byte list. ">Networkable</a> object. <br /></td></tr>
-<tr class="separator:ad351c48d7e0e7676bf0b8325ec5ee6f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a287e6ced9375edc92a6dfcd8f41de319"><td class="memItemLeft" align="right" valign="top"><a id="a287e6ced9375edc92a6dfcd8f41de319"></a>
 virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetworkable_1_1Networkable.html#a287e6ced9375edc92a6dfcd8f41de319">byteRepr</a> () const =0</td></tr>
 <tr class="memdesc:a287e6ced9375edc92a6dfcd8f41de319"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the represention of the object as a packed hexadecimal string. <br /></td></tr>
 <tr class="separator:a287e6ced9375edc92a6dfcd8f41de319"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:ab9711ee298772be4787f251f83f0391e"><td class="memItemLeft" align="right" valign="top"><a id="ab9711ee298772be4787f251f83f0391e"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetworkable_1_1Networkable.html#ab9711ee298772be4787f251f83f0391e">encode</a> (const std::string &amp;packedString) const</td></tr>
+<tr class="memdesc:ab9711ee298772be4787f251f83f0391e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the binary string represesentation of a packed string. <br /></td></tr>
+<tr class="separator:ab9711ee298772be4787f251f83f0391e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Object to be send to another <a class="el" href="classNode.html" title="Node handling messages and processing. ">Node</a> in a byte list. </p>

@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['hash',['hash',['../structnetworkable_1_1Inv__vect.html#a5ec27474405b65abdfe3c024b168d570',1,'networkable::Inv_vect']]],
-  ['hashprevblock',['hashPrevBlock',['../structBlockHeader.html#aa0a410bc9b82a4c6752f7f211418420e',1,'BlockHeader']]],
-  ['hashtransactions',['hashTransactions',['../structBlockHeader.html#a7d56163301fe0ebbab181fe363d62db5',1,'BlockHeader']]],
-  ['hashwithoutinputs',['hashWithoutInputs',['../structUTXOdata.html#ae2bfbc7be65eb1c5583084572818ddb2',1,'UTXOdata']]],
-  ['height',['height',['../structUTXOdata.html#ac437a55d55e7d7de1bd2558fefccc541',1,'UTXOdata']]]
+  ['index',['index',['../structressources_1_1TransactionIdentifier.html#a0777c262896f7f8ec368371e9ceda6b5',1,'ressources::TransactionIdentifier']]],
+  ['inputs',['inputs',['../classressources_1_1Transaction.html#a7764362d80eb223316ba7e14db00acc8',1,'ressources::Transaction']]]
 ];

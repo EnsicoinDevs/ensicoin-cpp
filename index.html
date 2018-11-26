@@ -69,19 +69,19 @@ $(function() {
 <div class="contents">
 <div class="textblock"><ul>
 <li><b>Managing Classes</b><ul>
-<li><a class="el" href="classNode.html" title="Node handling messages and processing. ">Node</a>, <a class="el" href="classMempool.html" title="Pool of Transaction not in Block. ">Mempool</a>, <a class="el" href="classUTXOManager.html" title="Managing UTXOs (Unspent OutputTransaction) ">UTXOManager</a>, <a class="el" href="classBlockchain.html" title="Stores Block on disk and links them. ">Blockchain</a></li>
+<li><a class="el" href="classNode.html" title="Node handling messages and processing. ">Node</a>, <a class="el" href="classMempool.html" title="Pool of Transaction not in Block. ">Mempool</a>, <a class="el" href="classmanager_1_1UTXOManager.html" title="Managing UTXOs (Unspent OutputTransaction) ">manager::UTXOManager</a>, <a class="el" href="classBlockchain.html" title="Stores Block on disk and links them. ">Blockchain</a></li>
 </ul>
 </li>
 <li><b>Networking Classes</b><ul>
-<li><a class="el" href="classConnection.html" title="A Connection to a peer. ">Connection</a></li>
+<li><a class="el" href="classConnection.html" title="A Connection to a peer. ">Connection</a>, <a class="el" href="classNetworkBuffer.html" title="Class to hold Networkable data. ">NetworkBuffer</a></li>
 </ul>
 </li>
 <li><b>Containers</b><ul>
-<li><a class="el" href="classHashMemory.html" title="Wrapper around a std::unordered_map. ">HashMemory</a>, <a class="el" href="classMempool.html" title="Pool of Transaction not in Block. ">Mempool</a>, <a class="el" href="classUTXOManager.html" title="Managing UTXOs (Unspent OutputTransaction) ">UTXOManager</a>, <a class="el" href="classBlockchain.html" title="Stores Block on disk and links them. ">Blockchain</a></li>
+<li><a class="el" href="classHashMemory.html" title="Wrapper around a std::unordered_map. ">HashMemory</a>, <a class="el" href="classMempool.html" title="Pool of Transaction not in Block. ">Mempool</a>, <a class="el" href="classmanager_1_1UTXOManager.html" title="Managing UTXOs (Unspent OutputTransaction) ">manager::UTXOManager</a>, <a class="el" href="classBlockchain.html" title="Stores Block on disk and links them. ">Blockchain</a></li>
 </ul>
 </li>
-<li><b>Data Classes</b><ul>
-<li><a class="el" href="classBlock.html" title="Block of ensicoin Transaction. ">Block</a>, <a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a>, <a class="el" href="classLinkedTransaction.html" title="Links a Transaction to the UTXO it depends on. ">LinkedTransaction</a>, <a class="el" href="classScript.html" title="Script used in Transaction. ">Script</a></li>
+<li><b>Ressources Classes</b><ul>
+<li><a class="el" href="classBlock.html" title="Block of ensicoin Transaction. ">Block</a>, <a class="el" href="classressources_1_1Transaction.html" title="A class representing an exchange of ensicoins. ">ressources::Transaction</a>, ressources::LinkedTransaction, <a class="el" href="classressources_1_1Script.html" title="Script used in Transaction. ">ressources::Script</a></li>
 </ul>
 </li>
 <li><b>Crypto Classes and File</b><ul>
@@ -89,19 +89,23 @@ $(function() {
 </ul>
 </li>
 <li><b>Messaging Classes</b><ul>
-<li><a class="el" href="classHandler.html" title="Handles actions to be taken on Message. ">Handler</a>, Message, BlockMessage, GetBlocks, GetData, GetMempool, Inv, NotFound, TransactionMessage, WhoAmI</li>
+<li><a class="el" href="classHandler.html" title="Handles actions to be taken on Message. ">Handler</a>, <a class="el" href="classmessage_1_1Message.html" title="Base class for all network communcation. ">message::Message</a>, <a class="el" href="classmessage_1_1BlockMessage.html" title="Message sending a Block over. ">message::BlockMessage</a>, <a class="el" href="classmessage_1_1GetBlocks.html" title="Message asking a node to sync Block until a certain point. ">message::GetBlocks</a>, <a class="el" href="classmessage_1_1GetData.html" title="Message to get the JSON String representing ressources. ">message::GetData</a>, <a class="el" href="classmessage_1_1GetMempool.html" title="Message to sync the Mempool with another node. ">message::GetMempool</a>, <a class="el" href="classmessage_1_1Inv.html" title="Transmit Block or Transaction to a peer. ">message::Inv</a>, <a class="el" href="classmessage_1_1NotFound.html" title="Message signaling an asked ressource is unknown. ">message::NotFound</a>, <a class="el" href="classmessage_1_1TransactionMessage.html" title="Message sending a Transaction over. ">message::TransactionMessage</a>, <a class="el" href="classmessage_1_1WhoAmI.html" title="Message used for intializing the Connection. ">message::WhoAmI</a>, <a class="el" href="classmessage_1_1WhoAmIAck.html" title="Acknowledge a Connection after a WhoAmI. ">message::WhoAmIAck</a>, <a class="el" href="classmessage_1_1Addr.html" title="Send all known Node. ">message::Addr</a>, <a class="el" href="classmessage_1_1GetAddr.html" title="Ask for all the Node known. ">message::GetAddr</a></li>
 </ul>
 </li>
 <li><b>UTXO Classes</b><ul>
-<li><a class="el" href="classUTXOManager.html" title="Managing UTXOs (Unspent OutputTransaction) ">UTXOManager</a>, <a class="el" href="structUTXOdata.html" title="Data needed to use a UTXO. ">UTXOdata</a></li>
+<li>UTXOManager, UTXOdata</li>
 </ul>
 </li>
-<li><b><a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a> Elements</b><ul>
-<li><a class="el" href="classTransaction.html" title="A class representing an exchange of ensicoins. ">Transaction</a>, <a class="el" href="classLinkedTransaction.html" title="Links a Transaction to the UTXO it depends on. ">LinkedTransaction</a>, <a class="el" href="structTransactionIdentifier.html" title="Reference to the OutputTransaction of another Transaction. ">TransactionIdentifier</a>, <a class="el" href="structInputTransaction.html" title="Repersent an input of a Transation. ">InputTransaction</a>, <a class="el" href="structOutputTransaction.html" title="Represent the output of a Transaction. ">OutputTransaction</a></li>
+<li><b>Transaction Elements</b><ul>
+<li><a class="el" href="classressources_1_1Transaction.html" title="A class representing an exchange of ensicoins. ">ressources::Transaction</a>, <a class="el" href="classLinkedTransaction.html" title="Links a Transaction to the UTXO it depends on. ">LinkedTransaction</a>, <a class="el" href="structressources_1_1TransactionIdentifier.html" title="Reference to the OutputTransaction of another Transaction. ">ressources::TransactionIdentifier</a>, <a class="el" href="structressources_1_1InputTransaction.html" title="Repersent an input of a Transation. ">ressources::InputTransaction</a>, <a class="el" href="structressources_1_1OutputTransaction.html" title="Represent the output of a Transaction. ">ressources::OutputTransaction</a></li>
 </ul>
 </li>
-<li><b><a class="el" href="classBlock.html" title="Block of ensicoin Transaction. ">Block</a> Elemets</b><ul>
+<li><b><a class="el" href="classBlock.html" title="Block of ensicoin Transaction. ">Block</a> Elements</b><ul>
 <li><a class="el" href="classBlock.html" title="Block of ensicoin Transaction. ">Block</a>, <a class="el" href="structBlockHeader.html" title="Header of a Block. ">BlockHeader</a></li>
+</ul>
+</li>
+<li><b>Networkable Base Types</b><ul>
+<li><a class="el" href="classnetworkable_1_1Networkable.html" title="Object to be send to another Node in a byte list. ">networkable::Networkable</a>, <a class="el" href="classnetworkable_1_1Var__uint.html" title="Networkable unsigned int of variable length. ">networkable::Var_uint</a>, <a class="el" href="classnetworkable_1_1Uint16.html" title="Networkable uint16. ">networkable::Uint16</a>, <a class="el" href="classnetworkable_1_1Uint32.html" title="Networkable uint32. ">networkable::Uint32</a>, <a class="el" href="classnetworkable_1_1Uint64.html" title="Networkable uint64. ">networkable::Uint64</a>, <a class="el" href="classnetworkable_1_1Str.html" title="Represent string as packed hexadecimal. ">networkable::Str</a>, <a class="el" href="classnetworkable_1_1Var__str.html" title="Networkable string of variable length. ">networkable::Var_str</a>, <a class="el" href="structnetworkable_1_1Inv__vect.html" title="Ressource reference (hash and type) ">networkable::Inv_vect</a>, <a class="el" href="classnetworkable_1_1Address.html" title="Network address of a known Node. ">networkable::Address</a>, <a class="el" href="structnetworkable_1_1MessageHeader.html" title="A header for a message::Message. ">networkable::MessageHeader</a></li>
 </ul>
 </li>
 <li><b>Constants</b><ul>
