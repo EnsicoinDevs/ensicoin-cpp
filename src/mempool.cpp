@@ -77,7 +77,7 @@ namespace manager{
 
 	void Mempool::registerTransaction(ressources::LinkedTransaction::pointer tx){
 		for(unsigned int i=0; i < tx->outputCount(); i++){
-			manager::UTXO txOutput = {tx->hash(), i};
+			ressources::UTXO txOutput = {tx->hash(), i};
 			auto orphan = orphanUsingUTXO[txOutput.byteRepr()];
 			orphanUsingUTXO.erase(txOutput.byteRepr());
 			updateOrphan(orphan);

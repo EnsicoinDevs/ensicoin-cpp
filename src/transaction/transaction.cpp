@@ -4,6 +4,8 @@
 #include "crypto.hpp"
 #include "hashmemory.hpp"
 #include "mempool.hpp"
+#include "networkable.hpp"
+#include "networkbuffer.hpp"
 
 #include <algorithm>
 #include <iostream>
@@ -26,7 +28,26 @@ namespace ressources{
 		outputs(initialOutputs) {}
 
 	Transaction::Transaction(NetworkBuffer* networkBuffer) {
-		std::cerr << "TODO make networkbuffer constructor" << std::endl;
+		
+	}
+
+	std::string Transaction::byteRepr() const{
+		std::ostringstream ss;
+		ss << networkable::Uint32(version).byteRepr()
+		   << networkable::Var_uint(transactionFlags\
+				   .size()).byteRepr();
+		for(auto& flag : transactionFlags){
+			ss << networkable::Var_str(flag).byteRepr();
+		}
+		ss << networkable::Var_uint(inputs.size()).byteRepr();
+		for(auto& input : inputs){
+			ss << input.byteRepr();
+		}
+		ss << networkable::Var_uint(outputs.size()).byteRepr();
+		for(auto& output : outputs){
+			ss << output.byteRepr();
+		}
+		return ss.str();
 	}
 
 	int Transaction::getVersion() const{

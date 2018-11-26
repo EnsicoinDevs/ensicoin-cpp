@@ -36,5 +36,4 @@ namespace ressources{
 			script.byteRepr();
 	}
 
-
 } // namespace ressources

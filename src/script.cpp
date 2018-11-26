@@ -13,6 +13,10 @@
 
 namespace ressources{
 
+	void Script::setSHash(const std::string& shash){
+		signingHash = shash;
+	}
+
 	Script::instruction Script::parseInstruction(unsigned char 
 			chr) const{
 		if( chr >= (unsigned char)(0x01) && 
@@ -39,6 +43,10 @@ namespace ressources{
 		}
 	}
 
+	size_t Script::length() const{
+		return scriptInstructions.size();
+	}
+
 	std::string Script::byteRepr() const{
 		std::ostringstream out;
 		for(auto& instr : scriptInstructions){
@@ -59,6 +67,8 @@ namespace ressources{
 		signingHash(shash){
 		codePointer = scriptInstructions.begin();
 	}
+
+	Script::Script() : valid(true) {}
 
 	Script::Script(NetworkBuffer* networkBuffer) :
 		valid(true){
@@ -168,7 +178,9 @@ namespace ressources{
 	}
 
 	void Script::chain(Script* following){
-		scriptInstructions = following->scriptInstructions;
+		scriptInstructions.insert(scriptInstructions.end(), 
+									following->scriptInstructions.begin(),
+									following->scriptInstructions.end());
 	}
 
 } // namespace ressources

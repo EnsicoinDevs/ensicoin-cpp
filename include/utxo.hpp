@@ -12,15 +12,7 @@
 /// \brief Classes handling all ressources
 namespace manager{
 
-	using UTXO = ressources::TransactionIdentifier;
-
-	inline bool operator==(const UTXO& lhs, const UTXO& rhs){
-		return lhs.transactionHash == rhs.transactionHash 
-			&& lhs.index == rhs.index;
-	}
-	inline bool operator!=(const UTXO& lhs, const UTXO& rhs){return !operator==(lhs,rhs);}
-
-	/// \brief Data needed to use a UTXO
+	/// \brief Data needed to use a ressource::UTXO
 	struct UTXOdata : public networkable::Networkable{
 		/// \brief The value of the output
 		uint64_t value;
@@ -53,19 +45,19 @@ namespace manager{
 			UTXOManager();
 
 			/// \brief Retrive an element from the database
-			UTXOdata getData(UTXO id) const;
+			UTXOdata getData(ressources::UTXO id) const;
 
 			/// \brief Check the existence of an UTXO
-			bool exists(UTXO id) const;
+			bool exists(ressources::UTXO id) const;
 
 			/// \brief Tells if an UTXO can be spend at a 
 			/// given height
-			bool isSpendable(UTXO id, int currentHeight) const;
+			bool isSpendable(ressources::UTXO id, int currentHeight) const;
 
 			/// \brief Add an UTXO to the database
-			void add(UTXO id, UTXOdata data);
+			void add(ressources::UTXO id, UTXOdata data);
 			/// \brief Delete an UTXO because it was spent
-			void spend(UTXO txid);
+			void spend(ressources::UTXO txid);
 		private:
 			/// \brief Database storing the UTXO
 			leveldb::DB* db;
@@ -73,10 +65,10 @@ namespace manager{
 } // namespace manager
 
 namespace std {
-		template <> struct hash<manager::UTXO>
+		template <> struct hash<ressources::UTXO>
 		{
 			/// \brief Get the hash of the UTXO as the hash of the rawStr()
-			size_t operator()(const manager::UTXO & x) const
+			size_t operator()(const ressources::UTXO & x) const
 			{
 				return hash<std::string>()(x.byteRepr());
 			}

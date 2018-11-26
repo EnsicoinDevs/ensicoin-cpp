@@ -45,6 +45,15 @@ namespace ressources {
 		rapidjson::Value json(rapidjson::Document* 
 				document) const;
 	};
+	using UTXO = ressources::TransactionIdentifier;
+
+	inline bool operator==(const UTXO& lhs, const UTXO& rhs){
+		return lhs.transactionHash == rhs.transactionHash 
+			&& lhs.index == rhs.index;
+	}
+	inline bool operator!=(const UTXO& lhs, 
+			const UTXO& rhs){return !operator==(lhs,rhs);}
+	
 	/// \brief Repersent an input of a Transation
 	struct InputTransaction : public networkable::Networkable{
 		/// \brief Reference to another Transaction

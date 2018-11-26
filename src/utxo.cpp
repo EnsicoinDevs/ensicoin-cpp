@@ -52,7 +52,7 @@ namespace manager{
 		}
 	}
 
-	UTXOdata UTXOManager::getData(UTXO id) const{
+	UTXOdata UTXOManager::getData(ressources::UTXO id) const{
 		std::string strData;
 		leveldb::Status s = db->Get(leveldb::ReadOptions(), 
 						id.byteRepr(), &strData);
@@ -64,14 +64,14 @@ namespace manager{
 		return data;
 	}
 
-	bool UTXOManager::exists(UTXO id) const{
+	bool UTXOManager::exists(ressources::UTXO id) const{
 		std::string strData;
 		leveldb::Status s = db->Get(leveldb::ReadOptions(), 
 				id.byteRepr(), &strData);
 		return s.ok();
 	}
 
-	void UTXOManager::add(UTXO id, UTXOdata data){
+	void UTXOManager::add(ressources::UTXO id, UTXOdata data){
 		auto s = db->Put(leveldb::WriteOptions(), 
 				id.byteRepr(), data.byteRepr());
 		if (!s.ok()){
@@ -80,7 +80,7 @@ namespace manager{
 		}
 	}
 
-	void UTXOManager::spend(UTXO id){
+	void UTXOManager::spend(ressources::UTXO id){
 		auto s = db->Delete(leveldb::WriteOptions(), id.byteRepr());
 		if (!s.ok()){
 			std::cerr << "Error while deleting " << 
@@ -88,10 +88,10 @@ namespace manager{
 		}
 	}
 
-	bool UTXOManager::isSpendable(UTXO id, int currentHeight) const{
+	bool UTXOManager::isSpendable(ressources::UTXO id, int currentHeight) const{
 		auto data = getData(id);
 		if (!data.coinbase) return true;
 		else return currentHeight - data.height >= 42;
 	}
 
-}
+} // namespace manager

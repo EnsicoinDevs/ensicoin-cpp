@@ -39,11 +39,19 @@ namespace ressources{
 			/// \brief Code to be excuted by the Script
 			using code = std::vector<instruction>;
 
+			/// \brief Gives the number of instruction
+			size_t length() const;
+
+			/// \brief Change the signing Hash
+			void setSHash(const std::string& shash);
+
 			std::string byteRepr() const override;
 			/// \brief Create a Script from the 
 			/// necessary data
 			Script(	code instructions,
 					std::string shash);
+			/// \brief Create a empty script
+			Script();
 			/// \brief Extract a script from a 
 			/// NetworkBuffer
 			explicit Script(NetworkBuffer* 

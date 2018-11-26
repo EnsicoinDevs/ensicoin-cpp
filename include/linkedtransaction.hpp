@@ -30,7 +30,7 @@ namespace ressources{
 			/// an UTXO
 			bool isOrphan() const;
 			/// \brief Gives all inputs who are orphaned
-			std::vector<manager::UTXO> getOrphanDeps() const;
+			std::vector<UTXO> getOrphanDeps() const;
 			/// \brief Get the value of inputs
 			unsigned int inputValue() const;
 
@@ -48,9 +48,9 @@ namespace ressources{
 			manager::UTXOManager* utxos;
 
 			/// \brief List of Linked UTXO in blocks
-			std::unordered_set< manager::UTXO > dependencies;
+			std::unordered_set< UTXO > dependencies;
 			/// \brief List of Linked UTXO in a Mempool
-			std::unordered_set< manager::UTXO > mempoolDeps;
+			std::unordered_set< UTXO > mempoolDeps;
 	};
 
 } // namespace ressources
