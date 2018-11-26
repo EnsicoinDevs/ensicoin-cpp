@@ -6,6 +6,7 @@
 #include "mempool.hpp"
 
 #include <algorithm>
+#include <iostream>
 #include <memory>
 #include <numeric>
 #include <sstream>
@@ -24,7 +25,8 @@ namespace ressources{
 		inputs(initialInputs),
 		outputs(initialOutputs) {}
 
-	Transaction::Transaction(NetworkBuffer* networkBuffer) : {
+	Transaction::Transaction(NetworkBuffer* networkBuffer) {
+		std::cerr << "TODO make networkbuffer constructor" << std::endl;
 	}
 
 	int Transaction::getVersion() const{

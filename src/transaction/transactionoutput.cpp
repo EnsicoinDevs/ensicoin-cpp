@@ -28,4 +28,9 @@ namespace ressources{
 		value(networkBuffer->readUint64().getValue()),
 		script(networkBuffer) {}
 
+	OutputTransaction::OutputTransaction(uint64_t val,
+			Script sc) : 
+		value(val),
+		script(sc) {}
+
 } //namespace ressources

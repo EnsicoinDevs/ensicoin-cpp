@@ -26,6 +26,11 @@ namespace ressources{
 		previousOutput(networkBuffer),
 		script(networkBuffer) {}
 
+	InputTransaction::InputTransaction(TransactionIdentifier id,
+			Script sc) : 
+		previousOutput(id),
+		script(sc) {}
+
 	std::string InputTransaction::byteRepr() const{
 		return previousOutput.byteRepr() +
 			script.byteRepr();

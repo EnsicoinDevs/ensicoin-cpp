@@ -57,6 +57,9 @@ namespace ressources {
 		/// InputTransaction
 		explicit InputTransaction(NetworkBuffer*
 				networkBuffer);
+		/// \brief Construct a InputTransaction
+		InputTransaction( TransactionIdentifier id,
+							Script sc);
 
 		/// \brief Get the JSON reperesentation
 		/// \param document Document used for the
@@ -77,6 +80,7 @@ namespace ressources {
 		/// OutputTransaction
 		explicit OutputTransaction(NetworkBuffer*
 				networkBuffer);
+		OutputTransaction( uint64_t val, Script sc);
 
 		/// \brief Get the JSON reperesentation
 		/// \param document Document used for the
