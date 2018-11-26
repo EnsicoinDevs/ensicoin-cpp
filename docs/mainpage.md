@@ -14,9 +14,9 @@
 	* UTXOManager, UTXOdata
 * **Transaction Elements**
 	* ressources::Transaction, LinkedTransaction, ressources::TransactionIdentifier, ressources::InputTransaction, ressources::OutputTransaction
-* **Block Elemets**
+* **Block Elements**
 	* Block, BlockHeader
 * **Networkable Base Types**
-	networkable::Networkable, networkable::Var_uint, networkable::Uint16, networkable::Uint32, networkable::Uint64, networkable::Str, networkable::Var_str, networkable::Inv_vect, networkable::Address, networkable::MessageHeader
+	* networkable::Networkable, networkable::Var_uint, networkable::Uint16, networkable::Uint32, networkable::Uint64, networkable::Str, networkable::Var_str, networkable::Inv_vect, networkable::Address, networkable::MessageHeader
 * **Constants**
 	* constants.hpp
