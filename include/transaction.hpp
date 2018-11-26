@@ -3,6 +3,8 @@
 
 #include "hashmemory.hpp"
 #include "jsonable.hpp"
+#include "networkable.hpp"
+#include "networkbuffer.hpp"
 #include "script.hpp"
 
 #include <iterator>
@@ -13,134 +15,159 @@
 #include <string>
 #include <vector>
 
-using namespace rapidjson;
+/// \brief Ressources manipulated by the Node
+namespace ressources {
 
-/// \brief Reference to the OutputTransaction of another Transaction
-struct TransactionIdentifier{
-	/// \brief Hash of the refrenced Transaction
-	std::string transactionHash;
-	/// \brief Index of the OutputTransaction
-	unsigned int index;
-	
-	/// \brief Get the raw string representation
-	/// \details the raw string representation is obtained
-	/// by concatanateing all the fields
-	std::string str() const;
-	/// \brief Get the JSON reperesentation
-	/// \param document Document used for the Allocation of
-	/// members
-	Value json(Document* document) const;
-	/// \brief Load the fields from a JSON object
-	/// \param val JSON object to be parsed
-	void load(Value* val);
-};
-/// \brief Repersent an input of a Transation
-struct InputTransaction{
-	/// \brief Reference to another Transaction
-	TransactionIdentifier previousOutput;
-	/// \brief The script attached to the input
-	std::stack<std::string> inputStack;
-	
-	/// \brief Get the raw string representation
-	/// \details the raw string representation is obtained
-	/// by concatanateing all the fields
-	std::string str() const;
-	/// \brief Get the JSON reperesentation
-	/// \param document Document used for the Allocation of
-	/// members
-	Value json(Document* document) const;
-	/// \brief Load the fields from a JSON object
-	/// \param val JSON object to be parsed
-	void load(Value* val);
-};
+	/// \brief Reference to the OutputTransaction of another
+	/// Transaction
+	struct TransactionIdentifier : 
+		public networkable::Networkable {
+		/// \brief Hash of the refrenced Transaction
+		std::string transactionHash;
+		/// \brief Index of the OutputTransaction
+		unsigned int index;
 
-/// \brief Represent the output of a Transaction
-struct OutputTransaction{
-	/// \brief The Value make available
-	int value;
-	/// \brief the code attached to the input
-	std::vector<std::string> scriptInstructions;
+		std::string byteRepr() const override;
+		/// \brief Extract the raw data to construct a 
+		/// TransactionIdentifier
+		explicit TransactionIdentifier(NetworkBuffer*
+				networkBuffer);
 
-	/// \brief Get the raw string representation
-	/// \details the raw string representation is obtained
-	/// by concatanateing all the fields
-	std::string str() const;
-	/// \brief Get the JSON reperesentation
-	/// \param document Document used for the Allocation of
-	/// members
-	Value json(Document* document) const;
-	/// \brief Load the fields from a JSON object
-	/// \param val JSON object to be parsed
-	void load(Value* val);
-};
+		/// \brief Get the JSON reperesentation
+		/// \param document Document used for the 
+		/// Allocation of members
+		rapidjson::Value json(rapidjson::Document* 
+				document) const;
+	};
+	/// \brief Repersent an input of a Transation
+	struct InputTransaction : public networkable::Networkable{
+		/// \brief Reference to another Transaction
+		TransactionIdentifier previousOutput;
+		/// \brief The script attached to the input
+		Script script;
 
-class Mempool;
+		std::string byteRepr() const override;
+		/// \brief Extract raw data to create a 
+		/// InputTransaction
+		explicit InputTransaction(NetworkBuffer*
+				networkBuffer);
 
-enum TXType { Orphan, Regular };
+		/// \brief Get the JSON reperesentation
+		/// \param document Document used for the
+		/// Allocation of members
+		rapidjson::Value json(rapidjson::Document* 
+				document) const;
+	};
 
-/// \brief A class representing an exchange of ensicoins
-class Transaction : public JSONAble, public std::enable_shared_from_this<Transaction> {
-	protected:
-		/// \brief Referenced in constants.hpp
-		int version;
-		/// \brief User defined flags
-		std::vector<std::string> transactionFlags;
-		/// \brief All InputTransaction
-		std::vector<InputTransaction> inputs;
-		/// \brief All OutputTransaction
-		std::vector<OutputTransaction> outputs;
-	public:
-		/// \brief Creates an empty Transaction
-		Transaction();
-		/// \brief Create a Transaction from all data fields
-		Transaction(	int ver, 	
-				std::vector<std::string> initialFlags, 
-				std::vector<InputTransaction> initialInputs, 
-				std::vector<OutputTransaction> initialOutputs);
-		/// \brief Parse a transaction from JSON
-		/// \param doc the JSON to be parsed
-		explicit Transaction( rapidjson::Document* doc);
-		
-		/// \brief returns the version used
-		int getVersion() const;
-		/// \brief returns the flags
-		std::vector<std::string> getFlags() const;
-		/// \brief returns all Transaction referenced
-		std::vector<TransactionIdentifier> getInputsId() const;
-		/// \brief Calculate the value of all
+	/// \brief Represent the output of a Transaction
+	struct OutputTransaction : public networkable::Networkable {
+		/// \brief The Value make available
+		uint64_t value;
+		/// \brief the code attached to the input
+		Script script;
+
+		std::string byteRepr() const override;
+		/// \brief Extract raw data to construct a 
 		/// OutputTransaction
-		unsigned int outputValue() const;
-		
-		/// \brief Get all the InputTransaction
-		std::vector<InputTransaction> getInputs() const;
-		/// \brief Get the script for the designed
-		/// OutputTransaction
-		std::vector<std::string> getScriptOfOutput(int index) const;
+		explicit OutputTransaction(NetworkBuffer*
+				networkBuffer);
 
-		/// \brief Checks if the transaction has an 
-		/// OutputTransaction
-		/// \param index index to be verified if exists
-		bool hasOutput(unsigned int index) const;
-		/// \brief Get the value of the index-th output
-		unsigned int valueOfOutput(unsigned int index) const;
-		/// \brief Gets the number of OutputTransaction
-		unsigned int outputCount() const;
+		/// \brief Get the JSON reperesentation
+		/// \param document Document used for the
+		/// Allocation of members
+		rapidjson::Value json(rapidjson::Document* 
+				document) const;
+	};
 
-		/// \brief Checks if the Transaction is valid by
-		/// itself
-		bool check();
-		
-		/// \brief Get the raw string representation
-		/// \details The raw string is obtained by 
-		/// concatanateing all the raw strings of the
-		/// fields
-		std::string rawStr() const;
-		/// \brief Get the hash to be used for signing the
-		/// Transaction
-		std::string hashWithoutInputs() const;
-		/// \brief Taking two times sha256 of the rawStr
-		std::string hash() const;
-		rapidjson::Document json() const final;
-};
+	class Mempool;
+
+	enum TXType { Orphan, Regular };
+
+	/// \brief A class representing an exchange of ensicoins
+	class Transaction : public JSONAble,
+	public std::enable_shared_from_this<Transaction>,
+	public networkable::Networkable {
+		protected:
+			/// \brief Referenced in constants.hpp
+			int version;
+			/// \brief User defined flags
+			std::vector<std::string> transactionFlags;
+			/// \brief All InputTransaction
+			std::vector<InputTransaction> inputs;
+			/// \brief All OutputTransaction
+			std::vector<OutputTransaction> outputs;
+		public:
+			using pointer = std::shared_ptr<Transaction>;
+			/// \brief Creates an empty Transaction
+			Transaction();
+			/// \brief Create a Transaction from
+			/// all data fields
+			Transaction(	int ver, 	
+					std::vector<std::string>
+						initialFlags, 
+					std::vector<InputTransaction>
+						initialInputs, 
+					std::vector<\
+						OutputTransaction>
+						initialOutputs);
+			/// \brief Parse a Transaction from a 
+			/// NetworkBuffer
+			/// \param networkBuffer Buffer containing
+			/// raw data
+			explicit Transaction(NetworkBuffer*
+					networkBuffer);
+
+			/// \brief returns the version used
+			int getVersion() const;
+			/// \brief returns the flags
+			std::vector<std::string> getFlags() const;
+			/// \brief returns all Transaction referenced
+			std::vector<TransactionIdentifier>
+				getInputsId() const;
+			/// \brief Calculate the value of all
+			/// OutputTransaction
+			unsigned int outputValue() const;
+
+			/// \brief Get all the InputTransaction
+			std::vector<InputTransaction> 
+				getInputs() const;
+			/// \brief Get the script for the designed
+			/// OutputTransaction
+			std::vector<std::string> 
+				getScriptOfOutput(int index) const;
+
+			/// \brief Checks if the transaction has an 
+			/// OutputTransaction
+			/// \param index index to be verified if
+			/// exists
+			bool hasOutput(unsigned int index) const;
+			/// \brief Get the value of the index-th
+			/// output
+			unsigned int valueOfOutput(unsigned int 
+					index) const;
+			/// \brief Gets the number of 
+			/// OutputTransaction
+			unsigned int outputCount() const;
+
+			/// \brief Checks if the Transaction is
+			/// valid by itself
+			bool check();
+
+			/// \brief Get the raw string representation
+			/// \details The raw string is obtained by 
+			/// concatanateing all the raw strings of the
+			/// fields
+			std::string rawStr() const;
+			/// \brief Get the hash to be used for
+			/// signing the Transaction
+			std::string hashWithoutInputs() const;
+			std::string byteRepr() const override;
+			/// \brief Taking two times sha256 of the
+			/// byteRepr
+			std::string hash() const;
+			rapidjson::Document json() const final;
+	};
+
+} // namespace ressources
 
 #endif /* TRANSACTION_HPP */

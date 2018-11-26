@@ -8,7 +8,8 @@
 /// \brief Class to hold Networkable data
 class NetworkBuffer{
 	public:
-		/// \brief Read a networkable::Var_uint from the buffer
+		/// \brief Read a networkable::Var_uint from the 
+		/// buffer
 		/// \details Consume the bytes from the buffer
 		networkable::Var_uint readVar_uint();
 		/// \brief Read a networkable::Uint16 from the buffer
@@ -23,21 +24,32 @@ class NetworkBuffer{
 		///\brief Read a networkable::Var_str from the buffer
 		/// \details Consume the bytes from the buffer
 		networkable::Var_str readVar_str();
-		/// \brief Read a networkable::Var_str from the buffer
+		/// \brief Read a networkable::Var_str from the 
+		/// buffer
 		/// \details Consume the bytes from the buffer
 		networkable::Inv_vect readInv_vect();
-		/// \brief Read a networkable::Address from the buffer
+		/// \brief Read a networkable::Address from the 
+		/// buffer
 		/// \details Consume the bytes from the buffer
 		networkable::Address readAddress();
 		/// \brief Read a hash from the buffer
 		/// \details Consume the bytes from the buffer
 		std::string readHash();
-		/// \brief Read a networkable::MessageHeader from the buffer
+		/// \brief Read a networkable::MessageHeader from 
+		/// the buffer
 		/// \details Consume the bytes from the buffer
 		networkable::MessageHeader readMessageHeader();
-		/// \brief Add a binary string to the StreamBuffer
+		/// \brief Read a networkable::Str from the buffer
+		/// \param length of the string
 		/// \details Consume the bytes from the buffer
-		void appendBytes(const std::string& binaryString);
+		networkable::Str readStr(size_t length);
+		/// \brief Adds a networkable::Networkable to 
+		/// the StreamBuffer
+		void appendBytes(const networkable::Networkable&
+				object);
+
+		/// \brief Construct a NetworkBuffer from a binaryString
+		explicit NetworkBuffer(const std::string& binaryString);
 	private:
 		/// \brief Stringstream used as a buffer 
 		std::stringstream buffer;

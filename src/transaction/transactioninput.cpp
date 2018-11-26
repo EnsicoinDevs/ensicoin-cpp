@@ -1,53 +1,35 @@
 #include "transaction.hpp"
+#include "networkable.hpp"
+#include "networkbuffer.hpp"
 
 #include <rapidjson/document.h>
 #include <sstream>
 
-using rapidjson::Document;
-using rapidjson::Value;
+namespace ressources{
 
-std::string InputTransaction::str() const{
-	std::ostringstream os;
-	os << previousOutput.str();
-	auto copyStack = inputStack;
-	while(!copyStack.empty()){
-		const std::string stackElem(copyStack.top());
-		copyStack.pop();
-		os << stackElem;
+	rapidjson::Value InputTransaction::json(rapidjson::Document*
+			document) const {
+		rapidjson::Value input(rapidjson::kObjectType);
+		input.AddMember("previousOutput", 
+				previousOutput.json(document),
+				document->GetAllocator());
+
+		input.AddMember("script",
+				"flemme tu regarde les bytes" , 
+				document->GetAllocator());
+
+		return input;
 	}
-	return os.str();
-}
-Value InputTransaction::json(Document* document) const {
-	Value input(kObjectType);
-	input.AddMember("previousOutput", previousOutput.json(document), document->GetAllocator());
 	
-	Value scriptValue(kArrayType);
-	auto copyStack = inputStack;
-	while(!copyStack.empty()){
-		std::string stackElem(copyStack.top());
-		copyStack.pop();
-		
-		Value stackElemValue;
-		stackElemValue.SetString(stackElem.c_str(), stackElem.length(), document->GetAllocator());
+	InputTransaction::InputTransaction(NetworkBuffer* 
+			networkBuffer) : 
+		previousOutput(networkBuffer),
+		script(networkBuffer) {}
 
-		scriptValue.PushBack(stackElemValue, document->GetAllocator());
-	}
-	input.AddMember("script",scriptValue , document->GetAllocator());
-
-	return input;
-}
-
-void InputTransaction::load(rapidjson::Value* val){
-	previousOutput.load(&(*val)["previousOutput"]);
-	std::stack< std::string > reversed;
-	for(auto& stackElem : (*val)["script"].GetArray() ){
-		reversed.push(stackElem.GetString());
+	std::string InputTransaction::byteRepr() const{
+		return previousOutput.byteRepr() +
+			script.byteRepr();
 	}
 
-	while(!reversed.empty()){
-		auto elem = reversed.top();
-		reversed.pop();
-		inputStack.push(elem);
-	}
 
-}
+} // namespace ressources

@@ -1,101 +1,97 @@
 #include "utxo.hpp"
 #include "constants.hpp"
+#include "networkable.hpp"
+#include "networkbuffer.hpp"
 #include "transaction.hpp"
 
 #include <iostream>
 #include <leveldb/db.h>
 #include <memory>
-#include <rapidjson/document.h>
-#include <rapidjson/stringbuffer.h>
-#include <rapidjson/writer.h>
 
-std::string UTXOdata::str() const{
-	rapidjson::Document doc;
-	doc.SetObject();
-	rapidjson::Value coinbaseVal(coinbase);
-	rapidjson::Value valueVal(value);
+namespace manager{
 
-	doc.AddMember("coinbase", coinbaseVal, doc.GetAllocator());
-	doc.AddMember("value", valueVal, doc.GetAllocator());
-	doc.AddMember("height", height, doc.GetAllocator());
-	
-	rapidjson::Value hashVal;
-	hashVal.SetString(hashWithoutInputs.c_str(), hashWithoutInputs.length(), doc.GetAllocator());
-
-	doc.AddMember("hashWithoutInputs", hashVal, doc.GetAllocator());
-
-	rapidjson::Value scriptVal(rapidjson::kArrayType);
-	for(auto& elem : script){
-		rapidjson::Value strVal;
-		strVal.SetString(elem.c_str(), elem.length(), doc.GetAllocator());
-		scriptVal.PushBack(strVal, doc.GetAllocator());
+	std::string UTXOdata::byteRepr() const{
+		return 	networkable::Uint64(value).byteRepr() +
+				networkable::Uint16(coinbase).byteRepr() +
+				networkable::Uint32(height).byteRepr() +
+				networkable::Str(signingHash).byteRepr() +
+				networkable::Uint16(fromMempool).byteRepr() +
+				script.byteRepr();
 	}
-	
-	doc.AddMember("script", scriptVal, doc.GetAllocator());
-	doc.AddMember("fromMempool", fromMempool, doc.GetAllocator());
 
-	StringBuffer buffer;
-	Writer<StringBuffer> writer(buffer);
-	doc.Accept(writer);
+	UTXOdata::UTXOdata(	int val,
+						bool cb,
+						int ht,
+						std::string shash,
+						bool fm,
+						ressources::Script sc) : 
+			value(val), 
+			coinbase(cb),
+			height(ht),
+			signingHash(shash),
+			fromMempool(fm),
+			script(sc) {}
 
-	return buffer.GetString();
-}
+	UTXOdata::UTXOdata(NetworkBuffer* networkBuffer) : 
+		value(networkBuffer->readUint64().getValue()),
+		coinbase(networkBuffer->readUint16().getValue()),
+		height(networkBuffer->readUint32().getValue()),
+		signingHash(networkBuffer->readHash()),
+		fromMempool(networkBuffer->readUint16().getValue()),
+		script(networkBuffer)
+				{}
 
-UTXOdata::UTXOdata(int val,bool cb) : value(val), coinbase(cb) {
-}
-
-UTXOdata::UTXOdata(std::string jsonStr){
-	rapidjson::Document doc;
-	doc.Parse(jsonStr.c_str());
-	if(doc.HasParseError()){
-		std::cerr << "Parse error when reading DB : " << jsonStr << std::endl;
-		return;
+	UTXOManager::UTXOManager(){
+		leveldb::Options options;
+		options.create_if_missing = true;
+		leveldb::Status status = leveldb::DB::Open(options, 
+													UTXO_DB, &db);
+		if (!status.ok()){
+			std::cerr << "Error db open : " 
+				<< status.ToString() << std::endl;
+		}
 	}
-	value = doc["value"].GetInt();
-	coinbase = doc["coinbase"].GetBool();
-	height = doc["height"].GetInt();
-	hashWithoutInputs = doc["hashWithoutInputs"].GetString();
-	for(auto& elem : doc["script"].GetArray())
-		script.push_back(elem.GetString());
-	fromMempool = doc["fromMempool"].GetBool();
-}
 
-UTXOManager::UTXOManager(){
-	leveldb::Options options;
-	options.create_if_missing = true;
-	leveldb::Status status = leveldb::DB::Open(options, UTXO_DB, &db);
-	if (!status.ok()) std::cerr << "Error db open : " << status.ToString() << std::endl;
-}
-UTXOdata UTXOManager::getData(UTXO id) const{
-	std::string strData;
-	leveldb::Status s = db->Get(leveldb::ReadOptions(), id.str(), &strData);
-	if (!s.ok()){
-		throw std::runtime_error("UTXO does not exists");
-	}	
-	UTXOdata data(strData);
-	return data;
-}
+	UTXOdata UTXOManager::getData(UTXO id) const{
+		std::string strData;
+		leveldb::Status s = db->Get(leveldb::ReadOptions(), 
+						id.byteRepr(), &strData);
+		if (!s.ok()){
+			throw std::runtime_error("UTXO does not exists");
+		}
+		NetworkBuffer buffer(strData);
+		UTXOdata data(&buffer);
+		return data;
+	}
 
-bool UTXOManager::exists(UTXO id) const{
-	std::string strData;
-	leveldb::Status s = db->Get(leveldb::ReadOptions(), id.str(), &strData);
-	return s.ok();
-}
+	bool UTXOManager::exists(UTXO id) const{
+		std::string strData;
+		leveldb::Status s = db->Get(leveldb::ReadOptions(), 
+				id.byteRepr(), &strData);
+		return s.ok();
+	}
 
-void UTXOManager::add(UTXO id, UTXOdata data){
-	auto s = db->Put(leveldb::WriteOptions(), id.str(), data.str());
-	if (!s.ok())
-		std::cerr << "Error while reading " << id.str() << std::endl;
-}
+	void UTXOManager::add(UTXO id, UTXOdata data){
+		auto s = db->Put(leveldb::WriteOptions(), 
+				id.byteRepr(), data.byteRepr());
+		if (!s.ok()){
+			std::cerr << "Error while reading " << 
+				id.byteRepr() << std::endl;
+		}
+	}
 
-void UTXOManager::spend(UTXO id){
-	auto s = db->Delete(leveldb::WriteOptions(), id.str());
-	if (!s.ok())
-		std::cerr << "Error while deleting " << id.str() << std::endl;
-}
+	void UTXOManager::spend(UTXO id){
+		auto s = db->Delete(leveldb::WriteOptions(), id.byteRepr());
+		if (!s.ok()){
+			std::cerr << "Error while deleting " << 
+				id.byteRepr() << std::endl;
+		}
+	}
 
-bool UTXOManager::isSpendable(UTXO id, int currentHeight) const{
-	auto data = getData(id);
-	if (!data.coinbase) return true;
-	else return currentHeight - data.height >= 42;
+	bool UTXOManager::isSpendable(UTXO id, int currentHeight) const{
+		auto data = getData(id);
+		if (!data.coinbase) return true;
+		else return currentHeight - data.height >= 42;
+	}
+
 }

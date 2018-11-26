@@ -1,22 +1,23 @@
 #include "networkable.hpp"
 #include "util.hpp"
 
+#include <cryptopp/hex.h>
 #include <iostream>
 #include <iomanip>
-#include <cryptopp/hex.h>
 #include <sstream>
 
 namespace networkable{
 
 	Networkable::~Networkable() {}
 
-	std::string Networkable::asBytes() const{
-		std::string hexRepr = this->byteRepr();
+	std::string Networkable::encode(const std::string& 
+			hexRepr) const{
 		std::string decodedBytes;
 
 		CryptoPP::StringSource ss(hexRepr, true,
 				new CryptoPP::HexDecoder(
-					new CryptoPP::StringSink(decodedBytes)
+					new CryptoPP::\
+					StringSink(decodedBytes)
 					) // HexDecoder
 				); // String Source
 		return decodedBytes;
@@ -30,21 +31,21 @@ namespace networkable{
 			<< std::setw(4) 
 			<< std::hex 
 			<< value;
-		return sstream.str();
+		return encode(sstream.str());
 	}
 	uint16_t Uint16::getValue() const{
 		return value;
 	}
 
 	Uint32::Uint32(uint32_t val) : value(val) {}
-	
+
 	std::string Uint32::byteRepr() const{
 		std::ostringstream sstream;
 		sstream << std::setfill('0')
 			<< std::setw(8)
 			<< std::hex
 			<< value;
-		return sstream.str();
+		return encode(sstream.str());
 	}
 	uint32_t Uint32::getValue() const{
 		return value;
@@ -57,7 +58,7 @@ namespace networkable{
 			<< std::setw(16)
 			<< std::hex
 			<< value;
-		return sstream.str();
+		return encode(sstream.str());
 	}
 	uint64_t Uint64::getValue() const{
 		return value;
@@ -74,38 +75,47 @@ namespace networkable{
 		sstream << std::hex << value;
 		auto rawStr = sstream.str();
 		if(value <= 252){
-			return std::string(2-rawStr.length(), '0') + rawStr;
+			rawStr = std::string(2-rawStr.length(), '0')
+				+ rawStr;
 		}
-		if(value <= 0xffff){
-			return "fd" + 
+		else if(value <= 0xffff){
+			rawStr = "fd" + 
 				std::string(4-rawStr.length(),'0') + 
 				rawStr;
 			// 3 : 0xFD.value
 		}
-		if(value <= 0xffffffff){
-			return "fe" +
+		else if(value <= 0xffffffff){
+			rawStr = "fe" +
 				std::string(8-rawStr.length(),'0') +
 				rawStr;
 			// 5 : 0xFE.value
 		}
-		return "ff" +
-			std::string(16-rawStr.length(),'0') +
-			rawStr;
-		// 9 0xFF.value
+		else{
+			rawStr = "ff" +
+				std::string(16-rawStr.length(),'0') +
+				rawStr;
+			// 9 0xFF.value
+		}
+		return encode(rawStr);
 	}
+
+	std::string Str::getValue() const{
+		return value;
+	}
+	std::string Str::byteRepr() const{
+		return value;
+	}
+	Str::Str(const std::string& val) : value(val) {}
 
 	Var_str::Var_str(const std::string& val) : value(val) {}
 
 	std::string Var_str::getValue() const{
-		return value;
+		return value.getValue();
 	}
 	std::string Var_str::byteRepr() const{
-		std::ostringstream bss;
-		bss << Var_uint(value.size()).byteRepr();
-		for(auto& chr : value){
-			bss << util::hex(chr);
-		}
-		return bss.str();
+		auto sizeBytes =
+			Var_uint(value.getValue().size()).byteRepr();
+		return sizeBytes + value.byteRepr();
 	}
 
 	Inv_vect::Inv_vect(Inv_vect::ressource_type res, 
@@ -115,10 +125,12 @@ namespace networkable{
 
 	std::string Inv_vect::byteRepr() const{
 		if( type == invalidRes ){
-			std::cerr << "Cannot create bytes of invalidRes" << std::endl;
+			std::cerr << "Cannot create bytes of\
+				invalidRes" << std::endl;
 			return "INVALID RESSOURCE";
 		}
-		return Uint32(type).byteRepr() + hash;
+		return Uint32(type).byteRepr() + 
+			Str(hash).byteRepr();
 	}
 
 	MessageHeader::MessageHeader(uint32_t _magic, 
@@ -129,7 +141,7 @@ namespace networkable{
 		payloadLength(pldSize) {}
 	std::string MessageHeader::byteRepr() const{
 		std::string out = Uint32(magic).byteRepr();
-		out += type;
+		out += Str(type).byteRepr();
 		out += Var_uint(payloadLength).byteRepr();
 		return out;
 	}

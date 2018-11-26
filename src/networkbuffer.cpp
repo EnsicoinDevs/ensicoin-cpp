@@ -4,8 +4,13 @@
 #include <iostream>
 #include <string>
 
-void NetworkBuffer::appendBytes(const std::string& binaryString){
-	buffer << binaryString; 
+NetworkBuffer::NetworkBuffer(const std::string& binaryString){
+	buffer << binaryString;
+}
+
+void NetworkBuffer::appendBytes(const networkable::Networkable& 
+		object){
+	buffer << object.byteRepr(); 
 }
 
 networkable::Uint16 NetworkBuffer::readUint16(){
@@ -107,8 +112,7 @@ networkable::Var_uint NetworkBuffer::readVar_uint(){
 	}
 }
 
-networkable::Var_str NetworkBuffer::readVar_str(){
-	auto length = readVar_uint().getValue();
+networkable::Str NetworkBuffer::readStr(size_t length){
 	unsigned int readLength = 0;
 	unsigned int buffer_size = 4096;
 	char * stringBuffer = new char[buffer_size];
@@ -118,19 +122,25 @@ networkable::Var_str NetworkBuffer::readVar_str(){
 		buffer.read(stringBuffer, buffer_size);
 		readString += stringBuffer;
 		if(buffer.gcount() != buffer_size){
-			std::cerr << "Inavlid length in Var_str" 
+			std::cerr << "Inavlid length in Str" 
 				<< std::endl;
-			return networkable::Var_str("");
+			return networkable::Str("");
 		}
 	}
 	buffer.read(stringBuffer, length - readLength);
 	if((unsigned int) buffer.gcount() != (length - readLength)){
-			std::cerr << "Inavlid length in Var_str" 
+			std::cerr << "Inavlid length in Str" 
 				<< std::endl;
-			return networkable::Var_str("");
+			return networkable::Str("");
 	}
 	readString += stringBuffer;
-	return networkable::Var_str(readString);
+	return networkable::Str(readString);
+}
+
+networkable::Var_str NetworkBuffer::readVar_str(){
+	auto length = readVar_uint().getValue();
+	auto strRead = readStr(length).getValue();
+	return networkable::Var_str(strRead);
 }
 
 networkable::Inv_vect NetworkBuffer::readInv_vect(){
@@ -147,42 +157,24 @@ networkable::Inv_vect NetworkBuffer::readInv_vect(){
 		type = networkable::Inv_vect::invalidRes;
 	}
 	auto hash = readHash();
-	return networkable::Inv_vect(type,hash);
+	return networkable::Inv_vect(type, hash);
 }
 
 networkable::Address NetworkBuffer::readAddress(){
 	auto timestamp = readUint64().getValue();
-	char * addressBuffer = new char [16];
-	buffer.read(addressBuffer, 16);
-	if(buffer.gcount() != 16){
-		std::cerr << "Invalid address lenght in Address"
-			<< std::endl;
-		return networkable::Address(timestamp,
-				std::string(16,'0'),
-				0);
-	}
+	auto address = readStr(16).getValue();
 	auto port = readUint16().getValue();
-	return networkable::Address(timestamp, addressBuffer, port);
+	return networkable::Address(timestamp, address, port);
 };
 
 std::string NetworkBuffer::readHash(){
-	char * hashBuffer = new char[32];
-	buffer.read(hashBuffer, 32);
-	if(buffer.gcount() != 32){
-		std::cerr << "Invalid hash" << std::endl;
-		return std::string(32,char(0x00));
-	}
-	return hashBuffer;
+	auto hash = readStr(32).getValue();
+	return hash;
 }
 
 networkable::MessageHeader NetworkBuffer::readMessageHeader(){
 	auto magic = readUint32().getValue();
-	char * typeBuffer = new char[12];
-	buffer.read(typeBuffer, 12);
-	if(buffer.gcount() != 12){
-		std::cerr << "Invalid type in MessageHeader : " << typeBuffer << std::endl;
-		return networkable::MessageHeader(magic,"invalid",0);
-	}
+	auto type = readStr(12).getValue();
 	auto payloadLength = readVar_uint().getValue();
-	return networkable::MessageHeader(magic,typeBuffer,payloadLength);
+	return networkable::MessageHeader(magic,type,payloadLength);
 }

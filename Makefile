@@ -25,5 +25,9 @@ include Rulefile
 doc:
 	doxygen docs/Doxyfile
 
+release: clean $(OBJS)
+	clean
+	$(CXX) -o $(BDIR)/ensicoin-node $(CXXFLAGS) $(OFLAGS) $^ $(LIBS)
+
 clean:
 	rm -f $(ODIR)/*.o $(BDIR)/*

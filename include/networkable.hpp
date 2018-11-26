@@ -9,10 +9,12 @@ namespace networkable{
 
 	/// \brief Object to be send to another Node in a byte list
 	class Networkable{
+		protected:	
+			/// \brief Get the binary string 
+			/// represesentation of a packed string
+			std::string encode(const std::string& 
+					packedString) const;
 		public:
-			/// \brief Get the binary string represesentation
-			/// of the Networkable object
-			std::string asBytes() const;
 			/// \brief Get the represention of the object
 			/// as a packed hexadecimal string
 			virtual std::string byteRepr() const = 0;
@@ -72,11 +74,24 @@ namespace networkable{
 			explicit Uint64(uint64_t val);
 	};
 
+	/// \brief Represent string as packed hexadecimal
+	class Str : public Networkable{
+		protected:
+			/// \brief Value of the string
+			std::string value;
+		public:
+			/// \brief Return the underlying value
+			std::string getValue() const;
+			std::string byteRepr() const override;
+			/// \brief Construct a Str
+			explicit Str(const std::string& val);
+	};
+
 	/// \brief Networkable string of variable length
 	class Var_str : public Networkable{
 		protected:
 			/// \brief Value of the string
-			std::string value;
+			Str value;
 		public:
 			/// \brief Returns the underlying value
 			std::string getValue() const;
