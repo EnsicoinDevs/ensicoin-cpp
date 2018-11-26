@@ -1,0 +1,11 @@
+language: cpp
+script: make; make doc
+compiler: clang
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: "$GITHUB_TOKEN"
+  on:
+    branch: master
+dd:
+  secure: riazl5PkmuhIVNAEb06MZuqNJyeXerh4SyuhXcfTYCRN/wR+dltkMNQdSI902v//mJv/5omkyNg9QDGjw4GRa1CYNiNMevIDqKsTSDve9oSBP/lc80+e0lnyxe4m5msliVZ3o2RUaILg+oFVEh8ccmKaKulaSWYRvKXpRzvg9zoiMF1CjzCs93d16zWigX+62rx1lPoh98+6Soq/LiUT2RaCIpeBYDOIdY3iEam39OjnNNsTzVWQPp9a0RP2VBJc4iM0Zcv3hP72rKdRz8BjVi0QRzT+1noGRIJ/d8pZ3quoDRuzK/CpF5Kcki5hCYhMN2Dhpd7IpLXRBQf4QvNY1fWZR5Y5Eao7tY/Vkl7c8BeYAMisLYAa7p3EmgOFFcSlGFrFDYk3Z5Yt5cf0xxGJEQ6Y3eUgSeNFg9boZKohVZh5sjwyIp5ERIDKMlhU8eO5FVl++hI6cmLJpmntx9923dCaPaphbahzRua1FIPDSqlZZ8Xo+tAvC+2+dZS7Aen04lcbR7iF4tsbGiaXSKAJNkE740ILqNMQmcjMsfKatNBcP9gmIdvqoMk4fM4UlMW5gMT6e4udoKwMkRsD22GN5ZrmNVyPVAkP0UIIoI3tj2RVnOYpuzahPoYEJhnq7JdHwE0as/lu+Zg8frxE5VVIZxnrDwsw8u0swN6h3yIjhWo=
