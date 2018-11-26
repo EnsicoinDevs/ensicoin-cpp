@@ -53,6 +53,8 @@ class NetworkBuffer{
 
 		/// \brief Construct a NetworkBuffer from a binaryString
 		explicit NetworkBuffer(const std::string& binaryString);
+		/// \brief Construct an empty NetworkBuffer
+		NetworkBuffer();
 	private:
 		/// \brief Stringstream used as a buffer 
 		std::stringstream buffer;

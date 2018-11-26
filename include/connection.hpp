@@ -2,6 +2,7 @@
 #define CONNECTION_HPP
 
 #include "messages.hpp"
+#include "networkreader.hpp"
 
 #include <asio.hpp>
 #include <memory>
@@ -66,6 +67,7 @@ namespace network{
 			/// \brief network::NetworkReader to buffer the
 			/// incomming data
 			network::NetworkReader reader;
+			NetworkBuffer netBuffer;
 
 			/// \brief Message buffered before WhoAmI exchange
 			std::vector<message::Message::pointer> bufferedMessages;

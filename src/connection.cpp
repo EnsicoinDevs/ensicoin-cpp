@@ -1,6 +1,6 @@
 #include "connection.hpp"
 #include "constants.hpp"
-#include "messagehandler.hpp"
+#include "networkreader.hpp"
 #include "messages.hpp"
 
 #include <asio.hpp>
@@ -46,7 +46,12 @@ namespace network{
 			bufferedMessages.push_back(message);
 	}
 
-	Connection::Connection(asio::io_context& io_context, Node* nodePtr) : socket(io_context), node(nodePtr), waved(false), connected(false) {}
+	Connection::Connection(asio::io_context& io_context, Node* nodePtr) : 
+		socket(io_context),
+		node(nodePtr), 
+		waved(false), 
+		connected(false),
+		reader(nodePtr, shared_from_this(), &netBuffer) {}
 
 	void Connection::wave(){
 		if(!waved){
@@ -66,7 +71,7 @@ namespace network{
 		if( strData.size() > MESSAGE_LIMIT)
 			throw std::runtime_error("Message too long");
 
-		reader(strData, node, shared_from_this());
+		reader.handle();
 		idle();	
 	}
 

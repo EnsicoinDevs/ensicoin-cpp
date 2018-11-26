@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 
+NetworkBuffer::NetworkBuffer() {}
+
 NetworkBuffer::NetworkBuffer(const std::string& binaryString){
 	buffer << binaryString;
 }
