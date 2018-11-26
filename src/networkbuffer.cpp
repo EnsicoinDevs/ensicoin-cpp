@@ -13,6 +13,10 @@ void NetworkBuffer::appendBytes(const networkable::Networkable&
 	buffer << object.byteRepr(); 
 }
 
+void NetworkBuffer::appendRawData(const std::string& rawData){
+	buffer << rawData;
+}
+
 networkable::Uint16 NetworkBuffer::readUint16(){
 	char* binaryRepr = new char[2];
 	buffer.read(binaryRepr, 2);

@@ -44,9 +44,12 @@ class NetworkBuffer{
 		/// \details Consume the bytes from the buffer
 		networkable::Str readStr(size_t length);
 		/// \brief Adds a networkable::Networkable to 
-		/// the StreamBuffer
+		/// the NetworkBuffer
 		void appendBytes(const networkable::Networkable&
 				object);
+		
+		/// \brief Add bytes to the NetworkBuffer
+		void appendRawData(const std::string& rawData);
 
 		/// \brief Construct a NetworkBuffer from a binaryString
 		explicit NetworkBuffer(const std::string& binaryString);
