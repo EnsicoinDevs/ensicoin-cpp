@@ -24,11 +24,15 @@ namespace ressources{
 		/// \brief Hash of the previous block
 		std::string hashPrevBlock;
 		/// \brief Hash of the Transaction vector
-		std::string hashTransactions;
+		std::string merkleRoot;
 		/// \brief Timestamp of the creation
 		std::time_t timestamp;
+		/// \brief Height of the block
+		uint32_t height;
+		/// \brief target for the block
+		BlockTarget target;
 		/// \brief Block nonce
-		int nonce;
+		uint64_t nonce;
 		
 		std::string byteRepr() const override;
 		/// \brief Construct a BlockHeader from raw data
@@ -71,19 +75,6 @@ namespace ressources{
 			rapidjson::Document json() const override;
 	};
 
-	/// \brief A target for a Block
-	class BlockTarget{
-		private:
-			/// \brief Target to whom a Block needs to be
-			/// inferior
-			std::string value;
-		public:
-			/// \brief Updates a target to reflect the time taken to 
-			/// generate 2016 Blocks
-			void update(int timeTaken);
-			/// \brief Checks if a Block in inferior to the BlockTarget
-			bool blockInferior(const Block& block) const;
-	};
 
 } // namespace ressources
 
