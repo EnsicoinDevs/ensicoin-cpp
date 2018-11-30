@@ -25,7 +25,7 @@ namespace network{
 	}
 
 	void Connection::bind(asio::ip::address ipAddress){
-		socket.connect(asio::ip::tcp::endpoint( ipAddress, PORT));
+		socket.connect(asio::ip::tcp::endpoint( ipAddress, constants::PORT));
 		sendMessage(std::make_shared<message::WhoAmI>());
 	}
 
@@ -68,7 +68,7 @@ namespace network{
 		if(strData.length() > 0 && !(strData[0] == '{'))
 			strData = "{" + strData;
 
-		if( strData.size() > MESSAGE_LIMIT)
+		if( strData.size() > constants::MESSAGE_LIMIT)
 			throw std::runtime_error("Message too long");
 
 		reader.handle();

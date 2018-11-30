@@ -11,7 +11,7 @@
 #include <stdexcept>
 
 
-Node::Node(asio::io_context& io_context) : acceptor(io_context, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), PORT)) {
+Node::Node(asio::io_context& io_context) : acceptor(io_context, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), constants::PORT)) {
 	acceptor.listen();
 	run();
 
