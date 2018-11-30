@@ -34,6 +34,8 @@ namespace ressources {
 		explicit TransactionIdentifier(NetworkBuffer*
 				networkBuffer);
 
+		TransactionIdentifier();
+
 		/// \brief Construct a TransactionIdentifier from
 		/// the data fields
 		TransactionIdentifier(std::string transactionHash,
@@ -44,6 +46,7 @@ namespace ressources {
 		/// Allocation of members
 		rapidjson::Value json(rapidjson::Document* 
 				document) const;
+
 	};
 	using UTXO = ressources::TransactionIdentifier;
 
@@ -60,6 +63,8 @@ namespace ressources {
 		TransactionIdentifier previousOutput;
 		/// \brief The script attached to the input
 		Script script;
+		
+		InputTransaction getValue() const;
 
 		std::string byteRepr() const override;
 		/// \brief Extract raw data to create a 
@@ -69,6 +74,8 @@ namespace ressources {
 		/// \brief Construct a InputTransaction
 		InputTransaction( TransactionIdentifier id,
 							Script sc);
+
+		InputTransaction();
 
 		/// \brief Get the JSON reperesentation
 		/// \param document Document used for the
@@ -84,12 +91,15 @@ namespace ressources {
 		/// \brief the code attached to the input
 		Script script;
 
+		OutputTransaction getValue() const;
+
 		std::string byteRepr() const override;
 		/// \brief Extract raw data to construct a 
 		/// OutputTransaction
 		explicit OutputTransaction(NetworkBuffer*
 				networkBuffer);
 		OutputTransaction( uint64_t val, Script sc);
+		OutputTransaction();
 
 		/// \brief Get the JSON reperesentation
 		/// \param document Document used for the
@@ -129,12 +139,15 @@ namespace ressources {
 					std::vector<\
 						OutputTransaction>
 						initialOutputs);
+			Transaction();
 			/// \brief Parse a Transaction from a 
 			/// NetworkBuffer
 			/// \param networkBuffer Buffer containing
 			/// raw data
 			explicit Transaction(NetworkBuffer*
 					networkBuffer);
+
+			Transaction getValue() const;
 
 			/// \brief returns the version used
 			int getVersion() const;

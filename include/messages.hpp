@@ -64,9 +64,9 @@ namespace message{
 		private:
 			std::string payload() const override;
 			/// \brief Defined in constants.hpp
-			networkable::Uint32 version;
+			uint32_t version;
 			/// \brief Current time
-			networkable::Uint64 timestamp;
+			uint64_t timestamp;
 		public:
 			/// \brief Construct a WhoAmI Message
 			WhoAmI();

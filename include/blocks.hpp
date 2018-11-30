@@ -2,6 +2,7 @@
 #define BLOCKS_HPP
 
 #include <ctime>
+#include <cryptopp/integer.h>
 #include <memory>
 #include <rapidjson/document.h>
 #include <string>
@@ -11,6 +12,7 @@
 #include "jsonable.hpp"
 #include "networkable.hpp"
 #include "networkbuffer.hpp"
+#include "target.hpp"
 #include "transaction.hpp"
 
 namespace ressources{
@@ -45,6 +47,11 @@ namespace ressources{
 			BlockHeader header;
 			std::vector<Transaction::pointer> transactions;
 		public:
+			/// \brief Compare blocks with timestamps
+			inline static bool timeComparaison(
+					const Block& a, const Block& b){
+				return a.header.timestamp < b.header.timestamp;
+			}
 			/// \brief Shared pointer to a Block
 			using pointer = std::shared_ptr<Block>;
 			/// \brief Construct a Block
@@ -52,11 +59,15 @@ namespace ressources{
 			/// \param transactionList vector of 
 			/// Transaction to be included in block
 			Block(BlockHeader head, 
-					std::vector<Transaction::pointer > transactionList);
+					std::vector<Transaction::pointer>\
+						transactionList);
 			/// \brief Read a block from raw data
 			explicit Block(NetworkBuffer* networkBuffer);
 		
 			std::string byteRepr() const override;
+
+			/// \brief Converts the hash to an integer
+			CryptoPP::Integer integerHash() const;
 
 			/// \brief Hash of the Block
 			/// \details Creates the hash by applying twice
@@ -66,6 +77,9 @@ namespace ressources{
 			/// \brief lossy compression of the hash for 
 			/// BlockTarget comparaison
 			std::string compressedHash() const;
+
+			/// \brief Get the time at the creation of the block
+			time_t getCreationTime() const;
 
 			/// \brief Validates the Block
 			/// \details Checks if all Transaction are valid

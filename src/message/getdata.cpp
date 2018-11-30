@@ -14,36 +14,25 @@ namespace message{
 					invalidRes;
 			return data[0].type;
 		}
-	
+
 	std::vector<std::string> GetData::dataAsked() const{
 		std::vector<std::string> out;
 		std::transform(data.begin(), data.end(), 
 				std::back_inserter(out),
 				[](networkable::Inv_vect i){
-				return i.hash;
+					return i.hash;
 				});
 		return out;
 	}
 
 	GetData::GetData(std::vector<networkable::Inv_vect> invData):
 		Message(getdata), data(invData) {}
-	
+
 	GetData::GetData(NetworkBuffer* networkBuffer) : 
-		Message(getdata) {
-			auto size = networkBuffer->readVar_uint()\
-				    	.getValue();
-			for(uint64_t i=0; i < size; ++i){
-				data.push_back(networkBuffer->\
-						readInv_vect());
-			}
-		}
+		Message(getdata),
+		data(networkable::Inv_Array(networkBuffer).getValue()){}
 
 	std::string GetData::payload() const{
-		std::string bytes = networkable::Var_uint(
-					data.size()).byteRepr();
-		for(auto& iv : data){
-			bytes += iv.byteRepr();
-		}
-		return bytes;
+		return networkable::Inv_Array(data).byteRepr();
 	}
 } // namespace message

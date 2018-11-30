@@ -17,6 +17,12 @@
 
 namespace ressources{
 
+	Transaction Transaction::getValue() const{
+		return *this;
+	}
+
+	Transaction::Transaction() {}
+
 	Transaction::Transaction(	
 			int ver,
 			std::vector<std::string> intialFlags,
@@ -27,26 +33,18 @@ namespace ressources{
 		inputs(initialInputs),
 		outputs(initialOutputs) {}
 
-	Transaction::Transaction(NetworkBuffer* networkBuffer) {
-		
-	}
+	Transaction::Transaction(NetworkBuffer* networkBuffer) : 
+		version(networkable::Uint32(networkBuffer).getValue()),
+		transactionFlags(networkable::Var_strArray(networkBuffer).getValue()),
+		inputs(networkable::Var_Array<InputTransaction>(networkBuffer).getValue()),
+		outputs(networkable::Var_Array<OutputTransaction>(networkBuffer).getValue()) {}
 
 	std::string Transaction::byteRepr() const{
 		std::ostringstream ss;
-		ss << networkable::Uint32(version).byteRepr()
-		   << networkable::Var_uint(transactionFlags\
-				   .size()).byteRepr();
-		for(auto& flag : transactionFlags){
-			ss << networkable::Var_str(flag).byteRepr();
-		}
-		ss << networkable::Var_uint(inputs.size()).byteRepr();
-		for(auto& input : inputs){
-			ss << input.byteRepr();
-		}
-		ss << networkable::Var_uint(outputs.size()).byteRepr();
-		for(auto& output : outputs){
-			ss << output.byteRepr();
-		}
+		ss << networkable::Uint32(version).byteRepr();
+		ss << networkable::Var_strArray(transactionFlags).byteRepr();
+		ss << networkable::Var_Array<InputTransaction>(inputs).byteRepr();
+		ss << networkable::Var_Array<OutputTransaction>(outputs).byteRepr();
 		return ss.str();
 	}
 
@@ -91,7 +89,7 @@ namespace ressources{
 	bool Transaction::check(){
 		if(inputs.empty() || outputs.empty())
 			return false;
-		if(str().length() > MAX_BLOCK_SIZE)
+		if(str().length() > constants::MAX_BLOCK_SIZE)
 			return false;
 		return !std::any_of(outputs.begin(), outputs.end(), [](OutputTransaction output){return output.value<=0;});
 	}

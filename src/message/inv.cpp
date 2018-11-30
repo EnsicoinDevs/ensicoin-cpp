@@ -30,22 +30,11 @@ namespace message{
 		Message(inv), data(invData) {}
 	
 	Inv::Inv(NetworkBuffer* networkBuffer) : 
-		Message(inv) {
-			auto size = networkBuffer->readVar_uint()\
-				    	.getValue();
-			for(uint64_t i=0; i < size; ++i){
-				data.push_back(networkBuffer->\
-						readInv_vect());
-			}
-		}
+		Message(inv),
+		data(networkable::Inv_Array(networkBuffer).getValue()) {}
 
 	std::string Inv::payload() const{
-		std::string bytes = networkable::Var_uint(
-					data.size()).byteRepr();
-		for(auto& iv : data){
-			bytes += iv.byteRepr();
-		}
-		return bytes;
+		return networkable::Inv_Array(data).byteRepr();
 	}
 } // namespace message
 

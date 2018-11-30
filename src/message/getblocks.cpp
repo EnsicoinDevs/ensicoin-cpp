@@ -1,7 +1,9 @@
 #include "messages.hpp"
+#include "constants.hpp"
 #include "networkable.hpp"
 #include "networkbuffer.hpp"
 
+#include <algorithm>
 #include <string>
 #include <vector>
 
@@ -11,23 +13,14 @@ namespace message{
 		Message(getblocks),
 		blockHashes(hashList),
 		stopHash(stopHashString) {}
+	
 	GetBlocks::GetBlocks(NetworkBuffer* networkBuffer) :
-		Message(getblocks) {
-		auto hashCount = networkBuffer->readVar_uint()\
-					.getValue();
-		for(uint64_t i = 0; i < hashCount; ++i){
-			blockHashes.push_back(networkBuffer\
-					->readHash());
-		}
-		stopHash = networkBuffer->readHash();
-	}
+		Message(getblocks),
+		blockHashes(networkable::HashArray(networkBuffer).getValue()),
+		stopHash(networkable::Hash(networkBuffer).getValue()) {}
 
 	std::string GetBlocks::payload() const{
-		std::string out = networkable::Var_uint(
-				blockHashes.size()).byteRepr();
-		for(auto& hs : blockHashes){
-			out += hs;
-		}
+		std::string out = networkable::HashArray(blockHashes).byteRepr();
 		out += stopHash;
 		return out;
 	}

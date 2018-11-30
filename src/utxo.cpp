@@ -33,11 +33,11 @@ namespace manager{
 			script(sc) {}
 
 	UTXOdata::UTXOdata(NetworkBuffer* networkBuffer) : 
-		value(networkBuffer->readUint64().getValue()),
-		coinbase(networkBuffer->readUint16().getValue()),
-		height(networkBuffer->readUint32().getValue()),
-		signingHash(networkBuffer->readHash()),
-		fromMempool(networkBuffer->readUint16().getValue()),
+		value(networkable::Uint64(networkBuffer).getValue()),
+		coinbase(networkable::Uint16(networkBuffer).getValue()),
+		height(networkable::Uint32(networkBuffer).getValue()),
+		signingHash(networkable::Hash(networkBuffer).getValue()),
+		fromMempool(networkable::Uint16(networkBuffer).getValue()),
 		script(networkBuffer)
 				{}
 
@@ -45,7 +45,7 @@ namespace manager{
 		leveldb::Options options;
 		options.create_if_missing = true;
 		leveldb::Status status = leveldb::DB::Open(options, 
-													UTXO_DB, &db);
+													constants::UTXO_DB, &db);
 		if (!status.ok()){
 			std::cerr << "Error db open : " 
 				<< status.ToString() << std::endl;

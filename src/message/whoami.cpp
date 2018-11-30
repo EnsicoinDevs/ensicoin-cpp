@@ -10,17 +10,17 @@
 namespace message{
 
 	WhoAmI::WhoAmI() : Message(whoami), 
-			   version(VERSION),
+			   version(constants::VERSION),
 			   timestamp(std::time(nullptr)) {}
 
 	WhoAmI::WhoAmI(NetworkBuffer* networkBuffer) : 
 		Message(whoami),
-		version(networkBuffer->readUint32()),
-		timestamp(networkBuffer->readUint64()) {}
+		version(networkable::Uint32(networkBuffer).getValue()),
+		timestamp(networkable::Uint64(networkBuffer).getValue()) {}
 
 	std::string WhoAmI::payload() const{
-		return version.byteRepr() + 
-			timestamp.byteRepr();
+		return networkable::Uint32(version).byteRepr() + 
+			networkable::Uint64(timestamp).byteRepr();
 	}
 	
 	WhoAmIAck::WhoAmIAck() : Message(whoamiack) {}

@@ -7,6 +7,12 @@
 
 namespace ressources{
 
+	InputTransaction InputTransaction::getValue() const{
+		return *this;
+	}
+
+	InputTransaction::InputTransaction() {}
+
 	rapidjson::Value InputTransaction::json(rapidjson::Document*
 			document) const {
 		rapidjson::Value input(rapidjson::kObjectType);

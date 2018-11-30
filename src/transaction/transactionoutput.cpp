@@ -7,6 +7,12 @@
 
 namespace ressources{
 
+	OutputTransaction OutputTransaction::getValue() const{
+		return *this;
+	}
+
+	OutputTransaction::OutputTransaction() {}
+
 	rapidjson::Value OutputTransaction::json(rapidjson::Document*
 			document) const {
 		rapidjson::Value output(rapidjson::kObjectType);
@@ -25,7 +31,7 @@ namespace ressources{
 
 	OutputTransaction::OutputTransaction(NetworkBuffer* 
 			networkBuffer) : 
-		value(networkBuffer->readUint64().getValue()),
+		value(networkable::Uint64(networkBuffer).getValue()),
 		script(networkBuffer) {}
 
 	OutputTransaction::OutputTransaction(uint64_t val,

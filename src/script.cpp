@@ -72,7 +72,7 @@ namespace ressources{
 
 	Script::Script(NetworkBuffer* networkBuffer) :
 		valid(true){
-			auto scriptStr = networkBuffer->readVar_str();
+			auto scriptStr = networkable::Var_str(networkBuffer);
 			for(auto& chr : scriptStr.getValue()){
 				scriptInstructions.push_back(parseInstruction(chr));
 			}

@@ -64,8 +64,8 @@ namespace message{
 			return unknown;
 	}
 
-	Message::Message(message_type messageType) : magic(MAGIC), 
-	type(messageType) {}
+	Message::Message(message_type messageType) : magic(constants::MAGIC), 
+		type(messageType) {}
 
 	Message::message_type Message::getType() const{
 		return type;
