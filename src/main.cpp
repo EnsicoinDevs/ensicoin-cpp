@@ -45,7 +45,7 @@ int main(){
 	ECDSASignature signature(message, privateKey);
 	
 	int status;
-	status = mkdir(DATA_PATH.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+	status = mkdir(constants::DATA_PATH.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
 	if( status != 0 && errno != EEXIST){
 		char buffer[ 256 ];
 		std::cout << "Error when creating directory : " << strerror_r( errno, buffer, 256 ) << std::endl;

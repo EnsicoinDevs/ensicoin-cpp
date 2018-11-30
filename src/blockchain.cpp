@@ -12,7 +12,7 @@ Blockchain::Blockchain(){
 	options.create_if_missing = true;
 	leveldb::Status statusBlocks = 
 		leveldb::DB::Open(options, 
-				  BLOCKCHAIN_DB+"/blocks",
+				  constants::BLOCKCHAIN_DB+"/blocks",
 				  &blocksDB);
 	if (!statusBlocks.ok()) std::cerr << 
 		"Error blockDb open : " << 
@@ -21,7 +21,7 @@ Blockchain::Blockchain(){
 
 	leveldb::Status statusChain = 
 		leveldb::DB::Open(options, 
-				  BLOCKCHAIN_DB+"/chain", 
+				  constants::BLOCKCHAIN_DB+"/chain", 
 				  &chainDB);
 	if (!statusChain.ok()) std::cerr << 
 			  "Error blockDb open : " << 
@@ -30,7 +30,7 @@ Blockchain::Blockchain(){
 	
 	leveldb::Status blockchainInfo =
 		leveldb::DB::Open(options,
-					BLOCKCHAIN_DB+"/stat",
+					constants::BLOCKCHAIN_DB+"/stat",
 					&statDB);
 	if(!blockchainInfo.ok()) std::cerr <<
 			"Error opening statDB : " <<

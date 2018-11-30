@@ -1,10 +1,10 @@
 #ifndef HASH_HPP
 #define HASH_HPP
 
-#include <string>
-#include <memory>
 #include <cryptopp/integer.h>
 #include <cryptopp/eccrypto.h>
+#include <memory>
+#include <string>
 
 using namespace CryptoPP;
 
@@ -27,7 +27,7 @@ class ECDSASignature{
 		/// \brief Construct a ECDSASignature from signature
 		/// \param encodedSignature signature as hex 
 		/// representation
-		ECDSASignature(std::string encodedSignature);
+		explicit ECDSASignature(std::string encodedSignature);
 		/// \brief Construct a ECDSASignature to sign a 
 		/// string
 		/// \param message a string to be signed
