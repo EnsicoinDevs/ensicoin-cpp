@@ -7,42 +7,13 @@
 
 /// \brief Class to hold Networkable data
 class NetworkBuffer{
+
+	friend class networkable::Uint16;
+	friend class networkable::Uint32;
+	friend class networkable::Uint64;
+	friend class networkable::Str;
+	friend class networkable::Var_uint;
 	public:
-		/// \brief Read a networkable::Var_uint from the 
-		/// buffer
-		/// \details Consume the bytes from the buffer
-		networkable::Var_uint readVar_uint();
-		/// \brief Read a networkable::Uint16 from the buffer
-		/// \details Consume the bytes from the buffer
-		networkable::Uint16 readUint16();
-		/// \brief Read a networkable::Uint32 from the buffer
-		/// \details Consume the bytes from the buffer
-		networkable::Uint32 readUint32();
-		///\brief Read a networkable::Uint64 from the buffer
-		/// \details Consume the bytes from the buffer
-		networkable::Uint64 readUint64();
-		///\brief Read a networkable::Var_str from the buffer
-		/// \details Consume the bytes from the buffer
-		networkable::Var_str readVar_str();
-		/// \brief Read a networkable::Var_str from the 
-		/// buffer
-		/// \details Consume the bytes from the buffer
-		networkable::Inv_vect readInv_vect();
-		/// \brief Read a networkable::Address from the 
-		/// buffer
-		/// \details Consume the bytes from the buffer
-		networkable::Address readAddress();
-		/// \brief Read a hash from the buffer
-		/// \details Consume the bytes from the buffer
-		std::string readHash();
-		/// \brief Read a networkable::MessageHeader from 
-		/// the buffer
-		/// \details Consume the bytes from the buffer
-		networkable::MessageHeader readMessageHeader();
-		/// \brief Read a networkable::Str from the buffer
-		/// \param length of the string
-		/// \details Consume the bytes from the buffer
-		networkable::Str readStr(size_t length);
 		/// \brief Adds a networkable::Networkable to 
 		/// the NetworkBuffer
 		void appendBytes(const networkable::Networkable&
@@ -55,6 +26,25 @@ class NetworkBuffer{
 		explicit NetworkBuffer(const std::string& binaryString);
 		/// \brief Construct an empty NetworkBuffer
 		NetworkBuffer();
+
+	protected:
+		/// \brief Read a networkable::Var_uint from the 
+		/// buffer
+		/// \details Consume the bytes from the buffer
+		uint64_t readVar_uint();
+		/// \brief Read a networkable::Uint16 from the buffer
+		/// \details Consume the bytes from the buffer
+		uint16_t readUint16();
+		/// \brief Read a networkable::Uint32 from the buffer
+		/// \details Consume the bytes from the buffer
+		uint32_t readUint32();
+		///\brief Read a networkable::Uint64 from the buffer
+		/// \details Consume the bytes from the buffer
+		uint64_t readUint64();
+		/// \brief Read a networkable::Str from the buffer
+		/// \param length of the string
+		/// \details Consume the bytes from the buffer
+		std::string readStr(size_t length);
 	private:
 		/// \brief Stringstream used as a buffer 
 		std::stringstream buffer;
