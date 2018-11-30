@@ -5,6 +5,7 @@
 
 #include <leveldb/db.h>
 #include <string>
+#include <map>
 
 /// \brief Stores Block on disk and links them
 class Blockchain{
@@ -18,6 +19,14 @@ class Blockchain{
 	public:
 		
 		Blockchain();
+};
+
+class BlockIndex{
+	private:
+		Blockchain blockchain;
+		std::map<std::string, ressources::Block> cachedBlocks;
+	public:
+		std::vector<ressources::BlockTarget> getWindowFrom(const std::string& latestBlock);
 };
 
 #endif /* BLOCKCHAIN_HPP */
