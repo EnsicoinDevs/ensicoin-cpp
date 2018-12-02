@@ -1,8 +1,8 @@
 #ifndef BLOCKS_HPP
 #define BLOCKS_HPP
 
-#include <ctime>
 #include <cryptopp/integer.h>
+#include <ctime>
 #include <memory>
 #include <rapidjson/document.h>
 #include <string>
@@ -69,14 +69,12 @@ namespace ressources{
 			/// \brief Converts the hash to an integer
 			CryptoPP::Integer integerHash() const;
 
+			BlockHeader getHeader() const;
+
 			/// \brief Hash of the Block
 			/// \details Creates the hash by applying twice
 			/// sha256 to the raw string
 			std::string hash() const;
-			
-			/// \brief lossy compression of the hash for 
-			/// BlockTarget comparaison
-			std::string compressedHash() const;
 
 			/// \brief Get the time at the creation of the block
 			time_t getCreationTime() const;

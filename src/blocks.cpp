@@ -1,9 +1,11 @@
 #include "blocks.hpp"
 #include "crypto.hpp"
 #include "networkable.hpp"
-#include "networkbuffer.cpp"
+#include "networkbuffer.hpp"
 #include "transaction.hpp"
 
+#include <cryptopp/integer.h>
+#include <cryptopp/hex.h>
 #include <memory>
 #include <rapidjson/document.h>
 #include <sstream>
@@ -23,14 +25,48 @@ namespace ressources{
 		nonce(networkable::Uint64(networkBuffer).getValue())
 	{}
 
+	std::string BlockHeader::byteRepr() const{
+		std::ostringstream ss;
+		ss << networkable::Uint32(version).byteRepr()
+		   << networkable::Var_strArray(blockFlags).byteRepr()
+		   << networkable::Hash(hashPrevBlock).byteRepr()
+		   << networkable::Hash(merkleRoot).byteRepr()
+		   << networkable::Uint64(timestamp).byteRepr()
+		   << networkable::Uint32(height).byteRepr()
+		   << target.byteRepr()
+		   << networkable::Uint64(nonce).byteRepr();
+		return ss.str();
+	}
+
 	Block::Block(BlockHeader head, std::vector<std::shared_ptr<Transaction> > transactionList) :
 		header(head),
 		transactions(transactionList) {}
 
 
+	BlockHeader Block::getHeader() const{
+		return header;
+	}
+
+	std::string Block::byteRepr() const{
+		return header.byteRepr() +
+			networkable::Var_Array<Transaction::pointer>(transactions).byteRepr();
+	}
+
 	Block::Block(NetworkBuffer* networkBuffer) : 
 		header(networkBuffer),
-		transactions(networkable::Var_Array<Transaction>(networkBuffer).getValue()) {}
+		transactions(networkable::Var_Array<Transaction::pointer>(networkBuffer).getData()) {}
+
+	CryptoPP::Integer Block::integerHash() const {
+		std::string binaryHash = hash();
+		std::string encoded;
+		CryptoPP::StringSource ss(binaryHash, true,
+    		new CryptoPP::HexEncoder(
+        		new CryptoPP::StringSink(encoded)
+    		) // HexEncoder
+		); // StringSource
+
+		return CryptoPP::Integer(("0x"+encoded).c_str());
+	}
 
 	rapidjson::Document Block::json() const {
 		rapidjson::Document document(rapidjson::kObjectType);
@@ -83,7 +119,7 @@ namespace ressources{
 
 
 	std::string Block::hash() const{
-		return header.hash();
+		return sha256(sha256(header.byteRepr()));
 	}
 
 	bool Block::validate(){
