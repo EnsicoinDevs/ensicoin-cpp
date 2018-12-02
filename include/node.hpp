@@ -23,7 +23,7 @@ class Node{
 		/// \brief Mempool of the Node
 		manager::Mempool mempool;
 		/// \brief Main Blockchain
-		Blockchain blockchain;
+		manager::Blockchain blockchain;
 		
 		/// \brief Accept TCP connections from other nodes
 		asio::ip::tcp::acceptor acceptor;

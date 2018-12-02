@@ -10,6 +10,8 @@ namespace ressources{
 	using rapidjson::Document;
 	using rapidjson::Value;
 
+	TransactionIdentifier::TransactionIdentifier() {}
+	
 	Value TransactionIdentifier::json(Document* document) const{
 		Value tId(rapidjson::kObjectType);
 		Value strVal;
