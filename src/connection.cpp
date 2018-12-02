@@ -1,6 +1,7 @@
 #include "connection.hpp"
 #include "constants.hpp"
 #include "messages.hpp"
+#include "util.hpp"
 
 #include <asio.hpp>
 #include <cstring>
@@ -29,7 +30,6 @@ namespace network{
 	}
 
 	void Connection::start(){
-		resetBuffer();
 		idle();
 	}
 
@@ -61,7 +61,16 @@ namespace network{
 			connected = true;
 	}
 
+	std::string Connection::readAll(){
+		std::istream is(&buffer);
+		std::string stringData(
+				std::istreambuf_iterator<char>(is), {});
+		return stringData;
+	}
+
 	void Connection::handleHeader(){
+		auto stringData = readAll();
+		netBuffer.appendRawData(stringData);
 		auto header = networkable::MessageHeader(&netBuffer);
 		asio::async_read(socket, buffer, 
 				asio::transfer_exactly(header.payloadLength), 
@@ -70,6 +79,11 @@ namespace network{
 	}
 
 	void Connection::handleMessage(const networkable::MessageHeader& header){
+		std::cout << header.type <<" from "<< remote() << std::endl;
+		auto stringData = readAll();
+		netBuffer.appendRawData(stringData);
+		auto test = message::WhoAmI(&netBuffer);
+		std::cout << "Byte repr : " << test.byteRepr() << std::endl;
 	}
 
 	void Connection::handleWrite(std::string type){
@@ -92,8 +106,4 @@ namespace network{
 			}
 		}
 	}
-
-	void Connection::resetBuffer(){
-	}
-
 } //namespace network

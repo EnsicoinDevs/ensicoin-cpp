@@ -232,7 +232,7 @@ namespace networkable{
 		payloadLength(pldSize) {}
 	std::string MessageHeader::byteRepr() const{
 		std::string out = Uint32(magic).byteRepr();
-		out += Str(type).byteRepr();
+		out += FixedStr<12>(type).byteRepr();
 		out += Var_uint(payloadLength).byteRepr();
 		return out;
 	}

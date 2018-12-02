@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <stack>
+#include <type_traits> 
 #include <cryptopp/eccrypto.h>
 #include <cryptopp/hex.h>
 #include <cryptopp/oids.h>
@@ -21,6 +22,7 @@
 #include "blocks.hpp"
 #include "node.hpp"
 #include "networkable.hpp"
+#include "networkbuffer.hpp"
 
 using namespace CryptoPP;
 using namespace asio;
@@ -54,13 +56,13 @@ int main(){
 		std::cout << "Directory set" << std::endl;
 	}
 	
-	networkable::Var_str x("kat");
-	std::cout << "X : " << x.getValue() << ", ByteRepr : " << x.byteRepr() << std::endl;
-	util::printBinaryString(x.byteRepr());
-	
+	std::cout << "Is destructible : "<< std::is_destructible<NetworkBuffer>::value << std::endl;
+	std::cout << "Is is_copy_constructible : "<< std::is_destructible<NetworkBuffer>::value << std::endl;
+	std::cout << "Is mutable_sequence : "<< asio::is_mutable_buffer_sequence<NetworkBuffer>::value << std::endl;
+
 	asio::io_context io_context;
-	//Node node(io_context);
-	//io_context.run();
+	Node node(io_context);
+	io_context.run();
 
 	return 0;
 }

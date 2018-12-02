@@ -33,19 +33,20 @@ Node::Node(asio::io_context& io_context) : acceptor(io_context, asio::ip::tcp::e
 	const std::string myIP("82.235.104.10");
 	const std::string jauvioNathan("92.129.133.102");
 	auto messageTest = std::make_shared<message::WhoAmI>();
-	auto invTest = message::Message::pointer( new message::Inv({invData}));
-	auto getDataTest = message::Message::pointer( new message::GetData({invData}));
+	//auto invTest = message::Message::pointer( new message::Inv({invData}));
+	//auto getDataTest = message::Message::pointer( new message::GetData({invData}));
 	//auto sendGenesis = std::make_shared<message::BlockMessage>(std::make_shared<ressources::Block>(GenesisBlock));
-	auto msgTestTr = std::make_shared<message::TransactionMessage>(testTxPtr);
-	auto msgMempool = std::make_shared<message::GetMempool>();
+	//auto msgTestTr = std::make_shared<message::TransactionMessage>(testTxPtr);
+	//auto msgMempool = std::make_shared<message::GetMempool>();
 
 	//std::cout << msgTestTr->str() << std::endl;
+	std::cout << messageTest->byteRepr() << std::endl;
 
 	network::Connection::pointer testConnection = network::Connection::create(io_context, this);
 	connections.push_back(testConnection);
 	testConnection->bind( asio::ip::address::from_string(johynIP));
 
-	testConnection->sendMessage(invTest);
+	//testConnection->sendMessage(invTest);
 	//testConnection->sendMessage(msgMempool);
 }
 

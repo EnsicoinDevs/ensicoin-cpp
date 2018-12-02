@@ -26,7 +26,6 @@ class NetworkBuffer{
 		explicit NetworkBuffer(const std::string& binaryString);
 		/// \brief Construct an empty NetworkBuffer
 		NetworkBuffer();
-
 	protected:
 		/// \brief Read a networkable::Var_uint from the 
 		/// buffer
@@ -49,5 +48,14 @@ class NetworkBuffer{
 		/// \brief Stringstream used as a buffer 
 		std::stringstream buffer;
 };
+
+namespace asio{
+	inline const NetworkBuffer* buffer_sequence_begin(const NetworkBuffer& buffer){
+		return &buffer;
+	}
+	inline const NetworkBuffer* buffer_sequence_end(const NetworkBuffer& buffer){
+		return &buffer;
+	}
+}
 
 #endif /* NETWORKBUFFER_HPP */

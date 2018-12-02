@@ -40,6 +40,8 @@ namespace network{
 			/// \brief Exchange of message::WhoAmI
 			void wave();
 		private:
+			std::string readAll();
+
 			/// \brief Construct a Connection
 			Connection(asio::io_context& io_context, Node* node);
 
@@ -51,12 +53,6 @@ namespace network{
 
 			/// \brief Called when writing a Message
 			void handleWrite(std::string type);
-
-			/// \brief Empty the buffer
-			/// \todo Change the implementation of Connection
-			/// to use a NetworkBuffer
-			/// \todo FIXME!
-			void resetBuffer();
 
 			/// \brief Socket used for network access
 			asio::ip::tcp::socket socket;
