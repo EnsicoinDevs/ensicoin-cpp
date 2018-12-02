@@ -69,7 +69,8 @@ namespace ressources{
 	}
 
 	rapidjson::Document Block::json() const {
-		rapidjson::Document document(rapidjson::kObjectType);
+		rapidjson::Document document;
+		document.SetObject();
 		document.AddMember("version", header.version, 
 				document.GetAllocator());
 
