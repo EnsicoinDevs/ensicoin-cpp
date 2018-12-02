@@ -110,7 +110,6 @@ namespace ressources {
 
 	class Mempool;
 
-
 	/// \brief A class representing an exchange of ensicoins
 	class Transaction : public JSONAble,
 	public std::enable_shared_from_this<Transaction>,
