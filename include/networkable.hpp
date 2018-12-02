@@ -4,6 +4,7 @@
 #include "constants.hpp"
 
 #include <algorithm>
+#include <memory>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -148,7 +149,7 @@ namespace networkable{
 			/// \brief The type being represented by T
 			using valueType = decltype(T().getValue());
 			/// \brief Get all the values of the Networkable
-			std::vector<valueType> getValue() const{
+			inline std::vector<valueType> getValue() const{
 				std::vector<valueType> out;
 				std::transform(data.begin(),
 								data.end(),
@@ -158,7 +159,12 @@ namespace networkable{
 								});
 				return out;
 			}
-			std::string byteRepr() const override{
+
+			inline std::vector<T> getData() const{
+				return data;
+			}
+
+			inline std::string byteRepr() const override{
 				std::ostringstream repr;
 				repr << Var_uint(data.size()).byteRepr();
 				for(auto& element : data){
@@ -193,6 +199,42 @@ namespace networkable{
 									return T(val);
 								});
 			}
+	};
+
+	/// \brief Specialization with shared_pointer
+	/// \details can't get the value of the object for the
+	/// represented objects are more complex and can't be
+	/// translated in a single base type
+	template<typename U>
+	class Var_Array<std::shared_ptr<U> > : public Networkable{
+		private:
+			std::vector<std::shared_ptr<U> > data;
+		public:
+			inline std::string byteRepr() const override{
+				std::ostringstream repr;
+				repr << Var_uint(data.size()).byteRepr();
+				for(auto& element : data){
+					repr << element->byteRepr();
+				}
+				return repr.str();
+			}
+			inline std::vector<std::shared_ptr<U> > getData() const{
+				return data;
+			}
+			/// \brief Extract a Var_Array from a NetworkBuffer
+			explicit Var_Array(NetworkBuffer* networkBuffer){
+				auto size = Var_uint(networkBuffer).getValue();
+				for(uint64_t i = 0; i < size; ++i){
+					data.push_back(std::make_shared<U>(networkBuffer));
+				}
+			}
+			/// \brief Construct a Var_Array from a vector
+			/// of Networkables
+			explicit Var_Array(const std::vector<std::shared_ptr<\
+					U> >& networkableArray) : data(networkableArray)
+			{}
+			/// \brief Create an empty Array
+			Var_Array() : data() {}
 	};
 	
 	using HashArray = Var_Array<Hash>;
@@ -249,6 +291,7 @@ namespace networkable{
 
 	/// \brief A header for a message::Message
 	struct MessageHeader : public Networkable{
+		static constexpr size_t size = 4 + 12 + 8;
 		/// \brief The message::Message magic number
 		uint32_t magic;
 		/// \brief The message::Message type

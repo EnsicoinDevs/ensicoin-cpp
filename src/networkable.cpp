@@ -139,6 +139,27 @@ namespace networkable{
 			Var_uint(value.getValue().size()).byteRepr();
 		return sizeBytes + value.byteRepr();
 	}
+	Var_str::Var_str(NetworkBuffer* networkBuffer){
+		auto size = Var_uint(networkBuffer).getValue();
+		value = Str(networkBuffer, size);
+	}
+	
+	/*template<typename T>
+	Var_Array<std::shared_ptr<T> >::Var_Array(
+			NetworkBuffer* networkBuffer){
+		auto size = Var_uint(networkBuffer).getValue();
+		for(uint64_t i = 0; i < size; ++i){
+			data.push_back(T(networkBuffer));
+		}
+	}
+
+	template<typename T>
+	Var_Array<std::shared_ptr<T> >::Var_Array(const std::\
+			vector<std::shared_ptr<T> >& networkableArray) : 
+		data(networkableArray) {}
+
+	template<typename T>
+	Var_Array<std::shared_ptr<T> >::Var_Array() : data() {}*/
 
 	Inv_vect::Inv_vect(Inv_vect::ressource_type res, 
 			std::string resHash) : 
@@ -218,7 +239,7 @@ namespace networkable{
 	MessageHeader::MessageHeader(NetworkBuffer* buffer) :
 		magic(Uint32(buffer).getValue()),
 		type(FixedStr<12>(buffer).getValue()),
-		payloadLength(Var_uint(buffer).getValue()) {}
+		payloadLength(Uint64(buffer).getValue()) {}
 	MessageHeader::MessageHeader() {}
 
 } // namespace networkable
