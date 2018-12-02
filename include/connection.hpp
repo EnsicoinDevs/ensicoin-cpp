@@ -2,7 +2,6 @@
 #define CONNECTION_HPP
 
 #include "messages.hpp"
-#include "networkreader.hpp"
 
 #include <asio.hpp>
 #include <memory>
@@ -44,14 +43,19 @@ namespace network{
 			/// \brief Construct a Connection
 			Connection(asio::io_context& io_context, Node* node);
 
+			/// \brief Called wwhen recevieving a message
+			void handleHeader();
+
 			/// \brief Called when reading a Message
-			void handleRead();
+			void handleMessage(const networkable::MessageHeader& header);
+
 			/// \brief Called when writing a Message
 			void handleWrite(std::string type);
 
 			/// \brief Empty the buffer
 			/// \todo Change the implementation of Connection
 			/// to use a NetworkBuffer
+			/// \todo FIXME!
 			void resetBuffer();
 
 			/// \brief Socket used for network access
@@ -64,9 +68,7 @@ namespace network{
 			bool waved;
 			/// \brief recieved a WhoAmI
 			bool connected;
-			/// \brief network::NetworkReader to buffer the
-			/// incomming data
-			network::NetworkReader reader;
+			/// \brief NetworkBuffer for the connection
 			NetworkBuffer netBuffer;
 
 			/// \brief Message buffered before WhoAmI exchange

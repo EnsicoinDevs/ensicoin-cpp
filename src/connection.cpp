@@ -1,6 +1,5 @@
 #include "connection.hpp"
 #include "constants.hpp"
-#include "networkreader.hpp"
 #include "messages.hpp"
 
 #include <asio.hpp>
@@ -50,8 +49,7 @@ namespace network{
 		socket(io_context),
 		node(nodePtr), 
 		waved(false), 
-		connected(false),
-		reader(nodePtr, shared_from_this(), &netBuffer) {}
+		connected(false) {}
 
 	void Connection::wave(){
 		if(!waved){
@@ -63,16 +61,15 @@ namespace network{
 			connected = true;
 	}
 
-	void Connection::handleRead(){
-		std::string strData = asio::buffer_cast<const char*>(buffer.data());
-		if(strData.length() > 0 && !(strData[0] == '{'))
-			strData = "{" + strData;
+	void Connection::handleHeader(){
+		auto header = networkable::MessageHeader(&netBuffer);
+		asio::async_read(socket, buffer, 
+				asio::transfer_exactly(header.payloadLength), 
+				std::bind(&Connection::handleMessage, 
+					shared_from_this(), header) );
+	}
 
-		if( strData.size() > constants::MESSAGE_LIMIT)
-			throw std::runtime_error("Message too long");
-
-		reader.handle();
-		idle();	
+	void Connection::handleMessage(const networkable::MessageHeader& header){
 	}
 
 	void Connection::handleWrite(std::string type){
@@ -84,8 +81,8 @@ namespace network{
 
 	void Connection::idle(){
 		asio::async_read(socket, buffer, 
-				asio::transfer_exactly(reader.readRequest()), 
-				std::bind(&Connection::handleRead, 
+				asio::transfer_exactly(networkable::MessageHeader::size), 
+				std::bind(&Connection::handleHeader, 
 					shared_from_this()) );
 		
 		if( connected ){
@@ -97,7 +94,6 @@ namespace network{
 	}
 
 	void Connection::resetBuffer(){
-		buffer.consume(reader.readCount());
 	}
 
 } //namespace network
