@@ -70,6 +70,9 @@ namespace message{
 		public:
 			/// \brief Construct a WhoAmI Message
 			WhoAmI();
+			inline uint32_t getVersion() const{
+				return version;
+			}
 			/// \brief Parses a WhoAmI Message
 			/// \param networkBuffer buffer containing
 			/// the raw Representation

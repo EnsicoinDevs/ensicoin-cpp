@@ -9,35 +9,52 @@
 namespace message{
 	
 	std::string Message::getTypeAsString() const{
+		std::string tp;
 		switch(type){
 			case whoami:
-				return "whoami";
+				tp = "whoami";
+				break;
 			case whoamiack:
-				return "whoamiack";
+				tp = "whoamiack";
+				break;
 			case getaddr:
-				return "getaddr";
+				tp = "getaddr";
+				break;
 			case addr:
-				return "addr";
+				tp =  "addr";
+				break;
 			case inv:
-				return "inv";
+				tp = "inv";
+				break;
 			case getdata:
-				return "getdata";
+				tp = "getdata";
+				break;
 			case notfound:
-				return "notfound";
+				tp = "notfound";
+				break;
 			case block:
-				return "block";
+				tp = "block";
+				break;
 			case tx:
-				return "tx";
+				tp = "tx";
+				break;
 			case getblocks:
-				return "getblocks";
+				tp = "getblocks";
+				break;
 			case getmempool:
-				return "getmempool";
+				tp = "getmempool";
+				break;
 			case unknown:
-				return "unknown";
+				tp = "unknown";
+				break;
 		}
+		return tp;
 	}
 
-	Message::message_type Message::typeFromString(const std::string& typeStr){
+	Message::message_type Message::typeFromString(const std::string& typeStrPadded){
+		std::istringstream is(typeStrPadded);
+		std::string typeStr;
+		is >> typeStr;
 		if(typeStr == "whoami")
 			return whoami;
 		else if(typeStr == "whoamiack")
