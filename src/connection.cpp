@@ -1,5 +1,6 @@
 #include "connection.hpp"
 #include "constants.hpp"
+#include "messagehandler.hpp"
 #include "messages.hpp"
 #include "util.hpp"
 
@@ -27,6 +28,7 @@ namespace network{
 	void Connection::bind(asio::ip::address ipAddress){
 		socket.connect(asio::ip::tcp::endpoint( ipAddress, constants::PORT));
 		sendMessage(std::make_shared<message::WhoAmI>());
+		waved = true;
 	}
 
 	void Connection::start(){
@@ -34,7 +36,8 @@ namespace network{
 	}
 
 	void Connection::sendMessage(message::Message::pointer message){
-		if(message->getType() == message::Message::message_type::whoami || connected){
+		if(message->getType() == message::Message::\
+				message_type::whoami || connected){
 			const std::string messageStr = message->byteRepr();
 			asio::async_write(socket, asio::buffer(messageStr), 
 					std::bind(&Connection::handleWrite, 
@@ -49,17 +52,29 @@ namespace network{
 		socket(io_context),
 		node(nodePtr), 
 		waved(false), 
-		connected(false) {}
+		connected(false),
+		versionUsed(constants::VERSION) {}
 
-	void Connection::wave(){
+	void Connection::wave(int connectionVersion){
 		if(!waved){
 			auto response = std::make_shared<message::WhoAmI>();
 			sendMessage(response);
 			waved = true;
+			if(versionUsed > connectionVersion){
+				versionUsed = connectionVersion;
+			}
 		}
-		if(waved)
-			connected = true;
 	}
+
+	void Connection::acknowledge(){
+		if(!waved){
+			std::cerr << "Connection to " << remote() <<
+				" can't be validated if not waved" << std::endl;
+		}
+		else{
+			connected = true;
+		}
+	};
 
 	std::string Connection::readAll(){
 		std::istream is(&buffer);
@@ -69,6 +84,7 @@ namespace network{
 	}
 
 	void Connection::handleHeader(){
+		std::cerr << "Reading header" << std::endl;
 		auto stringData = readAll();
 		netBuffer.appendRawData(stringData);
 		auto header = networkable::MessageHeader(&netBuffer);
@@ -79,11 +95,14 @@ namespace network{
 	}
 
 	void Connection::handleMessage(const networkable::MessageHeader& header){
-		std::cout << header.type <<" from "<< remote() << std::endl;
+		std::cout << header.type << " from " << remote() << std::endl;
 		auto stringData = readAll();
 		netBuffer.appendRawData(stringData);
-		auto test = message::WhoAmI(&netBuffer);
-		std::cout << "Byte repr : " << test.byteRepr() << std::endl;
+		MessageHandler(message::Message::typeFromString(header.type),
+					   &netBuffer,
+					   node,
+					   shared_from_this());
+		idle();
 	}
 
 	void Connection::handleWrite(std::string type){

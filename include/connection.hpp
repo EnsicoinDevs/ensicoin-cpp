@@ -38,7 +38,9 @@ namespace network{
 			void idle();
 
 			/// \brief Exchange of message::WhoAmI
-			void wave();
+			void wave(int connectionVersion);
+			/// \brief Validates a client after a message::WhoAmIAck
+			void acknowledge();
 		private:
 			std::string readAll();
 
@@ -59,6 +61,8 @@ namespace network{
 
 			/// \brief Pointer to the node to handle Message actions
 			Node* node;
+
+			int versionUsed;
 
 			/// \brief has the node send a WhoAmI
 			bool waved;

@@ -1,8 +1,16 @@
-obj/blockchain.o: src/blockchain.cpp include/blockchain.hpp \
-  include/blocks.hpp include/hashmemory.hpp include/jsonable.hpp \
+obj/messagehandler.o: src/messagehandler.cpp include/messagehandler.hpp \
+  include/networkbuffer.hpp include/networkable.hpp \
+  include/constants.hpp include/messages.hpp include/blocks.hpp \
+  include/hashmemory.hpp include/jsonable.hpp include/target.hpp \
+  include/transaction.hpp include/script.hpp include/node.hpp \
+  include/blockchain.hpp include/utxo.hpp include/connection.hpp \
+  include/mempool.hpp include/linkedtransaction.hpp
+	$(CXX) -c -o $@ $< $(CXXFLAGS)
+obj/blockchain.o: src/blockchain.cpp include/blockchain.hpp include/utxo.hpp \
+  include/transaction.hpp include/hashmemory.hpp include/jsonable.hpp \
   include/networkable.hpp include/constants.hpp \
-  include/networkbuffer.hpp include/target.hpp include/transaction.hpp \
-  include/script.hpp
+  include/networkbuffer.hpp include/script.hpp include/blocks.hpp \
+  include/target.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/getdata.o: src/message/getdata.cpp include/messages.hpp \
   include/blocks.hpp include/hashmemory.hpp include/jsonable.hpp \
@@ -29,7 +37,9 @@ obj/connection.o: src/connection.cpp include/connection.hpp \
   include/messages.hpp include/blocks.hpp include/hashmemory.hpp \
   include/jsonable.hpp include/networkable.hpp include/constants.hpp \
   include/networkbuffer.hpp include/target.hpp include/transaction.hpp \
-  include/script.hpp
+  include/script.hpp include/messagehandler.hpp include/node.hpp \
+  include/blockchain.hpp include/utxo.hpp include/mempool.hpp \
+  include/linkedtransaction.hpp include/util.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/jsonable.o: src/jsonable.cpp include/jsonable.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
@@ -61,7 +71,7 @@ obj/utxo.o: src/utxo.cpp include/utxo.hpp include/transaction.hpp \
 obj/blocks.o: src/blocks.cpp include/blocks.hpp include/hashmemory.hpp \
   include/jsonable.hpp include/networkable.hpp include/constants.hpp \
   include/networkbuffer.hpp include/target.hpp include/transaction.hpp \
-  include/script.hpp include/crypto.hpp src/networkbuffer.cpp
+  include/script.hpp include/crypto.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/transactionmessage.o: src/message/transactionmessage.cpp \
   include/messages.hpp include/blocks.hpp include/hashmemory.hpp \
@@ -93,9 +103,9 @@ obj/main.o: src/main.cpp include/constants.hpp include/crypto.hpp \
   include/util.hpp include/script.hpp include/networkable.hpp \
   include/networkbuffer.hpp include/blocks.hpp include/hashmemory.hpp \
   include/jsonable.hpp include/target.hpp include/transaction.hpp \
-  include/node.hpp include/blockchain.hpp include/connection.hpp \
-  include/messages.hpp include/mempool.hpp include/linkedtransaction.hpp \
-  include/utxo.hpp
+  include/node.hpp include/blockchain.hpp include/utxo.hpp \
+  include/connection.hpp include/messages.hpp include/mempool.hpp \
+  include/linkedtransaction.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/networkable.o: src/networkable.cpp include/networkable.hpp \
   include/constants.hpp include/networkbuffer.hpp include/util.hpp
@@ -121,8 +131,8 @@ obj/mempool.o: src/mempool.cpp include/mempool.hpp include/hashmemory.hpp \
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/target.o: src/target.cpp include/target.hpp include/networkbuffer.hpp \
   include/networkable.hpp include/constants.hpp include/blockchain.hpp \
-  include/blocks.hpp include/hashmemory.hpp include/jsonable.hpp \
-  include/transaction.hpp include/script.hpp
+  include/utxo.hpp include/transaction.hpp include/hashmemory.hpp \
+  include/jsonable.hpp include/script.hpp include/blocks.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/networkbuffer.o: src/networkbuffer.cpp include/networkbuffer.hpp \
   include/networkable.hpp include/constants.hpp
@@ -146,9 +156,9 @@ obj/transactioninput.o: src/transaction/transactioninput.cpp \
 obj/util.o: src/util.cpp include/util.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 obj/node.o: src/node.cpp include/node.hpp include/blockchain.hpp \
-  include/blocks.hpp include/hashmemory.hpp include/jsonable.hpp \
-  include/networkable.hpp include/constants.hpp \
-  include/networkbuffer.hpp include/target.hpp include/transaction.hpp \
-  include/script.hpp include/connection.hpp include/messages.hpp \
-  include/mempool.hpp include/linkedtransaction.hpp include/utxo.hpp
+  include/utxo.hpp include/transaction.hpp include/hashmemory.hpp \
+  include/jsonable.hpp include/networkable.hpp include/constants.hpp \
+  include/networkbuffer.hpp include/script.hpp include/blocks.hpp \
+  include/target.hpp include/connection.hpp include/messages.hpp \
+  include/mempool.hpp include/linkedtransaction.hpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
