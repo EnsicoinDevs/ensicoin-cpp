@@ -51,9 +51,9 @@ namespace network{
 	Connection::Connection(asio::io_context& io_context, Node* nodePtr) : 
 		socket(io_context),
 		node(nodePtr), 
+		versionUsed(constants::VERSION),
 		waved(false), 
-		connected(false),
-		versionUsed(constants::VERSION) {}
+		connected(false) {}
 
 	void Connection::wave(int connectionVersion){
 		if(!waved){
@@ -63,6 +63,10 @@ namespace network{
 			if(versionUsed > connectionVersion){
 				versionUsed = connectionVersion;
 			}
+		}
+		if(waved){
+			auto response = std::make_shared<message::WhoAmIAck>();
+			sendMessage(response);
 		}
 	}
 
@@ -105,7 +109,7 @@ namespace network{
 		idle();
 	}
 
-	void Connection::handleWrite(std::string type){
+	void Connection::handleWrite(const std::string& type){
 		std::cerr << type << " to " << remote() << std::endl;
 		/*if(type == whoami)
 			waved = true;*/
@@ -117,6 +121,8 @@ namespace network{
 				asio::transfer_exactly(networkable::MessageHeader::size), 
 				std::bind(&Connection::handleHeader, 
 					shared_from_this()) );
+
+		std::cout << "Waiting message" << std::endl;
 		
 		if( connected ){
 			while(!bufferedMessages.empty()){

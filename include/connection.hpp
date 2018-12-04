@@ -54,7 +54,7 @@ namespace network{
 			void handleMessage(const networkable::MessageHeader& header);
 
 			/// \brief Called when writing a Message
-			void handleWrite(std::string type);
+			void handleWrite(const  std::string& type);
 
 			/// \brief Socket used for network access
 			asio::ip::tcp::socket socket;
