@@ -18,9 +18,12 @@ namespace network{
 			case message_type::whoami:
 				onWhoAmI();
 				break;
+			case message_type::whoamiack:
+				onWhoAmIAck();
+				break;
 			default:
 				onUnknown();
-break;
+				break;
 		}
 	}
 
@@ -31,5 +34,9 @@ break;
 	void MessageHandler::onWhoAmI(){
 		auto msg = std::make_shared<message::WhoAmI>(buffer);
 		conn->wave(msg->getVersion());
+	}
+
+	void MessageHandler::onWhoAmIAck(){
+		conn->acknowledge();
 	}
 } // namespace network

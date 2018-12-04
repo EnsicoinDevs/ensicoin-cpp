@@ -16,8 +16,10 @@ namespace network{
 			Connection::pointer conn;
 		
 			void onWhoAmI();
+			void onWhoAmIAck();
+			
 			void onUnknown();
-
+		
 		public:
 			MessageHandler(message::Message::message_type type,
 						   NetworkBuffer* buffer_,
