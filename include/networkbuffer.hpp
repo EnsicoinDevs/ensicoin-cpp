@@ -2,6 +2,8 @@
 #define NETWORKBUFFER_HPP
 
 #include "networkable.hpp"
+
+#include <spdlog/spdlog.h>
 #include <sstream>
 #include <string>
 
@@ -23,9 +25,9 @@ class NetworkBuffer{
 		void appendRawData(const std::string& rawData);
 
 		/// \brief Construct a NetworkBuffer from a binaryString
-		explicit NetworkBuffer(const std::string& binaryString);
+		NetworkBuffer(const std::string& binaryString,std::shared_ptr<spdlog::logger> logger_);
 		/// \brief Construct an empty NetworkBuffer
-		NetworkBuffer();
+		explicit NetworkBuffer(std::shared_ptr<spdlog::logger> logger_);
 	protected:
 		/// \brief Read a networkable::Var_uint from the 
 		/// buffer
@@ -47,6 +49,7 @@ class NetworkBuffer{
 	private:
 		/// \brief Stringstream used as a buffer 
 		std::stringstream buffer;
+		std::shared_ptr<spdlog::logger> logger;
 };
 
 namespace asio{

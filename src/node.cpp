@@ -8,12 +8,22 @@
 #include <functional>
 #include <iostream>
 #include <memory>
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
 #include <stdexcept>
 
-
-Node::Node(asio::io_context& io_context) : acceptor(io_context, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), constants::PORT)) {
+Node::Node(asio::io_context& io_context) : 
+	logger(spdlog::stdout_color_mt("console")),
+	mempool(logger),
+	blockchain(logger),
+	acceptor(io_context,
+			asio::ip::tcp::endpoint(asio::ip::tcp::v4(),
+									constants::PORT)){
 	acceptor.listen();
 	run();
+	
+	logger->set_level(spdlog::level::trace);
+	logger->info("Node started");
 
 	//ressources::Block GenesisBlock({0,{"ici cest limag"},"","",1566862920,42},{});
 	
@@ -39,19 +49,16 @@ Node::Node(asio::io_context& io_context) : acceptor(io_context, asio::ip::tcp::e
 	//auto msgTestTr = std::make_shared<message::TransactionMessage>(testTxPtr);
 	//auto msgMempool = std::make_shared<message::GetMempool>();
 
-	//std::cout << msgTestTr->str() << std::endl;
-	std::cout << messageTest->byteRepr() << std::endl;
-
-	network::Connection::pointer testConnection = network::Connection::create(io_context, this);
+	network::Connection::pointer testConnection = network::Connection::create(io_context, this, logger);
 	connections.push_back(testConnection);
-	testConnection->bind( asio::ip::address::from_string(johynIP));
+	testConnection->bind(asio::ip::address::from_string(johynIP));
 
 	//testConnection->sendMessage(invTest);
 	//testConnection->sendMessage(msgMempool);
 }
 
 void Node::run(){
-	network::Connection::pointer newConnection = network::Connection::create(acceptor.get_executor().context(), this);
+	network::Connection::pointer newConnection = network::Connection::create(acceptor.get_executor().context(), this, logger);
 	acceptor.async_accept(newConnection->getSocket(), std::bind( &Node::handleAccept, this, newConnection ));
 
 	/*for(auto& conn : connections){

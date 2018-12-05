@@ -11,19 +11,20 @@
 
 #include <asio.hpp>
 #include <memory>
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
 #include <vector>
 
 /// \brief Node handling messages and processing
-///
 class Node{
 	private:
-//		HashMemory mainChain;
-//		std::vector< HashMemory > secondaryChains;
-		
+		/// \brief Logger
+		std::shared_ptr<spdlog::logger> logger;
+
 		/// \brief Mempool of the Node
 		manager::Mempool mempool;
 		/// \brief Main Blockchain
-		manager::Blockchain blockchain;
+		manager::BlockIndex blockchain;
 		
 		/// \brief Accept TCP connections from other nodes
 		asio::ip::tcp::acceptor acceptor;

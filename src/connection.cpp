@@ -9,12 +9,16 @@
 #include <functional>
 #include <iostream>
 #include <memory>
+#include <spdlog/spdlog.h>
 #include <stdexcept>
 
 namespace network{
 
-	Connection::pointer Connection::create(asio::io_context& io_context, Node* node){
-		return Connection::pointer(new Connection(io_context, node));
+	Connection::pointer Connection::create(
+			asio::io_context& io_context,
+			Node* node,
+			std::shared_ptr<spdlog::logger> lgr){
+		return Connection::pointer(new Connection(io_context, node, lgr));
 	}
 
 	asio::ip::tcp::socket& Connection::getSocket(){
@@ -48,12 +52,16 @@ namespace network{
 			bufferedMessages.push_back(message);
 	}
 
-	Connection::Connection(asio::io_context& io_context, Node* nodePtr) : 
+	Connection::Connection(asio::io_context& io_context,
+			    		   Node* nodePtr,
+						   std::shared_ptr<spdlog::logger> logger_) : 
 		socket(io_context),
 		node(nodePtr), 
 		versionUsed(constants::VERSION),
 		waved(false), 
-		connected(false) {}
+		connected(false),
+		netBuffer(logger_),
+		logger(logger_) {}
 
 	void Connection::wave(int connectionVersion){
 		if(!waved){
@@ -72,8 +80,7 @@ namespace network{
 
 	void Connection::acknowledge(){
 		if(!waved){
-			std::cerr << "Connection to " << remote() <<
-				" can't be validated if not waved" << std::endl;
+			logger->warn("Can't validate connection to [{}] if it was not waved", remote());
 		}
 		else{
 			connected = true;
@@ -88,7 +95,7 @@ namespace network{
 	}
 
 	void Connection::handleHeader(){
-		std::cerr << "Reading header" << std::endl;
+		logger->debug("[{}] reading header", remote());
 		auto stringData = readAll();
 		netBuffer.appendRawData(stringData);
 		auto header = networkable::MessageHeader(&netBuffer);
@@ -99,20 +106,20 @@ namespace network{
 	}
 
 	void Connection::handleMessage(const networkable::MessageHeader& header){
-		std::cout << header.type << " from " << remote() << std::endl;
+		logger->info("{} from {}", header.type, remote());
+		logger->debug("[{}] reading {} bytes in payload", remote(), header.payloadLength);
 		auto stringData = readAll();
 		netBuffer.appendRawData(stringData);
 		MessageHandler(message::Message::typeFromString(header.type),
 					   &netBuffer,
 					   node,
-					   shared_from_this());
+					   shared_from_this(),
+					   logger);
 		idle();
 	}
 
 	void Connection::handleWrite(const std::string& type){
-		std::cerr << type << " to " << remote() << std::endl;
-		/*if(type == whoami)
-			waved = true;*/
+		logger->info("{} to {}", type, remote());
 		idle();
 	}
 
@@ -122,8 +129,8 @@ namespace network{
 				std::bind(&Connection::handleHeader, 
 					shared_from_this()) );
 
-		std::cout << "Waiting message" << std::endl;
-		
+		logger->trace("[{}] waiting mesage", remote());
+
 		if( connected ){
 			while(!bufferedMessages.empty()){
 				sendMessage(bufferedMessages.back());

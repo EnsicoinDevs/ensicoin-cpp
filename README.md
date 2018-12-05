@@ -8,3 +8,4 @@ Dependencies:
 	Crypto++
 	Asio (Non-boost)
 	LevelDB
+	spdlog

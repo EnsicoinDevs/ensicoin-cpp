@@ -7,6 +7,7 @@
 
 #include <leveldb/db.h>
 #include <memory>
+#include <spdlog/spdlog.h>
 #include <string>
 
 /// \brief Classes handling all ressources
@@ -42,7 +43,7 @@ namespace manager{
 	class UTXOManager{
 		public:
 			/// \brief Initialize the database
-			UTXOManager();
+			UTXOManager(std::shared_ptr<spdlog::logger> logger_);
 
 			/// \brief Retrive an element from the database
 			UTXOdata getData(ressources::UTXO id) const;
@@ -59,6 +60,7 @@ namespace manager{
 			/// \brief Delete an UTXO because it was spent
 			void spend(ressources::UTXO txid);
 		private:
+			std::shared_ptr<spdlog::logger> logger;
 			/// \brief Database storing the UTXO
 			leveldb::DB* db;
 	};

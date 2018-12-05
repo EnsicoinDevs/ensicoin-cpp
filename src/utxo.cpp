@@ -7,6 +7,7 @@
 #include <iostream>
 #include <leveldb/db.h>
 #include <memory>
+#include <spdlog/spdlog.h>
 
 namespace manager{
 
@@ -41,14 +42,14 @@ namespace manager{
 		script(networkBuffer)
 				{}
 
-	UTXOManager::UTXOManager(){
+	UTXOManager::UTXOManager(std::shared_ptr<spdlog::logger> logger_)
+		: logger(logger_) {
 		leveldb::Options options;
 		options.create_if_missing = true;
 		leveldb::Status status = leveldb::DB::Open(options, 
 													constants::UTXO_DB, &db);
 		if (!status.ok()){
-			std::cerr << "Error db open : " 
-				<< status.ToString() << std::endl;
+			logger->critical("can't open utxo db : {}", status.ToString());
 		}
 	}
 
@@ -57,9 +58,9 @@ namespace manager{
 		leveldb::Status s = db->Get(leveldb::ReadOptions(), 
 						id.byteRepr(), &strData);
 		if (!s.ok()){
-			throw std::runtime_error("UTXO does not exists");
+			logger->critical("error in reading UTXO {}:{} : {}", id.transactionHash, id.index, s.ToString());
 		}
-		NetworkBuffer buffer(strData);
+		NetworkBuffer buffer(strData,logger);
 		UTXOdata data(&buffer);
 		return data;
 	}
@@ -75,16 +76,14 @@ namespace manager{
 		auto s = db->Put(leveldb::WriteOptions(), 
 				id.byteRepr(), data.byteRepr());
 		if (!s.ok()){
-			std::cerr << "Error while reading " << 
-				id.byteRepr() << std::endl;
+			logger->critical("error in adding UTXO {}:{} : {}", id.transactionHash, id.index, s.ToString());
 		}
 	}
 
 	void UTXOManager::spend(ressources::UTXO id){
 		auto s = db->Delete(leveldb::WriteOptions(), id.byteRepr());
 		if (!s.ok()){
-			std::cerr << "Error while deleting " << 
-				id.byteRepr() << std::endl;
+			logger->critical("error in deleting UTXO {}:{} : {}", id.transactionHash, id.index, s.ToString());
 		}
 	}
 

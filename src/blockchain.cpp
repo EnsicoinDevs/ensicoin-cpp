@@ -4,40 +4,37 @@
 #include <cstdio>
 #include <iostream>
 #include <leveldb/db.h>
+#include <memory>
 #include <rapidjson/document.h>
+#include <spdlog/spdlog.h>
 #include <sys/stat.h>
 
 namespace manager{
 
-	Blockchain::Blockchain(){
+	Blockchain::Blockchain(std::shared_ptr<spdlog::logger> logger_) : logger(logger_) {
 		leveldb::Options options;
 		options.create_if_missing = true;
 		leveldb::Status statusBlocks = 
 			leveldb::DB::Open(options, 
 					constants::BLOCKCHAIN_DB+"/blocks",
 					&blocksDB);
-		if (!statusBlocks.ok()) std::cerr << 
-			"Error blockDb open : " << 
-				statusBlocks.ToString() << 
-				std::endl;
+		if (!statusBlocks.ok()) 
+			logger->error("can't open block DB : {}",statusBlocks.ToString());
+
 
 		leveldb::Status statusChain = 
 			leveldb::DB::Open(options, 
 					constants::BLOCKCHAIN_DB+"/chain", 
 					&chainDB);
-		if (!statusChain.ok()) std::cerr << 
-			"Error blockDb open : " << 
-				statusChain.ToString() << 
-				std::endl;
+		if (!statusChain.ok())
+			logger->error("can't open chain DB : {}",statusChain.ToString());
 
 		leveldb::Status blockchainInfo =
 			leveldb::DB::Open(options,
 					constants::BLOCKCHAIN_DB+"/stat",
 					&statDB);
-		if(!blockchainInfo.ok()) std::cerr <<
-			"Error opening statDB : " <<
-				blockchainInfo.ToString() <<
-				std::endl;
+		if(!blockchainInfo.ok()) 
+			logger->error("can't open info DB : {}",blockchainInfo.ToString());
 	}
 
 	ressources::Block Blockchain::getBlock(const std::string& hash){
@@ -45,11 +42,15 @@ namespace manager{
 		leveldb::Status s = blocksDB->Get(leveldb::ReadOptions(), 
 						hash, &strData);
 		if (!s.ok()){
-			throw std::runtime_error("Block does not exists");
+			logger->critical("block {} does not exist", hash);
 		}
-		NetworkBuffer buffer(strData);
+		NetworkBuffer buffer(strData, logger);
 		return ressources::Block(&buffer);
 	}
+
+	BlockIndex::BlockIndex(std::shared_ptr<spdlog::logger> logger_) : 
+		blockchain(logger_),
+		logger(logger_) {}
 
 	std::vector<ressources::BlockTarget> BlockIndex::getWindowFrom(const std::string& latestBlock){
 		std::string currentHash = latestBlock;

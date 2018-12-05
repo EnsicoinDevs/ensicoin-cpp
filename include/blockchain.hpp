@@ -7,6 +7,8 @@
 #include <leveldb/db.h>
 #include <string>
 #include <map>
+#include <memory>
+#include <spdlog/spdlog.h>
 
 namespace manager{
 
@@ -22,11 +24,12 @@ namespace manager{
 			/// \brief DB storing data on how to update 
 			/// the Blockchain
 			leveldb::DB* updateDB;
+			std::shared_ptr<spdlog::logger> logger;
 		public:
 			ressources::Block getBlock(const std::string& hash);
 			void registerBlock(const ressources::Block& block);
 			void deleteBlock(const std::string& hash);
-			Blockchain();
+			Blockchain(std::shared_ptr<spdlog::logger> logger_);
 	};
 
 	class BlockIndex{
@@ -34,6 +37,7 @@ namespace manager{
 			Blockchain blockchain;
 			int blockCount;
 			std::map<std::string, ressources::Block> cachedBlocks;
+			std::shared_ptr<spdlog::logger> logger;
 		public:
 			std::vector<ressources::BlockTarget> getWindowFrom(
 					const std::string& statringBlock);
@@ -42,7 +46,7 @@ namespace manager{
 			void popBlock(UTXOManager* utxos);
 			void pushBlock(UTXOManager* utxos, 
 					const ressources::Block& block);
-			BlockIndex();
+			BlockIndex(std::shared_ptr<spdlog::logger> logger_);
 	};
 
 } // namespace manager

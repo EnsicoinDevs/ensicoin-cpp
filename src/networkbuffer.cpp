@@ -4,9 +4,9 @@
 #include <iostream>
 #include <string>
 
-NetworkBuffer::NetworkBuffer() {}
+NetworkBuffer::NetworkBuffer(std::shared_ptr<spdlog::logger> logger_) : logger(logger_) {}
 
-NetworkBuffer::NetworkBuffer(const std::string& binaryString){
+NetworkBuffer::NetworkBuffer(const std::string& binaryString,std::shared_ptr<spdlog::logger> logger_) : logger(logger_) {
 	buffer << binaryString;
 }
 
@@ -23,8 +23,7 @@ uint16_t NetworkBuffer::readUint16(){
 	char* binaryRepr = new char[2];
 	buffer.read(binaryRepr, 2);
 	if(buffer.gcount() != 2){
-		std::cerr << "Not enough bytes in buffer\
-			to read Uint16" << std::endl;
+		logger->error("error in reading Uint16 from buffer : expected 2 bytes got {}", buffer.gcount());
 		return 0;
 	}
 	int value = (unsigned char)(binaryRepr[0]) << 8 |
@@ -36,8 +35,7 @@ uint32_t NetworkBuffer::readUint32(){
 	char* binaryRepr = new char[4];
 	buffer.read(binaryRepr, 4);
 	if(buffer.gcount() != 4){
-		std::cerr << "Not enough bytes in buffer\
-			to read Uint32" << std::endl;
+		logger->error("error in reading Uint32 from buffer : expected 4 bytes got {}", buffer.gcount());
 		return 0;
 	}
 	int value = (unsigned char)(binaryRepr[0]) << 24 |
@@ -51,8 +49,7 @@ uint64_t NetworkBuffer::readUint64(){
 	char* binaryRepr = new char[8];
 	buffer.read(binaryRepr, 8);
 	if(buffer.gcount() != 8){
-		std::cerr << "Not enough bytes in buffer\
-			to read Uint64" << std::endl;
+		logger->error("error in reading Uint64 from buffer : expected 8 bytes got {}", buffer.gcount());
 		return 0;
 	}
 	int value = 0;
@@ -67,8 +64,7 @@ uint64_t NetworkBuffer::readVar_uint(){
 	char* binaryStart = new char[1];
 	buffer.read(binaryStart, 1);
 	if(buffer.gcount() != 1){
-		std::cerr << "Attempted to read empty Var_uint" 
-			<< std::endl;
+		logger->error("error in reading Var_uint from buffer : read empty buffer");
 		return 0;
 	}
 	if ( binaryStart[0] < char(0xfd) ){
@@ -78,8 +74,7 @@ uint64_t NetworkBuffer::readVar_uint(){
 		char* binaryValue = new char[2];
 		buffer.read(binaryValue, 2);
 		if(buffer.gcount() != 2){
-			std::cerr << "Invalid length in Var_uint"
-				<< std::endl;
+			logger->error("error in reading Var_uint from buffer : expected 2 bytes got {}", buffer.gcount());
 			return 0;
 		}
 		int value = ((unsigned char)(binaryValue[0]) << 8) |
@@ -91,8 +86,7 @@ uint64_t NetworkBuffer::readVar_uint(){
 		char* binaryValue = new char[4];
 		buffer.read(binaryValue, 4);
 		if(buffer.gcount() != 4){
-			std::cerr << "Invalid length in Var_uint"
-				<< std::endl;
+			logger->error("error in reading Var_uint from buffer : expected 4 bytes got {}", buffer.gcount());
 			return 0;
 		}
 		int value = ((unsigned char)(binaryValue[0]) << 24) |
@@ -105,8 +99,7 @@ uint64_t NetworkBuffer::readVar_uint(){
 		char* binaryValue = new char[8];
 		buffer.read(binaryValue, 8);
 		if(buffer.gcount() != 8){
-			std::cerr << "Invalid length in Var_uint"
-				<< std::endl;
+			logger->error("error in reading Var_uint from buffer : expected 8 bytes got {}", buffer.gcount());
 			return 0;
 		}
 		int value = 0;
@@ -128,15 +121,13 @@ std::string NetworkBuffer::readStr(size_t length){
 		buffer.read(stringBuffer, buffer_size);
 		readString += stringBuffer;
 		if(buffer.gcount() != buffer_size){
-			std::cerr << "Inavlid length in Str" 
-				<< std::endl;
+			logger->error("error in reading Str from buffer : expected {} bytes got {}",buffer_size, buffer.gcount());
 			return "";
 		}
 	}
 	buffer.read(stringBuffer, length - readLength);
 	if((unsigned int) buffer.gcount() != (length - readLength)){
-			std::cerr << "Inavlid length in Str" 
-				<< std::endl;
+			logger->error("error in reading Str from buffer : expected {} bytes got {}",(length-readLength), buffer.gcount());
 			return "";
 	}
 	readString += stringBuffer;

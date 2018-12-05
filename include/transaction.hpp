@@ -125,7 +125,7 @@ namespace ressources {
 			std::vector<OutputTransaction> outputs;
 		public:
 			/// \brief Types a Transaction can be
-			enum TXType { Orphan, Regular };
+			enum TXType { Orphan, Regular, Unknown };
 			/// \brief Shared ptr to a Transaction
 			using pointer = std::shared_ptr<Transaction>;
 			/// \brief Create a Transaction from

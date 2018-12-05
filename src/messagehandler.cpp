@@ -10,10 +10,12 @@ namespace network{
 			message::Message::message_type tp,
 			NetworkBuffer* buffer_,
 			Node* node_,
-			Connection::pointer conn_) :
+			Connection::pointer conn_,
+			std::shared_ptr<spdlog::logger> logger_) :
 		buffer(buffer_),
 		node(node_),
-		conn(conn_) {
+		conn(conn_),
+		logger(logger_) {
 		switch(tp){
 			case message_type::whoami:
 				onWhoAmI();
@@ -28,7 +30,7 @@ namespace network{
 	}
 
 	void MessageHandler::onUnknown(){
-		std::cerr << "Unknown message type" << std::endl;
+		logger->warn("unknown message type");
 	}
 
 	void MessageHandler::onWhoAmI(){

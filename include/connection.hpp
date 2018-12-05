@@ -5,6 +5,7 @@
 
 #include <asio.hpp>
 #include <memory>
+#include <spdlog/spdlog.h>
 
 class Node;
 
@@ -21,7 +22,9 @@ namespace network{
 			/// \brief Creates a shared_ptr of Connection
 			/// \param io_context io_context for async operation
 			/// \param node pointer to a Node to handle actions
-			static pointer create(asio::io_context& io_context, Node* node);
+			static pointer create(asio::io_context& io_context,
+								 Node* node,
+								 std::shared_ptr<spdlog::logger> lg);
 			/// \brief IP Adress of remote connection
 			std::string remote() const;
 			/// \brief Reference to the socket
@@ -45,7 +48,9 @@ namespace network{
 			std::string readAll();
 
 			/// \brief Construct a Connection
-			Connection(asio::io_context& io_context, Node* node);
+			Connection(asio::io_context& io_context,
+					   Node* node,
+					   std::shared_ptr<spdlog::logger> logger);
 
 			/// \brief Called wwhen recevieving a message
 			void handleHeader();
@@ -75,6 +80,8 @@ namespace network{
 			std::vector<message::Message::pointer> bufferedMessages;
 			/// \brief Buffered content read from the node
 			asio::streambuf buffer;
+
+			std::shared_ptr<spdlog::logger> logger;
 	};
 
 } // namespace network

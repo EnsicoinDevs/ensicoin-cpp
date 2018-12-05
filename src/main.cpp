@@ -56,10 +56,6 @@ int main(){
 		std::cout << "Directory set" << std::endl;
 	}
 	
-	std::cout << "Is destructible : "<< std::is_destructible<NetworkBuffer>::value << std::endl;
-	std::cout << "Is is_copy_constructible : "<< std::is_destructible<NetworkBuffer>::value << std::endl;
-	std::cout << "Is mutable_sequence : "<< asio::is_mutable_buffer_sequence<NetworkBuffer>::value << std::endl;
-
 	asio::io_context io_context;
 	Node node(io_context);
 	io_context.run();
