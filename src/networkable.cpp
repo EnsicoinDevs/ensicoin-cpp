@@ -233,7 +233,7 @@ namespace networkable{
 	std::string MessageHeader::byteRepr() const{
 		std::string out = Uint32(magic).byteRepr();
 		out += FixedStr<12>(type).byteRepr();
-		out += Var_uint(payloadLength).byteRepr();
+		out += Uint64(payloadLength).byteRepr();
 		return out;
 	}
 	MessageHeader::MessageHeader(NetworkBuffer* buffer) :

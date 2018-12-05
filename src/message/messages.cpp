@@ -95,7 +95,7 @@ namespace message{
 		auto payloadLength = payloadString.size()/2;
 		networkable::MessageHeader header(magic,strType,payloadLength);
 		return 	header.byteRepr() +
-			payloadString;
+				payloadString;
 	}
 
 } // namespace message

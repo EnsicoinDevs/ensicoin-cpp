@@ -19,8 +19,8 @@ namespace message{
 		timestamp(networkable::Uint64(networkBuffer).getValue()) {}
 
 	std::string WhoAmI::payload() const{
-		return networkable::Uint32(version).byteRepr() + 
-			networkable::Uint64(timestamp).byteRepr();
+		return 	networkable::Uint32(version).byteRepr() + 
+				networkable::Uint64(timestamp).byteRepr();
 	}
 	
 	WhoAmIAck::WhoAmIAck() : Message(whoamiack) {}
