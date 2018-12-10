@@ -3,22 +3,23 @@
 #include "constants.hpp"
 #include "messages.hpp"
 #include "networkable.hpp"
+#include "util.hpp"
 
 #include <asio.hpp>
 #include <functional>
 #include <iostream>
 #include <memory>
 #include <spdlog/spdlog.h>
-#include <spdlog/sinks/stdout_color_sinks.h>
 #include <stdexcept>
 
-Node::Node(asio::io_context& io_context) : 
-	logger(spdlog::stdout_color_mt("console")),
+Node::Node(asio::io_context& io_context,
+		   std::shared_ptr<spdlog::logger> logger_) : 
+	logger(logger_),
 	mempool(logger),
 	blockchain(logger),
 	acceptor(io_context,
 			asio::ip::tcp::endpoint(asio::ip::tcp::v4(),
-									constants::PORT)){
+									constants::LISTEN_PORT)){
 	acceptor.listen();
 	run();
 	
@@ -42,6 +43,7 @@ Node::Node(asio::io_context& io_context) :
 	const std::string johynIP("78.248.188.120");
 	const std::string myIP("82.235.104.10");
 	const std::string jauvioNathan("92.129.133.102");
+	const std::string localIP("127.0.0.1");
 	auto messageTest = std::make_shared<message::WhoAmI>();
 	//auto invTest = message::Message::pointer( new message::Inv({invData}));
 	//auto getDataTest = message::Message::pointer( new message::GetData({invData}));
