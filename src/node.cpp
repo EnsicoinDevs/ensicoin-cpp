@@ -29,9 +29,7 @@ Node::Node(asio::io_context& io_context) :
 	//ressources::Block GenesisBlock({0,{"ici cest limag"},"","",1566862920,42},{});
 	
 	ressources::TransactionIdentifier testID("obiwan kenobi", 42);
-
 	ressources::InputTransaction testInput(testID, ressources::Script({},"KABAK"));
-
 	ressources::OutputTransaction testOutput(42, ressources::Script({},"BAKAAK"));
 	
 	ressources::Transaction testTransaction(-1, {"I AM A FLAG", "A FLAGGY FLAG"}, {testInput, testInput}, {testOutput, testOutput});
@@ -44,7 +42,6 @@ Node::Node(asio::io_context& io_context) :
 	const std::string myIP("82.235.104.10");
 	const std::string jauvioNathan("92.129.133.102");
 	const std::string localIP("127.0.0.1");
-	auto messageTest = std::make_shared<message::WhoAmI>();
 	//auto invTest = message::Message::pointer( new message::Inv({invData}));
 	//auto getDataTest = message::Message::pointer( new message::GetData({invData}));
 	//auto sendGenesis = std::make_shared<message::BlockMessage>(std::make_shared<ressources::Block>(GenesisBlock));
@@ -53,7 +50,7 @@ Node::Node(asio::io_context& io_context) :
 
 	network::Connection::pointer testConnection = network::Connection::create(io_context, this, logger);
 	connections.push_back(testConnection);
-	testConnection->bind(asio::ip::address::from_string(johynIP));
+	testConnection->bind(asio::ip::address::from_string(myIP));
 
 	//testConnection->sendMessage(invTest);
 	//testConnection->sendMessage(msgMempool);

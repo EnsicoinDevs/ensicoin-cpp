@@ -35,10 +35,10 @@ namespace network{
 
 	void MessageHandler::onWhoAmI(){
 		auto msg = std::make_shared<message::WhoAmI>(buffer);
-		conn->wave(msg->getVersion());
+		conn->updateStatus(msg->getVersion());
 	}
 
 	void MessageHandler::onWhoAmIAck(){
-		conn->acknowledge();
+		conn->updateStatus(0);
 	}
 } // namespace network

@@ -16,6 +16,9 @@ namespace network{
 	class Connection : 
 		public std::enable_shared_from_this<Connection>{
 		public:
+			enum status { Initiated ,
+						  Waiting, 
+						  Ack, WaitingAck};
 			/// \brief Shared pointer to a Connection
 			using pointer = std::shared_ptr<Connection>;
 
@@ -41,9 +44,7 @@ namespace network{
 			void idle();
 
 			/// \brief Exchange of message::WhoAmI
-			void wave(int connectionVersion);
-			/// \brief Validates a client after a message::WhoAmIAck
-			void acknowledge();
+			void updateStatus(int connectionVersion);
 		private:
 			std::string readAll();
 
@@ -56,7 +57,8 @@ namespace network{
 			void handleHeader();
 
 			/// \brief Called when reading a Message
-			void handleMessage(const networkable::MessageHeader& header);
+			void handleMessage(const networkable::MessageHeader&
+					header);
 
 			/// \brief Called when writing a Message
 			void handleWrite(const  std::string& type);
@@ -69,10 +71,7 @@ namespace network{
 
 			int versionUsed;
 
-			/// \brief has the node send a WhoAmI
-			bool waved;
-			/// \brief recieved a WhoAmI
-			bool connected;
+			status currentStatus;
 			/// \brief NetworkBuffer for the connection
 			NetworkBuffer netBuffer;
 

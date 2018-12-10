@@ -30,9 +30,10 @@ namespace network{
 	}
 
 	void Connection::bind(asio::ip::address ipAddress){
-		socket.connect(asio::ip::tcp::endpoint( ipAddress, constants::PORT));
-		sendMessage(std::make_shared<message::WhoAmI>());
-		waved = true;
+		socket.connect(asio::ip::tcp::endpoint( ipAddress,
+					constants::PORT));
+		currentStatus = Initiated;
+		updateStatus(versionUsed);
 	}
 
 	void Connection::start(){
@@ -41,7 +42,7 @@ namespace network{
 
 	void Connection::sendMessage(message::Message::pointer message){
 		if(message->getType() == message::Message::\
-				message_type::whoami || connected){
+				message_type::whoami || currentStatus == Ack){
 			const std::string messageStr = message->byteRepr();
 			asio::async_write(socket, asio::buffer(messageStr), 
 					std::bind(&Connection::handleWrite, 
@@ -54,38 +55,40 @@ namespace network{
 
 	Connection::Connection(asio::io_context& io_context,
 			    		   Node* nodePtr,
-						   std::shared_ptr<spdlog::logger> logger_) : 
+						   std::shared_ptr<spdlog::logger> logger_) :
 		socket(io_context),
 		node(nodePtr), 
 		versionUsed(constants::VERSION),
-		waved(false), 
-		connected(false),
+		currentStatus(Waiting),
 		netBuffer(logger_),
 		logger(logger_) {}
 
-	void Connection::wave(int connectionVersion){
-		if(!waved){
-			auto response = std::make_shared<message::WhoAmI>();
-			sendMessage(response);
-			waved = true;
-			if(versionUsed > connectionVersion){
+	void Connection::updateStatus(int connectionVersion){
+		switch(currentStatus){
+			case Initiated:{
+				sendMessage(std::make_shared<message::WhoAmI>());
+				currentStatus = Waiting;
+				logger->info("[{}] is now waiting", remote());
+				break;
+			}
+			case Waiting:{
+				currentStatus = WaitingAck;
 				versionUsed = connectionVersion;
+				sendMessage(std::make_shared<message::WhoAmIAck>());
+				logger->info("[{}] is now waiting ack",remote());
+				break;
+			}
+			case WaitingAck:{
+				currentStatus = Ack;
+				logger->info("[{}] is acknowledged",remote());
+				break;
+			}
+			case Ack:{
+				logger->warn("[{}] is already acknowledged, can't update it's status", remote());
+				break;
 			}
 		}
-		if(waved){
-			auto response = std::make_shared<message::WhoAmIAck>();
-			sendMessage(response);
-		}
 	}
-
-	void Connection::acknowledge(){
-		if(!waved){
-			logger->warn("Can't validate connection to [{}] if it was not waved", remote());
-		}
-		else{
-			connected = true;
-		}
-	};
 
 	std::string Connection::readAll(){
 		std::istream is(&buffer);
@@ -131,7 +134,7 @@ namespace network{
 
 		logger->trace("[{}] waiting mesage", remote());
 
-		if( connected ){
+		if( currentStatus == Ack){
 			while(!bufferedMessages.empty()){
 				sendMessage(bufferedMessages.back());
 				bufferedMessages.pop_back();
