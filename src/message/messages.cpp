@@ -92,7 +92,7 @@ namespace message{
 		auto strType = getTypeAsString();
 		strType += std::string(12-strType.size(), char(0x00));
 		auto payloadString = this->payload();
-		auto payloadLength = payloadString.size()/2;
+		auto payloadLength = payloadString.size();
 		networkable::MessageHeader header(magic,strType,payloadLength);
 		return 	header.byteRepr() +
 				payloadString;

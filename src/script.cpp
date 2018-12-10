@@ -90,12 +90,18 @@ namespace ressources{
 	bool Script::step(){
 		if(codePointer < scriptInstructions.end()){
 			switch(codePointer->operation){
-				case OP_FALSE:
+				case OP_FALSE:{
 					data.push({0x00});
-				case OP_TRUE:
+					break;
+				}
+				case OP_TRUE:{
 					data.push({0x01});
-				case OP_DUP:
+					break;
+				}
+				case OP_DUP:{
 					data.push(data.top());
+					break;
+				}
 				case OP_EQUAL:{
 					auto firstTop = data.top();
 					data.pop();
@@ -107,6 +113,7 @@ namespace ressources{
 					else{
 					      data.push({0x00});
 					}
+					break;
 				}
 				case OP_VERIFY:{
 					auto stackTop = data.top();
@@ -115,6 +122,7 @@ namespace ressources{
 					if (stackTop == falseElem) {
 					      valid = false;
 					}
+					break;
 				}
 				case OP_HASH160:{
 					auto toHash = data.top();
@@ -130,6 +138,7 @@ namespace ressources{
 						   		hash.end(),
 						   		hashed.begin());
 					data.push(hashed);
+					break;
 				}
 				case OP_CHECKSIG : {
 					auto pubKey = data.top();
@@ -150,6 +159,7 @@ namespace ressources{
 											ssk.str())){
 						valid = false;
 					}
+					break;
 				}
 				case OP_STACK:{
 					std::vector<unsigned char> 
@@ -167,9 +177,11 @@ namespace ressources{
 					}
 					codePointer += codePointer->argument;
 					data.push(pushedData);
+					break;
 				}
 				case OP_UNKNOWN:{
 					valid = false;
+					break;
 				}
 			}
 			codePointer++;
