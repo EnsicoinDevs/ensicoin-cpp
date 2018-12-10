@@ -17,6 +17,8 @@ namespace constants{
 	constexpr int MAGIC = 422021;
 	/// \brief Port used on the network
 	constexpr int PORT = 4224;
+	/// \brief Port used to liste
+	constexpr int LISTEN_PORT = 4224;
 	/// \brief Size in octets of hashes
 	constexpr int HASH_LENGTH = 32;
 	/// \brief Size of the sliding window
