@@ -24,13 +24,17 @@
 #include "networkable.hpp"
 #include "networkbuffer.hpp"
 
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
+
 using namespace CryptoPP;
-using namespace asio;
+//using namespace asio;
 using asio::ip::tcp;
 
 
 int main(){
 	//Block GenesisBlock({0,{"ici cest limag"},"","",1566862920,42},{});
+	auto consoleLogger = spdlog::stdout_color_mt("console");
 
 	AutoSeededRandomPool prng, rrng;
 
@@ -55,9 +59,9 @@ int main(){
 	else{
 		std::cout << "Directory set" << std::endl;
 	}
-	
+
 	asio::io_context io_context;
-	Node node(io_context);
+	Node node(io_context, consoleLogger);
 	io_context.run();
 
 	return 0;

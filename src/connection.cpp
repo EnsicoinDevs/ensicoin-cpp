@@ -61,7 +61,10 @@ namespace network{
 		waved(false), 
 		connected(false),
 		netBuffer(logger_),
-		logger(logger_) {}
+		logger(logger_) {
+		
+		logger->trace("Connection to [{}] started", remote());
+	}
 
 	void Connection::wave(int connectionVersion){
 		if(!waved){

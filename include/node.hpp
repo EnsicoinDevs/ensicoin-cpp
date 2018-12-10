@@ -12,7 +12,6 @@
 #include <asio.hpp>
 #include <memory>
 #include <spdlog/spdlog.h>
-#include <spdlog/sinks/stdout_color_sinks.h>
 #include <vector>
 
 /// \brief Node handling messages and processing
@@ -38,7 +37,8 @@ class Node{
 		/// \param io_context an asio::io_context
 		/// \details Executes the startup 
 		/// routine and creates the mempool
-		explicit Node(asio::io_context& io_context);
+		Node(asio::io_context& io_context,
+			std::shared_ptr<spdlog::logger> logger_);
 
 		/// \brief Checks if a transaction is known (either
 		/// Orphan or Regular)
