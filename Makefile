@@ -6,7 +6,7 @@ NODEPS:=clean tags svn
 SOURCES:=$(shell find src/ -name "*.cpp")
 DEPFILES:=$(patsubst %.cpp,%.d,$(SOURCES))
 
-CXX=clang++
+CXX=g++
 CXXFLAGS=-I$(IDIR) -Wshadow -Wall -Wextra -DASIO_STANDALONE
 OFLAGS=-O3 -march=native -flto 
 LIBS=-lcryptopp -pthread -lleveldb
