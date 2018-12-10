@@ -32,8 +32,9 @@ namespace util{
 	/// \brief Print each byte of a binary string
 	inline void printBinaryString(const std::string& bs){
 		for(auto& c : bs){
-			std::cerr << hex(c) << std::endl;
+			std::cerr << hex(c) << "|";
 		}
+		std::cout << std::endl;
 	}
 } // namespace util
 
