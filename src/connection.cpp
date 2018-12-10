@@ -42,7 +42,10 @@ namespace network{
 
 	void Connection::sendMessage(message::Message::pointer message){
 		if(message->getType() == message::Message::\
-				message_type::whoami || currentStatus == Ack){
+				message_type::whoami || 
+		   message->getType() == message::Message::\
+		   		message_type::whoamiack ||
+			currentStatus == Ack){
 			const std::string messageStr = message->byteRepr();
 			asio::async_write(socket, asio::buffer(messageStr), 
 					std::bind(&Connection::handleWrite, 
