@@ -10,16 +10,16 @@
 #include <iostream>
 #include <memory>
 #include <spdlog/spdlog.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
 #include <stdexcept>
 
-Node::Node(asio::io_context& io_context,
-		   std::shared_ptr<spdlog::logger> logger_) : 
-	logger(logger_),
+Node::Node(asio::io_context& io_context) : 
+	logger(spdlog::stdout_color_mt("console")),
 	mempool(logger),
 	blockchain(logger),
-	acceptor(io_context,
-			asio::ip::tcp::endpoint(asio::ip::tcp::v4(),
-									constants::LISTEN_PORT)){
+	acceptor(io_context, asio::ip::tcp::endpoint(asio::ip::tcp::v4(),
+												 constants::LISTEN_PORT)){
+	
 	acceptor.listen();
 	run();
 	
