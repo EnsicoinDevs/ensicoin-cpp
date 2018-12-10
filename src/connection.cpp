@@ -68,19 +68,19 @@ namespace network{
 			case Initiated:{
 				sendMessage(std::make_shared<message::WhoAmI>());
 				currentStatus = Waiting;
-				logger->info("[{}] is now waiting", remote());
+				logger->info("[{}] Initiated->Waiting", remote());
 				break;
 			}
 			case Waiting:{
 				currentStatus = WaitingAck;
 				versionUsed = connectionVersion;
 				sendMessage(std::make_shared<message::WhoAmIAck>());
-				logger->info("[{}] is now waiting ack",remote());
+				logger->info("[{}] Waiting->WaitingAck",remote());
 				break;
 			}
 			case WaitingAck:{
 				currentStatus = Ack;
-				logger->info("[{}] is acknowledged",remote());
+				logger->info("[{}] WaitingAck->Ack",remote());
 				break;
 			}
 			case Ack:{
