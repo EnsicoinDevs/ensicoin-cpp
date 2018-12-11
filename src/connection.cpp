@@ -32,7 +32,8 @@ namespace network{
 	void Connection::bind(asio::ip::address ipAddress){
 		socket.connect(asio::ip::tcp::endpoint( ipAddress,
 					constants::PORT));
-		updateStatus(versionUsed);
+		currentStatus = Initiated;
+		sendMessage(std::make_shared<message::WhoAmI>());
 	}
 
 	void Connection::start(){
