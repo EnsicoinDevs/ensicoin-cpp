@@ -12,7 +12,7 @@ NetworkBuffer::NetworkBuffer(const std::string& binaryString,std::shared_ptr<spd
 
 void NetworkBuffer::appendBytes(const networkable::Networkable& 
 		object){
-	buffer << object.byteRepr(); 
+	buffer << object.byteRepr();
 }
 
 void NetworkBuffer::appendRawData(const std::string& rawData){
@@ -61,16 +61,15 @@ uint64_t NetworkBuffer::readUint64(){
 }
 
 uint64_t NetworkBuffer::readVar_uint(){
-	char* binaryStart = new char[1];
-	buffer.read(binaryStart, 1);
-	if(buffer.gcount() != 1){
+	unsigned char binaryStart;
+	if(!(buffer >> binaryStart)){
 		logger->error("error in reading Var_uint from buffer : read empty buffer");
 		return 0;
 	}
-	if ( binaryStart[0] < char(0xfd) ){
-		return binaryStart[0];
+	if ( binaryStart < (unsigned char)(0xfd) ){
+		return binaryStart;
 	}
-	else if ( binaryStart[0] == char(0xfd)){
+	else if ( binaryStart ==(unsigned char)(0xfd)){
 		char* binaryValue = new char[2];
 		buffer.read(binaryValue, 2);
 		if(buffer.gcount() != 2){
@@ -82,7 +81,7 @@ uint64_t NetworkBuffer::readVar_uint(){
 
 		return value;
 	}
-	else if ( binaryStart[0] == char(0xfe)){
+	else if ( binaryStart == (unsigned char)(0xfe)){
 		char* binaryValue = new char[4];
 		buffer.read(binaryValue, 4);
 		if(buffer.gcount() != 4){
@@ -122,6 +121,7 @@ std::string NetworkBuffer::readStr(size_t length){
 		readString += stringBuffer;
 		if(buffer.gcount() != buffer_size){
 			logger->error("error in reading Str from buffer : expected {} bytes got {}",buffer_size, buffer.gcount());
+			logger->error("string length was {}", length);
 			return "";
 		}
 	}

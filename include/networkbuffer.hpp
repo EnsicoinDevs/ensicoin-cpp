@@ -2,6 +2,7 @@
 #define NETWORKBUFFER_HPP
 
 #include "networkable.hpp"
+#include "util.hpp"
 
 #include <spdlog/spdlog.h>
 #include <sstream>
@@ -23,6 +24,10 @@ class NetworkBuffer{
 		
 		/// \brief Add bytes to the NetworkBuffer
 		void appendRawData(const std::string& rawData);
+
+		inline void outputBuffer() const{
+			util::printBinaryString(buffer.str());
+		}
 
 		/// \brief Construct a NetworkBuffer from a binaryString
 		NetworkBuffer(const std::string& binaryString,std::shared_ptr<spdlog::logger> logger_);

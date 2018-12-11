@@ -4,6 +4,7 @@
 #include "constants.hpp"
 
 #include <algorithm>
+#include <iostream>
 #include <memory>
 #include <sstream>
 #include <string>
@@ -223,7 +224,7 @@ namespace networkable{
 			}
 			/// \brief Extract a Var_Array from a NetworkBuffer
 			explicit Var_Array(NetworkBuffer* networkBuffer){
-				auto size = Var_uint(networkBuffer).getValue();
+				size_t size = Var_uint(networkBuffer).getValue();
 				for(uint64_t i = 0; i < size; ++i){
 					data.push_back(std::make_shared<U>(networkBuffer));
 				}
