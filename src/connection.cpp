@@ -32,7 +32,6 @@ namespace network{
 	void Connection::bind(asio::ip::address ipAddress){
 		socket.connect(asio::ip::tcp::endpoint( ipAddress,
 					constants::PORT));
-		currentStatus = Initiated;
 		updateStatus(versionUsed);
 	}
 
@@ -62,7 +61,7 @@ namespace network{
 		socket(io_context),
 		node(nodePtr), 
 		versionUsed(constants::VERSION),
-		currentStatus(Waiting),
+		currentStatus(Initiated),
 		netBuffer(logger_),
 		logger(logger_) {}
 
