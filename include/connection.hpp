@@ -16,9 +16,9 @@ namespace network{
 	class Connection : 
 		public std::enable_shared_from_this<Connection>{
 		public:
-			enum status { Initiated ,
-						  Waiting, 
-						  Ack, WaitingAck};
+			enum status { Initiated ,Waiting, 
+						  Idle, WaitingAck,
+						  Ack };
 			/// \brief Shared pointer to a Connection
 			using pointer = std::shared_ptr<Connection>;
 
@@ -26,8 +26,8 @@ namespace network{
 			/// \param io_context io_context for async operation
 			/// \param node pointer to a Node to handle actions
 			static pointer create(asio::io_context& io_context,
-								 Node* node,
-								 std::shared_ptr<spdlog::logger> lg);
+								  Node* node,
+								  std::shared_ptr<spdlog::logger> lg);
 			/// \brief IP Adress of remote connection
 			std::string remote() const;
 			/// \brief Reference to the socket

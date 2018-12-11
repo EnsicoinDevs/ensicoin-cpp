@@ -61,33 +61,43 @@ namespace network{
 		socket(io_context),
 		node(nodePtr), 
 		versionUsed(constants::VERSION),
-		currentStatus(Initiated),
+		currentStatus(Idle),
 		netBuffer(logger_),
 		logger(logger_) {}
 
 	void Connection::updateStatus(int connectionVersion){
 		switch(currentStatus){
-			case Initiated:{
+			case Idle:{
+				if(connectionVersion < versionUsed)
+					versionUsed = connectionVersion;
 				sendMessage(std::make_shared<message::WhoAmI>());
-				currentStatus = Waiting;
-				logger->info("[{}] Initiated->Waiting", remote());
-				break;
-			}
-			case Waiting:{
-				currentStatus = WaitingAck;
-				versionUsed = connectionVersion;
 				sendMessage(std::make_shared<message::WhoAmIAck>());
-				logger->info("[{}] Waiting->WaitingAck",remote());
+				currentStatus = WaitingAck;
+				logger->trace("[{}] Idle->WaitingAck", remote());
 				break;
 			}
 			case WaitingAck:{
 				currentStatus = Ack;
-				logger->info("[{}] WaitingAck->Ack",remote());
+				logger->trace("[{}] WaitingAck->Ack", remote());
 				break;
 			}
-			case Ack:{
-				logger->warn("[{}] is already acknowledged, can't update it's status", remote());
+
+			case Initiated:{
+				currentStatus = Waiting;
+				if(connectionVersion < versionUsed)
+					versionUsed = connectionVersion;
+				logger->trace("[{}] Initiated->Waiting", remote());
 				break;
+			}
+			case Waiting:{
+				currentStatus = Ack;
+				sendMessage(std::make_shared<message::WhoAmIAck>());
+				logger->trace("[{}] Waiting->Ack", remote());
+				break;
+			}
+
+			case Ack:{
+				logger->warn("[{}] is already Ack", remote());
 			}
 		}
 	}

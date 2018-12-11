@@ -11,7 +11,6 @@
 #include <string>
 #include <vector>
 
-
 /// \brief Networkable content to be sent
 namespace message{
 
@@ -67,6 +66,8 @@ namespace message{
 			uint32_t version;
 			/// \brief Current time
 			uint64_t timestamp;
+			/// \brief Services provided by a node
+			std::vector<std::string> services;
 		public:
 			/// \brief Construct a WhoAmI Message
 			WhoAmI();
