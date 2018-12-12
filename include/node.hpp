@@ -10,6 +10,7 @@
 #include "utxo.hpp"
 
 #include <asio.hpp>
+#include <map>
 #include <memory>
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
@@ -28,12 +29,20 @@ class Node{
 		
 		/// \brief Accept TCP connections from other nodes
 		asio::ip::tcp::acceptor acceptor;
-		std::vector<network::Connection::pointer> connections; ///< Vector of all current connections
-		
+		std::map<std::string,
+				 network::Connection::pointer> connectedNodes; ///< Vector of all current connections
+		std::map<std::string,
+			     network::Connection::pointer> connectedRelays;
+		std::map<std::string,
+			     network::Connection::pointer> unregistred;
+
 		/// \brief Handles a connection
 		/// \param newConnection a shared pointer to the connection
-		void handleAccept(network::Connection::pointer newConnection);
+		void handleAccept(
+				network::Connection::pointer newConnection);
 	public:
+		void registerConnection(network::Connection::pointer conn);
+
 		/// \brief Construct a Node
 		/// \param io_context an asio::io_context
 		/// \details Executes the startup 

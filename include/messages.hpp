@@ -74,6 +74,9 @@ namespace message{
 			inline uint32_t getVersion() const{
 				return version;
 			}
+			inline std::vector<std::string> getServices() const{
+				return services;
+			};
 			/// \brief Parses a WhoAmI Message
 			/// \param networkBuffer buffer containing
 			/// the raw Representation

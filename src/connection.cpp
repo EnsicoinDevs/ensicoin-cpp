@@ -10,6 +10,7 @@
 #include <iostream>
 #include <memory>
 #include <spdlog/spdlog.h>
+#include <sstream>
 #include <stdexcept>
 
 namespace network{
@@ -26,7 +27,9 @@ namespace network{
 	}
 
 	std::string Connection::remote() const{
-		return socket.remote_endpoint().address().to_string();
+		std::ostringstream os;
+		os << socket.remote_endpoint().address().to_string() << ":" << socket.remote_endpoint().port();
+		return os.str();
 	}
 
 	void Connection::bind(asio::ip::address ipAddress){
@@ -64,9 +67,14 @@ namespace network{
 		versionUsed(constants::VERSION),
 		currentStatus(Idle),
 		netBuffer(logger_),
-		logger(logger_) {}
+		logger(logger_),
+		peerType(peer) {}
 
-	void Connection::updateStatus(int connectionVersion){
+	void Connection::updateStatus(int connectionVersion,
+								  type peerType_){
+		if( peerType == peer){
+			peerType = peerType_;
+		}
 		switch(currentStatus){
 			case Idle:{
 				if(connectionVersion < versionUsed)
@@ -79,18 +87,22 @@ namespace network{
 			}
 			case WaitingAck:{
 				currentStatus = Ack;
+				node->registerConnection(shared_from_this());
+				if(connectionVersion < versionUsed)
+					versionUsed = connectionVersion;
 				logger->trace("[{}] WaitingAck->Ack", remote());
 				break;
 			}
 
 			case Initiated:{
 				currentStatus = Waiting;
-				if(connectionVersion < versionUsed)
-					versionUsed = connectionVersion;
 				logger->trace("[{}] Initiated->Waiting", remote());
 				break;
 			}
 			case Waiting:{
+				node->registerConnection(shared_from_this());
+				if(connectionVersion < versionUsed)
+					versionUsed = connectionVersion;
 				currentStatus = Ack;
 				sendMessage(std::make_shared<message::WhoAmIAck>());
 				logger->trace("[{}] Waiting->Ack", remote());
@@ -134,8 +146,8 @@ namespace network{
 		idle();
 	}
 
-	void Connection::handleWrite(const std::string& type){
-		logger->info("{} to {}", type, remote());
+	void Connection::handleWrite(const std::string& messageType){
+		logger->info("{} to {}", messageType, remote());
 		idle();
 	}
 

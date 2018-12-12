@@ -19,6 +19,7 @@ namespace network{
 			enum status { Initiated ,Waiting, 
 						  Idle, WaitingAck,
 						  Ack };
+			enum type { nodepeer, relaypeer, walletpeer, peer};
 			/// \brief Shared pointer to a Connection
 			using pointer = std::shared_ptr<Connection>;
 
@@ -43,8 +44,13 @@ namespace network{
 			/// \brief Idle loop of the Connection
 			void idle();
 
+			inline type getPeerType() const{
+				return peerType;
+			}
+
 			/// \brief Exchange of message::WhoAmI
-			void updateStatus(int connectionVersion);
+			void updateStatus(int connectionVersion,
+							  type peerType_);
 		private:
 			std::string readAll();
 
@@ -70,7 +76,6 @@ namespace network{
 			Node* node;
 
 			int versionUsed;
-
 			status currentStatus;
 			/// \brief NetworkBuffer for the connection
 			NetworkBuffer netBuffer;
@@ -79,8 +84,8 @@ namespace network{
 			std::vector<message::Message::pointer> bufferedMessages;
 			/// \brief Buffered content read from the node
 			asio::streambuf buffer;
-
 			std::shared_ptr<spdlog::logger> logger;
+			type peerType;
 	};
 
 } // namespace network

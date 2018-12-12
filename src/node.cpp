@@ -5,6 +5,7 @@
 #include "networkable.hpp"
 #include "util.hpp"
 
+#include <algorithm>
 #include <asio.hpp>
 #include <functional>
 #include <iostream>
@@ -49,28 +50,37 @@ Node::Node(asio::io_context& io_context) :
 	//auto msgMempool = std::make_shared<message::GetMempool>();
 
 	network::Connection::pointer testConnection = network::Connection::create(io_context, this, logger);
-	connections.push_back(testConnection);
 	testConnection->bind(asio::ip::address::from_string(myIP));
-
-	//testConnection->sendMessage(invTest);
-	//testConnection->sendMessage(msgMempool);
+	unregistred.insert({testConnection->remote(),testConnection});
 }
 
 void Node::run(){
 	network::Connection::pointer newConnection = network::Connection::create(acceptor.get_executor().context(), this, logger);
 	acceptor.async_accept(newConnection->getSocket(), std::bind( &Node::handleAccept, this, newConnection ));
-
-	/*for(auto& conn : connections){
-		conn->idle();
-	}*/
 }
 
 bool Node::transactionExists(std::string txHash) const {
 	return mempool.exists(txHash) || mempool.orphanExists(txHash);
 }
 
+void Node::registerConnection(network::Connection::pointer conn){
+	auto type = conn->getPeerType();
+	if(type != network::Connection::type::peer && 
+	   unregistred.count(conn->remote())){
+		if(type == network::Connection::type::nodepeer){
+			logger->info("register [{}] as node", conn->remote());
+			connectedNodes.insert({conn->remote(), conn});
+		}
+		if( type == network::Connection::type::relaypeer){
+			logger->info("register [{}] as relay", conn->remote());
+			connectedRelays.insert({conn->remote(), conn});
+		}
+		unregistred.erase(conn->remote());
+	}
+}
+
 void Node::handleAccept(network::Connection::pointer newConnection){
 	newConnection->start();
-	connections.push_back(newConnection);
+	unregistred.insert({newConnection->remote(), newConnection});
 	run();
 }

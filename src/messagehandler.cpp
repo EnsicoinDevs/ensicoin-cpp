@@ -3,6 +3,7 @@
 #include "networkbuffer.hpp"
 #include "connection.hpp"
 
+#include <algorithm>
 #include <iostream>
 
 namespace network{
@@ -34,11 +35,25 @@ namespace network{
 	}
 
 	void MessageHandler::onWhoAmI(){
+		auto tp = network::Connection::type::peer;
 		auto msg = std::make_shared<message::WhoAmI>(buffer);
-		conn->updateStatus(msg->getVersion());
+		const auto& services = msg->getServices();
+		if(std::find(services.cbegin(), services.cend(), "wallet") !=
+		   services.cend()){
+			tp = network::Connection::type::walletpeer;
+		}
+		if(std::find(services.cbegin(), services.cend(), "relay") !=
+		   services.cend()){
+			tp = network::Connection::type::relaypeer;
+		}
+		if(std::find(services.cbegin(), services.cend(), "node") !=
+		   services.cend()){
+			tp = network::Connection::type::nodepeer;
+		}
+		conn->updateStatus(msg->getVersion(), tp);
 	}
 
 	void MessageHandler::onWhoAmIAck(){
-		conn->updateStatus(0);
+		conn->updateStatus(0, network::Connection::type::peer);
 	}
 } // namespace network
