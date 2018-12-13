@@ -23,6 +23,8 @@ namespace network{
 			void onWhoAmI();
 			void onWhoAmIAck();
 			
+			void onInv();
+
 			void onUnknown();
 		
 		public:

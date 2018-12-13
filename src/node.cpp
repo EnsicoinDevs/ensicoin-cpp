@@ -38,12 +38,13 @@ Node::Node(asio::io_context& io_context) :
 
 	std::string testTrHash = testTransaction.hash();
 	networkable::Inv_vect invData(networkable::Inv_vect::ressource_type::txRes, testTrHash);
+	networkable::Inv_vect invData2(networkable::Inv_vect::ressource_type::blockRes, testTrHash);
 
 	const std::string johynIP("78.248.188.120");
 	const std::string myIP("82.235.104.10");
 	const std::string jauvioNathan("92.129.133.102");
 	const std::string localIP("127.0.0.1");
-	//auto invTest = message::Message::pointer( new message::Inv({invData}));
+	auto invTest = message::Message::pointer( new message::Inv({invData}));
 	//auto getDataTest = message::Message::pointer( new message::GetData({invData}));
 	//auto sendGenesis = std::make_shared<message::BlockMessage>(std::make_shared<ressources::Block>(GenesisBlock));
 	//auto msgTestTr = std::make_shared<message::TransactionMessage>(testTxPtr);
@@ -52,6 +53,8 @@ Node::Node(asio::io_context& io_context) :
 	network::Connection::pointer testConnection = network::Connection::create(io_context, this, logger);
 	testConnection->bind(asio::ip::address::from_string(myIP));
 	unregistred.insert({testConnection->remote(),testConnection});
+
+	testConnection->sendMessage(invTest);
 }
 
 void Node::run(){

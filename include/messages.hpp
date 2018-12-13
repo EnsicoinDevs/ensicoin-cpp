@@ -152,13 +152,9 @@ namespace message{
 			/// \brief data to be transmited
 			std::vector<networkable::Inv_vect> data;
 		public:
-			/// \brief Retrives the type from InvData
-			networkable::Inv_vect::ressource_type 
-				getRessourceType() const;
-			/// \brief Retriveses the hashes of each 
-			/// Inv_vect
-			std::vector<std::string> 
-				getRessourceHashes() const;
+			inline std::vector<networkable::Inv_vect> getData() const{
+				return data;
+			}
 
 			/// \brief Create a Inv from a vector of
 			/// Inv_vect

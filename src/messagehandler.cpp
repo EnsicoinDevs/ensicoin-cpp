@@ -1,5 +1,6 @@
 #include "messagehandler.hpp"
 #include "messages.hpp"
+#include "networkable.hpp"
 #include "networkbuffer.hpp"
 #include "connection.hpp"
 
@@ -24,6 +25,9 @@ namespace network{
 			case message_type::whoamiack:
 				onWhoAmIAck();
 				break;
+			case message_type::inv:
+				onInv();
+				break;
 			default:
 				onUnknown();
 				break;
@@ -32,6 +36,26 @@ namespace network{
 
 	void MessageHandler::onUnknown(){
 		logger->warn("unknown message type");
+	}
+
+	void MessageHandler::onInv(){
+		std::vector<networkable::Inv_vect> unknown;
+		auto msg = std::make_shared<message::Inv>(buffer);
+		for(auto& res : msg->getData()){
+			if( res.type == 
+					networkable::Inv_vect::ressource_type::txRes){
+				if(!node->transactionExists(res.hash))
+					unknown.push_back(res);
+			}
+			else if( res.type ==
+					networkable::Inv_vect::ressource_type::blockRes){
+				if(!node->blockExists(res.hash)){
+					unknown.push_back(res);
+				}
+			}
+		}
+		auto resp = std::make_shared<message::GetData>(unknown);
+		conn->sendMessage(resp);
 	}
 
 	void MessageHandler::onWhoAmI(){

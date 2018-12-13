@@ -37,6 +37,13 @@ namespace manager{
 			logger->error("can't open info DB : {}",blockchainInfo.ToString());
 	}
 
+	bool Blockchain::exists(const std::string& hash) const{
+		std::string strData;
+		leveldb::Status s = blocksDB->Get(leveldb::ReadOptions(), 
+				hash, &strData);
+		return s.ok();
+	}
+
 	ressources::Block Blockchain::getBlock(const std::string& hash){
 		std::string strData;
 		leveldb::Status s = blocksDB->Get(leveldb::ReadOptions(), 

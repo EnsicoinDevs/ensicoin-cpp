@@ -53,6 +53,10 @@ class Node{
 		/// Orphan or Regular)
 		bool transactionExists(std::string txHash) const;
 		
+		inline bool blockExists(const std::string& hash) const{
+			return blockchain.exists(hash);
+		}
+
 		/// \brief Main loop of Node
 		///
 		void run();

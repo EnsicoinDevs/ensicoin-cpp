@@ -26,10 +26,11 @@ namespace manager{
 			leveldb::DB* updateDB;
 			std::shared_ptr<spdlog::logger> logger;
 		public:
+			bool exists(const std::string& hash) const;
 			ressources::Block getBlock(const std::string& hash);
 			void registerBlock(const ressources::Block& block);
 			void deleteBlock(const std::string& hash);
-			Blockchain(std::shared_ptr<spdlog::logger> logger_);
+			explicit Blockchain(std::shared_ptr<spdlog::logger> logger_);
 	};
 
 	class BlockIndex{
@@ -46,7 +47,10 @@ namespace manager{
 			void popBlock(UTXOManager* utxos);
 			void pushBlock(UTXOManager* utxos, 
 					const ressources::Block& block);
-			BlockIndex(std::shared_ptr<spdlog::logger> logger_);
+			explicit BlockIndex(std::shared_ptr<spdlog::logger> logger_);
+			inline bool exists(const std::string& hash) const{
+				return blockchain.exists(hash);
+			}
 	};
 
 } // namespace manager
