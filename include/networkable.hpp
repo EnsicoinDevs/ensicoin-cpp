@@ -108,17 +108,26 @@ namespace networkable{
 	template<int size>
 	class FixedStr : public Networkable{
 		private:
-			Str stringValue;
+			std::array<unsigned char, size> value;
 		public:
 			std::string getValue() const{
-				return stringValue.getValue();
+				std::ostringstream os;
+				for(auto& c : value){
+					os << c;
+				}
+				return os.str();
 			}
 			std::string byteRepr() const override{
-				return stringValue.byteRepr();
+				return getValue();
 			}
 			explicit FixedStr(NetworkBuffer* networkBuffer) :
-				stringValue(networkBuffer, size) {}
-			explicit FixedStr(const std::string& val) : stringValue(val) {}
+				FixedStr(Str(networkBuffer, size).getValue()) {}
+			explicit FixedStr(const std::string& val){
+				for(uint64_t i = 0; i < val.size(); ++i){
+					value[i] = val[i];
+				}
+			}
+			explicit FixedStr(const std::array<unsigned char, size>& val) : value(val) {}
 			FixedStr() {};
 	};
 
@@ -270,20 +279,20 @@ namespace networkable{
 			/// \brief Last time the Node was seen
 			uint64_t timestamp;
 			/// \brief IPv6 address of the Node
-			std::string address;
+			IP address;
 			/// \brief Port used by the Node
 			uint16_t port;
 		public:
 			/// \brief Returns a human readable value
 			Address getValue() const;
 			/// \brief Returns the address
-			std::string getAddress() const;
+			IP getAddress() const;
 			/// \brief Returns the port
 			uint16_t getPort() const;
 			/// \brief Returns the time since the last known activity
 			uint64_t getTimestamp() const;
 			/// \brief Construct an Address
-			Address(uint64_t lastActive, std::string ipAddress,
+			Address(uint64_t lastActive,FixedStr<16> ipAddress,
 					uint16_t prt);
 			explicit Address(NetworkBuffer* buffer);
 			Address();

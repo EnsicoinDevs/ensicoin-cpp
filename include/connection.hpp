@@ -85,6 +85,7 @@ namespace network{
 			/// \brief Buffered content read from the node
 			asio::streambuf buffer;
 			std::shared_ptr<spdlog::logger> logger;
+			std::shared_ptr<spdlog::logger> connLogger;
 			type peerType;
 	};
 

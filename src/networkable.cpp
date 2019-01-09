@@ -197,7 +197,7 @@ namespace networkable{
 		return *this;
 	}
 
-	std::string Address::getAddress() const{
+	IP Address::getAddress() const{
 		return address;
 	}
 	uint16_t Address::getPort() const{
@@ -210,7 +210,7 @@ namespace networkable{
 		return *this;
 	}
 	Address::Address(uint64_t lastActive,
-					 std::string ipAddr,
+					 IP ipAddr,
 					 uint16_t _port) :
 		timestamp(lastActive),
 		address(ipAddr),

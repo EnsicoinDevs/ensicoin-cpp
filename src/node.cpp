@@ -51,7 +51,7 @@ Node::Node(asio::io_context& io_context) :
 	//auto msgMempool = std::make_shared<message::GetMempool>();
 
 	network::Connection::pointer testConnection = network::Connection::create(io_context, this, logger);
-	testConnection->bind(asio::ip::address::from_string(myIP));
+	testConnection->bind(asio::ip::address::from_string(johynIP));
 	unregistred.insert({testConnection->remote(),testConnection});
 
 	testConnection->sendMessage(invTest);
