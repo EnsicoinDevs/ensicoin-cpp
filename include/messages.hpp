@@ -64,15 +64,18 @@ namespace message{
 			std::string payload() const override;
 			/// \brief Defined in constants.hpp
 			uint32_t version;
-			/// \brief Current time
-			uint64_t timestamp;
+			/// \brief Address of the node 
+			networkable::Address address;
 			/// \brief Services provided by a node
 			std::vector<std::string> services;
 		public:
 			/// \brief Construct a WhoAmI Message
-			WhoAmI();
+			WhoAmI(networkable::Address address);
 			inline uint32_t getVersion() const{
 				return version;
+			}
+			inline networkable::Address getAddress() const{
+				return address;
 			}
 			inline std::vector<std::string> getServices() const{
 				return services;

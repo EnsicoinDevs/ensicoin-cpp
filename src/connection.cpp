@@ -6,6 +6,7 @@
 
 #include <asio.hpp>
 #include <cstring>
+#include <ctime>
 #include <functional>
 #include <iostream>
 #include <memory>
@@ -36,7 +37,11 @@ namespace network{
 		socket.connect(asio::ip::tcp::endpoint( ipAddress,
 					constants::PORT));
 		currentStatus = Initiated;
-		sendMessage(std::make_shared<message::WhoAmI>());
+		sendMessage(std::make_shared<message::WhoAmI>(
+					networkable::Address(time(nullptr), 
+										 socket.local_endpoint().address().to_string(),
+										 socket.local_endpoint().port()))
+		);
 	}
 
 	void Connection::start(){
@@ -79,7 +84,10 @@ namespace network{
 			case Idle:{
 				if(connectionVersion < versionUsed)
 					versionUsed = connectionVersion;
-				sendMessage(std::make_shared<message::WhoAmI>());
+				sendMessage(std::make_shared<message::WhoAmI>(
+							networkable::Address(time(nullptr), 
+										 socket.local_endpoint().address().to_string(),
+										 socket.local_endpoint().port())));
 				sendMessage(std::make_shared<message::WhoAmIAck>());
 				currentStatus = WaitingAck;
 				logger->trace("[{}] Idle->WaitingAck", remote());

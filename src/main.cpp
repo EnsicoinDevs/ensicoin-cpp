@@ -21,10 +21,12 @@ int main(){
 	status = mkdir(constants::DATA_PATH.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
 	if( status != 0 && errno != EEXIST){
 		char buffer[ 256 ];
-		std::cout << "Error when creating directory : " << strerror_r( errno, buffer, 256 ) << std::endl;
+		std::cout << "Error when creating base directory : " << strerror_r( errno, buffer, 256 ) << std::endl;
 	}
-	else{
-		std::cout << "Directory set" << std::endl;
+	status = mkdir(constants::BLOCKCHAIN_DB.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+	if( status != 0 && errno != EEXIST){
+		char buffer[ 256 ];
+		std::cout << "Error when creating directory for blockchain : " << strerror_r( errno, buffer, 256 ) << std::endl;
 	}
 
 	auto debug = spdlog::stderr_color_mt("debug");
