@@ -6,12 +6,11 @@
 #include <leveldb/db.h>
 #include <memory>
 #include <rapidjson/document.h>
-#include <spdlog/spdlog.h>
 #include <sys/stat.h>
 
 namespace manager{
 
-	Blockchain::Blockchain(std::shared_ptr<spdlog::logger> logger_) : logger(logger_) {
+	Blockchain::Blockchain(std::shared_ptr<Logger> logger_) : logger(logger_) {
 		leveldb::Options options;
 		options.create_if_missing = true;
 		leveldb::Status statusBlocks = 
@@ -19,7 +18,7 @@ namespace manager{
 					constants::BLOCKCHAIN_DB+"/blocks",
 					&blocksDB);
 		if (!statusBlocks.ok()) 
-			logger->error("can't open block DB : {}",statusBlocks.ToString());
+			logger->fatal("can't open block DB : ",statusBlocks.ToString());
 
 
 		leveldb::Status statusChain = 
@@ -27,14 +26,14 @@ namespace manager{
 					constants::BLOCKCHAIN_DB+"/chain", 
 					&chainDB);
 		if (!statusChain.ok())
-			logger->error("can't open chain DB : {}",statusChain.ToString());
+			logger->fatal("can't open chain DB : ",statusChain.ToString());
 
 		leveldb::Status blockchainInfo =
 			leveldb::DB::Open(options,
 					constants::BLOCKCHAIN_DB+"/stat",
 					&statDB);
 		if(!blockchainInfo.ok()) 
-			logger->error("can't open info DB : {}",blockchainInfo.ToString());
+			logger->fatal("can't open info DB : ",blockchainInfo.ToString());
 	}
 
 	bool Blockchain::exists(const std::string& hash) const{
@@ -49,13 +48,13 @@ namespace manager{
 		leveldb::Status s = blocksDB->Get(leveldb::ReadOptions(), 
 						hash, &strData);
 		if (!s.ok()){
-			logger->critical("block {} does not exist", hash);
+			logger->error("block ", hash, " does not exist");
 		}
 		NetworkBuffer buffer(strData, logger);
 		return ressources::Block(&buffer);
 	}
 
-	BlockIndex::BlockIndex(std::shared_ptr<spdlog::logger> logger_) : 
+	BlockIndex::BlockIndex(std::shared_ptr<Logger> logger_) : 
 		blockchain(logger_),
 		logger(logger_) {}
 

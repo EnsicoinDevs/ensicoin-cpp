@@ -5,6 +5,7 @@
 #include "blocks.hpp"
 #include "connection.hpp"
 #include "hashmemory.hpp"
+#include "logger.hpp"
 #include "mempool.hpp"
 #include "transaction.hpp"
 #include "utxo.hpp"
@@ -12,15 +13,13 @@
 #include <asio.hpp>
 #include <map>
 #include <memory>
-#include <spdlog/spdlog.h>
-#include <spdlog/sinks/stdout_color_sinks.h>
 #include <vector>
 
 /// \brief Node handling messages and processing
 class Node{
 	private:
 		/// \brief Logger
-		std::shared_ptr<spdlog::logger> logger;
+		std::shared_ptr<Logger> logger;
 
 		/// \brief Mempool of the Node
 		manager::Mempool mempool;
@@ -47,7 +46,8 @@ class Node{
 		/// \param io_context an asio::io_context
 		/// \details Executes the startup 
 		/// routine and creates the mempool
-		explicit Node(asio::io_context& io_context);
+		explicit Node(asio::io_context& io_context,
+					  std::shared_ptr<Logger> logger);
 
 		/// \brief Checks if a transaction is known (either
 		/// Orphan or Regular)

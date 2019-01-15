@@ -5,9 +5,9 @@
 #include "messages.hpp"
 #include "node.hpp"
 #include "connection.hpp"
+#include "logger.hpp"
 
 #include <memory>
-#include <spdlog/spdlog.h>
 
 namespace network{
 	
@@ -18,7 +18,7 @@ namespace network{
 			Node* node;
 			Connection::pointer conn;
 		
-			std::shared_ptr<spdlog::logger> logger;
+			std::shared_ptr<Logger> logger;
 
 			void onWhoAmI();
 			void onWhoAmIAck();
@@ -32,7 +32,7 @@ namespace network{
 						   NetworkBuffer* buffer_,
 						   Node* node_,
 						   Connection::pointer conn_,
-						   std::shared_ptr<spdlog::logger> logger_);
+						   std::shared_ptr<Logger> logger_);
 	};
 } // namespace network
 

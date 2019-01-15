@@ -19,7 +19,7 @@ namespace network{
 	Connection::pointer Connection::create(
 			asio::io_context& io_context,
 			Node* node,
-			std::shared_ptr<spdlog::logger> lgr){
+			std::shared_ptr<Logger> lgr){
 		return Connection::pointer(new Connection(io_context, node, lgr));
 	}
 
@@ -73,7 +73,7 @@ namespace network{
 
 	Connection::Connection(asio::io_context& io_context,
 			Node* nodePtr,
-			std::shared_ptr<spdlog::logger> logger_) :
+			std::shared_ptr<Logger> logger_) :
 		socket(io_context),
 		node(nodePtr), 
 		versionUsed(constants::VERSION),
@@ -146,7 +146,7 @@ namespace network{
 	}
 
 	void Connection::handleHeader(){
-		logger->debug("[{}] reading header", remote());
+		logger->trace("[{}] reading header", remote());
 		auto stringData = readAll();
 		netBuffer.appendRawData(stringData);
 		auto header = networkable::MessageHeader(&netBuffer);
@@ -158,7 +158,7 @@ namespace network{
 
 	void Connection::handleMessage(const networkable::MessageHeader& header){
 		logger->info("{} from {}", header.type, remote());
-		logger->debug("[{}] reading {} bytes in payload", remote(), header.payloadLength);
+		logger->trace("[{}] reading {} bytes in payload", remote(), header.payloadLength);
 		auto stringData = readAll();
 		netBuffer.appendRawData(stringData);
 		MessageHandler(message::Message::typeFromString(header.type),

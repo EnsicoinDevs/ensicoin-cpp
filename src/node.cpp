@@ -1,6 +1,7 @@
 #include "node.hpp"
 #include "connection.hpp"
 #include "constants.hpp"
+#include "logger.hpp"
 #include "messages.hpp"
 #include "networkable.hpp"
 #include "util.hpp"
@@ -10,21 +11,18 @@
 #include <functional>
 #include <iostream>
 #include <memory>
-#include <spdlog/spdlog.h>
-#include <spdlog/sinks/stdout_color_sinks.h>
 #include <stdexcept>
 
-Node::Node(asio::io_context& io_context) : 
-	logger(spdlog::stdout_color_mt("console")),
-	mempool(logger),
-	blockchain(logger),
+Node::Node(asio::io_context& io_context,std::shared_ptr<Logger> logger_) : 
+	logger(logger_),
+	mempool(logger_),
+	blockchain(logger_),
 	acceptor(io_context, asio::ip::tcp::endpoint(asio::ip::tcp::v4(),
 												 constants::LISTEN_PORT)){
 	
 	acceptor.listen();
 	run();
 	
-	logger->set_level(spdlog::level::trace);
 	logger->info("Node started");
 
 	//ressources::Block GenesisBlock({0,{"ici cest limag"},"","",1566862920,42},{});
@@ -71,11 +69,11 @@ void Node::registerConnection(network::Connection::pointer conn){
 	if(type != network::Connection::type::peer && 
 	   unregistred.count(conn->remote())){
 		if(type == network::Connection::type::nodepeer){
-			logger->info("register [{}] as node", conn->remote());
+			logger->info("register [",conn->remote(),"] as node");
 			connectedNodes.insert({conn->remote(), conn});
 		}
 		if( type == network::Connection::type::relaypeer){
-			logger->info("register [{}] as relay", conn->remote());
+			logger->info("register [",conn->remote(),"] as relay");
 			connectedRelays.insert({conn->remote(), conn});
 		}
 		unregistred.erase(conn->remote());

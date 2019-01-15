@@ -3,12 +3,12 @@
 
 #include "utxo.hpp"
 #include "blocks.hpp"
+#include "logger.hpp"
 
 #include <leveldb/db.h>
 #include <string>
 #include <map>
 #include <memory>
-#include <spdlog/spdlog.h>
 
 namespace manager{
 
@@ -24,13 +24,13 @@ namespace manager{
 			/// \brief DB storing data on how to update 
 			/// the Blockchain
 			leveldb::DB* updateDB;
-			std::shared_ptr<spdlog::logger> logger;
+			std::shared_ptr<Logger> logger;
 		public:
 			bool exists(const std::string& hash) const;
 			ressources::Block getBlock(const std::string& hash);
 			void registerBlock(const ressources::Block& block);
 			void deleteBlock(const std::string& hash);
-			explicit Blockchain(std::shared_ptr<spdlog::logger> logger_);
+			explicit Blockchain(std::shared_ptr<Logger> logger_);
 	};
 
 	class BlockIndex{
@@ -38,7 +38,7 @@ namespace manager{
 			Blockchain blockchain;
 			int blockCount;
 			std::map<std::string, ressources::Block> cachedBlocks;
-			std::shared_ptr<spdlog::logger> logger;
+			std::shared_ptr<Logger> logger;
 		public:
 			std::vector<ressources::BlockTarget> getWindowFrom(
 					const std::string& statringBlock);
@@ -47,7 +47,7 @@ namespace manager{
 			void popBlock(UTXOManager* utxos);
 			void pushBlock(UTXOManager* utxos, 
 					const ressources::Block& block);
-			explicit BlockIndex(std::shared_ptr<spdlog::logger> logger_);
+			explicit BlockIndex(std::shared_ptr<Logger> logger_);
 			inline bool exists(const std::string& hash) const{
 				return blockchain.exists(hash);
 			}

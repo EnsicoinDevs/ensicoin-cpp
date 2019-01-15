@@ -13,7 +13,7 @@ namespace network{
 			NetworkBuffer* buffer_,
 			Node* node_,
 			Connection::pointer conn_,
-			std::shared_ptr<spdlog::logger> logger_) :
+			std::shared_ptr<Logger> logger_) :
 		buffer(buffer_),
 		node(node_),
 		conn(conn_),

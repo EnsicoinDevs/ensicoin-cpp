@@ -4,9 +4,9 @@
 #include <iostream>
 #include <string>
 
-NetworkBuffer::NetworkBuffer(std::shared_ptr<spdlog::logger> logger_) : logger(logger_) {}
+NetworkBuffer::NetworkBuffer(std::shared_ptr<Logger> logger_) : logger(logger_) {}
 
-NetworkBuffer::NetworkBuffer(const std::string& binaryString,std::shared_ptr<spdlog::logger> logger_) : logger(logger_) {
+NetworkBuffer::NetworkBuffer(const std::string& binaryString,std::shared_ptr<Logger> logger_) : logger(logger_) {
 	buffer << binaryString;
 }
 

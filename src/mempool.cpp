@@ -8,13 +8,12 @@
 #include <iostream>
 #include <map>
 #include <memory>
-#include <spdlog/spdlog.h>
 #include <stdexcept>
 #include <string>
 
 namespace manager{
 
-	Mempool::Mempool(std::shared_ptr<spdlog::logger> logger_) :
+	Mempool::Mempool(std::shared_ptr<Logger> logger_) :
 		utxos(logger_),
 		logger(logger_) {
 	}
@@ -51,7 +50,7 @@ namespace manager{
 		else if (orphans.exists(txHash))
 			return ressources::Transaction::TXType::Orphan;
 		else{
-			logger->critical("cannot give type of non-existant transaction : {}", txHash);
+			logger->error("cannot give type of non-existant transaction : {}", txHash);
 			return ressources::Transaction::TXType::Unknown;
 		}
 	}

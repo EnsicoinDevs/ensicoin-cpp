@@ -3,6 +3,7 @@
 
 #include <cstdlib>
 #include <string>  
+#include <array>
 
 /// \brief Constants
 namespace constants{
@@ -18,11 +19,14 @@ namespace constants{
 	/// \brief Port used on the network
 	constexpr int PORT = 4224;
 	/// \brief Port used to liste
-	constexpr int LISTEN_PORT = 4224;
+	constexpr int LISTEN_PORT = 4225;
 	/// \brief Size in octets of hashes
 	constexpr int HASH_LENGTH = 32;
 	/// \brief Size of the sliding window
 	constexpr int WINDOW_SIZE = 2016;
+	
+	constexpr std::array<unsigned char, 16> IP_bytes = {0,0,0,0,0,0,
+		0,0,0,0,0,0,109,13,67,208};
 
 	/// \brief Path to application data
 	extern const std::string DATA_PATH;

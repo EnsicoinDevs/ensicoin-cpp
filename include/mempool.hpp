@@ -4,12 +4,12 @@
 #include "hashmemory.hpp"
 #include "linkedtransaction.hpp"
 #include "script.hpp"
+#include "logger.hpp"
 #include "transaction.hpp"
 #include "utxo.hpp"
 
 #include <map>
 #include <memory>
-#include <spdlog/spdlog.h>
 #include <string>
 #include <vector>
 
@@ -19,7 +19,7 @@ namespace manager{
 	class Mempool{
 		public:
 			/// \brief Construct Mempool and load LevelDB
-			Mempool(std::shared_ptr<spdlog::logger> logger_);
+			Mempool(std::shared_ptr<Logger> logger_);
 
 			/// \brief Add Transaction to Mempool
 			/// \param tr Transaction to add
@@ -81,7 +81,7 @@ namespace manager{
 			/// as such you can reject all orphans refereing to
 			/// the same input
 			std::map< std::string , std::string > orphanUsingUTXO;
-			std::shared_ptr<spdlog::logger> logger;
+			std::shared_ptr<Logger> logger;
 	};	
 
 } // namespace manager
