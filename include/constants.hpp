@@ -24,7 +24,7 @@ namespace constants{
 	constexpr int HASH_LENGTH = 32;
 	/// \brief Size of the sliding window
 	constexpr int WINDOW_SIZE = 2016;
-	
+
 	constexpr std::array<unsigned char, 16> IP_bytes = {0,0,0,0,0,0,
 		0,0,0,0,0,0,109,13,67,208};
 

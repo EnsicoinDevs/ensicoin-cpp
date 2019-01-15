@@ -37,16 +37,10 @@ namespace network{
 		socket.connect(asio::ip::tcp::endpoint( ipAddress,
 					constants::PORT));
 		currentStatus = Initiated;
-		auto v4Bytes = socket.local_endpoint().address().to_v4().to_bytes();
-		std::array<unsigned char, 16> bytes;
-		bytes.fill((unsigned char)(0xff));
-		for(int i = 0; i < 4; ++i){
-			bytes[16-4+i] = v4Bytes[i];
-		}
 
 		sendMessage(std::make_shared<message::WhoAmI>(
 					networkable::Address(time(nullptr), 
-						networkable::IP(bytes),
+						networkable::IP(constants::IP_bytes),
 						socket.local_endpoint().port()))
 				);
 	}
