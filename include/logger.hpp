@@ -51,17 +51,16 @@ class Logger{
 			std::strftime(mbstr, sizeof(mbstr),
 					      "%a %d %b %Y %H:%M:%S",
 						  std::localtime(&tm));
-			std::ostringstream os;
-			os << mbstr << " [" << level_repr << "] ";
-			generate(os, args ...);
-			std::cout << os.str() << std::endl;
+			std::cout << mbstr << " [" << level_repr << "] ";
+			generate(std::cout, args ...);
+			std::cout << std::endl;
 		}
 
-		inline std::ostringstream& generate(std::ostringstream& os){
+		inline std::ostream& generate(std::ostream& os){
 			return os;
 		}
 		template<typename T,typename ... Args>
-		std::ostringstream& generate(std::ostringstream& os,
+		std::ostream& generate(std::ostream& os,
 									 T first_arg,
 									 Args ... args) {
 			os << first_arg;
