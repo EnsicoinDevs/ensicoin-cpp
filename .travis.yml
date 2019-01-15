@@ -1,7 +1,7 @@
 language: cpp
 dist: bionic
 before_install:
-  - sudo apt-get install -y doxygen libspdlog-dev libcrypto++-dev rapidjson-dev libasio-dev libleveldb-dev
+  - sudo apt-get install -y doxygen libcrypto++-dev rapidjson-dev libasio-dev libleveldb-dev
 script: make && make doc
 compiler: clang
 deploy:
