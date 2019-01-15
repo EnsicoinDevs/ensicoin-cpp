@@ -56,15 +56,14 @@ class Logger{
 			std::cout << std::endl;
 		}
 
-		inline std::ostream& generate(std::ostream& os){
-			return os;
+		inline void generate(std::ostream&){
 		}
 		template<typename T,typename ... Args>
-		std::ostream& generate(std::ostream& os,
+		void generate(std::ostream& os,
 									 T first_arg,
 									 Args ... args) {
 			os << first_arg;
-			return generate(os, args ...);
+			generate(os, args ...);
 		}
 		log_level level;
 };
