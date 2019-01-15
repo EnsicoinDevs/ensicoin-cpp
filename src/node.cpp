@@ -52,7 +52,7 @@ Node::Node(asio::io_context& io_context,std::shared_ptr<Logger> logger_) :
 	testConnection->bind(asio::ip::address::from_string(johynIP));
 	unregistred.insert({testConnection->remote(),testConnection});
 
-	testConnection->sendMessage(invTest);
+	//testConnection->sendMessage(invTest);
 }
 
 void Node::run(){

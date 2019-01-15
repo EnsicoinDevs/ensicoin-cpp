@@ -9,7 +9,7 @@
 
 namespace network{
 	MessageHandler::MessageHandler(
-			message::Message::message_type tp,
+			message::message_type tp,
 			NetworkBuffer* buffer_,
 			Node* node_,
 			Connection::pointer conn_,
@@ -18,6 +18,7 @@ namespace network{
 		node(node_),
 		conn(conn_),
 		logger(logger_) {
+		logger->trace("Handling message from ", conn->remote());
 		switch(tp){
 			case message_type::whoami:
 				onWhoAmI();
@@ -29,13 +30,13 @@ namespace network{
 				onInv();
 				break;
 			default:
-				onUnknown();
+				onUnknown(tp);
 				break;
 		}
 	}
 
-	void MessageHandler::onUnknown(){
-		logger->warn("unknown message type");
+	void MessageHandler::onUnknown(message::message_type tp){
+		logger->warn("unknown message type : ", tp);
 	}
 
 	void MessageHandler::onInv(){

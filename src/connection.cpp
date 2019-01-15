@@ -56,16 +56,17 @@ namespace network{
 	}
 
 	void Connection::sendMessage(message::Message::pointer message){
-		if(message->getType() == message::Message::\
+		if(message->getType() == message::\
 				message_type::whoami || 
-				message->getType() == message::Message::\
+				message->getType() == message::\
 				message_type::whoamiack ||
 				currentStatus == Ack){
 			const std::string messageStr = message->byteRepr();
+			//util::printBinaryString(messageStr);
 			asio::async_write(socket, asio::buffer(messageStr), 
 					std::bind(&Connection::handleWrite, 
 						shared_from_this(), 
-						message->getTypeAsString()));
+						message::getTypeAsString(message->getType())));
 		}
 		else
 			bufferedMessages.push_back(message);
@@ -148,21 +149,27 @@ namespace network{
 	void Connection::handleHeader(){
 		logger->trace("[", remote(), "] reading header");
 		auto stringData = readAll();
-		netBuffer.appendRawData(stringData);
-		auto header = networkable::MessageHeader(&netBuffer);
-		asio::async_read(socket, buffer, 
+		NetworkBuffer headerBuffer(stringData, logger);
+		auto header = networkable::MessageHeader(&headerBuffer);
+		if(header.payloadLength > 0) {
+			asio::async_read(socket, buffer, 
 				asio::transfer_exactly(header.payloadLength), 
 				std::bind(&Connection::handleMessage, 
 					shared_from_this(), header) );
+		} else {
+			handleMessage(header);
+		}
 	}
 
 	void Connection::handleMessage(const networkable::MessageHeader& header){
-		logger->info(header.type," from ", remote());
+		logger->info(message::getTypeFromString(header.type), " from ", remote());
 		logger->trace("[", remote(),"] reading ", header.payloadLength, " bytes in payload");
 		auto stringData = readAll();
-		netBuffer.appendRawData(stringData);
-		MessageHandler(message::Message::typeFromString(header.type),
-				&netBuffer,
+		//std::cout << "Payload :" << std::endl;
+		//util::printBinaryString(stringData);
+		NetworkBuffer messageBuffer(stringData, logger);
+		MessageHandler(message::getTypeFromString(header.type),
+				&messageBuffer,
 				node,
 				shared_from_this(),
 				logger);

@@ -6,6 +6,7 @@
 #include "networkbuffer.hpp"
 #include "transaction.hpp"
 
+#include <ostream>
 #include <ctime>
 #include <memory>
 #include <string>
@@ -14,14 +15,7 @@
 /// \brief Networkable content to be sent
 namespace message{
 
-	/// \brief Base class for all network communcation
-	class Message : public std::enable_shared_from_this<Message>,
-	public networkable::Networkable {
-		public:
-			/// \brief Shared_pointer to a Message
-			using pointer = std::shared_ptr<Message>;
-			/// \brief Possible Message types
-			enum message_type{	
+	enum message_type{	
 				whoami, 
 				whoamiack, 
 				getaddr, 
@@ -34,14 +28,91 @@ namespace message{
 				getblocks, 
 				getmempool,
 				unknown};
+	
+
+	/// \brief Get the message_type as a string
+	inline std::string getTypeAsString(message_type type) {
+		std::string tp;
+		switch(type){
+			case whoami:
+				tp = "whoami";
+				break;
+			case whoamiack:
+				tp = "whoamiack";
+				break;
+			case getaddr:
+				tp = "getaddr";
+				break;
+			case addr:
+				tp =  "addr";
+				break;
+			case inv:
+				tp = "inv";
+				break;
+			case getdata:
+				tp = "getdata";
+				break;
+			case notfound:
+				tp = "notfound";
+				break;
+			case block:
+				tp = "block";
+				break;
+			case tx:
+				tp = "tx";
+				break;
+			case getblocks:
+				tp = "getblocks";
+				break;
+			case getmempool:
+				tp = "getmempool";
+				break;
+			case unknown:
+				tp = "unknown";
+				break;
+		}
+		return tp;
+	}
+	inline std::ostream& operator<<(std::ostream& os, message_type type){
+		os << getTypeAsString(type);
+		return os;
+	}
+	inline message_type getTypeFromString(const std::string& typeStr){
+		if(typeStr.find("whoamiack") != std::string::npos)
+			return whoamiack;
+		else if(typeStr.find("whoami") != std::string::npos)
+			return whoami;
+		else if(typeStr.find("getaddr") != std::string::npos)
+			return getaddr;
+		else if(typeStr.find("addr") != std::string::npos)
+			return addr;
+		else if(typeStr.find("inv") != std::string::npos)
+			return inv;
+		else if(typeStr.find("getblocks") != std::string::npos)
+			return getblocks;
+		else if(typeStr.find("getmempool") != std::string::npos)
+			return getmempool;
+		else if(typeStr.find("getdata") != std::string::npos)
+			return getdata;
+		else if(typeStr.find("notfound") != std::string::npos)
+			return notfound;
+		else if(typeStr.find("block") != std::string::npos)
+			return block;
+		else if(typeStr.find("tx") != std::string::npos)
+			return tx;
+		else
+			return unknown;
+	}
+
+	/// \brief Base class for all network communcation
+	class Message : public std::enable_shared_from_this<Message>,
+	public networkable::Networkable {
+		public:
+			/// \brief Shared_pointer to a Message
+			using pointer = std::shared_ptr<Message>;
 			/// \brief get the type of the Message
 			message_type getType() const;
-			/// \brief Get the message_type as a string
-			std::string getTypeAsString() const;
 			/// \brief Parse a string into message_type
-			static message_type typeFromString(
-					const std::string& 
-					typeString);
 			std::string byteRepr() const override;
 		protected:
 			/// \brief Defined in constants.hpp

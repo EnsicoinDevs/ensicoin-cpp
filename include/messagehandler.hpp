@@ -13,7 +13,7 @@ namespace network{
 	
 	class MessageHandler{
 		private:
-			using message_type = message::Message::message_type;
+			using message_type = message::message_type;
 			NetworkBuffer* buffer;
 			Node* node;
 			Connection::pointer conn;
@@ -25,10 +25,10 @@ namespace network{
 			
 			void onInv();
 
-			void onUnknown();
+			void onUnknown(message_type tp);
 		
 		public:
-			MessageHandler(message::Message::message_type type,
+			MessageHandler(message::message_type type,
 						   NetworkBuffer* buffer_,
 						   Node* node_,
 						   Connection::pointer conn_,
