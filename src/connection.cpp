@@ -105,7 +105,7 @@ namespace network{
 								  );
 						  sendMessage(std::make_shared<message::WhoAmIAck>());
 						  currentStatus = WaitingAck;
-						  logger->trace("[{}] Idle->WaitingAck", remote());
+						  logger->trace("[",remote(),"] Idle->WaitingAck");
 						  break;
 					  }
 			case WaitingAck:{
@@ -113,13 +113,13 @@ namespace network{
 								node->registerConnection(shared_from_this());
 								if(connectionVersion < versionUsed)
 									versionUsed = connectionVersion;
-								logger->trace("[{}] WaitingAck->Ack", remote());
+								logger->trace("[",remote(),"] WaitingAck->Ack");
 								break;
 							}
 
 			case Initiated:{
 							   currentStatus = Waiting;
-							   logger->trace("[{}] Initiated->Waiting", remote());
+							   logger->trace("[",remote() ,"] Initiated->Waiting");
 							   break;
 						   }
 			case Waiting:{
@@ -128,12 +128,12 @@ namespace network{
 								 versionUsed = connectionVersion;
 							 currentStatus = Ack;
 							 sendMessage(std::make_shared<message::WhoAmIAck>());
-							 logger->trace("[{}] Waiting->Ack", remote());
+							 logger->trace("[", remote(), "] Waiting->Ack");
 							 break;
 						 }
 
 			case Ack:{
-						 logger->warn("[{}] is already Ack", remote());
+						 logger->warn("[",remote(),"] is already Ack");
 					 }
 		}
 	}
@@ -146,7 +146,7 @@ namespace network{
 	}
 
 	void Connection::handleHeader(){
-		logger->trace("[{}] reading header", remote());
+		logger->trace("[", remote(), "] reading header");
 		auto stringData = readAll();
 		netBuffer.appendRawData(stringData);
 		auto header = networkable::MessageHeader(&netBuffer);
@@ -157,8 +157,8 @@ namespace network{
 	}
 
 	void Connection::handleMessage(const networkable::MessageHeader& header){
-		logger->info("{} from {}", header.type, remote());
-		logger->trace("[{}] reading {} bytes in payload", remote(), header.payloadLength);
+		logger->info(header.type," from ", remote());
+		logger->trace("[", remote(),"] reading ", header.payloadLength, " bytes in payload");
 		auto stringData = readAll();
 		netBuffer.appendRawData(stringData);
 		MessageHandler(message::Message::typeFromString(header.type),
@@ -170,7 +170,7 @@ namespace network{
 	}
 
 	void Connection::handleWrite(const std::string& messageType){
-		logger->info("{} to {}", messageType, remote());
+		logger->info(messageType," to ", remote());
 		idle();
 	}
 
@@ -180,7 +180,7 @@ namespace network{
 				std::bind(&Connection::handleHeader, 
 					shared_from_this()) );
 
-		logger->trace("[{}] waiting mesage", remote());
+		logger->trace("[", remote(), "] waiting message");
 
 		if( currentStatus == Ack){
 			while(!bufferedMessages.empty()){
